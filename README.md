@@ -14,7 +14,7 @@
   <a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/styled_with-prettier-ff69b4.svg" alt="Styled with Prettier"></a>
 </p>
 
-A boilerplate for Ethereum dapps.
+A dapp for participating in interactive coin offerings.
 
 ## Get Started
 
