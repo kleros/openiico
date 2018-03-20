@@ -1,0 +1,16 @@
+@import '../../styles/_colors.scss';
+
+/* @define Home */
+.Home {
+  height: 100%;
+  padding: 10px 20px;
+
+  &-result {
+    margin-top: 20px;
+    padding-left: 40px;
+
+    &-link {
+      margin: 5px;
+    }
+  }
+}

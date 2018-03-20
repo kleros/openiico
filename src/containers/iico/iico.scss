@@ -1,0 +1,9 @@
+/* @define IICO */
+.IICO {
+  padding: 10px 20px;
+
+  &-data {
+    display: flex;
+    justify-content: center;
+  }
+}

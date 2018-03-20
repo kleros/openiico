@@ -5,6 +5,8 @@ import { combineReducers, applyMiddleware, createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { MemoryRouter } from 'react-router-dom'
 
+import GlobalComponents from '../src/bootstrap/global-components'
+
 import '../src/bootstrap/app.css'
 
 // Storybook Host
@@ -28,6 +30,7 @@ addDecorator(story => (
     <div>
       {console.log(store.getState())}
       <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
+      <GlobalComponents />
     </div>
   </Provider>
 ))

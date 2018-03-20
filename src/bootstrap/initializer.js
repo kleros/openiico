@@ -16,6 +16,7 @@ class Initializer extends PureComponent {
 
     // Action Dispatchers
     fetchAccounts: PropTypes.func.isRequired,
+    fetchBalance: PropTypes.func.isRequired,
 
     // State
     children: PropTypes.oneOfType([
@@ -29,6 +30,13 @@ class Initializer extends PureComponent {
   componentDidMount() {
     const { fetchAccounts } = this.props
     fetchAccounts()
+  }
+
+  componentDidUpdate(prevProps) {
+    const { accounts: prevAccounts } = prevProps
+    const { accounts, fetchBalance } = this.props
+    if (accounts.data && accounts.data[0] && prevAccounts !== accounts)
+      fetchBalance()
   }
 
   render() {
@@ -52,5 +60,8 @@ export default connect(
   state => ({
     accounts: state.wallet.accounts
   }),
-  { fetchAccounts: walletActions.fetchAccounts }
+  {
+    fetchAccounts: walletActions.fetchAccounts,
+    fetchBalance: walletActions.fetchBalance
+  }
 )(Initializer)
