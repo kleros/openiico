@@ -63,7 +63,7 @@
 
   @extend %heading;
 
-  @if ($color == 'default') {
+  @if ($color != 'default') {
     color: $color;
   }
 }
