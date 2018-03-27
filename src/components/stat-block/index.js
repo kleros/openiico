@@ -11,6 +11,7 @@ const StatBlock = ({ label, value }) => (
 )
 
 StatBlock.propTypes = {
+  // State
   label: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired
 }
