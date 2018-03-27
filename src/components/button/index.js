@@ -16,7 +16,7 @@ const Button = ({
     onClick={onClick}
     {...rest}
   >
-    <h5 className={`Button-label ${labelClassName}`}>{children}</h5>
+    <span className={`Button-label ${labelClassName}`}>{children}</span>
   </div>
 )
 

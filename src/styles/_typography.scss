@@ -1,47 +1,95 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');
-
-%heading {
-  color: $heading;
+/* stylelint-disable declaration-colon-newline-after, indentation  */
+@font-face {
+  font-family: 'Metropolis';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../assets/fonts/metropolis-bold-webfont.woff2') format('woff2'),
+    url('../assets/fonts/metropolis-bold-webfont.woff') format('woff');
 }
 
-@mixin heading($fontSize, $fontWeight) {
+@font-face {
+  font-family: 'Metropolis';
+  font-style: italic;
+  font-weight: 700;
+  src: url('../assets/fonts/metropolis-bolditalic-webfont.woff2')
+      format('woff2'),
+    url('../assets/fonts/metropolis-bolditalic-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Metropolis';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/metropolis-regular-webfont.woff2') format('woff2'),
+    url('../assets/fonts/metropolis-regular-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Metropolis';
+  font-style: italic;
+  font-weight: 400;
+  src: url('../assets/fonts/metropolis-regularitalic-webfont.woff2')
+      format('woff2'),
+    url('../assets/fonts/metropolis-regularitalic-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Metropolis';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../assets/fonts/metropolis-light-webfont.woff2') format('woff2'),
+    url('../assets/fonts/metropolis-light-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Metropolis';
+  font-style: italic;
+  font-weight: 300;
+  src: url('../assets/fonts/metropolis-lightitalic-webfont.woff2')
+      format('woff2'),
+    url('../assets/fonts/metropolis-lightitalic-webfont.woff') format('woff');
+}
+/* stylelint-enable */
+
+%heading {
+  color: $dark;
+}
+
+@mixin heading($fontSize, $fontWeight, $color: 'default') {
   font-size: $fontSize;
   font-weight: $fontWeight;
   line-height: ceil(2 * $fontSize) / 2;
   margin: 0 0 (ceil(2 * $fontSize) / 4) 0;
 
   @extend %heading;
+
+  @if ($color == 'default') {
+    color: $color;
+  }
 }
 
 // Headings
 h1 {
-  @include heading(2rem, 800);
+  @include heading(1.5rem, 700);
 }
 
 h2 {
-  @include heading(1.75rem, 700);
+  @include heading(1.125rem, 300, $dark3);
 }
 
 h3 {
-  @include heading(1.5rem, 600);
+  @include heading(2rem, 400, $dark2);
 }
 
 h4 {
-  @include heading(1.25rem, 500);
-}
-
-h5 {
   @include heading(1rem, 400);
-}
-
-h6 {
-  @include heading(0.75rem, 300);
 }
 
 // Paragraphs
 p {
-  font-size: 0.75rem;
-  line-height: 1.8rem;
+  color: $dark3;
+  font-size: 0.875rem;
+  line-height: 1.0625rem;
 }
 
 // Modifiers
@@ -52,6 +100,6 @@ a {
 }
 
 small {
-  color: $disabled;
-  font-size: 0.8rem;
+  color: $dark3;
+  font-size: 0.5rem;
 }

@@ -36,12 +36,14 @@ const NavBar = ({ accounts, balance, routes }) => (
           failedLoading="..."
         />
       </div>
-      <RenderIf
-        resource={balance}
-        loading="..."
-        done={`${balance.data} ETH`}
-        failedLoading="..."
-      />
+      <div className="NavBar-buttons-balance">
+        <RenderIf
+          resource={balance}
+          loading="..."
+          done={`${balance.data} ETH`}
+          failedLoading="..."
+        />
+      </div>
     </div>
   </div>
 )

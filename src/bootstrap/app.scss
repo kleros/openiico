@@ -2,18 +2,19 @@
 @import '~create-redux-form/animations/carousel.css';
 @import '../styles/_colors.scss';
 @import '../styles/_typography.scss';
+@import '../styles/_toastr.scss';
 @import '../styles/_form.scss';
 
 // Global Overrides
 * {
   box-sizing: border-box !important;
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'Metropolis', sans-serif !important;
   scroll-behavior: smooth !important;
 }
 
 // Document Root
 html {
-  color: $text;
+  color: $dark2;
   font-size: 16px;
 }
 
@@ -37,7 +38,7 @@ body,
 
 // Scroll Root
 #scroll-root {
-  background: $background;
+  background: $light;
   display: flex;
   flex-direction: column;
   overflow: scroll;
@@ -48,5 +49,5 @@ body,
 
 // Horizontal Rule
 hr {
-  border: 1px solid #e6ebed;
+  border: 1px solid $light3;
 }
