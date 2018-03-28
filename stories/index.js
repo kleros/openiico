@@ -1,4 +1,5 @@
 import './button'
+import './circle'
 import './form'
 import './identicon'
 import './nav-bar'
