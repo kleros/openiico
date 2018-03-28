@@ -14,7 +14,7 @@
   &-thumb {
     background: $primary;
     height: 25px;
-    left: 0%;
+    left: 0;
     position: absolute;
     top: 0;
     transform: translateX(-50%);
@@ -23,7 +23,7 @@
 
   &-value {
     background: $light;
-    left: 0%;
+    left: 0;
     padding: 5px;
     position: absolute;
     top: 29px;
