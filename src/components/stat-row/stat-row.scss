@@ -1,15 +1,24 @@
+@import '../../styles/_colors.scss';
+
 /* @define StatRow */
 .StatRow {
-  border-bottom: 2px solid #eee;
-  display: flex;
+  background: $light;
+  border-bottom: 2px solid $light3;
   width: 100%;
 
   &--withBoxShadow {
-    border: 1px solid #eee;
+    border: 1px solid $light3;
     /* stylelint-disable declaration-colon-newline-after, value-list-comma-newline-after  */
     box-shadow: 0 0 6px 0 rgba(71, 82, 93, 0.09),
       0 0 1px 0 rgba(77, 78, 90, 0.08), 0 1px 0 0 rgba(71, 82, 93, 0.09);
     /* stylelint-enable */
-    padding: 25.5px 0 0 41.5px;
+    padding: 25.5px 41.5px;
+  }
+
+  &-blocks {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin: -46.5px -10px;
   }
 }

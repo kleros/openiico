@@ -52,14 +52,14 @@ function* fetchIICOData({ payload: { address } }) {
     tokensForSale: tokensForSale[0].toNumber(),
 
     // Times
-    startTime: startTime[0].toNumber(),
-    endFullBonusTime: endFullBonusTime[0].toNumber(),
-    withdrawalLockTime: withdrawalLockTime[0].toNumber(),
-    endTime: endTime[0].toNumber(),
+    startTime: new Date(startTime[0].toNumber() * 1000),
+    endFullBonusTime: new Date(endFullBonusTime[0].toNumber() * 1000),
+    withdrawalLockTime: new Date(withdrawalLockTime[0].toNumber() * 1000),
+    endTime: new Date(endTime[0].toNumber() * 1000),
 
     // Sale Data
-    startingBonus: startingBonus[0].toNumber(),
-    bonus: bonus[0].toNumber(),
+    startingBonus: startingBonus[0].toNumber() / 1e9,
+    bonus: bonus[0].toNumber() / 1e9,
     valuation: valuationAndAmountCommitted[0].toNumber(),
     amountCommitted: valuationAndAmountCommitted[1].toNumber()
   }

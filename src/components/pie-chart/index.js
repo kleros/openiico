@@ -2,19 +2,26 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ReactMinimalPieChart from 'react-minimal-pie-chart'
 
+import './pie-chart.css'
+
 const PieChart = ({ slice, total, size }) => (
   <ReactMinimalPieChart
-    data={[
-      {
-        value: slice,
-        key: 1,
-        color: '#47525d'
-      },
-      { value: total - slice, key: 2, color: '#f2f5fa' }
-    ]}
+    data={
+      total
+        ? [
+            {
+              value: slice,
+              key: 1,
+              color: '#47525d'
+            },
+            { value: total - slice, key: 2, color: '#f2f5fa' }
+          ]
+        : [{ value: 1, key: 1, color: '#f2f5fa' }]
+    }
     startAngle={270}
-    style={{ height: size, width: size }}
     animate
+    className="PieChart"
+    style={{ height: size, width: size }}
   />
 )
 

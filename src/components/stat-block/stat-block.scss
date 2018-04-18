@@ -2,7 +2,11 @@
 
 /* @define StatBlock */
 .StatBlock {
-  margin: 0 93px 30px 0;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 46.5px 10px;
 
   &--withNoLabel {
     background: $light2;

@@ -1,0 +1,15 @@
+/* @define Info */
+.Info {
+  &-top {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: -16px -16px 8px -16px;
+
+    &-section {
+      flex: 1;
+      margin: 16px;
+    }
+  }
+}

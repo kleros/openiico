@@ -8,6 +8,7 @@ class Slider extends PureComponent {
     // State
     startLabel: PropTypes.string.isRequired,
     endLabel: PropTypes.string.isRequired,
+    initialPercent: PropTypes.number.isRequired,
 
     // Handlers
     calcValue: PropTypes.func.isRequired
@@ -21,7 +22,16 @@ class Slider extends PureComponent {
   barRef = null
 
   getBarRef = ref => {
+    const { initialPercent, calcValue } = this.props
+
     this.barRef = ref
+
+    /* istanbul ignore if  */
+    if (process.env.NODE_ENV !== 'test')
+      this.setState({
+        left: this.barRef.getBoundingClientRect().width * initialPercent,
+        value: calcValue(initialPercent)
+      })
   }
 
   handleBarMouseMove = event => {

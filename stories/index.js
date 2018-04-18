@@ -1,4 +1,5 @@
 import './button'
+import './chain-hash'
 import './circle'
 import './form'
 import './identicon'

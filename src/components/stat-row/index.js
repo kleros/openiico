@@ -5,7 +5,7 @@ import './stat-row.css'
 
 const StatRow = ({ children, withBoxShadow }) => (
   <div className={`StatRow ${withBoxShadow ? 'StatRow--withBoxShadow' : ''}`}>
-    {children}
+    <div className="StatRow-blocks">{children}</div>
   </div>
 )
 
