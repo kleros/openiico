@@ -5,7 +5,8 @@ import { RenderIf } from 'lessdux'
 
 import * as IICOSelectors from '../../reducers/iico'
 import * as IICOActions from '../../actions/iico'
-import Identicon from '../../components/identicon'
+
+import Info from './components/info'
 
 import './iico.css'
 
@@ -35,19 +36,11 @@ class IICO extends PureComponent {
     return (
       <div className="IICO">
         <div className="IICO-data">
-          {/* TODO: Render './components/info' */}
           <RenderIf
             resource={IICOData}
             loading="Loading..."
-            done={
-              IICOData.data && (
-                <Identicon seed={IICOData.data.address} size={60} />
-              )
-            }
-            failedLoading={
-              IICOData.data !== null &&
-              'The address or the contract it holds is invalid. Try another one.'
-            }
+            done={IICOData.data && <Info data={IICOData.data} />}
+            failedLoading="The address or the contract it holds is invalid. Try another one."
           />
         </div>
         {/* TODO: Render './components/submit-bid-form' and disable submit button if already participated */}

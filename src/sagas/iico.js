@@ -1,4 +1,4 @@
-import { takeLatest } from 'redux-saga/effects'
+import { takeLatest, all, call } from 'redux-saga/effects'
 
 import * as IICOActions from '../actions/iico'
 import { IICOContractFactory } from '../bootstrap/dapp-api'
@@ -14,9 +14,55 @@ function* fetchIICOData({ payload: { address } }) {
   // Load contract
   const contract = IICOContractFactory.at(address)
 
-  // TODO: Fetch data
+  const {
+    // Token
+    tokenContractAddress,
+    tokensForSale,
 
-  return { address }
+    // Times
+    startTime,
+    endFullBonusTime,
+    withdrawalLockTime,
+    endTime,
+
+    // Sale Data
+    startingBonus,
+    bonus,
+    valuationAndAmountCommitted
+  } = yield all({
+    // Token
+    tokenContractAddress: call(contract.token),
+    tokensForSale: call(contract.tokensForSale),
+
+    // Times
+    startTime: call(contract.startTime),
+    endFullBonusTime: call(contract.endFullBonusTime),
+    withdrawalLockTime: call(contract.withdrawalLockTime),
+    endTime: call(contract.endTime),
+
+    // Sale Data
+    startingBonus: call(contract.maxBonus),
+    bonus: call(contract.bonus),
+    valuationAndAmountCommitted: call(contract.valuation)
+  })
+
+  return {
+    // Token
+    tokenContractAddress: tokenContractAddress[0],
+    tokensForSale: tokensForSale[0].toNumber(),
+
+    // Times
+    startTime: startTime[0].toNumber(),
+    endFullBonusTime: endFullBonusTime[0].toNumber(),
+    withdrawalLockTime: withdrawalLockTime[0].toNumber(),
+    endTime: endTime[0].toNumber(),
+
+    // Sale Data
+    startingBonus: startingBonus[0].toNumber(),
+    bonus: bonus[0].toNumber(),
+    valuation: valuationAndAmountCommitted[0].toNumber(),
+    amountCommitted: valuationAndAmountCommitted[1].toNumber()
+  }
 }
 
 /**
