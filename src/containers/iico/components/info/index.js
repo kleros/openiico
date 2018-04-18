@@ -19,10 +19,10 @@ export default class Info extends PureComponent {
       tokensForSale: PropTypes.number.isRequired,
 
       // Times
-      startTime: PropTypes.number.isRequired,
-      endFullBonusTime: PropTypes.number.isRequired,
-      withdrawalLockTime: PropTypes.number.isRequired,
-      endTime: PropTypes.number.isRequired,
+      startTime: PropTypes.instanceOf(Date).isRequired,
+      endFullBonusTime: PropTypes.instanceOf(Date).isRequired,
+      withdrawalLockTime: PropTypes.instanceOf(Date).isRequired,
+      endTime: PropTypes.instanceOf(Date).isRequired,
 
       // Sale Data
       startingBonus: PropTypes.number.isRequired,
