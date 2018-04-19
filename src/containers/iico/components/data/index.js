@@ -8,9 +8,9 @@ import PieChart from '../../../../components/pie-chart'
 import Slider from '../../../../components/slider'
 import { dateToString } from '../../../../utils/date'
 
-import './info.css'
+import './data.css'
 
-export default class Info extends PureComponent {
+export default class Data extends PureComponent {
   static propTypes = {
     // State
     data: PropTypes.shape({
@@ -71,9 +71,9 @@ export default class Info extends PureComponent {
     else phase = 'Finished'
 
     return (
-      <div className="Info">
-        <div className="Info-top">
-          <div className="Info-top-section">
+      <div className="Data">
+        <div className="Data-top">
+          <div className="Data-top-section">
             <StatRow withBoxShadow>
               <StatBlock
                 label="Token Contract"
@@ -82,7 +82,7 @@ export default class Info extends PureComponent {
               <StatBlock label="Tokens For Sale" value={data.tokensForSale} />
             </StatRow>
           </div>
-          <div className="Info-top-section">
+          <div className="Data-top-section">
             <StatRow withBoxShadow>
               <StatBlock
                 value={

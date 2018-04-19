@@ -6,7 +6,8 @@ import { RenderIf } from 'lessdux'
 import * as IICOSelectors from '../../reducers/iico'
 import * as IICOActions from '../../actions/iico'
 
-import Info from './components/info'
+import Data from './components/data'
+import Bids from './components/bids'
 
 import './iico.css'
 
@@ -20,18 +21,25 @@ class IICO extends PureComponent {
 
     // Redux State
     IICOData: IICOSelectors.IICODataShape.isRequired,
+    IICOBids: IICOSelectors.IICOBidsShape.isRequired,
 
     // Action Dispatchers
-    fetchIICOData: PropTypes.func.isRequired
+    fetchIICOData: PropTypes.func.isRequired,
+    fetchIICOBids: PropTypes.func.isRequired
   }
 
   componentDidMount() {
-    const { match: { params: { address } }, fetchIICOData } = this.props
+    const {
+      match: { params: { address } },
+      fetchIICOData,
+      fetchIICOBids
+    } = this.props
     fetchIICOData(address)
+    fetchIICOBids(address)
   }
 
   render() {
-    const { IICOData } = this.props
+    const { IICOData, IICOBids } = this.props
 
     return (
       <div className="IICO">
@@ -39,12 +47,19 @@ class IICO extends PureComponent {
           <RenderIf
             resource={IICOData}
             loading="Loading..."
-            done={IICOData.data && <Info data={IICOData.data} />}
+            done={IICOData.data && <Data data={IICOData.data} />}
             failedLoading="The address or the contract it holds is invalid. Try another one."
           />
         </div>
+        <div className="IICO-bids">
+          <RenderIf
+            resource={IICOBids}
+            loading="Loading..."
+            done={IICOBids.data && <Bids bids={IICOBids.data} />}
+            failedLoading="There was an error fetching your bids."
+          />
+        </div>
         {/* TODO: Render './components/submit-bid-form' and disable submit button if already participated */}
-        {/* TODO: Render './components/bid' if already participated */}
         {/* TODO: Render withdraw button if already participated and in first period */}
       </div>
     )
@@ -53,9 +68,11 @@ class IICO extends PureComponent {
 
 export default connect(
   state => ({
-    IICOData: state.IICO.IICOData
+    IICOData: state.IICO.IICOData,
+    IICOBids: state.IICO.IICOBids
   }),
   {
-    fetchIICOData: IICOActions.fetchIICOData
+    fetchIICOData: IICOActions.fetchIICOData,
+    fetchIICOBids: IICOActions.fetchIICOBids
   }
 )(IICO)

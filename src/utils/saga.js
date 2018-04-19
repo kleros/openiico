@@ -6,7 +6,7 @@ import { action as _action, errorAction } from './action'
  * Calls a saga with the `lessdux` fetch flow.
  * @param {object} resourceActions - The `lessdux` resource actions object for the resource being fetched.
  * @param {object} saga - The saga that does the actual fetching and returns the result.
- * @param {object} action - The action that triggered the saga.
+ * @param {{ type: string, payload: ?object, meta: ?object }} action - The action object that triggered the saga.
  */
 export function* fetchSaga(resourceActions, saga, action) {
   try {

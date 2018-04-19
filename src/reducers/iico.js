@@ -24,11 +24,25 @@ const {
     amountCommitted: PropTypes.number.isRequired
   })
 )
-export { IICODataShape }
+const {
+  shape: IICOBidsShape,
+  initialState: IICOBidsInitialState
+} = createResource(
+  PropTypes.arrayOf(
+    PropTypes.shape({
+      maxVal: PropTypes.number.isRequired,
+      contrib: PropTypes.number.isRequired,
+      bonus: PropTypes.number.isRequired,
+      contributor: PropTypes.string.isRequired,
+      withdrawn: PropTypes.bool.isRequired,
+      redeemed: PropTypes.bool.isRequired
+    }).isRequired
+  )
+)
+export { IICODataShape, IICOBidsShape }
 
 // Reducer
 export default createReducer({
-  IICOData: IICODataInitialState
+  IICOData: IICODataInitialState,
+  IICOBids: IICOBidsInitialState
 })
-
-// Selectors
