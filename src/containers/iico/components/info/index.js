@@ -54,12 +54,21 @@ export default class Info extends PureComponent {
 
     const now = Date.now()
     const startTime = data.startTime.getTime()
+    const endFullBonusTime = data.endFullBonusTime.getTime()
+    const withdrawalLockTime = data.withdrawalLockTime.getTime()
     const endTime = data.endTime.getTime()
 
     let initialPercent
     if (now <= startTime) initialPercent = 0
     else if (now >= endTime) initialPercent = 1
     else initialPercent = (now - startTime) / (endTime - startTime)
+
+    let phase
+    if (now < startTime) phase = 'Not Started'
+    else if (now < endFullBonusTime) phase = 'Full Bonus'
+    else if (now < withdrawalLockTime) phase = 'Free Withdrawals'
+    else if (now < endTime) phase = 'Automatic Withdrawals'
+    else phase = 'Finished'
 
     return (
       <div className="Info">
@@ -94,6 +103,7 @@ export default class Info extends PureComponent {
           </div>
         </div>
         <StatRow withBoxShadow>
+          <StatBlock label="Phase" value={phase} />
           <StatBlock
             label="Starting Bonus"
             value={`${(data.startingBonus * 100).toFixed(2)}%`}
