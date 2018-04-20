@@ -1,6 +1,9 @@
+import { delay } from 'redux-saga'
 import { toastr } from 'react-redux-toastr'
 
 import { call, put } from 'redux-saga/effects'
+
+import { eth } from '../bootstrap/dapp-api'
 
 import { action as _action, errorAction } from './action'
 
@@ -46,5 +49,20 @@ export function* lessduxSaga(flow, resourceActions, saga, action) {
   } catch (err) {
     toastr.error('', err.message.slice(0, 100))
     yield put(errorAction(resourceActions['FAIL' + failWord], err))
+  }
+}
+
+/**
+ * Sends a transaction and waits for it to be mined.
+ * @param {function} contractFunction - The transaction function to call.
+ * @param {...any} args - The arguments to pass into the contractFunction.
+ */
+export function* sendTransaction(contractFunction, ...args) {
+  const hash = yield call(contractFunction, ...args)
+  let receipt
+
+  while (!receipt) {
+    receipt = yield call(eth.getTransactionReceipt, hash)
+    yield call(delay, 200)
   }
 }

@@ -4,9 +4,11 @@ import PropTypes from 'prop-types'
 import StatRow from '../../../../components/stat-row'
 import StatBlock from '../../../../components/stat-block'
 import ChainHash from '../../../../components/chain-hash'
+import ChainNumber from '../../../../components/chain-number'
 import PieChart from '../../../../components/pie-chart'
 import Slider from '../../../../components/slider'
 import { dateToString } from '../../../../utils/date'
+import { numberToPercentage } from '../../../../utils/number'
 
 import './data.css'
 
@@ -47,7 +49,7 @@ export default class Data extends PureComponent {
       bonus =
         data.startingBonus * ((endTime - time) / (endTime - endFullBonusTime))
 
-    return `${(bonus * 100).toFixed(2)}%`
+    return numberToPercentage(bonus)
   }
 
   render() {
@@ -81,10 +83,12 @@ export default class Data extends PureComponent {
               <StatBlock label="Tokens For Sale" value={data.tokensForSale} />
               <StatBlock
                 label="Current Token Price"
-                value={(
-                  data.virtualValuation /
-                  (data.tokensForSale * (1 + data.bonus))
-                ).toFixed(2)}
+                value={
+                  <ChainNumber>
+                    {data.virtualValuation /
+                      (data.tokensForSale * (1 + data.bonus))}
+                  </ChainNumber>
+                }
               />
             </StatRow>
           </div>
@@ -100,10 +104,13 @@ export default class Data extends PureComponent {
                 }
                 noBackground
               />
-              <StatBlock label="Valuation" value={data.valuation} />
+              <StatBlock
+                label="Valuation"
+                value={<ChainNumber>{data.valuation}</ChainNumber>}
+              />
               <StatBlock
                 label="Amount Committed"
-                value={data.amountCommitted}
+                value={<ChainNumber>{data.amountCommitted}</ChainNumber>}
               />
             </StatRow>
           </div>
@@ -112,11 +119,11 @@ export default class Data extends PureComponent {
           <StatBlock label="Phase" value={phase} />
           <StatBlock
             label="Starting Bonus"
-            value={`${(data.startingBonus * 100).toFixed(2)}%`}
+            value={numberToPercentage(data.startingBonus)}
           />
           <StatBlock
             label="Current Bonus"
-            value={`${(data.bonus * 100).toFixed(2)}%`}
+            value={numberToPercentage(data.bonus)}
           />
           <StatBlock
             value={

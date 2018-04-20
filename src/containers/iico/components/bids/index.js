@@ -9,9 +9,11 @@ import {
   getSubmitBidFormIsInvalid,
   submitSubmitBidForm
 } from '../submit-bid-form'
+import ChainNumber from '../../../../components/chain-number'
 import StatRow from '../../../../components/stat-row'
 import StatBlock from '../../../../components/stat-block'
 import Button from '../../../../components/button'
+import { numberToPercentage } from '../../../../utils/number'
 
 import './bids.css'
 
@@ -87,11 +89,11 @@ class Bids extends PureComponent {
         <div className="Bids-confirmWithdrawal">
           Are you sure you wish to withdraw this bid?
           <br />
-          {lockedIn} ETH
+          <ChainNumber>{lockedIn}</ChainNumber> ETH
           <br />
           would remain locked in and your new bonus would be
           <br />
-          {(newBonus * 100).toFixed(2)}%.
+          {numberToPercentage(newBonus)}.
         </div>
       )
     })
@@ -149,16 +151,22 @@ class Bids extends PureComponent {
 
               return (
                 <StatRow key={index}>
-                  <StatBlock label="Contribution" value={b.contrib} />
+                  <StatBlock
+                    label="Contribution"
+                    value={<ChainNumber>{b.contrib}</ChainNumber>}
+                  />
                   <StatBlock
                     label="Bonus"
-                    value={`${(b.bonus * 100).toFixed(2)}%`}
+                    value={numberToPercentage(b.bonus)}
                   />
                   <StatBlock label="Personal Cap" value={b.maxVal} />
-                  <StatBlock label="Tokens" value={b.contrib / tokenPrice} />
+                  <StatBlock
+                    label="Tokens"
+                    value={<ChainNumber>{b.contrib / tokenPrice}</ChainNumber>}
+                  />
                   <StatBlock
                     label="Token Price"
-                    value={tokenPrice.toFixed(2)}
+                    value={<ChainNumber>{tokenPrice}</ChainNumber>}
                   />
                   {((canWithdraw && !b.withdrawn) ||
                     (hasEnded && !b.redeemed)) && (

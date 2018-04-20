@@ -5,7 +5,7 @@ import { takeLatest, select, all, call } from 'redux-saga/effects'
 import * as IICOActions from '../actions/iico'
 import * as walletSelectors from '../reducers/wallet'
 import { IICOContractFactory } from '../bootstrap/dapp-api'
-import { lessduxSaga } from '../utils/saga'
+import { lessduxSaga, sendTransaction } from '../utils/saga'
 
 // Parsers
 const parseBid = b => ({
@@ -135,7 +135,7 @@ function* createIICOBid({
 
   const nextBidID = (yield call(contract.search, personalCap, 0))[0]
 
-  yield call(contract.searchAndBid, personalCap, nextBidID, {
+  yield call(sendTransaction, contract.searchAndBid, personalCap, nextBidID, {
     from: account,
     value: amount
   })
@@ -163,12 +163,12 @@ function* withdrawIICOBid({ payload: { address, contributorBidID } }) {
   // Get the ID
   const bidID = (yield call(fetchBidIDs, contract, account))[contributorBidID]
 
-  yield call(contract.withdraw, bidID, { from: account })
+  yield call(sendTransaction, contract.withdraw, bidID, { from: account })
 
   return {
     collection: IICOActions.IICOBids.self,
     resource: parseBid(yield call(contract.bids, bidID)),
-    find: bidID
+    find: contributorBidID
   }
 }
 
@@ -185,12 +185,12 @@ function* redeemIICOBid({ payload: { address, contributorBidID } }) {
   // Get the ID
   const bidID = (yield call(fetchBidIDs, contract, account))[contributorBidID]
 
-  yield call(contract.redeem, bidID, { from: account })
+  yield call(sendTransaction, contract.redeem, bidID, { from: account })
 
   return {
     collection: IICOActions.IICOBids.self,
     resource: parseBid(yield call(contract.bids, bidID)),
-    find: bidID
+    find: contributorBidID
   }
 }
 
