@@ -14,7 +14,8 @@ export const IICOBid = {
     withCreate: true,
     withUpdate: true
   }),
-  WITHDRAW: 'WITHDRAW_$IICO$_BID'
+  WITHDRAW: 'WITHDRAW_$IICO$_BID',
+  REDEEM: 'REDEEM_$IICO$_BID'
 }
 
 /* Action Creators */
@@ -38,5 +39,9 @@ export const createIICOBid = (address, amount, personalCap) => ({
 })
 export const withdrawIICOBid = (address, contributorBidID) => ({
   type: IICOBid.WITHDRAW,
+  payload: { address, contributorBidID }
+})
+export const redeemIICOBid = (address, contributorBidID) => ({
+  type: IICOBid.REDEEM,
   payload: { address, contributorBidID }
 })

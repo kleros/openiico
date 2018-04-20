@@ -3,6 +3,7 @@
 /* @define StatRow */
 .StatRow {
   border-bottom: 2px solid $light3;
+  padding: 25.5px 0 0 0;
   width: 100%;
 
   &--withBoxShadow {
@@ -20,6 +21,6 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: -46.5px -10px;
+    margin: -10px;
   }
 }

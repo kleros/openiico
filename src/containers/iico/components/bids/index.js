@@ -51,6 +51,7 @@ class Bids extends PureComponent {
     // Action Dispatchers
     createIICOBid: PropTypes.func.isRequired,
     withdrawIICOBid: PropTypes.func.isRequired,
+    redeemIICOBid: PropTypes.func.isRequired,
 
     // submitBidForm
     submitBidFormIsInvalid: PropTypes.bool.isRequired,
@@ -79,10 +80,26 @@ class Bids extends PureComponent {
               (withdrawalLockTime - endFullBonusTime))
     const newBonus = bid.bonus - bid.bonus / 3
 
-    toastr.confirm(
-      `Are you sure you wish to withdraw this bid? ${lockedIn} ETH would remain locked in and your new bonus would be ${newBonus}.`,
-      { onOk: () => withdrawIICOBid(address, id) }
-    )
+    toastr.confirm(null, {
+      okText: 'Yes',
+      onOk: () => withdrawIICOBid(address, id),
+      component: () => (
+        <div className="Bids-confirmWithdrawal">
+          Are you sure you wish to withdraw this bid?
+          <br />
+          {lockedIn} ETH
+          <br />
+          would remain locked in and your new bonus would be
+          <br />
+          {(newBonus * 100).toFixed(2)}%.
+        </div>
+      )
+    })
+  }
+
+  handleRedeemClick = ({ currentTarget: { id } }) => {
+    const { address, redeemIICOBid } = this.props
+    redeemIICOBid(address, id)
   }
 
   render() {
@@ -95,10 +112,10 @@ class Bids extends PureComponent {
 
     const now = Date.now()
     const hasStarted = now >= data.startTime.getTime()
-    const canBid = hasStarted && now < data.endTime.getTime()
+    const hasEnded = now >= data.endTime.getTime()
+    const canBid = hasStarted && !hasEnded
     const canWithdraw = hasStarted && now < data.withdrawalLockTime.getTime()
 
-    console.log(bids)
     return (
       <div className="Bids">
         <h1>Your Bids</h1>
@@ -143,17 +160,24 @@ class Bids extends PureComponent {
                     label="Token Price"
                     value={tokenPrice.toFixed(2)}
                   />
-                  {canWithdraw &&
-                    !b.withdrawn && (
-                      <StatBlock
-                        value={
-                          <Button onClick={this.handleWithdrawClick} id={index}>
-                            WITHDRAW
-                          </Button>
-                        }
-                        noFlex
-                      />
-                    )}
+                  {((canWithdraw && !b.withdrawn) ||
+                    (hasEnded && !b.redeemed)) && (
+                    <StatBlock
+                      value={
+                        <Button
+                          onClick={
+                            canWithdraw
+                              ? this.handleWithdrawClick
+                              : this.handleRedeemClick
+                          }
+                          id={index}
+                        >
+                          {canWithdraw ? 'WITHDRAW' : 'REDEEM'}
+                        </Button>
+                      }
+                      noFlex
+                    />
+                  )}
                 </StatRow>
               )
             })
@@ -170,6 +194,7 @@ export default connect(
   {
     createIICOBid: IICOActions.createIICOBid,
     withdrawIICOBid: IICOActions.withdrawIICOBid,
+    redeemIICOBid: IICOActions.redeemIICOBid,
     submitSubmitBidForm
   }
 )(Bids)

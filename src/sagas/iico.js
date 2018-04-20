@@ -158,19 +158,39 @@ function* createIICOBid({
 function* withdrawIICOBid({ payload: { address, contributorBidID } }) {
   // Load contract
   const contract = IICOContractFactory.at(address)
+  const account = yield select(walletSelectors.getAccount)
 
   // Get the ID
-  const bidID = (yield call(
-    fetchBidIDs,
-    contract,
-    yield select(walletSelectors.getAccount)
-  ))[contributorBidID]
+  const bidID = (yield call(fetchBidIDs, contract, account))[contributorBidID]
 
-  yield call(contract.withdraw, bidID)
+  yield call(contract.withdraw, bidID, { from: account })
 
   return {
     collection: IICOActions.IICOBids.self,
-    resource: parseBid(yield call(contract.bids, bidID))
+    resource: parseBid(yield call(contract.bids, bidID)),
+    find: bidID
+  }
+}
+
+/**
+ * Redeems an IICO bid.
+ * @param {{ type: string, payload: ?object, meta: ?object }} action - The action object.
+ * @returns {object} - The `lessdux` collection mod object for updating the list of bids.
+ */
+function* redeemIICOBid({ payload: { address, contributorBidID } }) {
+  // Load contract
+  const contract = IICOContractFactory.at(address)
+  const account = yield select(walletSelectors.getAccount)
+
+  // Get the ID
+  const bidID = (yield call(fetchBidIDs, contract, account))[contributorBidID]
+
+  yield call(contract.redeem, bidID, { from: account })
+
+  return {
+    collection: IICOActions.IICOBids.self,
+    resource: parseBid(yield call(contract.bids, bidID)),
+    find: bidID
   }
 }
 
@@ -210,5 +230,12 @@ export default function* IICOSaga() {
     'update',
     IICOActions.IICOBid,
     withdrawIICOBid
+  )
+  yield takeLatest(
+    IICOActions.IICOBid.REDEEM,
+    lessduxSaga,
+    'update',
+    IICOActions.IICOBid,
+    redeemIICOBid
   )
 }
