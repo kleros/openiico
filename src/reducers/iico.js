@@ -1,6 +1,16 @@
 import PropTypes from 'prop-types'
 import createReducer, { createResource } from 'lessdux'
 
+// Common Shapes
+const _IICOBidShape = PropTypes.shape({
+  maxVal: PropTypes.number.isRequired,
+  contrib: PropTypes.number.isRequired,
+  bonus: PropTypes.number.isRequired,
+  contributor: PropTypes.string.isRequired,
+  withdrawn: PropTypes.bool.isRequired,
+  redeemed: PropTypes.bool.isRequired
+})
+
 // Shapes
 const {
   shape: IICODataShape,
@@ -27,22 +37,16 @@ const {
 const {
   shape: IICOBidsShape,
   initialState: IICOBidsInitialState
-} = createResource(
-  PropTypes.arrayOf(
-    PropTypes.shape({
-      maxVal: PropTypes.number.isRequired,
-      contrib: PropTypes.number.isRequired,
-      bonus: PropTypes.number.isRequired,
-      contributor: PropTypes.string.isRequired,
-      withdrawn: PropTypes.bool.isRequired,
-      redeemed: PropTypes.bool.isRequired
-    }).isRequired
-  )
-)
-export { IICODataShape, IICOBidsShape }
+} = createResource(PropTypes.arrayOf(_IICOBidShape.isRequired))
+const {
+  shape: IICOBidShape,
+  initialState: IICOBidInitialState
+} = createResource(_IICOBidShape)
+export { IICODataShape, IICOBidsShape, IICOBidShape }
 
 // Reducer
 export default createReducer({
   IICOData: IICODataInitialState,
-  IICOBids: IICOBidsInitialState
+  IICOBids: IICOBidsInitialState,
+  IICOBid: IICOBidInitialState
 })

@@ -39,7 +39,7 @@ class IICO extends PureComponent {
   }
 
   render() {
-    const { IICOData, IICOBids } = this.props
+    const { match: { params: { address } }, IICOData, IICOBids } = this.props
 
     return (
       <div className="IICO">
@@ -55,7 +55,9 @@ class IICO extends PureComponent {
           <RenderIf
             resource={IICOBids}
             loading="Loading..."
-            done={IICOBids.data && <Bids bids={IICOBids.data} />}
+            done={
+              IICOBids.data && <Bids address={address} bids={IICOBids.data} />
+            }
             failedLoading="There was an error fetching your bids."
           />
         </div>

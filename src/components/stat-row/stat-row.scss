@@ -2,11 +2,11 @@
 
 /* @define StatRow */
 .StatRow {
-  background: $light;
   border-bottom: 2px solid $light3;
   width: 100%;
 
   &--withBoxShadow {
+    background: $light;
     border: none;
     /* stylelint-disable declaration-colon-newline-after, value-list-comma-newline-after  */
     box-shadow: 0 0 6px 0 rgba(71, 82, 93, 0.09),

@@ -14,6 +14,10 @@
     padding: 21px 47px;
   }
 
+  &--noFlex {
+    flex: initial;
+  }
+
   &-value {
     &--withNoLabel {
       margin: 0;

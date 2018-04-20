@@ -1,9 +1,21 @@
+import Eth from 'ethjs'
+
 import { takeLatest, select, all, call } from 'redux-saga/effects'
 
 import * as IICOActions from '../actions/iico'
 import * as walletSelectors from '../reducers/wallet'
 import { IICOContractFactory } from '../bootstrap/dapp-api'
-import { fetchSaga } from '../utils/saga'
+import { lessduxSaga } from '../utils/saga'
+
+// Parsers
+const parseBid = b => ({
+  maxVal: b.maxVal[0].toNumber(),
+  contrib: b.contrib[0].toNumber(),
+  bonus: b.bonus[0].toNumber() / 1e9,
+  contributor: b.contributor[0],
+  withdrawn: b.withdrawn[0],
+  redeemed: b.redeemed[0]
+})
 
 /**
  * Fetches an IICO's data.
@@ -62,12 +74,13 @@ function* fetchIICOBids({ payload: { address } }) {
   const contract = IICOContractFactory.at(address)
 
   // Get bid IDs
+  const account = yield select(walletSelectors.getAccount)
   const bidIDs = []
   let i = 0
   while (true) {
     const bidID = (yield call(
       contract.contributorBidIDs,
-      yield select(walletSelectors.getAccount),
+      account,
       i
     ))[0].toNumber()
 
@@ -78,15 +91,49 @@ function* fetchIICOBids({ payload: { address } }) {
   }
 
   return (yield all(bidIDs.map(bidID => call(contract.bids, bidID)))).map(
-    b => ({
-      maxVal: b.maxVal[0].toNumber(),
-      contrib: b.contrib[0].toNumber(),
-      bonus: b.bonus[0].toNumber() / 1e9,
-      contributor: b.contributor[0],
-      withdrawn: b.withdrawn[0],
-      redeemed: b.redeemed[0]
-    })
+    parseBid
   )
+}
+
+/**
+ * Creates an IICO bid.
+ * @param {{ type: string, payload: ?object, meta: ?object }} action - The action object.
+ * @returns {object} - The `lessdux` collection mod object for updating the list of bids.
+ */
+function* createIICOBid({
+  payload: { address, amount: _amount, personalCap: _personalCap }
+}) {
+  // Load contract
+  const contract = IICOContractFactory.at(address)
+  const account = yield select(walletSelectors.getAccount)
+
+  const amount = Eth.toWei(_amount, 'ether')
+  const personalCap = Eth.toWei(_personalCap, 'ether')
+
+  const nextBidID = (yield call(contract.search, personalCap, 0))[0]
+
+  yield call(contract.searchAndBid, personalCap, nextBidID, {
+    from: account,
+    value: amount
+  })
+
+  // Get the ID
+  let lastBidID
+  let i = 0
+  while (true) {
+    const bidID = (yield call(
+      contract.contributorBidIDs,
+      account,
+      i
+    ))[0].toNumber()
+
+    if (bidID === 0) break
+
+    lastBidID = i
+    i++
+  }
+
+  return parseBid(yield call(contract.bids, lastBidID))
 }
 
 /**
@@ -96,7 +143,8 @@ export default function* IICOSaga() {
   // IICO Data
   yield takeLatest(
     IICOActions.IICOData.FETCH,
-    fetchSaga,
+    lessduxSaga,
+    'fetch',
     IICOActions.IICOData,
     fetchIICOData
   )
@@ -104,8 +152,25 @@ export default function* IICOSaga() {
   // IICO Bids
   yield takeLatest(
     IICOActions.IICOBids.FETCH,
-    fetchSaga,
+    lessduxSaga,
+    'fetch',
     IICOActions.IICOBids,
     fetchIICOBids
+  )
+
+  // IICO Bid
+  yield takeLatest(
+    IICOActions.IICOBid.CREATE,
+    lessduxSaga,
+    'create',
+    IICOActions.IICOBid,
+    createIICOBid
+  )
+  yield takeLatest(
+    IICOActions.IICOBid.WITHDRAW,
+    lessduxSaga,
+    'update',
+    IICOActions.IICOBid
+    // withdrawIICOBid
   )
 }

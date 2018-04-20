@@ -8,6 +8,15 @@ export const IICOData = createActions('$IICO$_DATA')
 // IICO Bids
 export const IICOBids = createActions('$IICO$_BIDS')
 
+// IICO Bid
+export const IICOBid = {
+  ...createActions('$IICO$_BID', {
+    withCreate: true,
+    withUpdate: true
+  }),
+  WITHDRAW: 'WITHDRAW_$IICO$_BID'
+}
+
 /* Action Creators */
 
 // IICO Data
@@ -20,4 +29,13 @@ export const fetchIICOData = address => ({
 export const fetchIICOBids = address => ({
   type: IICOBids.FETCH,
   payload: { address }
+})
+
+// IICO Bid
+export const createIICOBid = (address, amount, personalCap) => ({
+  type: IICOBid.CREATE,
+  payload: { address, amount, personalCap }
+})
+export const withdrawIICOBid = () => ({
+  type: IICOBid.WITHDRAW
 })

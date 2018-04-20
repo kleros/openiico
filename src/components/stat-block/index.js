@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 
 import './stat-block.css'
 
-const StatBlock = ({ label, value, noBackground }) => (
+const StatBlock = ({ label, value, noBackground, noFlex }) => (
   <div
     className={`StatBlock ${
       label || noBackground ? '' : 'StatBlock--withNoLabel'
-    }`}
+    } ${noFlex ? 'StatBlock--noFlex' : ''}`}
   >
     {label && <h2>{label}:</h2>}
     <h3
@@ -26,7 +26,8 @@ StatBlock.propTypes = {
   value: PropTypes.node.isRequired,
 
   // Modifiers
-  noBackground: PropTypes.bool
+  noBackground: PropTypes.bool,
+  noFlex: PropTypes.bool
 }
 
 StatBlock.defaultProps = {
@@ -34,7 +35,8 @@ StatBlock.defaultProps = {
   label: null,
 
   // Modifiers
-  noBackground: false
+  noBackground: false,
+  noFlex: false
 }
 
 export default StatBlock
