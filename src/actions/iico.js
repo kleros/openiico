@@ -36,6 +36,7 @@ export const createIICOBid = (address, amount, personalCap) => ({
   type: IICOBid.CREATE,
   payload: { address, amount, personalCap }
 })
-export const withdrawIICOBid = () => ({
-  type: IICOBid.WITHDRAW
+export const withdrawIICOBid = (address, contributorBidID) => ({
+  type: IICOBid.WITHDRAW,
+  payload: { address, contributorBidID }
 })

@@ -28,7 +28,8 @@ export default class Data extends PureComponent {
       startingBonus: PropTypes.number.isRequired,
       bonus: PropTypes.number.isRequired,
       valuation: PropTypes.number.isRequired,
-      amountCommitted: PropTypes.number.isRequired
+      amountCommitted: PropTypes.number.isRequired,
+      virtualValuation: PropTypes.number.isRequired
     }).isRequired
   }
 
@@ -80,6 +81,13 @@ export default class Data extends PureComponent {
                 value={<ChainHash>{data.tokenContractAddress}</ChainHash>}
               />
               <StatBlock label="Tokens For Sale" value={data.tokensForSale} />
+              <StatBlock
+                label="Current Token Price"
+                value={
+                  data.virtualValuation /
+                  (data.tokensForSale * (1 + data.bonus))
+                }
+              />
             </StatRow>
           </div>
           <div className="Data-top-section">

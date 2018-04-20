@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { toastr } from 'react-redux-toastr'
 
 import * as IICOActions from '../../../../actions/iico'
 import {
@@ -18,6 +19,24 @@ class Bids extends PureComponent {
   static propTypes = {
     // State
     address: PropTypes.string.isRequired,
+    data: PropTypes.shape({
+      // Token
+      tokenContractAddress: PropTypes.string.isRequired,
+      tokensForSale: PropTypes.number.isRequired,
+
+      // Times
+      startTime: PropTypes.instanceOf(Date).isRequired,
+      endFullBonusTime: PropTypes.instanceOf(Date).isRequired,
+      withdrawalLockTime: PropTypes.instanceOf(Date).isRequired,
+      endTime: PropTypes.instanceOf(Date).isRequired,
+
+      // Sale Data
+      startingBonus: PropTypes.number.isRequired,
+      bonus: PropTypes.number.isRequired,
+      valuation: PropTypes.number.isRequired,
+      amountCommitted: PropTypes.number.isRequired,
+      virtualValuation: PropTypes.number.isRequired
+    }).isRequired,
     bids: PropTypes.arrayOf(
       PropTypes.shape({
         maxVal: PropTypes.number.isRequired,
@@ -27,7 +46,7 @@ class Bids extends PureComponent {
         withdrawn: PropTypes.bool.isRequired,
         redeemed: PropTypes.bool.isRequired
       }).isRequired
-    ),
+    ).isRequired,
 
     // Action Dispatchers
     createIICOBid: PropTypes.func.isRequired,
@@ -43,8 +62,40 @@ class Bids extends PureComponent {
     createIICOBid(address, formData.amount, formData.personalCap)
   }
 
+  handleWithdrawClick = ({ currentTarget: { id } }) => {
+    const { address, data, bids, withdrawIICOBid } = this.props
+
+    const now = Date.now()
+    const endFullBonusTime = data.endFullBonusTime.getTime()
+    const withdrawalLockTime = data.withdrawalLockTime.getTime()
+    const bid = bids[id]
+
+    const lockedIn =
+      now < endFullBonusTime
+        ? 0
+        : bid.contrib *
+          (1 -
+            (withdrawalLockTime - now) /
+              (withdrawalLockTime - endFullBonusTime))
+    const newBonus = bid.bonus - bid.bonus / 3
+
+    toastr.confirm(
+      `Are you sure you wish to withdraw this bid? ${lockedIn} ETH would remain locked in and your new bonus would be ${newBonus}.`,
+      { onOk: () => withdrawIICOBid(address, id) }
+    )
+  }
+
   render() {
-    const { bids, submitBidFormIsInvalid, submitSubmitBidForm } = this.props
+    const {
+      data,
+      bids,
+      submitBidFormIsInvalid,
+      submitSubmitBidForm
+    } = this.props
+
+    const now = Date.now()
+    const canWithdraw =
+      now >= data.startTime.getTime() && now < data.withdrawalLockTime.getTime()
 
     console.log(bids)
     return (
@@ -66,6 +117,34 @@ class Bids extends PureComponent {
             noFlex
           />
         </StatRow>
+        {bids.map((b, index) => {
+          const tokenPrice =
+            data.virtualValuation / (data.tokensForSale * (1 + b.bonus))
+
+          return (
+            <StatRow key={b.bonus}>
+              <StatBlock label="Contribution" value={b.contrib} />
+              <StatBlock
+                label="Bonus"
+                value={`${(b.bonus * 100).toFixed(2)}%`}
+              />
+              <StatBlock label="Personal Cap" value={b.maxVal} />
+              <StatBlock label="Tokens" value={b.contrib / tokenPrice} />
+              <StatBlock label="Token Price" value={tokenPrice} />
+              {canWithdraw &&
+                !b.withdrawn && (
+                  <StatBlock
+                    value={
+                      <Button onClick={this.handleWithdrawClick} id={index}>
+                        WITHDRAW
+                      </Button>
+                    }
+                    noFlex
+                  />
+                )}
+            </StatRow>
+          )
+        })}
       </div>
     )
   }

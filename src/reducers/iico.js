@@ -31,7 +31,8 @@ const {
     startingBonus: PropTypes.number.isRequired,
     bonus: PropTypes.number.isRequired,
     valuation: PropTypes.number.isRequired,
-    amountCommitted: PropTypes.number.isRequired
+    amountCommitted: PropTypes.number.isRequired,
+    virtualValuation: PropTypes.number.isRequired
   })
 )
 const {

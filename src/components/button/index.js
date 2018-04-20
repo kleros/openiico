@@ -12,8 +12,8 @@ const Button = ({
   ...rest
 }) => (
   <div
-    className={`Button ${disabled ? 'is-disabled' : ''} ${className}`}
     onClick={onClick}
+    className={`Button ${disabled ? 'is-disabled' : ''} ${className}`}
     {...rest}
   >
     <span className={`Button-label ${labelClassName}`}>{children}</span>

@@ -4576,7 +4576,7 @@ exports[`Storyshots Stat Block default 1`] = `
           }
         >
           <div
-            className="StatBlock "
+            className="StatBlock  "
           >
             <h2>
               Label
@@ -4883,7 +4883,7 @@ exports[`Storyshots Stat Block with no label 1`] = `
           }
         >
           <div
-            className="StatBlock StatBlock--withNoLabel"
+            className="StatBlock StatBlock--withNoLabel "
           >
             <h3
               className="StatBlock-value StatBlock-value--withNoLabel"
@@ -5192,7 +5192,7 @@ exports[`Storyshots Stat Row default 1`] = `
               className="StatRow-blocks"
             >
               <div
-                className="StatBlock "
+                className="StatBlock  "
               >
                 <h2>
                   Label 1
@@ -5205,7 +5205,7 @@ exports[`Storyshots Stat Row default 1`] = `
                 </h3>
               </div>
               <div
-                className="StatBlock "
+                className="StatBlock  "
               >
                 <h2>
                   Label 2
@@ -5218,7 +5218,7 @@ exports[`Storyshots Stat Row default 1`] = `
                 </h3>
               </div>
               <div
-                className="StatBlock "
+                className="StatBlock  "
               >
                 <h2>
                   Label 3
@@ -5533,7 +5533,7 @@ exports[`Storyshots Stat Row with box shadow 1`] = `
               className="StatRow-blocks"
             >
               <div
-                className="StatBlock "
+                className="StatBlock  "
               >
                 <h2>
                   Label 1
@@ -5546,7 +5546,7 @@ exports[`Storyshots Stat Row with box shadow 1`] = `
                 </h3>
               </div>
               <div
-                className="StatBlock "
+                className="StatBlock  "
               >
                 <h2>
                   Label 2
@@ -5559,7 +5559,7 @@ exports[`Storyshots Stat Row with box shadow 1`] = `
                 </h3>
               </div>
               <div
-                className="StatBlock "
+                className="StatBlock  "
               >
                 <h2>
                   Label 3
@@ -5872,6 +5872,7 @@ exports[`Storyshots Text Input default 1`] = `
           >
             <input
               className="TextInput-input"
+              onBlur={undefined}
               onChange={[Function]}
               type="text"
               value=""
@@ -6177,10 +6178,11 @@ exports[`Storyshots Text Input error 1`] = `
           }
         >
           <div
-            className="TextInput is-error "
+            className="TextInput  "
           >
             <input
               className="TextInput-input"
+              onBlur={undefined}
               onChange={[Function]}
               type="text"
               value=""
@@ -6189,11 +6191,6 @@ exports[`Storyshots Text Input error 1`] = `
               className="TextInput-placeholder"
             >
               EMAIL
-            </div>
-            <div
-              className="TextInput-error"
-            >
-              Please enter a valid email.
             </div>
           </div>
           <div
@@ -6495,6 +6492,7 @@ exports[`Storyshots Text Input touched 1`] = `
           >
             <input
               className="TextInput-input"
+              onBlur={undefined}
               onChange={[Function]}
               type="text"
               value=""
@@ -6804,6 +6802,7 @@ exports[`Storyshots Text Input valid 1`] = `
           >
             <input
               className="TextInput-input"
+              onBlur={undefined}
               onChange={[Function]}
               type="text"
               value=""

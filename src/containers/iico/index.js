@@ -43,24 +43,36 @@ class IICO extends PureComponent {
 
     return (
       <div className="IICO">
-        <div className="IICO-data">
-          <RenderIf
-            resource={IICOData}
-            loading="Loading..."
-            done={IICOData.data && <Data data={IICOData.data} />}
-            failedLoading="The address or the contract it holds is invalid. Try another one."
-          />
-        </div>
-        <div className="IICO-bids">
-          <RenderIf
-            resource={IICOBids}
-            loading="Loading..."
-            done={
-              IICOBids.data && <Bids address={address} bids={IICOBids.data} />
-            }
-            failedLoading="There was an error fetching your bids."
-          />
-        </div>
+        <RenderIf
+          resource={IICOData}
+          loading="Loading..."
+          done={
+            IICOData.data && (
+              <div>
+                <div className="IICO-data">
+                  <Data data={IICOData.data} />
+                </div>
+                <div className="IICO-bids">
+                  <RenderIf
+                    resource={IICOBids}
+                    loading="Loading..."
+                    done={
+                      IICOBids.data && (
+                        <Bids
+                          address={address}
+                          data={IICOData.data}
+                          bids={IICOBids.data}
+                        />
+                      )
+                    }
+                    failedLoading="There was an error fetching your bids."
+                  />
+                </div>
+              </div>
+            )
+          }
+          failedLoading="The address or the contract it holds is invalid. Try another one."
+        />
         {/* TODO: Render './components/submit-bid-form' and disable submit button if already participated */}
         {/* TODO: Render withdraw button if already participated and in first period */}
       </div>

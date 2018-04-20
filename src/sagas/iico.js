@@ -60,23 +60,22 @@ function* fetchIICOData({ payload: { address } }) {
     startingBonus: d.startingBonus[0].toNumber() / 1e9,
     bonus: d.bonus[0].toNumber() / 1e9,
     valuation: d.valuationAndAmountCommitted[0].toNumber(),
-    amountCommitted: d.valuationAndAmountCommitted[1].toNumber()
+    amountCommitted: d.valuationAndAmountCommitted[1].toNumber(),
+    virtualValuation: d.valuationAndAmountCommitted[0].toNumber()
   }
 }
 
+// Helpers
 /**
- * Fetches the current wallet's IICO bids.
- * @param {{ type: string, payload: ?object, meta: ?object }} action - The action object.
- * @returns {object} - The current wallet's IICO bids.
+ * Fetches an address's bid IDs.
+ * @param {object} contract - The contract instance object.
+ * @param {string} account - The account.
+ * @returns {string[]} - The bid IDs.
  */
-function* fetchIICOBids({ payload: { address } }) {
-  // Load contract
-  const contract = IICOContractFactory.at(address)
-
-  // Get bid IDs
-  const account = yield select(walletSelectors.getAccount)
+function* fetchBidIDs(contract, account) {
   const bidIDs = []
   let i = 0
+
   while (true) {
     const bidID = (yield call(
       contract.contributorBidIDs,
@@ -89,6 +88,26 @@ function* fetchIICOBids({ payload: { address } }) {
     bidIDs.push(bidID)
     i++
   }
+
+  return bidIDs
+}
+
+// Sagas
+/**
+ * Fetches the current wallet's IICO bids.
+ * @param {{ type: string, payload: ?object, meta: ?object }} action - The action object.
+ * @returns {object} - The current wallet's IICO bids.
+ */
+function* fetchIICOBids({ payload: { address } }) {
+  // Load contract
+  const contract = IICOContractFactory.at(address)
+
+  // Get bid IDs
+  const bidIDs = yield call(
+    fetchBidIDs,
+    contract,
+    yield select(walletSelectors.getAccount)
+  )
 
   return (yield all(bidIDs.map(bidID => call(contract.bids, bidID)))).map(
     parseBid
@@ -118,22 +137,37 @@ function* createIICOBid({
   })
 
   // Get the ID
-  let lastBidID
-  let i = 0
-  while (true) {
-    const bidID = (yield call(
-      contract.contributorBidIDs,
-      account,
-      i
-    ))[0].toNumber()
+  const bidIDs = yield call(fetchBidIDs, contract, account)
+  const lastBidID = bidIDs[bidIDs.length - 1]
 
-    if (bidID === 0) break
-
-    lastBidID = i
-    i++
+  return {
+    collection: IICOActions.IICOBids.self,
+    resource: parseBid(yield call(contract.bids, lastBidID))
   }
+}
 
-  return parseBid(yield call(contract.bids, lastBidID))
+/**
+ * Withdraws an IICO bid.
+ * @param {{ type: string, payload: ?object, meta: ?object }} action - The action object.
+ * @returns {object} - The `lessdux` collection mod object for updating the list of bids.
+ */
+function* withdrawIICOBid({ payload: { address, contributorBidID } }) {
+  // Load contract
+  const contract = IICOContractFactory.at(address)
+
+  // Get the ID
+  const bidID = (yield call(
+    fetchBidIDs,
+    contract,
+    yield select(walletSelectors.getAccount)
+  ))[contributorBidID]
+
+  yield call(contract.withdraw, bidID)
+
+  return {
+    collection: IICOActions.IICOBids.self,
+    resource: parseBid(yield call(contract.bids, bidID))
+  }
 }
 
 /**
@@ -170,7 +204,7 @@ export default function* IICOSaga() {
     IICOActions.IICOBid.WITHDRAW,
     lessduxSaga,
     'update',
-    IICOActions.IICOBid
-    // withdrawIICOBid
+    IICOActions.IICOBid,
+    withdrawIICOBid
   )
 }
