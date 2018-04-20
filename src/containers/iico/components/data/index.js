@@ -55,8 +55,6 @@ export default class Data extends PureComponent {
 
     const now = Date.now()
     const startTime = data.startTime.getTime()
-    const endFullBonusTime = data.endFullBonusTime.getTime()
-    const withdrawalLockTime = data.withdrawalLockTime.getTime()
     const endTime = data.endTime.getTime()
 
     let initialPercent
@@ -66,8 +64,8 @@ export default class Data extends PureComponent {
 
     let phase
     if (now < startTime) phase = 'Not Started'
-    else if (now < endFullBonusTime) phase = 'Full Bonus'
-    else if (now < withdrawalLockTime) phase = 'Free Withdrawals'
+    else if (now < data.endFullBonusTime.getTime()) phase = 'Full Bonus'
+    else if (now < data.withdrawalLockTime.getTime()) phase = 'Free Withdrawals'
     else if (now < endTime) phase = 'Automatic Withdrawals'
     else phase = 'Finished'
 
@@ -83,10 +81,10 @@ export default class Data extends PureComponent {
               <StatBlock label="Tokens For Sale" value={data.tokensForSale} />
               <StatBlock
                 label="Current Token Price"
-                value={
+                value={(
                   data.virtualValuation /
                   (data.tokensForSale * (1 + data.bonus))
-                }
+                ).toFixed(2)}
               />
             </StatRow>
           </div>
@@ -130,6 +128,7 @@ export default class Data extends PureComponent {
               />
             }
             noBackground
+            flexBasis={390}
           />
         </StatRow>
       </div>

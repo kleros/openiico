@@ -2,4 +2,8 @@
 .Bids {
   display: flex;
   flex-direction: column;
+
+  &-submitBidForm-fieldset-fields {
+    justify-content: space-around;
+  }
 }

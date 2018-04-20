@@ -9,12 +9,12 @@ import { lessduxSaga } from '../utils/saga'
 
 // Parsers
 const parseBid = b => ({
-  maxVal: b.maxVal[0].toNumber(),
-  contrib: b.contrib[0].toNumber(),
-  bonus: b.bonus[0].toNumber() / 1e9,
-  contributor: b.contributor[0],
-  withdrawn: b.withdrawn[0],
-  redeemed: b.redeemed[0]
+  maxVal: Number(Eth.fromWei(b.maxVal, 'ether')),
+  contrib: Number(Eth.fromWei(b.contrib, 'ether')),
+  bonus: b.bonus.toNumber() / 1e9,
+  contributor: b.contributor,
+  withdrawn: b.withdrawn,
+  redeemed: b.redeemed
 })
 
 /**
@@ -59,9 +59,13 @@ function* fetchIICOData({ payload: { address } }) {
     // Sale Data
     startingBonus: d.startingBonus[0].toNumber() / 1e9,
     bonus: d.bonus[0].toNumber() / 1e9,
-    valuation: d.valuationAndAmountCommitted[0].toNumber(),
-    amountCommitted: d.valuationAndAmountCommitted[1].toNumber(),
-    virtualValuation: d.valuationAndAmountCommitted[0].toNumber()
+    valuation: Number(Eth.fromWei(d.valuationAndAmountCommitted[0], 'ether')),
+    amountCommitted: Number(
+      Eth.fromWei(d.valuationAndAmountCommitted[1], 'ether')
+    ),
+    virtualValuation: Number(
+      Eth.fromWei(d.valuationAndAmountCommitted[0], 'ether')
+    )
   }
 }
 

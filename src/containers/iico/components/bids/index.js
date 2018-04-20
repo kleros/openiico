@@ -94,57 +94,70 @@ class Bids extends PureComponent {
     } = this.props
 
     const now = Date.now()
-    const canWithdraw =
-      now >= data.startTime.getTime() && now < data.withdrawalLockTime.getTime()
+    const hasStarted = now >= data.startTime.getTime()
+    const canBid = hasStarted && now < data.endTime.getTime()
+    const canWithdraw = hasStarted && now < data.withdrawalLockTime.getTime()
 
     console.log(bids)
     return (
       <div className="Bids">
         <h1>Your Bids</h1>
-        <StatRow>
-          <StatBlock
-            value={<SubmitBidForm onSubmit={this.handleSubmitBidFormSubmit} />}
-          />
-          <StatBlock
-            value={
-              <Button
-                onClick={submitSubmitBidForm}
-                disabled={submitBidFormIsInvalid}
-              >
-                ADD
-              </Button>
-            }
-            noFlex
-          />
-        </StatRow>
-        {bids.map((b, index) => {
-          const tokenPrice =
-            data.virtualValuation / (data.tokensForSale * (1 + b.bonus))
+        {canBid && (
+          <StatRow>
+            <StatBlock
+              value={
+                <SubmitBidForm
+                  onSubmit={this.handleSubmitBidFormSubmit}
+                  className="Bids-submitBidForm"
+                />
+              }
+            />
+            <StatBlock
+              value={
+                <Button
+                  onClick={submitSubmitBidForm}
+                  disabled={submitBidFormIsInvalid}
+                >
+                  ADD
+                </Button>
+              }
+              noFlex
+            />
+          </StatRow>
+        )}
+        {bids.length
+          ? bids.map((b, index) => {
+              const tokenPrice =
+                data.virtualValuation / (data.tokensForSale * (1 + b.bonus))
 
-          return (
-            <StatRow key={b.bonus}>
-              <StatBlock label="Contribution" value={b.contrib} />
-              <StatBlock
-                label="Bonus"
-                value={`${(b.bonus * 100).toFixed(2)}%`}
-              />
-              <StatBlock label="Personal Cap" value={b.maxVal} />
-              <StatBlock label="Tokens" value={b.contrib / tokenPrice} />
-              <StatBlock label="Token Price" value={tokenPrice} />
-              {canWithdraw &&
-                !b.withdrawn && (
+              return (
+                <StatRow key={index}>
+                  <StatBlock label="Contribution" value={b.contrib} />
                   <StatBlock
-                    value={
-                      <Button onClick={this.handleWithdrawClick} id={index}>
-                        WITHDRAW
-                      </Button>
-                    }
-                    noFlex
+                    label="Bonus"
+                    value={`${(b.bonus * 100).toFixed(2)}%`}
                   />
-                )}
-            </StatRow>
-          )
-        })}
+                  <StatBlock label="Personal Cap" value={b.maxVal} />
+                  <StatBlock label="Tokens" value={b.contrib / tokenPrice} />
+                  <StatBlock
+                    label="Token Price"
+                    value={tokenPrice.toFixed(2)}
+                  />
+                  {canWithdraw &&
+                    !b.withdrawn && (
+                      <StatBlock
+                        value={
+                          <Button onClick={this.handleWithdrawClick} id={index}>
+                            WITHDRAW
+                          </Button>
+                        }
+                        noFlex
+                      />
+                    )}
+                </StatRow>
+              )
+            })
+          : "You haven't made any bids."}
       </div>
     )
   }
