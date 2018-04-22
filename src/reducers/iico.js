@@ -51,3 +51,7 @@ export default createReducer({
   IICOBids: IICOBidsInitialState,
   IICOBid: IICOBidInitialState
 })
+
+// Selectors
+export const getIICOBid = (state, contributorBidID) =>
+  state.IICO.IICOBids.data && state.IICO.IICOBids.data[contributorBidID]

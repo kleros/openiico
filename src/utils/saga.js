@@ -29,6 +29,7 @@ export function* lessduxSaga(flow, resourceActions, saga, action) {
     case 'update':
       receiveWord = '_UPDATED'
       failWord = '_UPDATE'
+      yield put(_action(resourceActions.UPDATE)) // Updates are not called directly so call it here to set .updating on the resource
       break
     case 'delete':
       receiveWord = '_DELETED'
@@ -65,4 +66,6 @@ export function* sendTransaction(contractFunction, ...args) {
     receipt = yield call(eth.getTransactionReceipt, hash)
     yield call(delay, 200)
   }
+
+  if (receipt.status === '0x0') throw new Error('Transaction failed.')
 }

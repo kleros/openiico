@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { toastr } from 'react-redux-toastr'
 
+import * as IICOSelectors from '../../../../reducers/iico'
 import * as IICOActions from '../../../../actions/iico'
 import {
   SubmitBidForm,
@@ -19,6 +20,18 @@ import './bids.css'
 
 class Bids extends PureComponent {
   static propTypes = {
+    // Redux State
+    IICOBid: IICOSelectors.IICOBidShape.isRequired,
+
+    // Action Dispatchers
+    createIICOBid: PropTypes.func.isRequired,
+    withdrawIICOBid: PropTypes.func.isRequired,
+    redeemIICOBid: PropTypes.func.isRequired,
+
+    // submitBidForm
+    submitBidFormIsInvalid: PropTypes.bool.isRequired,
+    submitSubmitBidForm: PropTypes.func.isRequired,
+
     // State
     address: PropTypes.string.isRequired,
     data: PropTypes.shape({
@@ -48,16 +61,7 @@ class Bids extends PureComponent {
         withdrawn: PropTypes.bool.isRequired,
         redeemed: PropTypes.bool.isRequired
       }).isRequired
-    ).isRequired,
-
-    // Action Dispatchers
-    createIICOBid: PropTypes.func.isRequired,
-    withdrawIICOBid: PropTypes.func.isRequired,
-    redeemIICOBid: PropTypes.func.isRequired,
-
-    // submitBidForm
-    submitBidFormIsInvalid: PropTypes.bool.isRequired,
-    submitSubmitBidForm: PropTypes.func.isRequired
+    ).isRequired
   }
 
   handleSubmitBidFormSubmit = formData => {
@@ -84,7 +88,7 @@ class Bids extends PureComponent {
 
     toastr.confirm(null, {
       okText: 'Yes',
-      onOk: () => withdrawIICOBid(address, id),
+      onOk: () => withdrawIICOBid(address, Number(id)),
       component: () => (
         <div className="Bids-confirmWithdrawal">
           Are you sure you wish to withdraw this bid?
@@ -101,15 +105,16 @@ class Bids extends PureComponent {
 
   handleRedeemClick = ({ currentTarget: { id } }) => {
     const { address, redeemIICOBid } = this.props
-    redeemIICOBid(address, id)
+    redeemIICOBid(address, Number(id))
   }
 
   render() {
     const {
-      data,
-      bids,
+      IICOBid,
       submitBidFormIsInvalid,
-      submitSubmitBidForm
+      submitSubmitBidForm,
+      data,
+      bids
     } = this.props
 
     const now = Date.now()
@@ -149,6 +154,11 @@ class Bids extends PureComponent {
               const tokenPrice =
                 data.virtualValuation / (data.tokensForSale * (1 + b.bonus))
 
+              const updating =
+                IICOBid.updating &&
+                IICOBid.data &&
+                IICOBid.data.contributorBidID === index
+
               return (
                 <StatRow key={index}>
                   <StatBlock
@@ -178,9 +188,12 @@ class Bids extends PureComponent {
                               ? this.handleWithdrawClick
                               : this.handleRedeemClick
                           }
+                          disabled={updating}
                           id={index}
                         >
-                          {canWithdraw ? 'WITHDRAW' : 'REDEEM'}
+                          {updating
+                            ? '...'
+                            : canWithdraw ? 'WITHDRAW' : 'REDEEM'}
                         </Button>
                       }
                       noFlex
@@ -197,6 +210,7 @@ class Bids extends PureComponent {
 
 export default connect(
   state => ({
+    IICOBid: state.IICO.IICOBid,
     submitBidFormIsInvalid: getSubmitBidFormIsInvalid(state)
   }),
   {
