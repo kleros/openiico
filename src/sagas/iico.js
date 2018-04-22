@@ -72,7 +72,8 @@ function* fetchIICOData({ payload: { address } }) {
     // Sale Data
     startingBonus: call(contract.maxBonus),
     bonus: call(contract.bonus),
-    valuationAndAmountCommitted: call(contract.valuation)
+    valuationAndAmountCommitted: call(contract.valuation),
+    finalized: call(contract.finalized)
   })
 
   return {
@@ -95,8 +96,25 @@ function* fetchIICOData({ payload: { address } }) {
     ),
     virtualValuation: Number(
       Eth.fromWei(d.valuationAndAmountCommitted[0], 'ether')
-    )
+    ),
+    finalized: d.finalized[0]
   }
+}
+
+/**
+ * Attempts to finalize an IICO.
+ * @param {{ type: string, payload: ?object, meta: ?object }} action - The action object.
+ * @returns {object} - The IICO's updated data.
+ */
+function* finalizeIICOData({ payload: { address, maxIterations } }) {
+  // Load contract
+  const contract = IICOContractFactory.at(address)
+
+  yield call(contract.finalize, maxIterations, {
+    from: yield select(walletSelectors.getAccount)
+  })
+
+  return yield call(fetchIICOData, { payload: { address } })
 }
 
 /**
@@ -153,11 +171,14 @@ function* createIICOBid({
 }
 
 /**
- * Withdraws an IICO bid.
+ * Withdraws or redeems an IICO bid.
  * @param {{ type: string, payload: ?object, meta: ?object }} action - The action object.
  * @returns {object} - The `lessdux` collection mod object for updating the list of bids.
  */
-function* withdrawIICOBid({ payload: { address, contributorBidID } }) {
+function* withdrawOrRedeemIICOBid({
+  type,
+  payload: { address, contributorBidID }
+}) {
   // Set IICO Bid for granular loading indicators
   yield put(
     action(IICOActions.IICOBid.RECEIVE, {
@@ -175,39 +196,12 @@ function* withdrawIICOBid({ payload: { address, contributorBidID } }) {
   // Get the ID
   const bidID = (yield call(fetchBidIDs, contract, account))[contributorBidID]
 
-  yield call(sendTransaction, contract.withdraw, bidID, { from: account })
-
-  return {
-    collection: IICOActions.IICOBids.self,
-    resource: parseBid(yield call(contract.bids, bidID)),
-    find: contributorBidID
-  }
-}
-
-/**
- * Redeems an IICO bid.
- * @param {{ type: string, payload: ?object, meta: ?object }} action - The action object.
- * @returns {object} - The `lessdux` collection mod object for updating the list of bids.
- */
-function* redeemIICOBid({ payload: { address, contributorBidID } }) {
-  // Set IICO Bid for granular loading indicators
-  yield put(
-    action(IICOActions.IICOBid.RECEIVE, {
-      IICOBid: {
-        ...(yield select(IICOSelectors.getIICOBid, contributorBidID)),
-        contributorBidID
-      }
-    })
+  yield call(
+    sendTransaction,
+    contract[type === IICOActions.IICOBid.WITHDRAW ? 'withdraw' : 'redeem'],
+    bidID,
+    { from: account }
   )
-
-  // Load contract
-  const contract = IICOContractFactory.at(address)
-  const account = yield select(walletSelectors.getAccount)
-
-  // Get the ID
-  const bidID = (yield call(fetchBidIDs, contract, account))[contributorBidID]
-
-  yield call(sendTransaction, contract.redeem, bidID, { from: account })
 
   return {
     collection: IICOActions.IICOBids.self,
@@ -227,6 +221,13 @@ export default function* IICOSaga() {
     'fetch',
     IICOActions.IICOData,
     fetchIICOData
+  )
+  yield takeLatest(
+    IICOActions.IICOData.FINALIZE,
+    lessduxSaga,
+    'update',
+    IICOActions.IICOData,
+    finalizeIICOData
   )
 
   // IICO Bids
@@ -251,13 +252,13 @@ export default function* IICOSaga() {
     lessduxSaga,
     'update',
     IICOActions.IICOBid,
-    withdrawIICOBid
+    withdrawOrRedeemIICOBid
   )
   yield takeLatest(
     IICOActions.IICOBid.REDEEM,
     lessduxSaga,
     'update',
     IICOActions.IICOBid,
-    redeemIICOBid
+    withdrawOrRedeemIICOBid
   )
 }

@@ -3,7 +3,10 @@ import { createActions } from 'lessdux'
 /* Actions */
 
 // IICO Data
-export const IICOData = createActions('$IICO$_DATA')
+export const IICOData = {
+  ...createActions('$IICO$_DATA', { withUpdate: true }),
+  FINALIZE: 'FINALIZE_$IICO$_DATA'
+}
 
 // IICO Bids
 export const IICOBids = createActions('$IICO$_BIDS')
@@ -24,6 +27,10 @@ export const IICOBid = {
 export const fetchIICOData = address => ({
   type: IICOData.FETCH,
   payload: { address }
+})
+export const finalizeIICOData = (address, maxIterations) => ({
+  type: IICOData.FINALIZE,
+  payload: { address, maxIterations }
 })
 
 // IICO Bids

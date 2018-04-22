@@ -10,6 +10,11 @@ import {
   getSubmitBidFormIsInvalid,
   submitSubmitBidForm
 } from '../submit-bid-form'
+import {
+  FinalizeIICOForm,
+  getFinalizeIICOFormIsInvalid,
+  submitFinalizeIICOForm
+} from '../finalize-iico-form'
 import ChainNumber from '../../../../components/chain-number'
 import StatRow from '../../../../components/stat-row'
 import StatBlock from '../../../../components/stat-block'
@@ -26,42 +31,21 @@ class Bids extends PureComponent {
     // Action Dispatchers
     createIICOBid: PropTypes.func.isRequired,
     withdrawIICOBid: PropTypes.func.isRequired,
+    finalizeIICO: PropTypes.func.isRequired,
     redeemIICOBid: PropTypes.func.isRequired,
 
     // submitBidForm
     submitBidFormIsInvalid: PropTypes.bool.isRequired,
     submitSubmitBidForm: PropTypes.func.isRequired,
 
+    // finalizeIICOForm
+    finalizeIICOFormIsInvalid: PropTypes.bool.isRequired,
+    submitFinalizeIICOForm: PropTypes.func.isRequired,
+
     // State
     address: PropTypes.string.isRequired,
-    data: PropTypes.shape({
-      // Token
-      tokenContractAddress: PropTypes.string.isRequired,
-      tokensForSale: PropTypes.number.isRequired,
-
-      // Times
-      startTime: PropTypes.instanceOf(Date).isRequired,
-      endFullBonusTime: PropTypes.instanceOf(Date).isRequired,
-      withdrawalLockTime: PropTypes.instanceOf(Date).isRequired,
-      endTime: PropTypes.instanceOf(Date).isRequired,
-
-      // Sale Data
-      startingBonus: PropTypes.number.isRequired,
-      bonus: PropTypes.number.isRequired,
-      valuation: PropTypes.number.isRequired,
-      amountCommitted: PropTypes.number.isRequired,
-      virtualValuation: PropTypes.number.isRequired
-    }).isRequired,
-    bids: PropTypes.arrayOf(
-      PropTypes.shape({
-        maxVal: PropTypes.number.isRequired,
-        contrib: PropTypes.number.isRequired,
-        bonus: PropTypes.number.isRequired,
-        contributor: PropTypes.string.isRequired,
-        withdrawn: PropTypes.bool.isRequired,
-        redeemed: PropTypes.bool.isRequired
-      }).isRequired
-    ).isRequired
+    data: IICOSelectors._IICODataShape.isRequired,
+    bids: IICOSelectors._IICOBidsShape.isRequired
   }
 
   handleSubmitBidFormSubmit = formData => {
@@ -103,6 +87,11 @@ class Bids extends PureComponent {
     })
   }
 
+  handleFinalizeIICOFormSubmit = formData => {
+    const { address, finalizeIICO } = this.props
+    finalizeIICO(address, formData.maxIterations)
+  }
+
   handleRedeemClick = ({ currentTarget: { id } }) => {
     const { address, redeemIICOBid } = this.props
     redeemIICOBid(address, Number(id))
@@ -113,6 +102,8 @@ class Bids extends PureComponent {
       IICOBid,
       submitBidFormIsInvalid,
       submitSubmitBidForm,
+      finalizeIICOFormIsInvalid,
+      submitFinalizeIICOForm,
       data,
       bids
     } = this.props
@@ -132,7 +123,7 @@ class Bids extends PureComponent {
               value={
                 <SubmitBidForm
                   onSubmit={this.handleSubmitBidFormSubmit}
-                  className="Bids-submitBidForm"
+                  className="Bids-form"
                 />
               }
             />
@@ -149,6 +140,30 @@ class Bids extends PureComponent {
             />
           </StatRow>
         )}
+        {!data.finalized &&
+          hasEnded && (
+            <StatRow>
+              <StatBlock
+                value={
+                  <FinalizeIICOForm
+                    onSubmit={this.handleFinalizeIICOFormSubmit}
+                    className="Bids-form"
+                  />
+                }
+              />
+              <StatBlock
+                value={
+                  <Button
+                    onClick={submitFinalizeIICOForm}
+                    disabled={finalizeIICOFormIsInvalid}
+                  >
+                    FINALIZE
+                  </Button>
+                }
+                noFlex
+              />
+            </StatRow>
+          )}
         {bids.length
           ? bids.map((b, index) => {
               const tokenPrice =
@@ -211,12 +226,15 @@ class Bids extends PureComponent {
 export default connect(
   state => ({
     IICOBid: state.IICO.IICOBid,
-    submitBidFormIsInvalid: getSubmitBidFormIsInvalid(state)
+    submitBidFormIsInvalid: getSubmitBidFormIsInvalid(state),
+    finalizeIICOFormIsInvalid: getFinalizeIICOFormIsInvalid(state)
   }),
   {
     createIICOBid: IICOActions.createIICOBid,
     withdrawIICOBid: IICOActions.withdrawIICOBid,
+    finalizeIICO: IICOActions.finalizeIICOData,
     redeemIICOBid: IICOActions.redeemIICOBid,
-    submitSubmitBidForm
+    submitSubmitBidForm,
+    submitFinalizeIICOForm
   }
 )(Bids)

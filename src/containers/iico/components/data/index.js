@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
 
+import * as IICOSelectors from '../../../../reducers/iico'
 import StatRow from '../../../../components/stat-row'
 import StatBlock from '../../../../components/stat-block'
 import ChainHash from '../../../../components/chain-hash'
@@ -15,24 +15,7 @@ import './data.css'
 export default class Data extends PureComponent {
   static propTypes = {
     // State
-    data: PropTypes.shape({
-      // Token
-      tokenContractAddress: PropTypes.string.isRequired,
-      tokensForSale: PropTypes.number.isRequired,
-
-      // Times
-      startTime: PropTypes.instanceOf(Date).isRequired,
-      endFullBonusTime: PropTypes.instanceOf(Date).isRequired,
-      withdrawalLockTime: PropTypes.instanceOf(Date).isRequired,
-      endTime: PropTypes.instanceOf(Date).isRequired,
-
-      // Sale Data
-      startingBonus: PropTypes.number.isRequired,
-      bonus: PropTypes.number.isRequired,
-      valuation: PropTypes.number.isRequired,
-      amountCommitted: PropTypes.number.isRequired,
-      virtualValuation: PropTypes.number.isRequired
-    }).isRequired
+    data: IICOSelectors._IICODataShape.isRequired
   }
 
   calcBonus = percent => {

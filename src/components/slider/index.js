@@ -27,7 +27,7 @@ class Slider extends PureComponent {
     this.barRef = ref
 
     /* istanbul ignore if  */
-    if (process.env.NODE_ENV !== 'test')
+    if (this.barRef && process.env.NODE_ENV !== 'test')
       this.setState({
         left: this.barRef.getBoundingClientRect().width * initialPercent,
         value: calcValue(initialPercent)
