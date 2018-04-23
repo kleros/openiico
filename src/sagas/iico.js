@@ -162,6 +162,13 @@ function* createIICOBid({
     value: amount
   })
 
+  // Update IICO data for pricing info
+  yield put(
+    action(IICOActions.IICOData.RECEIVE, {
+      IICOData: yield call(fetchIICOData, { payload: { address } })
+    })
+  )
+
   // Get the ID
   const bidIDs = yield call(fetchBidIDs, contract, account)
   const lastBidID = bidIDs[bidIDs.length - 1]
@@ -203,6 +210,13 @@ function* withdrawOrRedeemIICOBid({
     contract[type === IICOActions.IICOBid.WITHDRAW ? 'withdraw' : 'redeem'],
     bidID,
     { from: account }
+  )
+
+  // Update IICO data for pricing info
+  yield put(
+    action(IICOActions.IICOData.RECEIVE, {
+      IICOData: yield call(fetchIICOData, { payload: { address } })
+    })
   )
 
   return {
