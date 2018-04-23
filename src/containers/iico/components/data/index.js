@@ -54,6 +54,11 @@ export default class Data extends PureComponent {
     else if (now < endTime) phase = 'Automatic Withdrawals'
     else phase = 'Finished'
 
+    const amountCommitted =
+      phase === 'Finished'
+        ? data.valuation
+        : phase === 'Automatic Withdrawals' ? data.amountCommitted : 0
+
     return (
       <div className="Data">
         <div className="Data-top">
@@ -80,7 +85,7 @@ export default class Data extends PureComponent {
               <StatBlock
                 value={
                   <PieChart
-                    slice={data.amountCommitted}
+                    slice={amountCommitted}
                     total={data.valuation}
                     size={90}
                   />
@@ -93,7 +98,7 @@ export default class Data extends PureComponent {
               />
               <StatBlock
                 label="Amount Committed"
-                value={<ChainNumber>{data.amountCommitted}</ChainNumber>}
+                value={<ChainNumber>{amountCommitted}</ChainNumber>}
               />
             </StatRow>
           </div>

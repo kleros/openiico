@@ -1,8 +1,12 @@
 import PropTypes from 'prop-types'
 import createReducer, { createResource } from 'lessdux'
 
+import * as IICOActions from '../actions/iico'
+
 // Common Shapes
 export const _IICODataShape = PropTypes.shape({
+  address: PropTypes.string.isRequired,
+
   // Token
   tokenContractAddress: PropTypes.string.isRequired,
   tokensForSale: PropTypes.number.isRequired,
@@ -52,10 +56,13 @@ const {
 export { IICODataShape, IICOBidsShape, IICOBidShape }
 
 // Reducer
-export default createReducer({
+const initialState = {
   IICOData: IICODataInitialState,
   IICOBids: IICOBidsInitialState,
   IICOBid: IICOBidInitialState
+}
+export default createReducer(initialState, {
+  [IICOActions.IICOData.CLEAR]: () => initialState
 })
 
 // Selectors

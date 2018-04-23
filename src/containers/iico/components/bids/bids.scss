@@ -2,6 +2,8 @@
 .Bids {
   display: flex;
   flex-direction: column;
+  margin-bottom: 55px;
+  width: 100%;
 
   &-form-fieldset-fields {
     justify-content: space-around;

@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { RenderIf } from 'lessdux'
+import { ScaleLoader, PropagateLoader } from 'react-spinners'
 
 import * as IICOSelectors from '../../reducers/iico'
 import * as IICOActions from '../../actions/iico'
@@ -45,7 +46,15 @@ class IICO extends PureComponent {
       <div className="IICO">
         <RenderIf
           resource={IICOData}
-          loading="Loading..."
+          loading={
+            <ScaleLoader
+              color="#9b9b9b"
+              height={150}
+              width={10}
+              margin="10px"
+              radius={10}
+            />
+          }
           done={
             IICOData.data && (
               <div>
@@ -55,7 +64,7 @@ class IICO extends PureComponent {
                 <div className="IICO-bids">
                   <RenderIf
                     resource={IICOBids}
-                    loading="Loading..."
+                    loading={<PropagateLoader color="#9b9b9b" size={20} />}
                     done={
                       IICOBids.data && (
                         <Bids

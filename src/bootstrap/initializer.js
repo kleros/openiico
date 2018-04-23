@@ -46,7 +46,7 @@ class Initializer extends PureComponent {
     return (
       <RenderIf
         resource={accounts}
-        loading="Loading..."
+        loading="Loading Web3..."
         done={children}
         failedLoading={<RequiresMetaMask needsUnlock={isWeb3Loaded} />}
         extraValues={[accounts.data && accounts.data[0]]}

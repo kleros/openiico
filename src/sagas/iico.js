@@ -72,11 +72,13 @@ function* fetchIICOData({ payload: { address } }) {
     // Sale Data
     startingBonus: call(contract.maxBonus),
     bonus: call(contract.bonus),
-    valuationAndAmountCommitted: call(contract.valuation),
+    valuationAndAmountCommitted: call(contract.valuationAndAmountCommitted),
     finalized: call(contract.finalized)
   })
 
   return {
+    address,
+
     // Token
     tokenContractAddress: d.tokenContractAddress[0],
     tokensForSale: d.tokensForSale[0].toNumber(),
@@ -95,7 +97,7 @@ function* fetchIICOData({ payload: { address } }) {
       Eth.fromWei(d.valuationAndAmountCommitted[1], 'ether')
     ),
     virtualValuation: Number(
-      Eth.fromWei(d.valuationAndAmountCommitted[0], 'ether')
+      Eth.fromWei(d.valuationAndAmountCommitted[2], 'ether')
     ),
     finalized: d.finalized[0]
   }

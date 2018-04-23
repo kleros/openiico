@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { toastr } from 'react-redux-toastr'
+import { SyncLoader } from 'react-spinners'
 
 import * as IICOSelectors from '../../../../reducers/iico'
 import * as IICOActions from '../../../../actions/iico'
@@ -164,8 +165,33 @@ class Bids extends PureComponent {
               />
             </StatRow>
           )}
-        {bids.length
-          ? bids.map((b, index) => {
+        {IICOBid.creating && (
+          <StatRow>
+            <StatBlock
+              label="Contribution"
+              value={<SyncLoader color="#9b9b9b" size={8} />}
+            />
+            <StatBlock
+              label="Bonus"
+              value={<SyncLoader color="#9b9b9b" size={8} />}
+            />
+            <StatBlock
+              label="Personal Cap"
+              value={<SyncLoader color="#9b9b9b" size={8} />}
+            />
+            <StatBlock
+              label="Tokens"
+              value={<SyncLoader color="#9b9b9b" size={8} />}
+            />
+            <StatBlock
+              label="Token Price"
+              value={<SyncLoader color="#9b9b9b" size={8} />}
+            />
+          </StatRow>
+        )}
+        {bids.length ? (
+          bids
+            .map((b, index) => {
               const tokenPrice =
                 data.virtualValuation / (data.tokensForSale * (1 + b.bonus))
 
@@ -206,9 +232,13 @@ class Bids extends PureComponent {
                           disabled={updating}
                           id={index}
                         >
-                          {updating
-                            ? '...'
-                            : canWithdraw ? 'WITHDRAW' : 'REDEEM'}
+                          {updating ? (
+                            <SyncLoader color="#f2f5fa" size={10} />
+                          ) : canWithdraw ? (
+                            'WITHDRAW'
+                          ) : (
+                            'REDEEM'
+                          )}
                         </Button>
                       }
                       noFlex
@@ -217,7 +247,12 @@ class Bids extends PureComponent {
                 </StatRow>
               )
             })
-          : "You haven't made any bids."}
+            .reverse()
+        ) : (
+          <div>
+            <br />You haven't made any bids.<br />
+          </div>
+        )}
       </div>
     )
   }

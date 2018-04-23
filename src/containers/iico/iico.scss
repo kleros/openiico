@@ -1,8 +1,15 @@
 /* @define IICO */
 .IICO {
+  display: flex;
+  justify-content: center;
   padding: 38px 8%;
 
   &-data {
     margin-bottom: 55px;
+  }
+
+  &-bids {
+    display: flex;
+    justify-content: center;
   }
 }

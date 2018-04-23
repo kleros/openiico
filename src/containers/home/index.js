@@ -21,10 +21,16 @@ class Home extends PureComponent {
     IICOData: IICOSelectors.IICODataShape.isRequired,
 
     // Action Dispatchers
+    clearIICOData: PropTypes.func.isRequired,
     fetchIICOData: PropTypes.func.isRequired,
 
     // IICOAddressForm
     submitIICOAddressForm: PropTypes.func.isRequired
+  }
+
+  componentDidMount() {
+    const { clearIICOData } = this.props
+    clearIICOData()
   }
 
   handleIICOAddressFormSubmit = formData => {
@@ -49,7 +55,7 @@ class Home extends PureComponent {
         <div className="Home-result">
           <RenderIf
             resource={IICOData}
-            loading="Loading..."
+            loading="Loading contract..."
             done={
               IICOData.data && (
                 <div>
@@ -78,6 +84,7 @@ export default connect(
     IICOData: state.IICO.IICOData
   }),
   {
+    clearIICOData: IICOActions.clearIICOData,
     fetchIICOData: IICOActions.fetchIICOData,
     submitIICOAddressForm
   }
