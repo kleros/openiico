@@ -10,7 +10,8 @@ import { lessduxSaga, sendTransaction } from '../utils/saga'
 import { action } from '../utils/action'
 
 // Parsers
-const parseBid = b => ({
+const parseBid = (b, ID) => ({
+  ID,
   maxVal: Number(Eth.fromWei(b.maxVal, 'ether')),
   contrib: Number(Eth.fromWei(b.contrib, 'ether')),
   bonus: b.bonus.toNumber() / 1e9,
@@ -72,7 +73,7 @@ function* fetchIICOData({ payload: { address } }) {
     // Sale Data
     startingBonus: call(contract.maxBonus),
     bonus: call(contract.bonus),
-    valuationAndAmountCommitted: call(contract.valuationAndAmountCommitted),
+    valuationAndCutOff: call(contract.valuationAndCutOff),
     finalized: call(contract.finalized)
   })
 
@@ -92,13 +93,11 @@ function* fetchIICOData({ payload: { address } }) {
     // Sale Data
     startingBonus: d.startingBonus[0].toNumber() / 1e9,
     bonus: d.bonus[0].toNumber() / 1e9,
-    valuation: Number(Eth.fromWei(d.valuationAndAmountCommitted[0], 'ether')),
-    amountCommitted: Number(
-      Eth.fromWei(d.valuationAndAmountCommitted[1], 'ether')
-    ),
-    virtualValuation: Number(
-      Eth.fromWei(d.valuationAndAmountCommitted[2], 'ether')
-    ),
+    valuation: Number(Eth.fromWei(d.valuationAndCutOff[0], 'ether')),
+    virtualValuation: Number(Eth.fromWei(d.valuationAndCutOff[1], 'ether')),
+    cutOffBidID: d.valuationAndCutOff[2].toNumber(),
+    cutOffBidMaxVal: Number(Eth.fromWei(d.valuationAndCutOff[3], 'ether')),
+    cutOffBidContrib: Number(Eth.fromWei(d.valuationAndCutOff[4], 'ether')),
     finalized: d.finalized[0]
   }
 }
@@ -112,7 +111,7 @@ function* finalizeIICOData({ payload: { address, maxIterations } }) {
   // Load contract
   const contract = IICOContractFactory.at(address)
 
-  yield call(contract.finalize, maxIterations, {
+  yield call(sendTransaction, contract.finalize, maxIterations, {
     from: yield select(walletSelectors.getAccount)
   })
 
@@ -136,7 +135,7 @@ function* fetchIICOBids({ payload: { address } }) {
   )
 
   return (yield all(bidIDs.map(bidID => call(contract.bids, bidID)))).map(
-    parseBid
+    (b, index) => parseBid(b, bidIDs[index])
   )
 }
 
@@ -175,7 +174,7 @@ function* createIICOBid({
 
   return {
     collection: IICOActions.IICOBids.self,
-    resource: parseBid(yield call(contract.bids, lastBidID))
+    resource: parseBid(yield call(contract.bids, lastBidID), lastBidID)
   }
 }
 
@@ -184,26 +183,17 @@ function* createIICOBid({
  * @param {{ type: string, payload: ?object, meta: ?object }} action - The action object.
  * @returns {object} - The `lessdux` collection mod object for updating the list of bids.
  */
-function* withdrawOrRedeemIICOBid({
-  type,
-  payload: { address, contributorBidID }
-}) {
+function* withdrawOrRedeemIICOBid({ type, payload: { address, bidID } }) {
   // Set IICO Bid for granular loading indicators
   yield put(
     action(IICOActions.IICOBid.RECEIVE, {
-      IICOBid: {
-        ...(yield select(IICOSelectors.getIICOBid, contributorBidID)),
-        contributorBidID
-      }
+      IICOBid: yield select(IICOSelectors.getIICOBid, bidID)
     })
   )
 
   // Load contract
   const contract = IICOContractFactory.at(address)
   const account = yield select(walletSelectors.getAccount)
-
-  // Get the ID
-  const bidID = (yield call(fetchBidIDs, contract, account))[contributorBidID]
 
   yield call(
     sendTransaction,
@@ -221,8 +211,8 @@ function* withdrawOrRedeemIICOBid({
 
   return {
     collection: IICOActions.IICOBids.self,
-    resource: parseBid(yield call(contract.bids, bidID)),
-    find: contributorBidID
+    resource: parseBid(yield call(contract.bids, bidID), bidID),
+    find: b => b.ID === bidID
   }
 }
 

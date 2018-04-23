@@ -5,7 +5,6 @@ import StatRow from '../../../../components/stat-row'
 import StatBlock from '../../../../components/stat-block'
 import ChainHash from '../../../../components/chain-hash'
 import ChainNumber from '../../../../components/chain-number'
-import PieChart from '../../../../components/pie-chart'
 import Slider from '../../../../components/slider'
 import { dateToString } from '../../../../utils/date'
 import { numberToPercentage } from '../../../../utils/number'
@@ -54,57 +53,23 @@ export default class Data extends PureComponent {
     else if (now < endTime) phase = 'Automatic Withdrawals'
     else phase = 'Finished'
 
-    const amountCommitted =
-      phase === 'Finished'
-        ? data.valuation
-        : phase === 'Automatic Withdrawals' ? data.amountCommitted : 0
-
     return (
       <div className="Data">
         <div className="Data-top">
-          <div className="Data-top-section">
-            <StatRow withBoxShadow>
-              <StatBlock
-                label="Token Contract"
-                value={<ChainHash>{data.tokenContractAddress}</ChainHash>}
-              />
-              <StatBlock label="Tokens For Sale" value={data.tokensForSale} />
-              <StatBlock
-                label="Current Token Price"
-                value={
-                  <ChainNumber>
-                    {data.virtualValuation /
-                      (data.tokensForSale * (1 + data.bonus))}
-                  </ChainNumber>
-                }
-              />
-            </StatRow>
-          </div>
-          <div className="Data-top-section">
-            <StatRow withBoxShadow>
-              <StatBlock
-                value={
-                  <PieChart
-                    slice={amountCommitted}
-                    total={data.valuation}
-                    size={90}
-                  />
-                }
-                noBackground
-              />
-              <StatBlock
-                label="Valuation"
-                value={<ChainNumber>{data.valuation}</ChainNumber>}
-              />
-              <StatBlock
-                label="Amount Committed"
-                value={<ChainNumber>{amountCommitted}</ChainNumber>}
-              />
-            </StatRow>
-          </div>
+          <StatRow withBoxShadow>
+            <StatBlock
+              label="Token Contract"
+              value={<ChainHash>{data.tokenContractAddress}</ChainHash>}
+            />
+            <StatBlock label="Tokens For Sale" value={data.tokensForSale} />
+            <StatBlock
+              label="Valuation"
+              value={<ChainNumber>{data.valuation}</ChainNumber>}
+            />
+            <StatBlock label="Phase" value={phase} />
+          </StatRow>
         </div>
         <StatRow withBoxShadow>
-          <StatBlock label="Phase" value={phase} />
           <StatBlock
             label="Starting Bonus"
             value={numberToPercentage(data.startingBonus)}

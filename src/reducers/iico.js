@@ -21,11 +21,14 @@ export const _IICODataShape = PropTypes.shape({
   startingBonus: PropTypes.number.isRequired,
   bonus: PropTypes.number.isRequired,
   valuation: PropTypes.number.isRequired,
-  amountCommitted: PropTypes.number.isRequired,
   virtualValuation: PropTypes.number.isRequired,
+  cutOffBidID: PropTypes.number.isRequired,
+  cutOffBidMaxVal: PropTypes.number.isRequired,
+  cutOffBidContrib: PropTypes.number.isRequired,
   finalized: PropTypes.bool.isRequired
 })
 export const _IICOBidShape = PropTypes.shape({
+  ID: PropTypes.number.isRequired,
   maxVal: PropTypes.number.isRequired,
   contrib: PropTypes.number.isRequired,
   bonus: PropTypes.number.isRequired,
@@ -66,5 +69,5 @@ export default createReducer(initialState, {
 })
 
 // Selectors
-export const getIICOBid = (state, contributorBidID) =>
-  state.IICO.IICOBids.data && state.IICO.IICOBids.data[contributorBidID]
+export const getIICOBid = (state, bidID) =>
+  state.IICO.IICOBids.data && state.IICO.IICOBids.data.find(b => b.ID === bidID)
