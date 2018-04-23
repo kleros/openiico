@@ -42,16 +42,17 @@
     &.is-touched {
       font-size: 8px;
       line-height: 8px;
-      top: 5px;
+      top: 2px;
       transform: none;
     }
   }
 
   &-error {
-    bottom: 0;
+    bottom: -11.5px;
     color: $error;
     font-size: 8px;
     left: 5px;
+    pointer-events: none;
     position: absolute;
   }
 }

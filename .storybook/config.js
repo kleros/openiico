@@ -4,20 +4,23 @@ import { host } from 'storybook-host'
 import { combineReducers, applyMiddleware, createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { MemoryRouter } from 'react-router-dom'
+import ReduxToastr, { reducer as toastr } from 'react-redux-toastr'
+
+import GlobalComponents from '../src/bootstrap/global-components'
 
 import '../src/bootstrap/app.css'
 
 // Storybook Host
 addDecorator(
   host({
-    title: 'Dapp Front Boilerplate UI-Kit',
+    title: 'OpenIICO UI-Kit',
     align: 'center middle'
   })
 )
 
 // Integration Wrapper
 const store = createStore(
-  combineReducers({}),
+  combineReducers({ toastr }),
   applyMiddleware(store => next => action => {
     console.log(action)
     return next(action)
@@ -28,6 +31,7 @@ addDecorator(story => (
     <div>
       {console.log(store.getState())}
       <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
+      <GlobalComponents />
     </div>
   </Provider>
 ))

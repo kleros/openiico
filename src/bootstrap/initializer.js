@@ -16,6 +16,7 @@ class Initializer extends PureComponent {
 
     // Action Dispatchers
     fetchAccounts: PropTypes.func.isRequired,
+    fetchBalance: PropTypes.func.isRequired,
 
     // State
     children: PropTypes.oneOfType([
@@ -31,6 +32,13 @@ class Initializer extends PureComponent {
     fetchAccounts()
   }
 
+  componentDidUpdate(prevProps) {
+    const { accounts: prevAccounts } = prevProps
+    const { accounts, fetchBalance } = this.props
+    if (accounts.data && accounts.data[0] && prevAccounts !== accounts)
+      fetchBalance()
+  }
+
   render() {
     const { isWeb3Loaded } = this.state
     const { accounts, children } = this.props
@@ -38,7 +46,7 @@ class Initializer extends PureComponent {
     return (
       <RenderIf
         resource={accounts}
-        loading="Loading..."
+        loading="Loading Web3..."
         done={children}
         failedLoading={<RequiresMetaMask needsUnlock={isWeb3Loaded} />}
         extraValues={[accounts.data && accounts.data[0]]}
@@ -52,5 +60,8 @@ export default connect(
   state => ({
     accounts: state.wallet.accounts
   }),
-  { fetchAccounts: walletActions.fetchAccounts }
+  {
+    fetchAccounts: walletActions.fetchAccounts,
+    fetchBalance: walletActions.fetchBalance
+  }
 )(Initializer)

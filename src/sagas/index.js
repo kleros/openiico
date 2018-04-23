@@ -1,8 +1,10 @@
 import { delay } from 'redux-saga'
+import { toastr } from 'react-redux-toastr'
 
 import { spawn, call, all } from 'redux-saga/effects'
 
 import walletSaga from './wallet'
+import IICOSaga from './iico'
 
 /**
  * Makes a saga restart after an uncaught error.
@@ -25,13 +27,15 @@ export function makeRestartable(saga) {
             'Saga error, the saga will be restarted after 3 seconds.',
             err
           )
+
+        toastr.error('', err.message.slice(0, 100))
         yield call(delay, 3000)
       }
     }
   }
 }
 
-const rootSagas = [walletSaga].map(makeRestartable)
+const rootSagas = [walletSaga, IICOSaga].map(makeRestartable)
 
 /**
  * The root saga.

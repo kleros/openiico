@@ -14,14 +14,14 @@
   <a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/styled_with-prettier-ff69b4.svg" alt="Styled with Prettier"></a>
 </p>
 
-A boilerplate for Ethereum dapps.
+A dapp for participating in interactive coin offerings.
 
 ## Get Started
 
-1. Clone this repo.
-2. Install and set up the [MetaMask](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en) chrome extension.
-3. Configure MetaMask on the Kovan Test Network.
-4. Run `yarn` to install dependencies and then `yarn start` to start the dev server.
+1.  Clone this repo.
+2.  Install and set up the [MetaMask](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en) chrome extension.
+3.  Configure MetaMask on the Kovan Test Network.
+4.  Run `yarn` to install dependencies and then `yarn start` to start the dev server.
 
 ## Other Scripts
 

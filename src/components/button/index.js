@@ -12,11 +12,11 @@ const Button = ({
   ...rest
 }) => (
   <div
-    className={`Button ${disabled ? 'is-disabled' : ''} ${className}`}
     onClick={onClick}
+    className={`Button ${disabled ? 'is-disabled' : ''} ${className}`}
     {...rest}
   >
-    <h5 className={`Button-label ${labelClassName}`}>{children}</h5>
+    <span className={`Button-label ${labelClassName}`}>{children}</span>
   </div>
 )
 

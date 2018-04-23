@@ -1,0 +1,26 @@
+@import '../../styles/_colors.scss';
+
+/* @define StatBlock */
+.StatBlock {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 10px;
+
+  &--withNoLabel {
+    background: $light2;
+    border-radius: 5px;
+    padding: 21px 47px;
+  }
+
+  &--noFlex {
+    flex: initial;
+  }
+
+  &-value {
+    &--withNoLabel {
+      margin: 0;
+    }
+  }
+}

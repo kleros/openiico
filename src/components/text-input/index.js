@@ -4,32 +4,36 @@ import PropTypes from 'prop-types'
 import './text-input.css'
 
 const TextInput = ({
-  input: { value, onChange },
+  input: { value, onBlur, onChange },
   meta: { touched, valid, error },
   placeholder,
+  type,
   className
 }) => (
   <div
     className={`TextInput ${
-      error ? 'is-error' : valid ? 'is-valid' : ''
+      touched && error ? 'is-error' : valid ? 'is-valid' : ''
     } ${className}`}
   >
     <input
-      className="TextInput-input"
-      type="text"
       value={value}
+      onBlur={onBlur}
       onChange={onChange}
+      type={type}
+      className="TextInput-input"
     />
     {placeholder && (
       <div
         className={`TextInput-placeholder${
-          touched || value ? ' is-touched' : ''
+          touched || (value !== undefined && value !== null && value !== '')
+            ? ' is-touched'
+            : ''
         }`}
       >
         {placeholder}
       </div>
     )}
-    {error && <div className="TextInput-error">{error}</div>}
+    {touched && error && <div className="TextInput-error">{error}</div>}
   </div>
 )
 
@@ -37,6 +41,7 @@ TextInput.propTypes = {
   // Redux Form
   input: PropTypes.shape({
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    onBlur: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired
   }).isRequired,
   meta: PropTypes.shape({
@@ -50,6 +55,7 @@ TextInput.propTypes = {
     .isRequired,
 
   // Modifiers
+  type: PropTypes.string,
   className: PropTypes.string
 }
 
@@ -58,6 +64,7 @@ TextInput.defaultProps = {
   meta: {},
 
   // Modifiers
+  type: 'text',
   className: ''
 }
 

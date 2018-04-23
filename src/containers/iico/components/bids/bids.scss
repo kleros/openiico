@@ -1,0 +1,16 @@
+/* @define Bids */
+.Bids {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 55px;
+  width: 100%;
+
+  &-form-fieldset-fields {
+    justify-content: space-around;
+  }
+
+  &-confirmWithdrawal {
+    padding: 15px;
+    text-align: center;
+  }
+}

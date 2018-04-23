@@ -1,18 +1,21 @@
 @import '~normalize.css';
+@import '~react-redux-toastr/lib/css/react-redux-toastr.min.css';
 @import '~create-redux-form/animations/carousel.css';
 @import '../styles/_colors.scss';
+@import '../styles/_typography.scss';
+@import '../styles/_toastr.scss';
 @import '../styles/_form.scss';
 
 // Global Overrides
 * {
   box-sizing: border-box !important;
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'Metropolis', sans-serif !important;
   scroll-behavior: smooth !important;
 }
 
 // Document Root
 html {
-  color: $text;
+  color: $dark2;
   font-size: 16px;
 }
 
@@ -29,9 +32,14 @@ body,
   width: 100%;
 }
 
+// React Router Root
+#router-root {
+  padding-top: 70px;
+}
+
 // Scroll Root
 #scroll-root {
-  background: $background;
+  background: $light2;
   display: flex;
   flex-direction: column;
   overflow: scroll;
@@ -42,5 +50,5 @@ body,
 
 // Horizontal Rule
 hr {
-  border: 1px solid #e6ebed;
+  border: 1px solid $light3;
 }
