@@ -31,27 +31,36 @@ export default class Data extends PureComponent {
       bonus =
         data.startingBonus * ((endTime - time) / (endTime - endFullBonusTime))
 
-    return numberToPercentage(bonus)
+    return `${numberToPercentage(bonus)} - ${dateToString(data.startTime)}`
   }
 
   render() {
     const { data } = this.props
 
+    // Times
     const now = Date.now()
     const startTime = data.startTime.getTime()
     const endTime = data.endTime.getTime()
+    const endFullBonusTime = data.endFullBonusTime.getTime()
+    const withdrawalLockTime = data.withdrawalLockTime.getTime()
+    const duration = endTime - startTime
 
+    // Phase
+    let phase
+    if (now < startTime) phase = 'Not Started'
+    else if (now < endFullBonusTime) phase = 'Full Bonus'
+    else if (now < withdrawalLockTime) phase = 'Free Withdrawals'
+    else if (now < endTime) phase = 'Automatic Withdrawals'
+    else phase = 'Finished'
+
+    // Slider percents
     let initialPercent
     if (now <= startTime) initialPercent = 0
     else if (now >= endTime) initialPercent = 1
-    else initialPercent = (now - startTime) / (endTime - startTime)
-
-    let phase
-    if (now < startTime) phase = 'Not Started'
-    else if (now < data.endFullBonusTime.getTime()) phase = 'Full Bonus'
-    else if (now < data.withdrawalLockTime.getTime()) phase = 'Free Withdrawals'
-    else if (now < endTime) phase = 'Automatic Withdrawals'
-    else phase = 'Finished'
+    else initialPercent = (now - startTime) / duration
+    const endFullBonusPercent = (endFullBonusTime - startTime) / duration
+    const withdrawalLockPercent = (withdrawalLockTime - startTime) / duration
+    const nowPercent = Math.min(now / duration, 1)
 
     return (
       <div className="Data">
@@ -84,6 +93,11 @@ export default class Data extends PureComponent {
                 startLabel={dateToString(data.startTime)}
                 endLabel={dateToString(data.endTime)}
                 initialPercent={initialPercent}
+                steps={[
+                  { label: 'End of Full Bonus', percent: endFullBonusPercent },
+                  { label: 'Withdrawal Lock', percent: withdrawalLockPercent },
+                  { label: 'Now', percent: nowPercent }
+                ]}
                 calcValue={this.calcBonus}
               />
             }

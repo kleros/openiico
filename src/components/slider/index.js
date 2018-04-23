@@ -9,9 +9,19 @@ class Slider extends PureComponent {
     startLabel: PropTypes.string.isRequired,
     endLabel: PropTypes.string.isRequired,
     initialPercent: PropTypes.number.isRequired,
+    steps: PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        percent: PropTypes.number.isRequired
+      }).isRequired
+    ),
 
-    // Handlers
+    // Callbacks
     calcValue: PropTypes.func.isRequired
+  }
+
+  static defaultProps = {
+    steps: null
   }
 
   state = {
@@ -34,34 +44,55 @@ class Slider extends PureComponent {
       })
   }
 
+  percentToPixel = percent => {
+    if (!this.barRef) return 0
+    return this.barRef.getBoundingClientRect().width * percent
+  }
+
   handleBarMouseMove = event => {
     const { calcValue } = this.props
 
     const boundingClientRect = this.barRef.getBoundingClientRect()
     const left = event.pageX - boundingClientRect.left
-    const percent = left / boundingClientRect.width
     this.setState({
       left,
-      value: calcValue(percent)
+      value: calcValue(left / boundingClientRect.width)
     })
   }
 
   render() {
-    const { startLabel, endLabel } = this.props
+    const { startLabel, endLabel, steps } = this.props
     const { left, value } = this.state
     return (
       <div className="Slider">
+        {/* Bar */}
         <div
           ref={this.getBarRef}
-          className="Slider-bar"
           onMouseMove={this.handleBarMouseMove}
+          className="Slider-bar"
         />
+        {/* Thumb */}
         <div className="Slider-thumb" style={{ left }} />
         {value && (
           <div className="Slider-value" style={{ left }}>
             <h4>{value}</h4>
           </div>
         )}
+        {/* Steps */}
+        {steps &&
+          steps.map(s => (
+            <div
+              key={s.percent}
+              onMouseMove={this.handleBarMouseMove}
+              className="Slider-step"
+              style={{ left: this.percentToPixel(s.percent) }}
+            >
+              <div className="Slider-step-label">
+                <p>{s.label}</p>
+              </div>
+            </div>
+          ))}
+        {/* Labels */}
         <div className="Slider-labels">
           <p>{startLabel}</p>
           <p>{endLabel}</p>

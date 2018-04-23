@@ -132,7 +132,7 @@ class Bids extends PureComponent {
               value={
                 <Button
                   onClick={submitSubmitBidForm}
-                  disabled={submitBidFormIsInvalid}
+                  disabled={submitBidFormIsInvalid || IICOBid.creating}
                 >
                   ADD
                 </Button>
@@ -202,8 +202,8 @@ class Bids extends PureComponent {
                 contrib = data.cutOffContrib
                 refund = b.contrib - data.cutOffContrib
               } else if (
-                b.maxVal >= data.cutOffBidMaxVal &&
-                b.ID > data.cutOffBidID
+                b.maxVal > data.cutOffBidMaxVal ||
+                (b.maxVal === data.cutOffBidMaxVal && b.ID > data.cutOffBidID)
               ) {
                 // This bid is in the sale
                 contrib = b.contrib
