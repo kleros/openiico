@@ -60,7 +60,6 @@ export default class Data extends PureComponent {
     else initialPercent = (now - startTime) / duration
     const endFullBonusPercent = (endFullBonusTime - startTime) / duration
     const withdrawalLockPercent = (withdrawalLockTime - startTime) / duration
-    const nowPercent = Math.min(now / duration, 1)
 
     return (
       <div className="Data">
@@ -96,7 +95,7 @@ export default class Data extends PureComponent {
                 steps={[
                   { label: 'End of Full Bonus', percent: endFullBonusPercent },
                   { label: 'Withdrawal Lock', percent: withdrawalLockPercent },
-                  { label: 'Now', percent: nowPercent }
+                  { label: 'Now', percent: initialPercent }
                 ]}
                 calcValue={this.calcBonus}
               />
