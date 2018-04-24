@@ -86,7 +86,7 @@ exports[`Storyshots Button disabled 1`] = `
         >
           <div
             className="Button is-disabled "
-            onClick={[Function]}
+            onClick={null}
           >
             <span
               className="Button-label "

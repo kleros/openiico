@@ -71,6 +71,7 @@ class IICO extends PureComponent {
                           address={address}
                           data={IICOData.data}
                           bids={IICOBids.data}
+                          updatingBids={IICOBids.updating}
                         />
                       )
                     }

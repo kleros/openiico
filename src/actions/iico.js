@@ -10,7 +10,10 @@ export const IICOData = {
 }
 
 // IICO Bids
-export const IICOBids = createActions('$IICO$_BIDS')
+export const IICOBids = {
+  ...createActions('$IICO$_BIDS'),
+  REDEEM: 'REDEEM_$IICO$_BIDS'
+}
 
 // IICO Bid
 export const IICOBid = {
@@ -38,6 +41,10 @@ export const finalizeIICOData = (address, maxIterations) => ({
 // IICO Bids
 export const fetchIICOBids = address => ({
   type: IICOBids.FETCH,
+  payload: { address }
+})
+export const redeemIICOBids = address => ({
+  type: IICOBids.REDEEM,
   payload: { address }
 })
 

@@ -42,13 +42,11 @@ export const _IICOBidsShape = PropTypes.arrayOf(_IICOBidShape.isRequired)
 const {
   shape: IICODataShape,
   initialState: IICODataInitialState
-} = createResource(_IICODataShape, {
-  withUpdate: true
-})
+} = createResource(_IICODataShape, { withUpdate: true })
 const {
   shape: IICOBidsShape,
   initialState: IICOBidsInitialState
-} = createResource(_IICOBidsShape)
+} = createResource(_IICOBidsShape, { withUpdate: true })
 const {
   shape: IICOBidShape,
   initialState: IICOBidInitialState
