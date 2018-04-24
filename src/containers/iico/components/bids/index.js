@@ -59,8 +59,9 @@ class Bids extends PureComponent {
     )
   }
 
-  handleWithdrawClick = ({ currentTarget: { id } }) => {
+  handleWithdrawClick = ({ currentTarget: { _id } }) => {
     const { address, data, bids, withdrawIICOBid } = this.props
+    const id = Number(_id)
 
     const now = Date.now()
     const endFullBonusTime = data.endFullBonusTime.getTime()
@@ -78,7 +79,7 @@ class Bids extends PureComponent {
 
     toastr.confirm(null, {
       okText: 'Yes',
-      onOk: () => withdrawIICOBid(address, Number(id)),
+      onOk: () => withdrawIICOBid(address, id),
       component: () => (
         <div className="Bids-confirmWithdrawal">
           Are you sure you wish to withdraw this bid?
