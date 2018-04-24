@@ -1,0 +1,10 @@
+/* @define Checkbox */
+.Checkbox {
+  align-items: center;
+  display: flex;
+  font-size: 14px;
+
+  &-placeholder {
+    margin-left: 5px;
+  }
+}

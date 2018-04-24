@@ -19,10 +19,15 @@ class Component extends PureComponent {
     return <Button onClick={this.handleButtonClick}>TOAST</Button>
   }
 }
-const render = type => () => <Component type={type} />
-const types = ['info', 'warning', 'success', 'error', 'message', 'confirm']
 
 const stories = storiesOf('Toast', module)
-for (const type of types) {
-  stories.add(type, render(type))
+for (const type of [
+  'info',
+  'warning',
+  'success',
+  'error',
+  'message',
+  'confirm'
+]) {
+  stories.add(type, type => () => <Component type={type} />)
 }

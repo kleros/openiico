@@ -51,7 +51,12 @@ class Bids extends PureComponent {
 
   handleSubmitBidFormSubmit = formData => {
     const { address, createIICOBid } = this.props
-    createIICOBid(address, formData.amount, formData.personalCap)
+    createIICOBid(
+      address,
+      formData.amount,
+      formData.personalCap,
+      formData.noPersonalCap
+    )
   }
 
   handleWithdrawClick = ({ currentTarget: { id } }) => {
@@ -223,7 +228,10 @@ class Bids extends PureComponent {
                     label="Bonus"
                     value={numberToPercentage(b.bonus)}
                   />
-                  <StatBlock label="Personal Cap" value={b.maxVal} />
+                  <StatBlock
+                    label="Personal Cap"
+                    value={b.maxVal >= 1.157920892373162e59 ? '∞' : b.maxVal}
+                  />
                   <StatBlock
                     label="Tokens"
                     value={

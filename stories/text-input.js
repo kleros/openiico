@@ -11,7 +11,11 @@ const render = store => (
       ...store.state.input,
       onChange: event =>
         store.set({
-          input: { value: event.currentTarget.value, onChange: null }
+          input: {
+            value: event.currentTarget.value,
+            onBlur: null,
+            onChange: null
+          }
         })
     }}
   />

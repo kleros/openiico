@@ -145,14 +145,19 @@ function* fetchIICOBids({ payload: { address } }) {
  * @returns {object} - The `lessdux` collection mod object for updating the list of bids.
  */
 function* createIICOBid({
-  payload: { address, amount: _amount, personalCap: _personalCap }
+  payload: {
+    address,
+    amount: _amount,
+    personalCap: _personalCap,
+    noPersonalCap
+  }
 }) {
   // Load contract
   const contract = IICOContractFactory.at(address)
   const account = yield select(walletSelectors.getAccount)
 
   const amount = Eth.toWei(_amount, 'ether')
-  const personalCap = Eth.toWei(_personalCap, 'ether')
+  const personalCap = noPersonalCap ? -2 : Eth.toWei(_personalCap, 'ether')
 
   const nextBidID = (yield call(contract.search, personalCap, 0))[0]
 

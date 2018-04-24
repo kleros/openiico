@@ -20,14 +20,7 @@ const render = routes => () => (
 )
 
 storiesOf('Nav Bar', module)
-  .add(
-    'with routes',
-    render([
-      { name: 'Home', to: '/' },
-      { name: 'Disputes', to: '/disputes' },
-      { name: 'Testing Panel', to: '/testing-panel' }
-    ])
-  )
+  .add('with routes', render(routes))
   .add(
     'with a lot of routes, (scrollable)',
     render([

@@ -16,7 +16,11 @@ export const {
     personalCap: {
       type: 'text',
       validate: [required, number],
-      props: { type: 'number' }
+      props: { type: 'number' },
+      visibleIf: '!noPersonalCap'
+    },
+    noPersonalCap: {
+      type: 'checkbox'
     }
   },
   {

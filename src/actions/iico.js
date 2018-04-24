@@ -42,9 +42,9 @@ export const fetchIICOBids = address => ({
 })
 
 // IICO Bid
-export const createIICOBid = (address, amount, personalCap) => ({
+export const createIICOBid = (address, amount, personalCap, noPersonalCap) => ({
   type: IICOBid.CREATE,
-  payload: { address, amount, personalCap }
+  payload: { address, amount, personalCap, noPersonalCap }
 })
 export const withdrawIICOBid = (address, bidID) => ({
   type: IICOBid.WITHDRAW,
