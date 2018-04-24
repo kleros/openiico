@@ -51,7 +51,12 @@ class Bids extends PureComponent {
 
   handleSubmitBidFormSubmit = formData => {
     const { address, createIICOBid } = this.props
-    createIICOBid(address, formData.amount, formData.personalCap)
+    createIICOBid(
+      address,
+      formData.amount,
+      formData.personalCap,
+      formData.noPersonalCap
+    )
   }
 
   handleWithdrawClick = ({ currentTarget: { id } }) => {
@@ -132,7 +137,7 @@ class Bids extends PureComponent {
               value={
                 <Button
                   onClick={submitSubmitBidForm}
-                  disabled={submitBidFormIsInvalid}
+                  disabled={submitBidFormIsInvalid || IICOBid.creating}
                 >
                   ADD
                 </Button>
@@ -191,36 +196,61 @@ class Bids extends PureComponent {
         )}
         {bids.length ? (
           bids
-            .map((b, index) => {
-              const tokenPrice =
-                data.virtualValuation / (data.tokensForSale * (1 + b.bonus))
+            .map(b => {
+              if (b.contrib === 0) return null
+
+              // Assume bid is out of the sale
+              let contrib = 0
+              let refund = b.contrib
+              if (b.ID === data.cutOffBidID) {
+                // This is the cutoff bid
+                contrib = data.cutOffContrib
+                refund = b.contrib - data.cutOffContrib
+              } else if (
+                b.maxVal > data.cutOffBidMaxVal ||
+                (b.maxVal === data.cutOffBidMaxVal && b.ID > data.cutOffBidID)
+              ) {
+                // This bid is in the sale
+                contrib = b.contrib
+                refund = 0
+              }
 
               const updating =
-                IICOBid.updating &&
-                IICOBid.data &&
-                IICOBid.data.contributorBidID === index
+                IICOBid.updating && IICOBid.data && IICOBid.data.ID === b.ID
 
               return (
-                <StatRow key={index}>
+                <StatRow key={b.ID}>
                   <StatBlock
                     label="Contribution"
-                    value={<ChainNumber>{b.contrib}</ChainNumber>}
+                    value={<ChainNumber>{contrib}</ChainNumber>}
                   />
                   <StatBlock
                     label="Bonus"
                     value={numberToPercentage(b.bonus)}
                   />
-                  <StatBlock label="Personal Cap" value={b.maxVal} />
+                  <StatBlock
+                    label="Personal Cap"
+                    value={b.maxVal >= 1.157920892373162e59 ? '∞' : b.maxVal}
+                  />
                   <StatBlock
                     label="Tokens"
-                    value={<ChainNumber>{b.contrib / tokenPrice}</ChainNumber>}
+                    value={
+                      <ChainNumber>
+                        {contrib === 0
+                          ? 0
+                          : contrib *
+                            (1 + b.bonus) /
+                            data.virtualValuation *
+                            data.tokensForSale}
+                      </ChainNumber>
+                    }
                   />
                   <StatBlock
-                    label="Token Price"
-                    value={<ChainNumber>{tokenPrice}</ChainNumber>}
+                    label="Refund"
+                    value={<ChainNumber>{refund}</ChainNumber>}
                   />
                   {((canWithdraw && !b.withdrawn) ||
-                    (hasEnded && !b.redeemed)) && (
+                    (hasEnded && data.finalized && !b.redeemed)) && (
                     <StatBlock
                       value={
                         <Button
@@ -230,7 +260,7 @@ class Bids extends PureComponent {
                               : this.handleRedeemClick
                           }
                           disabled={updating}
-                          id={index}
+                          id={b.ID}
                         >
                           {updating ? (
                             <SyncLoader color="#f2f5fa" size={10} />

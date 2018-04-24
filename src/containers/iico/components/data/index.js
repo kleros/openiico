@@ -5,7 +5,6 @@ import StatRow from '../../../../components/stat-row'
 import StatBlock from '../../../../components/stat-block'
 import ChainHash from '../../../../components/chain-hash'
 import ChainNumber from '../../../../components/chain-number'
-import PieChart from '../../../../components/pie-chart'
 import Slider from '../../../../components/slider'
 import { dateToString } from '../../../../utils/date'
 import { numberToPercentage } from '../../../../utils/number'
@@ -32,79 +31,54 @@ export default class Data extends PureComponent {
       bonus =
         data.startingBonus * ((endTime - time) / (endTime - endFullBonusTime))
 
-    return numberToPercentage(bonus)
+    return `${numberToPercentage(bonus)} - ${dateToString(data.startTime)}`
   }
 
   render() {
     const { data } = this.props
 
+    // Times
     const now = Date.now()
     const startTime = data.startTime.getTime()
     const endTime = data.endTime.getTime()
+    const endFullBonusTime = data.endFullBonusTime.getTime()
+    const withdrawalLockTime = data.withdrawalLockTime.getTime()
+    const duration = endTime - startTime
 
-    let initialPercent
-    if (now <= startTime) initialPercent = 0
-    else if (now >= endTime) initialPercent = 1
-    else initialPercent = (now - startTime) / (endTime - startTime)
-
+    // Phase
     let phase
     if (now < startTime) phase = 'Not Started'
-    else if (now < data.endFullBonusTime.getTime()) phase = 'Full Bonus'
-    else if (now < data.withdrawalLockTime.getTime()) phase = 'Free Withdrawals'
+    else if (now < endFullBonusTime) phase = 'Full Bonus'
+    else if (now < withdrawalLockTime) phase = 'Free Withdrawals'
     else if (now < endTime) phase = 'Automatic Withdrawals'
     else phase = 'Finished'
 
-    const amountCommitted =
-      phase === 'Finished'
-        ? data.valuation
-        : phase === 'Automatic Withdrawals' ? data.amountCommitted : 0
+    // Slider percents
+    let initialPercent
+    if (now <= startTime) initialPercent = 0
+    else if (now >= endTime) initialPercent = 1
+    else initialPercent = (now - startTime) / duration
+    const endFullBonusPercent = (endFullBonusTime - startTime) / duration
+    const withdrawalLockPercent = (withdrawalLockTime - startTime) / duration
+    const nowPercent = Math.min(now / duration, 1)
 
     return (
       <div className="Data">
         <div className="Data-top">
-          <div className="Data-top-section">
-            <StatRow withBoxShadow>
-              <StatBlock
-                label="Token Contract"
-                value={<ChainHash>{data.tokenContractAddress}</ChainHash>}
-              />
-              <StatBlock label="Tokens For Sale" value={data.tokensForSale} />
-              <StatBlock
-                label="Current Token Price"
-                value={
-                  <ChainNumber>
-                    {data.virtualValuation /
-                      (data.tokensForSale * (1 + data.bonus))}
-                  </ChainNumber>
-                }
-              />
-            </StatRow>
-          </div>
-          <div className="Data-top-section">
-            <StatRow withBoxShadow>
-              <StatBlock
-                value={
-                  <PieChart
-                    slice={amountCommitted}
-                    total={data.valuation}
-                    size={90}
-                  />
-                }
-                noBackground
-              />
-              <StatBlock
-                label="Valuation"
-                value={<ChainNumber>{data.valuation}</ChainNumber>}
-              />
-              <StatBlock
-                label="Amount Committed"
-                value={<ChainNumber>{amountCommitted}</ChainNumber>}
-              />
-            </StatRow>
-          </div>
+          <StatRow withBoxShadow>
+            <StatBlock
+              label="Token Contract"
+              value={<ChainHash>{data.tokenContractAddress}</ChainHash>}
+            />
+            <StatBlock label="Tokens For Sale" value={data.tokensForSale} />
+            <StatBlock
+              label="Valuation"
+              value={<ChainNumber>{data.valuation}</ChainNumber>}
+            />
+            <StatBlock label="Phase" value={phase} />
+          </StatRow>
         </div>
         <StatRow withBoxShadow>
-          <StatBlock label="Phase" value={phase} />
           <StatBlock
             label="Starting Bonus"
             value={numberToPercentage(data.startingBonus)}
@@ -119,6 +93,11 @@ export default class Data extends PureComponent {
                 startLabel={dateToString(data.startTime)}
                 endLabel={dateToString(data.endTime)}
                 initialPercent={initialPercent}
+                steps={[
+                  { label: 'End of Full Bonus', percent: endFullBonusPercent },
+                  { label: 'Withdrawal Lock', percent: withdrawalLockPercent },
+                  { label: 'Now', percent: nowPercent }
+                ]}
                 calcValue={this.calcBonus}
               />
             }

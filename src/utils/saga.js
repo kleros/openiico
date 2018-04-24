@@ -4,6 +4,7 @@ import { toastr } from 'react-redux-toastr'
 import { call, put } from 'redux-saga/effects'
 
 import { eth } from '../bootstrap/dapp-api'
+import * as walletActions from '../actions/wallet'
 
 import { action as _action, errorAction } from './action'
 
@@ -54,7 +55,7 @@ export function* lessduxSaga(flow, resourceActions, saga, action) {
 }
 
 /**
- * Sends a transaction and waits for it to be mined.
+ * Sends a transaction, waits for it to be mined, and updates the ETH balance.
  * @param {function} contractFunction - The transaction function to call.
  * @param {...any} args - The arguments to pass into the contractFunction.
  */
@@ -66,6 +67,8 @@ export function* sendTransaction(contractFunction, ...args) {
     receipt = yield call(eth.getTransactionReceipt, hash)
     yield call(delay, 200)
   }
+
+  yield put(_action(walletActions.balance.FETCH))
 
   if (receipt.status === '0x0') throw new Error('Transaction failed.')
 }

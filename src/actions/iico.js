@@ -42,15 +42,15 @@ export const fetchIICOBids = address => ({
 })
 
 // IICO Bid
-export const createIICOBid = (address, amount, personalCap) => ({
+export const createIICOBid = (address, amount, personalCap, noPersonalCap) => ({
   type: IICOBid.CREATE,
-  payload: { address, amount, personalCap }
+  payload: { address, amount, personalCap, noPersonalCap }
 })
-export const withdrawIICOBid = (address, contributorBidID) => ({
+export const withdrawIICOBid = (address, bidID) => ({
   type: IICOBid.WITHDRAW,
-  payload: { address, contributorBidID }
+  payload: { address, bidID }
 })
-export const redeemIICOBid = (address, contributorBidID) => ({
+export const redeemIICOBid = (address, bidID) => ({
   type: IICOBid.REDEEM,
-  payload: { address, contributorBidID }
+  payload: { address, bidID }
 })
