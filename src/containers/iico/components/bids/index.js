@@ -59,10 +59,9 @@ class Bids extends PureComponent {
     )
   }
 
-  handleWithdrawClick = ({ currentTarget: { _id } }) => {
+  handleWithdrawClick = ({ currentTarget: { id: _id } }) => {
     const { address, data, bids, withdrawIICOBid } = this.props
     const id = Number(_id)
-
     const now = Date.now()
     const endFullBonusTime = data.endFullBonusTime.getTime()
     const withdrawalLockTime = data.withdrawalLockTime.getTime()
