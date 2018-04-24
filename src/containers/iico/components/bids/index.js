@@ -65,7 +65,7 @@ class Bids extends PureComponent {
     const now = Date.now()
     const endFullBonusTime = data.endFullBonusTime.getTime()
     const withdrawalLockTime = data.withdrawalLockTime.getTime()
-    const bid = bids[id]
+    const bid = bids.find(b => b.ID === id)
 
     const lockedIn =
       now < endFullBonusTime
