@@ -26,6 +26,7 @@ class IICO extends PureComponent {
 
     // Action Dispatchers
     fetchIICOData: PropTypes.func.isRequired,
+    pollIICOData: PropTypes.func.isRequired,
     fetchIICOBids: PropTypes.func.isRequired
   }
 
@@ -33,10 +34,17 @@ class IICO extends PureComponent {
     const {
       match: { params: { address } },
       fetchIICOData,
+      pollIICOData,
       fetchIICOBids
     } = this.props
     fetchIICOData(address)
     fetchIICOBids(address)
+
+    this.pollIICODataInterval = setInterval(() => pollIICOData(address), 5000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.pollIICODataInterval)
   }
 
   render() {
@@ -97,6 +105,7 @@ export default connect(
   }),
   {
     fetchIICOData: IICOActions.fetchIICOData,
+    pollIICOData: IICOActions.pollIICOData,
     fetchIICOBids: IICOActions.fetchIICOBids
   }
 )(IICO)

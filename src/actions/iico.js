@@ -5,8 +5,9 @@ import { createActions } from 'lessdux'
 // IICO Data
 export const IICOData = {
   ...createActions('$IICO$_DATA', { withUpdate: true }),
-  CLEAR: 'CLEAR_$IICO$_DATA',
-  FINALIZE: 'FINALIZE_$IICO$_DATA'
+  FINALIZE: 'FINALIZE_$IICO$_DATA',
+  POLL: 'POLL_$IICO$_DATA',
+  CLEAR: 'CLEAR_$IICO$_DATA'
 }
 
 // IICO Bids
@@ -28,7 +29,6 @@ export const IICOBid = {
 /* Action Creators */
 
 // IICO Data
-export const clearIICOData = () => ({ type: IICOData.CLEAR })
 export const fetchIICOData = address => ({
   type: IICOData.FETCH,
   payload: { address }
@@ -37,6 +37,11 @@ export const finalizeIICOData = (address, maxIterations) => ({
   type: IICOData.FINALIZE,
   payload: { address, maxIterations }
 })
+export const pollIICOData = address => ({
+  type: IICOData.POLL,
+  payload: { address }
+})
+export const clearIICOData = () => ({ type: IICOData.CLEAR })
 
 // IICO Bids
 export const fetchIICOBids = address => ({

@@ -118,6 +118,18 @@ function* finalizeIICOData({ payload: { address, maxIterations } }) {
 }
 
 /**
+ * Refetches an IICO's data.
+ * @param {{ type: string, payload: ?object, meta: ?object }} action - The action object.
+ */
+function* pollIICOData({ payload: { address } }) {
+  yield put(
+    action(IICOActions.IICOData.RECEIVE, {
+      IICOData: yield call(fetchIICOData, { payload: { address } })
+    })
+  )
+}
+
+/**
  * Fetches the current wallet's IICO bids.
  * @param {{ type: string, payload: ?object, meta: ?object }} action - The action object.
  * @returns {object[]} - The current wallet's IICO bids.
@@ -270,6 +282,7 @@ export default function* IICOSaga() {
     IICOActions.IICOData,
     finalizeIICOData
   )
+  yield takeLatest(IICOActions.IICOData.POLL, pollIICOData)
 
   // IICO Bids
   yield takeLatest(
