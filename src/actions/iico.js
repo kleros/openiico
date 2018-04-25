@@ -12,7 +12,7 @@ export const IICOData = {
 
 // IICO Bids
 export const IICOBids = {
-  ...createActions('$IICO$_BIDS'),
+  ...createActions('$IICO$_BIDS', { withUpdate: true }),
   REDEEM: 'REDEEM_$IICO$_BIDS'
 }
 

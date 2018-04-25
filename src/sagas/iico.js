@@ -158,10 +158,12 @@ function* fetchIICOBids({ payload: { address } }) {
 function* redeemIICOBids({ payload: { address } }) {
   yield call(sendTransaction, eth.sendTransaction, {
     from: yield select(walletSelectors.getAccount),
-    to: address
+    to: address,
+    value: 0,
+    data: '0x'
   })
 
-  return yield call(fetchIICOBids)
+  return yield call(fetchIICOBids, { payload: { address } })
 }
 
 /**

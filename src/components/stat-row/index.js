@@ -11,7 +11,7 @@ const StatRow = ({ children, withBoxShadow }) => (
 
 StatRow.propTypes = {
   // State
-  children: PropTypes.arrayOf(PropTypes.node.isRequired).isRequired,
+  children: PropTypes.node.isRequired,
 
   // Modifiers
   withBoxShadow: PropTypes.bool
