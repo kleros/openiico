@@ -49,8 +49,8 @@ export default class Data extends PureComponent {
     let phase
     if (now < startTime) phase = 'Not Started'
     else if (now < endFullBonusTime) phase = 'Full Bonus'
-    else if (now < withdrawalLockTime) phase = 'Free Withdrawals'
-    else if (now < endTime) phase = 'Automatic Withdrawals'
+    else if (now < withdrawalLockTime) phase = 'Partial Withdrawals'
+    else if (now < endTime) phase = 'Withdrawal Lockup'
     else phase = 'Finished'
 
     // Slider percents
@@ -74,7 +74,7 @@ export default class Data extends PureComponent {
           <StatRow withBoxShadow>
             <StatBlock
               label="Valuation"
-              value={<ChainNumber>{data.valuation}</ChainNumber>}
+              value={<ChainNumber>{data.valuation || 0}</ChainNumber>}
             />
             <StatBlock label="Phase" value={phase} />
           </StatRow>

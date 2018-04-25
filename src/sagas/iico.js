@@ -81,7 +81,7 @@ function* fetchIICOData({ payload: { address } }) {
 
     // Token
     tokenContractAddress: d.tokenContractAddress[0],
-    tokensForSale: d.tokensForSale[0].toNumber(),
+    tokensForSale: Number(Eth.fromWei(d.tokensForSale[0], 'ether')),
 
     // Times
     startTime: new Date(d.startTime[0].toNumber() * 1000),
