@@ -31,7 +31,7 @@ export default class Data extends PureComponent {
       bonus =
         data.startingBonus * ((endTime - time) / (endTime - endFullBonusTime))
 
-    return `${numberToPercentage(bonus)} - ${dateToString(data.startTime)}`
+    return `${numberToPercentage(bonus)} - ${dateToString(new Date(time))}`
   }
 
   render() {
