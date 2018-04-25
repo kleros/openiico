@@ -3,7 +3,11 @@
 /* @define NavBar */
 .NavBar {
   align-items: center;
-  background: $light2;
+  background-color: $light2;
+  background-image: url('../../assets/images/flipped-background.png');
+  background-position: 315px 5px;
+  background-repeat: no-repeat;
+  background-size: cover;
   border-bottom: 1px solid transparentize($dark4, 0.8);
   display: flex;
   height: 70px;
@@ -22,7 +26,7 @@
     display: flex;
     height: 100%;
     margin: 0 50px 0 25px;
-    overflow-x: scroll;
+    // overflow-x: scroll;
     text-overflow: ellipsis;
     white-space: nowrap;
 
