@@ -2,10 +2,9 @@ import Eth from 'ethjs'
 
 import { takeLatest, select, all, call, put } from 'redux-saga/effects'
 
-import * as IICOSelectors from '../reducers/iico'
 import * as IICOActions from '../actions/iico'
 import * as walletSelectors from '../reducers/wallet'
-import { IICOContractFactory } from '../bootstrap/dapp-api'
+import { eth, IICOContractFactory } from '../bootstrap/dapp-api'
 import { lessduxSaga, sendTransaction } from '../utils/saga'
 import { action } from '../utils/action'
 
@@ -119,9 +118,21 @@ function* finalizeIICOData({ payload: { address, maxIterations } }) {
 }
 
 /**
+ * Refetches an IICO's data.
+ * @param {{ type: string, payload: ?object, meta: ?object }} action - The action object.
+ */
+function* pollIICOData({ payload: { address } }) {
+  yield put(
+    action(IICOActions.IICOData.RECEIVE, {
+      IICOData: yield call(fetchIICOData, { payload: { address } })
+    })
+  )
+}
+
+/**
  * Fetches the current wallet's IICO bids.
  * @param {{ type: string, payload: ?object, meta: ?object }} action - The action object.
- * @returns {object} - The current wallet's IICO bids.
+ * @returns {object[]} - The current wallet's IICO bids.
  */
 function* fetchIICOBids({ payload: { address } }) {
   // Load contract
@@ -137,6 +148,20 @@ function* fetchIICOBids({ payload: { address } }) {
   return (yield all(bidIDs.map(bidID => call(contract.bids, bidID)))).map(
     (b, index) => parseBid(b, bidIDs[index])
   )
+}
+
+/**
+ * Redeems the current wallet's IICO bids.
+ * @param {{ type: string, payload: ?object, meta: ?object }} action - The action object.
+ * @returns {object[]} - The current wallet's updated IICO bids.
+ */
+function* redeemIICOBids({ payload: { address } }) {
+  yield call(sendTransaction, eth.sendTransaction, {
+    from: yield select(walletSelectors.getAccount),
+    to: address
+  })
+
+  return yield call(fetchIICOBids)
 }
 
 /**
@@ -189,35 +214,52 @@ function* createIICOBid({
  * @returns {object} - The `lessdux` collection mod object for updating the list of bids.
  */
 function* withdrawOrRedeemIICOBid({ type, payload: { address, bidID } }) {
-  // Set IICO Bid for granular loading indicators
-  yield put(
-    action(IICOActions.IICOBid.RECEIVE, {
-      IICOBid: yield select(IICOSelectors.getIICOBid, bidID)
-    })
-  )
+  try {
+    // Set collection mod for granular loading indicators
+    yield put(
+      action(IICOActions.IICOBid.UPDATE, {
+        collectionMod: {
+          collection: IICOActions.IICOBids.self,
+          updating: [bidID]
+        }
+      })
+    )
 
-  // Load contract
-  const contract = IICOContractFactory.at(address)
-  const account = yield select(walletSelectors.getAccount)
+    // Load contract
+    const contract = IICOContractFactory.at(address)
+    const account = yield select(walletSelectors.getAccount)
 
-  yield call(
-    sendTransaction,
-    contract[type === IICOActions.IICOBid.WITHDRAW ? 'withdraw' : 'redeem'],
-    bidID,
-    { from: account }
-  )
+    yield call(
+      sendTransaction,
+      contract[type === IICOActions.IICOBid.WITHDRAW ? 'withdraw' : 'redeem'],
+      bidID,
+      { from: account }
+    )
 
-  // Update IICO data for pricing info
-  yield put(
-    action(IICOActions.IICOData.RECEIVE, {
-      IICOData: yield call(fetchIICOData, { payload: { address } })
-    })
-  )
+    // Update IICO data for pricing info
+    yield put(
+      action(IICOActions.IICOData.RECEIVE, {
+        IICOData: yield call(fetchIICOData, { payload: { address } })
+      })
+    )
 
-  return {
-    collection: IICOActions.IICOBids.self,
-    resource: parseBid(yield call(contract.bids, bidID), bidID),
-    find: b => b.ID === bidID
+    return {
+      collection: IICOActions.IICOBids.self,
+      resource: parseBid(yield call(contract.bids, bidID), bidID),
+      find: b => b.ID === bidID,
+      updating: bidID
+    }
+  } catch (err) {
+    // Remove collection mod for granular loading indicators if something fails
+    yield put(
+      action(IICOActions.IICOBid.FAIL_UPDATE, {
+        collectionMod: {
+          collection: IICOActions.IICOBids.self,
+          updating: bidID
+        }
+      })
+    )
+    throw err
   }
 }
 
@@ -240,6 +282,7 @@ export default function* IICOSaga() {
     IICOActions.IICOData,
     finalizeIICOData
   )
+  yield takeLatest(IICOActions.IICOData.POLL, pollIICOData)
 
   // IICO Bids
   yield takeLatest(
@@ -248,6 +291,13 @@ export default function* IICOSaga() {
     'fetch',
     IICOActions.IICOBids,
     fetchIICOBids
+  )
+  yield takeLatest(
+    IICOActions.IICOBids.REDEEM,
+    lessduxSaga,
+    'update',
+    IICOActions.IICOBids,
+    redeemIICOBids
   )
 
   // IICO Bid

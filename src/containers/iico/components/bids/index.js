@@ -34,6 +34,7 @@ class Bids extends PureComponent {
     withdrawIICOBid: PropTypes.func.isRequired,
     finalizeIICO: PropTypes.func.isRequired,
     redeemIICOBid: PropTypes.func.isRequired,
+    redeemIICOBids: PropTypes.func.isRequired,
 
     // submitBidForm
     submitBidFormIsInvalid: PropTypes.bool.isRequired,
@@ -46,7 +47,11 @@ class Bids extends PureComponent {
     // State
     address: PropTypes.string.isRequired,
     data: IICOSelectors._IICODataShape.isRequired,
-    bids: IICOSelectors._IICOBidsShape.isRequired
+    bids: IICOSelectors._IICOBidsShape.isRequired,
+    updatingBids: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.arrayOf(PropTypes.number.isRequired)
+    ]).isRequired
   }
 
   handleSubmitBidFormSubmit = formData => {
@@ -103,6 +108,11 @@ class Bids extends PureComponent {
     redeemIICOBid(address, Number(id))
   }
 
+  handleRedeemAllClick = () => {
+    const { address, redeemIICOBids } = this.props
+    redeemIICOBids(address)
+  }
+
   render() {
     const {
       IICOBid,
@@ -111,7 +121,8 @@ class Bids extends PureComponent {
       finalizeIICOFormIsInvalid,
       submitFinalizeIICOForm,
       data,
-      bids
+      bids,
+      updatingBids
     } = this.props
 
     const now = Date.now()
@@ -119,6 +130,7 @@ class Bids extends PureComponent {
     const hasEnded = now >= data.endTime.getTime()
     const canBid = hasStarted && !hasEnded
     const canWithdraw = hasStarted && now < data.withdrawalLockTime.getTime()
+    const canRedeem = hasEnded && data.finalized
 
     return (
       <div className="Bids">
@@ -146,6 +158,18 @@ class Bids extends PureComponent {
             />
           </StatRow>
         )}
+        {canRedeem &&
+          bids.some(b => !b.redeemed) && (
+            <StatRow>
+              <StatBlock
+                value={
+                  <Button onClick={this.handleRedeemAllClick}>
+                    REDEEM ALL
+                  </Button>
+                }
+              />
+            </StatRow>
+          )}
         {!data.finalized &&
           hasEnded && (
             <StatRow>
@@ -215,8 +239,7 @@ class Bids extends PureComponent {
                 refund = 0
               }
 
-              const updating =
-                IICOBid.updating && IICOBid.data && IICOBid.data.ID === b.ID
+              const updating = updatingBids && updatingBids.includes(b.ID)
 
               return (
                 <StatRow key={b.ID}>
@@ -250,7 +273,7 @@ class Bids extends PureComponent {
                     value={<ChainNumber>{refund}</ChainNumber>}
                   />
                   {((canWithdraw && !b.withdrawn) ||
-                    (hasEnded && data.finalized && !b.redeemed)) && (
+                    (canRedeem && !b.redeemed)) && (
                     <StatBlock
                       value={
                         <Button
@@ -259,7 +282,7 @@ class Bids extends PureComponent {
                               ? this.handleWithdrawClick
                               : this.handleRedeemClick
                           }
-                          disabled={updating}
+                          disabled={IICOBid.updating}
                           id={b.ID}
                         >
                           {updating ? (
@@ -299,6 +322,7 @@ export default connect(
     withdrawIICOBid: IICOActions.withdrawIICOBid,
     finalizeIICO: IICOActions.finalizeIICOData,
     redeemIICOBid: IICOActions.redeemIICOBid,
+    redeemIICOBids: IICOActions.redeemIICOBids,
     submitSubmitBidForm,
     submitFinalizeIICOForm
   }

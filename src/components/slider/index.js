@@ -12,7 +12,8 @@ class Slider extends PureComponent {
     steps: PropTypes.arrayOf(
       PropTypes.shape({
         label: PropTypes.string.isRequired,
-        percent: PropTypes.number.isRequired
+        percent: PropTypes.number.isRequired,
+        color: PropTypes.string
       }).isRequired
     ),
 
@@ -85,7 +86,10 @@ class Slider extends PureComponent {
               key={s.percent}
               onMouseMove={this.handleBarMouseMove}
               className="Slider-step"
-              style={{ left: this.percentToPixel(s.percent) }}
+              style={{
+                background: s.color,
+                left: this.percentToPixel(s.percent)
+              }}
             >
               <div className="Slider-step-label">
                 <p>{s.label}</p>

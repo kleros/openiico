@@ -1,5 +1,10 @@
 import { form } from '../../../../utils/form-generator'
-import { required, number } from '../../../../utils/validation'
+import {
+  required,
+  number,
+  positive,
+  nonZero
+} from '../../../../utils/validation'
 
 export const {
   Form: SubmitBidForm,
@@ -10,12 +15,12 @@ export const {
   {
     amount: {
       type: 'text',
-      validate: [required, number],
+      validate: [required, number, positive, nonZero],
       props: { type: 'number' }
     },
     personalCap: {
       type: 'text',
-      validate: [required, number],
+      validate: [required, number, positive, nonZero],
       props: { type: 'number' },
       visibleIf: '!noPersonalCap'
     },

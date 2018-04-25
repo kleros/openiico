@@ -12,7 +12,7 @@ const Button = ({
   ...rest
 }) => (
   <div
-    onClick={onClick}
+    onClick={disabled ? null : onClick}
     className={`Button ${disabled ? 'is-disabled' : ''} ${className}`}
     {...rest}
   >

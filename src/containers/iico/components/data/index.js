@@ -64,12 +64,14 @@ export default class Data extends PureComponent {
     return (
       <div className="Data">
         <div className="Data-top">
-          <StatRow withBoxShadow>
+          <StatRow>
             <StatBlock
               label="Token Contract"
               value={<ChainHash>{data.tokenContractAddress}</ChainHash>}
             />
             <StatBlock label="Tokens For Sale" value={data.tokensForSale} />
+          </StatRow>
+          <StatRow withBoxShadow>
             <StatBlock
               label="Valuation"
               value={<ChainNumber>{data.valuation}</ChainNumber>}
@@ -95,7 +97,7 @@ export default class Data extends PureComponent {
                 steps={[
                   { label: 'End of Full Bonus', percent: endFullBonusPercent },
                   { label: 'Withdrawal Lock', percent: withdrawalLockPercent },
-                  { label: 'Now', percent: initialPercent }
+                  { label: 'Now', percent: initialPercent, color: '#337ab7' }
                 ]}
                 calcValue={this.calcBonus}
               />
