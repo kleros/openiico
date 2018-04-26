@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import './slider.css'
 
-class Slider extends PureComponent {
+export default class Slider extends PureComponent {
   static propTypes = {
     // State
     startLabel: PropTypes.string.isRequired,
@@ -105,5 +105,3 @@ class Slider extends PureComponent {
     )
   }
 }
-
-export default Slider

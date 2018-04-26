@@ -9,6 +9,7 @@ import * as IICOActions from '../../actions/iico'
 
 import Data from './components/data'
 import Bids from './components/bids'
+import Joyride from './components/joyride'
 
 import './iico.css'
 
@@ -30,6 +31,9 @@ class IICO extends PureComponent {
     fetchIICOBids: PropTypes.func.isRequired
   }
 
+  pollIICODataInterval = null
+  joyrideRef = null
+
   componentDidMount() {
     const {
       match: { params: { address } },
@@ -47,52 +51,54 @@ class IICO extends PureComponent {
     clearInterval(this.pollIICODataInterval)
   }
 
+  getJoyrideRef = ref => (this.joyrideRef = ref)
+
   render() {
     const { match: { params: { address } }, IICOData, IICOBids } = this.props
 
     return (
       <div className="IICO">
-        <RenderIf
-          resource={IICOData}
-          loading={
-            <ScaleLoader
-              color="#9b9b9b"
-              height={150}
-              width={10}
-              margin="10px"
-              radius={10}
-            />
-          }
-          done={
-            IICOData.data && (
-              <div>
-                <div className="IICO-data">
-                  <Data data={IICOData.data} />
+        <Joyride getRef={this.getJoyrideRef}>
+          <RenderIf
+            resource={IICOData}
+            loading={
+              <ScaleLoader
+                color="#9b9b9b"
+                height={150}
+                width={10}
+                margin="10px"
+                radius={10}
+              />
+            }
+            done={
+              IICOData.data && (
+                <div>
+                  <div className="IICO-data">
+                    <Data data={IICOData.data} />
+                  </div>
+                  <div className="IICO-bids">
+                    <RenderIf
+                      resource={IICOBids}
+                      loading={<PropagateLoader color="#9b9b9b" size={20} />}
+                      done={
+                        IICOBids.data && (
+                          <Bids
+                            address={address}
+                            data={IICOData.data}
+                            bids={IICOBids.data}
+                            updatingBids={IICOBids.updating}
+                          />
+                        )
+                      }
+                      failedLoading="There was an error fetching your bids."
+                    />
+                  </div>
                 </div>
-                <div className="IICO-bids">
-                  <RenderIf
-                    resource={IICOBids}
-                    loading={<PropagateLoader color="#9b9b9b" size={20} />}
-                    done={
-                      IICOBids.data && (
-                        <Bids
-                          address={address}
-                          data={IICOData.data}
-                          bids={IICOBids.data}
-                          updatingBids={IICOBids.updating}
-                        />
-                      )
-                    }
-                    failedLoading="There was an error fetching your bids."
-                  />
-                </div>
-              </div>
-            )
-          }
-          failedLoading="The address or the contract it holds is invalid. Try another one."
-        />
-        {/* TODO: Render './components/submit-bid-form' and disable submit button if already participated */}
-        {/* TODO: Render withdraw button if already participated and in first period */}
+              )
+            }
+            failedLoading="The address or the contract it holds is invalid. Try another one."
+          />
+        </Joyride>
       </div>
     )
   }
