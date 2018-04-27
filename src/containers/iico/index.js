@@ -58,47 +58,46 @@ class IICO extends PureComponent {
 
     return (
       <div className="IICO">
-        <Joyride getRef={this.getJoyrideRef}>
-          <RenderIf
-            resource={IICOData}
-            loading={
-              <ScaleLoader
-                color="#9b9b9b"
-                height={150}
-                width={10}
-                margin="10px"
-                radius={10}
-              />
-            }
-            done={
-              IICOData.data && (
-                <div>
-                  <div className="IICO-data">
-                    <Data data={IICOData.data} />
-                  </div>
-                  <div className="IICO-bids">
-                    <RenderIf
-                      resource={IICOBids}
-                      loading={<PropagateLoader color="#9b9b9b" size={20} />}
-                      done={
-                        IICOBids.data && (
-                          <Bids
-                            address={address}
-                            data={IICOData.data}
-                            bids={IICOBids.data}
-                            updatingBids={IICOBids.updating}
-                          />
-                        )
-                      }
-                      failedLoading="There was an error fetching your bids."
-                    />
-                  </div>
+        <Joyride getRef={this.getJoyrideRef} />
+        <RenderIf
+          resource={IICOData}
+          loading={
+            <ScaleLoader
+              color="#9b9b9b"
+              height={150}
+              width={10}
+              margin="10px"
+              radius={10}
+            />
+          }
+          done={
+            IICOData.data && (
+              <div>
+                <div className="IICO-data">
+                  <Data data={IICOData.data} />
                 </div>
-              )
-            }
-            failedLoading="The address or the contract it holds is invalid. Try another one."
-          />
-        </Joyride>
+                <div className="IICO-bids">
+                  <RenderIf
+                    resource={IICOBids}
+                    loading={<PropagateLoader color="#9b9b9b" size={20} />}
+                    done={
+                      IICOBids.data && (
+                        <Bids
+                          address={address}
+                          data={IICOData.data}
+                          bids={IICOBids.data}
+                          updatingBids={IICOBids.updating}
+                        />
+                      )
+                    }
+                    failedLoading="There was an error fetching your bids."
+                  />
+                </div>
+              </div>
+            )
+          }
+          failedLoading="The address or the contract it holds is invalid. Try another one."
+        />
       </div>
     )
   }
