@@ -64,31 +64,40 @@ export default class Data extends PureComponent {
     return (
       <div className="Data">
         <div className="Data-top">
-          <StatRow>
+          <StatRow id="joyrideWelcome">
             <StatBlock
+              id="joyrideTokenContractAddress"
               label="Token Contract"
               value={<ChainHash>{data.tokenContractAddress}</ChainHash>}
             />
-            <StatBlock label="Tokens For Sale" value={data.tokensForSale} />
+            <StatBlock
+              id="joyrideTokensForSale"
+              label="Tokens For Sale"
+              value={data.tokensForSale}
+            />
           </StatRow>
           <StatRow withBoxShadow>
             <StatBlock
+              id="joyrideValuation"
               label="Valuation"
               value={<ChainNumber>{data.valuation || 0}</ChainNumber>}
             />
-            <StatBlock label="Phase" value={phase} />
+            <StatBlock id="joyridePhase" label="Phase" value={phase} />
           </StatRow>
         </div>
         <StatRow withBoxShadow>
           <StatBlock
+            id="joyrideStartingBonus"
             label="Starting Bonus"
             value={numberToPercentage(data.startingBonus)}
           />
           <StatBlock
+            id="joyrideCurrentBonus"
             label="Current Bonus"
             value={numberToPercentage(data.bonus)}
           />
           <StatBlock
+            id="joyrideSlider"
             value={
               <Slider
                 startLabel={dateToString(data.startTime)}

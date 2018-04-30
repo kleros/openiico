@@ -6,6 +6,7 @@
 @import '../styles/_typography.scss';
 @import '../styles/_toastr.scss';
 @import '../styles/_form.scss';
+@import '../styles/_joyride.scss';
 
 // Global Overrides
 * {
@@ -18,6 +19,7 @@
 html {
   color: $dark2;
   font-size: 16px;
+  overflow: scroll;
 }
 
 // App Containers
@@ -47,7 +49,7 @@ body,
   background-size: cover;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  // overflow: scroll;
   position: relative;
 }
 

@@ -31,6 +31,10 @@ class IICO extends PureComponent {
     fetchIICOBids: PropTypes.func.isRequired
   }
 
+  state = {
+    hasSeenTutorial: false
+  }
+
   pollIICODataInterval = null
   joyrideRef = null
 
@@ -45,6 +49,16 @@ class IICO extends PureComponent {
     fetchIICOBids(address)
 
     this.pollIICODataInterval = setInterval(() => pollIICOData(address), 5000)
+  }
+
+  componentDidUpdate() {
+    const { IICOData, IICOBids } = this.props
+    const { hasSeenTutorial } = this.state
+
+    if (IICOData.data && IICOBids.data && !hasSeenTutorial)
+      this.setState({ hasSeenTutorial: true }, () =>
+        this.joyrideRef.reset(true)
+      )
   }
 
   componentWillUnmount() {

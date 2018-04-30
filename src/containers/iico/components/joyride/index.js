@@ -9,6 +9,17 @@ const Joyride = ({ getRef }) => (
     ref={getRef}
     steps={steps}
     run
+    autoStart
+    locale={{
+      back: 'Go Back',
+      close: 'Close',
+      last: 'Finish',
+      next: 'Next',
+      skip: 'Skip'
+    }}
+    showSkipButton
+    showStepsProgress
+    type="continuous"
     debug={process.env.NODE_ENV !== 'production'}
   />
 )
