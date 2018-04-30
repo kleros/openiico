@@ -32,7 +32,11 @@ class IICO extends PureComponent {
   }
 
   state = {
-    hasSeenTutorial: false
+    hasSeenTutorial: false,
+    inTutorial: false,
+    tutorialNow: null,
+    tutorialIICOData: null,
+    tutorialIICOBids: null
   }
 
   pollIICODataInterval = null
@@ -55,10 +59,34 @@ class IICO extends PureComponent {
     const { IICOData, IICOBids } = this.props
     const { hasSeenTutorial } = this.state
 
-    if (IICOData.data && IICOBids.data && !hasSeenTutorial)
-      this.setState({ hasSeenTutorial: true }, () =>
-        this.joyrideRef.reset(true)
+    if (IICOData.data && IICOBids.data && !hasSeenTutorial) {
+      const tutorialIICOData = JSON.parse(JSON.stringify(IICOData))
+      const tutorialIICOBids = JSON.parse(JSON.stringify(IICOBids))
+      const startTime = IICOData.data.startTime.getTime()
+      this.setState(
+        {
+          hasSeenTutorial: true,
+          inTutorial: true,
+          tutorialNow: startTime - 1000,
+          tutorialIICOData: {
+            ...tutorialIICOData,
+            data: {
+              ...tutorialIICOData.data,
+              startTime: new Date(startTime),
+              endFullBonusTime: new Date(
+                IICOData.data.endFullBonusTime.getTime()
+              ),
+              withdrawalLockTime: new Date(
+                IICOData.data.withdrawalLockTime.getTime()
+              ),
+              endTime: new Date(IICOData.data.endTime.getTime())
+            }
+          },
+          tutorialIICOBids
+        },
+        () => this.joyrideRef.reset(true)
       )
+    }
   }
 
   componentWillUnmount() {
@@ -67,12 +95,49 @@ class IICO extends PureComponent {
 
   getJoyrideRef = ref => (this.joyrideRef = ref)
 
+  joyrideCallback = ({ type, step }) => {
+    const { tutorialIICOData } = this.state
+
+    switch (type) {
+      case 'step:after':
+        switch (step.selector.slice('#joyride'.length)) {
+          case 'Slider':
+            this.setState({
+              tutorialNow: tutorialIICOData.data.startTime.getTime()
+            })
+            break
+          default:
+            break
+        }
+        break
+      case 'finished':
+        this.setState({
+          inTutorial: false,
+          tutorialNow: null,
+          tutorialIICOData: null,
+          tutorialIICOBids: null
+        })
+        break
+      default:
+        break
+    }
+  }
+
   render() {
-    const { match: { params: { address } }, IICOData, IICOBids } = this.props
+    const { match } = this.props
+    const {
+      inTutorial,
+      tutorialNow,
+      tutorialIICOData,
+      tutorialIICOBids
+    } = this.state
+    const { match: { params: { address } }, IICOData, IICOBids } = inTutorial
+      ? { match, IICOData: tutorialIICOData, IICOBids: tutorialIICOBids }
+      : this.props
 
     return (
       <div className="IICO">
-        <Joyride getRef={this.getJoyrideRef} />
+        <Joyride getRef={this.getJoyrideRef} callback={this.joyrideCallback} />
         <RenderIf
           resource={IICOData}
           loading={
@@ -88,7 +153,7 @@ class IICO extends PureComponent {
             IICOData.data && (
               <div>
                 <div className="IICO-data">
-                  <Data data={IICOData.data} />
+                  <Data data={IICOData.data} tutorialNow={tutorialNow} />
                 </div>
                 <div className="IICO-bids">
                   <RenderIf
@@ -101,6 +166,7 @@ class IICO extends PureComponent {
                           data={IICOData.data}
                           bids={IICOBids.data}
                           updatingBids={IICOBids.updating}
+                          tutorialNow={tutorialNow}
                         />
                       )
                     }

@@ -35,13 +35,11 @@ const App = ({ store, history, testElement }) => (
             <title>Open IICO</title>
           </Helmet>
           <Route exact path="*" component={ConnectedNavBar} />
-          <div id="scroll-root">
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/:address" component={IICO} />
-              <Route component={PageNotFound} />
-            </Switch>
-          </div>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/:address" component={IICO} />
+            <Route component={PageNotFound} />
+          </Switch>
           {testElement}
           <Route exact path="*" component={GlobalComponents} />
         </div>

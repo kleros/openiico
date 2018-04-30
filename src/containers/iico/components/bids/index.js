@@ -51,7 +51,12 @@ class Bids extends PureComponent {
     updatingBids: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.arrayOf(PropTypes.number.isRequired)
-    ]).isRequired
+    ]).isRequired,
+    tutorialNow: PropTypes.number
+  }
+
+  static defaultProps = {
+    tutorialNow: null
   }
 
   handleSubmitBidFormSubmit = formData => {
@@ -65,9 +70,9 @@ class Bids extends PureComponent {
   }
 
   handleWithdrawClick = ({ currentTarget: { id: _id } }) => {
-    const { address, data, bids, withdrawIICOBid } = this.props
+    const { withdrawIICOBid, address, data, bids, tutorialNow } = this.props
     const id = Number(_id)
-    const now = Date.now()
+    const now = tutorialNow || Date.now()
     const endFullBonusTime = data.endFullBonusTime.getTime()
     const withdrawalLockTime = data.withdrawalLockTime.getTime()
     const bid = bids.find(b => b.ID === id)
@@ -122,10 +127,11 @@ class Bids extends PureComponent {
       submitFinalizeIICOForm,
       data,
       bids,
-      updatingBids
+      updatingBids,
+      tutorialNow
     } = this.props
 
-    const now = Date.now()
+    const now = tutorialNow || Date.now()
     const hasStarted = now >= data.startTime.getTime()
     const hasEnded = now >= data.endTime.getTime()
     const canBid = hasStarted && !hasEnded
@@ -133,7 +139,7 @@ class Bids extends PureComponent {
     const canRedeem = hasEnded && data.finalized
 
     return (
-      <div className="Bids">
+      <div id="joyridePlaceBid" className="Bids">
         <h1>Your Bids</h1>
         {canBid && (
           <StatRow>

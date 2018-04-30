@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
 
 import * as IICOSelectors from '../../../../reducers/iico'
 import StatRow from '../../../../components/stat-row'
@@ -14,7 +15,12 @@ import './data.css'
 export default class Data extends PureComponent {
   static propTypes = {
     // State
-    data: IICOSelectors._IICODataShape.isRequired
+    data: IICOSelectors._IICODataShape.isRequired,
+    tutorialNow: PropTypes.number
+  }
+
+  static defaultProps = {
+    tutorialNow: null
   }
 
   calcBonus = percent => {
@@ -35,10 +41,10 @@ export default class Data extends PureComponent {
   }
 
   render() {
-    const { data } = this.props
+    const { data, tutorialNow } = this.props
 
     // Times
-    const now = Date.now()
+    const now = tutorialNow || Date.now()
     const startTime = data.startTime.getTime()
     const endTime = data.endTime.getTime()
     const endFullBonusTime = data.endFullBonusTime.getTime()

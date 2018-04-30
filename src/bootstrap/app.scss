@@ -17,6 +17,11 @@
 
 // Document Root
 html {
+  background-color: $light2;
+  background-image: url('../assets/images/background.png');
+  background-position: -90px 180px;
+  background-repeat: no-repeat;
+  background-size: cover;
   color: $dark2;
   font-size: 16px;
   overflow: scroll;
@@ -26,10 +31,8 @@ html {
 html,
 body,
 #root,
-#router-root,
-#scroll-root {
+#router-root {
   border: 0;
-  height: 100%;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -37,19 +40,9 @@ body,
 
 // React Router Root
 #router-root {
-  padding-top: 70px;
-}
-
-// Scroll Root
-#scroll-root {
-  background-color: $light2;
-  background-image: url('../assets/images/background.png');
-  background-position: -90px 180px;
-  background-repeat: no-repeat;
-  background-size: cover;
   display: flex;
   flex-direction: column;
-  // overflow: scroll;
+  padding-top: 70px;
   position: relative;
 }
 

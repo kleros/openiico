@@ -80,5 +80,27 @@ export default [
     text:
       'This slider lets you preview the bonus throughout the lifetime of the sale. The green bars represent a change of phase and the light blue bar represents the current time. Hover over it now to preview the bonus at any stage of the sale. Let’s skip time to the start of the sale.',
     selector: '#joyrideSlider'
+  },
+  {
+    text: (
+      <span>
+        This is where you can make bids. The personal cap lets you set a max cap
+        at which you are willing to participate in the sale with. If the
+        valuation ends up exceeding this value, your bid will be automatically
+        refunded.
+        <br />
+        <br />
+        If you want to participate regardless of valuation, just check the “No
+        Personal Cap” checkbox.
+        <br />
+        <br />
+        Try placing a bid now and take advantage of the “Full Bonus” phase.
+        <br />
+        <br />
+        Place a bid to continue.
+      </span>
+    ),
+    selector: '#joyridePlaceBid',
+    style: { button: { display: 'none' } }
   }
 ]
