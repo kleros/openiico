@@ -12,9 +12,10 @@
   display: flex;
   height: 70px;
   padding: 0 8%;
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100%;
+  z-index: 1000;
 
   &-logo {
     height: 40px;
@@ -26,7 +27,6 @@
     display: flex;
     height: 100%;
     margin: 0 50px 0 25px;
-    // overflow-x: scroll;
     text-overflow: ellipsis;
     white-space: nowrap;
 

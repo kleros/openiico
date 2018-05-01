@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
 
 import * as IICOSelectors from '../../../../reducers/iico'
 import StatRow from '../../../../components/stat-row'
@@ -14,7 +15,12 @@ import './data.css'
 export default class Data extends PureComponent {
   static propTypes = {
     // State
-    data: IICOSelectors._IICODataShape.isRequired
+    data: IICOSelectors._IICODataShape.isRequired,
+    tutorialNow: PropTypes.number
+  }
+
+  static defaultProps = {
+    tutorialNow: null
   }
 
   calcBonus = percent => {
@@ -35,14 +41,14 @@ export default class Data extends PureComponent {
   }
 
   render() {
-    const { data } = this.props
+    const { data, tutorialNow } = this.props
 
     // Times
-    const now = Date.now()
+    const now = tutorialNow || Date.now()
     const startTime = data.startTime.getTime()
-    const endTime = data.endTime.getTime()
     const endFullBonusTime = data.endFullBonusTime.getTime()
     const withdrawalLockTime = data.withdrawalLockTime.getTime()
+    const endTime = data.endTime.getTime()
     const duration = endTime - startTime
 
     // Phase
@@ -64,31 +70,40 @@ export default class Data extends PureComponent {
     return (
       <div className="Data">
         <div className="Data-top">
-          <StatRow>
+          <StatRow id="joyrideWelcome">
             <StatBlock
+              id="joyrideTokenContractAddress"
               label="Token Contract"
               value={<ChainHash>{data.tokenContractAddress}</ChainHash>}
             />
-            <StatBlock label="Tokens For Sale" value={data.tokensForSale} />
+            <StatBlock
+              id="joyrideTokensForSale"
+              label="Tokens For Sale"
+              value={data.tokensForSale}
+            />
           </StatRow>
           <StatRow withBoxShadow>
             <StatBlock
+              id="joyrideValuation"
               label="Valuation"
               value={<ChainNumber>{data.valuation || 0}</ChainNumber>}
             />
-            <StatBlock label="Phase" value={phase} />
+            <StatBlock id="joyridePhase" label="Phase" value={phase} />
           </StatRow>
         </div>
         <StatRow withBoxShadow>
           <StatBlock
+            id="joyrideStartingBonus"
             label="Starting Bonus"
             value={numberToPercentage(data.startingBonus)}
           />
           <StatBlock
+            id="joyrideCurrentBonus"
             label="Current Bonus"
             value={numberToPercentage(data.bonus)}
           />
           <StatBlock
+            id="joyrideSlider"
             value={
               <Slider
                 startLabel={dateToString(data.startTime)}

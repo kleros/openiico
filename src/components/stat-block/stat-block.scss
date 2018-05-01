@@ -5,6 +5,7 @@
   flex-direction: column;
   justify-content: flex-end;
   margin: 10px;
+  position: relative;
 
   &--withNoLabel {
     border-radius: 5px;
@@ -19,5 +20,14 @@
     &--withNoLabel {
       margin: 0;
     }
+  }
+
+  &-joyrideTarget {
+    height: 100%;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    top: -10px;
+    width: 100%;
   }
 }

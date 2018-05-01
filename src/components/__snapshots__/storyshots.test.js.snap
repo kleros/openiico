@@ -5196,6 +5196,10 @@ exports[`Storyshots Stat Block default 1`] = `
             >
               300
             </h3>
+            <div
+              className="StatBlock-joyrideTarget"
+              id={undefined}
+            />
           </div>
           <div
             data-radium={true}
@@ -5500,6 +5504,10 @@ exports[`Storyshots Stat Block with no label 1`] = `
             >
               300
             </h3>
+            <div
+              className="StatBlock-joyrideTarget"
+              id={undefined}
+            />
           </div>
           <div
             data-radium={true}
@@ -5814,6 +5822,10 @@ exports[`Storyshots Stat Row default 1`] = `
                 >
                   300
                 </h3>
+                <div
+                  className="StatBlock-joyrideTarget"
+                  id={undefined}
+                />
               </div>
               <div
                 className="StatBlock  "
@@ -5828,6 +5840,10 @@ exports[`Storyshots Stat Row default 1`] = `
                 >
                   300
                 </h3>
+                <div
+                  className="StatBlock-joyrideTarget"
+                  id={undefined}
+                />
               </div>
               <div
                 className="StatBlock  "
@@ -5842,8 +5858,16 @@ exports[`Storyshots Stat Row default 1`] = `
                 >
                   300
                 </h3>
+                <div
+                  className="StatBlock-joyrideTarget"
+                  id={undefined}
+                />
               </div>
             </div>
+            <div
+              className="StatRow-joyrideTarget"
+              id={undefined}
+            />
           </div>
           <div
             data-radium={true}
@@ -6158,6 +6182,10 @@ exports[`Storyshots Stat Row with box shadow 1`] = `
                 >
                   300
                 </h3>
+                <div
+                  className="StatBlock-joyrideTarget"
+                  id={undefined}
+                />
               </div>
               <div
                 className="StatBlock  "
@@ -6172,6 +6200,10 @@ exports[`Storyshots Stat Row with box shadow 1`] = `
                 >
                   300
                 </h3>
+                <div
+                  className="StatBlock-joyrideTarget"
+                  id={undefined}
+                />
               </div>
               <div
                 className="StatBlock  "
@@ -6186,8 +6218,16 @@ exports[`Storyshots Stat Row with box shadow 1`] = `
                 >
                   300
                 </h3>
+                <div
+                  className="StatBlock-joyrideTarget"
+                  id={undefined}
+                />
               </div>
             </div>
+            <div
+              className="StatRow-joyrideTarget"
+              id={undefined}
+            />
           </div>
           <div
             data-radium={true}
