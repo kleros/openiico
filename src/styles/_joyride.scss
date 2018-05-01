@@ -1,3 +1,17 @@
-.joyride-overlay {
-  pointer-events: none !important;
+@import '../styles/_colors.scss';
+
+.joyride {
+  &-overlay {
+    pointer-events: none !important;
+  }
+
+  &-tooltip {
+    &__header {
+      border-color: $primary !important;
+    }
+
+    &__button--primary {
+      background: $primary !important;
+    }
+  }
 }

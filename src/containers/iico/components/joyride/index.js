@@ -10,6 +10,7 @@ const Joyride = ({ getRef, callback }) => (
     steps={steps}
     run
     autoStart
+    keyboardNavigation={false}
     locale={{
       close: 'Close',
       last: 'Finish',

@@ -6,6 +6,7 @@ import { SyncLoader } from 'react-spinners'
 
 import * as IICOSelectors from '../../../../reducers/iico'
 import * as IICOActions from '../../../../actions/iico'
+import * as walletSelectors from '../../../../reducers/wallet'
 import {
   SubmitBidForm,
   getSubmitBidFormIsInvalid,
@@ -28,6 +29,7 @@ class Bids extends PureComponent {
   static propTypes = {
     // Redux State
     IICOBid: IICOSelectors.IICOBidShape.isRequired,
+    accounts: walletSelectors.accountsShape.isRequired,
 
     // Action Dispatchers
     createIICOBid: PropTypes.func.isRequired,
@@ -52,7 +54,10 @@ class Bids extends PureComponent {
       PropTypes.bool,
       PropTypes.arrayOf(PropTypes.number.isRequired)
     ]).isRequired,
-    tutorialNow: PropTypes.number
+    tutorialNow: PropTypes.number,
+    tutorialFinalizeIICOData: PropTypes.func.isRequired,
+    tutorialEditIICOBids: PropTypes.func.isRequired,
+    tutorialNext: PropTypes.func.isRequired
   }
 
   static defaultProps = {
@@ -60,7 +65,32 @@ class Bids extends PureComponent {
   }
 
   handleSubmitBidFormSubmit = formData => {
-    const { address, createIICOBid } = this.props
+    const {
+      accounts,
+      address,
+      data,
+      bids,
+      createIICOBid,
+      tutorialNow,
+      tutorialEditIICOBids,
+      tutorialNext
+    } = this.props
+    if (tutorialNow)
+      return tutorialEditIICOBids(
+        {
+          ID: bids.length ? bids[bids.length - 1].ID + 1 : 0,
+          maxVal: Number(formData.personalCap),
+          contrib: Number(formData.amount),
+          bonus: data.bonus,
+          contributor: accounts.data[0],
+          withdrawn: false,
+          redeemed: false
+        },
+        () => {
+          if (bids.length === 0) tutorialNext()
+        }
+      )
+
     createIICOBid(
       address,
       formData.amount,
@@ -70,7 +100,15 @@ class Bids extends PureComponent {
   }
 
   handleWithdrawClick = ({ currentTarget: { id: _id } }) => {
-    const { withdrawIICOBid, address, data, bids, tutorialNow } = this.props
+    const {
+      withdrawIICOBid,
+      address,
+      data,
+      bids,
+      tutorialNow,
+      tutorialEditIICOBids,
+      tutorialNext
+    } = this.props
     const id = Number(_id)
     const now = tutorialNow || Date.now()
     const endFullBonusTime = data.endFullBonusTime.getTime()
@@ -88,7 +126,10 @@ class Bids extends PureComponent {
 
     toastr.confirm(null, {
       okText: 'Yes',
-      onOk: () => withdrawIICOBid(address, id),
+      onOk: () =>
+        tutorialNow
+          ? tutorialEditIICOBids(id, () => tutorialNext(), lockedIn, newBonus)
+          : withdrawIICOBid(address, id),
       component: () => (
         <div className="Bids-confirmWithdrawal">
           Are you sure you wish to withdraw this bid?
@@ -104,17 +145,35 @@ class Bids extends PureComponent {
   }
 
   handleFinalizeIICOFormSubmit = formData => {
-    const { address, finalizeIICO } = this.props
+    const {
+      address,
+      finalizeIICO,
+      tutorialNow,
+      tutorialFinalizeIICOData,
+      tutorialNext
+    } = this.props
+    if (tutorialNow) return tutorialFinalizeIICOData(tutorialNext)
+
     finalizeIICO(address, formData.maxIterations)
   }
 
-  handleRedeemClick = ({ currentTarget: { id } }) => {
-    const { address, redeemIICOBid } = this.props
+  handleRedeemClick = ({ currentTarget: { id: _id } }) => {
+    const {
+      address,
+      redeemIICOBid,
+      tutorialNow,
+      tutorialEditIICOBids,
+      tutorialNext
+    } = this.props
+    const id = Number(_id)
+    if (tutorialNow) return tutorialEditIICOBids(id, tutorialNext)
+
     redeemIICOBid(address, Number(id))
   }
 
   handleRedeemAllClick = () => {
     const { address, redeemIICOBids } = this.props
+
     redeemIICOBids(address)
   }
 
@@ -134,42 +193,51 @@ class Bids extends PureComponent {
     const now = tutorialNow || Date.now()
     const hasStarted = now >= data.startTime.getTime()
     const hasEnded = now >= data.endTime.getTime()
-    const canBid = hasStarted && !hasEnded
+
     const canWithdraw = hasStarted && now < data.withdrawalLockTime.getTime()
     const canRedeem = hasEnded && data.finalized
+    const inPartialWithdrawals = now > data.endFullBonusTime.getTime()
 
     return (
       <div id="joyridePlaceBid" className="Bids">
         <h1>Your Bids</h1>
-        {canBid && (
-          <StatRow>
-            <StatBlock
-              value={
-                <SubmitBidForm
-                  onSubmit={this.handleSubmitBidFormSubmit}
-                  className="Bids-form"
-                />
-              }
-            />
-            <StatBlock
-              value={
-                <Button
-                  onClick={submitSubmitBidForm}
-                  disabled={submitBidFormIsInvalid || IICOBid.creating}
-                >
-                  ADD
-                </Button>
-              }
-              noFlex
-            />
-          </StatRow>
-        )}
+        {hasStarted &&
+          !hasEnded && (
+            <StatRow>
+              <StatBlock
+                value={
+                  <SubmitBidForm
+                    onSubmit={this.handleSubmitBidFormSubmit}
+                    className="Bids-form"
+                  />
+                }
+              />
+              <StatBlock
+                value={
+                  <Button
+                    onClick={submitSubmitBidForm}
+                    disabled={
+                      submitBidFormIsInvalid ||
+                      IICOBid.creating ||
+                      (tutorialNow && bids.length > 0)
+                    }
+                  >
+                    ADD
+                  </Button>
+                }
+                noFlex
+              />
+            </StatRow>
+          )}
         {canRedeem &&
           bids.some(b => !b.redeemed) && (
             <StatRow>
               <StatBlock
                 value={
-                  <Button onClick={this.handleRedeemAllClick}>
+                  <Button
+                    onClick={this.handleRedeemAllClick}
+                    disabled={Boolean(tutorialNow)}
+                  >
                     REDEEM ALL
                   </Button>
                 }
@@ -234,8 +302,8 @@ class Bids extends PureComponent {
               let refund = b.contrib
               if (b.ID === data.cutOffBidID) {
                 // This is the cutoff bid
-                contrib = data.cutOffContrib
-                refund = b.contrib - data.cutOffContrib
+                contrib = data.cutOffBidContrib
+                refund = b.contrib - data.cutOffBidContrib
               } else if (
                 b.maxVal > data.cutOffBidMaxVal ||
                 (b.maxVal === data.cutOffBidMaxVal && b.ID > data.cutOffBidID)
@@ -248,7 +316,7 @@ class Bids extends PureComponent {
               const updating = updatingBids && updatingBids.includes(b.ID)
 
               return (
-                <StatRow key={b.ID}>
+                <StatRow id="joyridePlacedBid" key={b.ID}>
                   <StatBlock
                     label="Contribution"
                     value={<ChainNumber>{contrib}</ChainNumber>}
@@ -275,12 +343,14 @@ class Bids extends PureComponent {
                     }
                   />
                   <StatBlock
+                    id="joyrideWithdrew"
                     label="Refund"
                     value={<ChainNumber>{refund}</ChainNumber>}
                   />
                   {((canWithdraw && !b.withdrawn) ||
                     (canRedeem && !b.redeemed)) && (
                     <StatBlock
+                      id="joyrideWithdraw"
                       value={
                         <Button
                           onClick={
@@ -288,7 +358,10 @@ class Bids extends PureComponent {
                               ? this.handleWithdrawClick
                               : this.handleRedeemClick
                           }
-                          disabled={IICOBid.updating}
+                          disabled={
+                            IICOBid.updating ||
+                            (tutorialNow && !inPartialWithdrawals)
+                          }
                           id={b.ID}
                         >
                           {updating ? (
@@ -320,6 +393,7 @@ class Bids extends PureComponent {
 export default connect(
   state => ({
     IICOBid: state.IICO.IICOBid,
+    accounts: state.wallet.accounts,
     submitBidFormIsInvalid: getSubmitBidFormIsInvalid(state),
     finalizeIICOFormIsInvalid: getFinalizeIICOFormIsInvalid(state)
   }),

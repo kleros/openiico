@@ -79,7 +79,8 @@ class IICO extends PureComponent {
               withdrawalLockTime: new Date(
                 IICOData.data.withdrawalLockTime.getTime()
               ),
-              endTime: new Date(IICOData.data.endTime.getTime())
+              endTime: new Date(IICOData.data.endTime.getTime()),
+              bonus: IICOData.data.startingBonus
             }
           },
           tutorialIICOBids
@@ -106,6 +107,28 @@ class IICO extends PureComponent {
               tutorialNow: tutorialIICOData.data.startTime.getTime()
             })
             break
+          case 'PlacedBid': {
+            const endFullBonusTime = tutorialIICOData.data.endFullBonusTime.getTime()
+            const endTime = tutorialIICOData.data.endTime.getTime()
+            const tutorialNow =
+              endFullBonusTime +
+              (tutorialIICOData.data.withdrawalLockTime.getTime() -
+                endFullBonusTime) /
+                2
+            this.setState({
+              tutorialNow,
+              bonus:
+                tutorialIICOData.data.bonus *
+                ((endTime - tutorialNow) / (endTime - endFullBonusTime))
+            })
+            break
+          }
+          case 'Withdrew':
+            this.setState({
+              tutorialNow: tutorialIICOData.data.endTime.getTime(),
+              bonus: 0
+            })
+            break
           default:
             break
         }
@@ -122,6 +145,90 @@ class IICO extends PureComponent {
         break
     }
   }
+
+  tutorialFinalizeIICOData = callback => {
+    const { tutorialIICOData } = this.state
+
+    this.setState(
+      {
+        tutorialIICOData: {
+          ...tutorialIICOData,
+          data: {
+            ...tutorialIICOData.data,
+            finalized: true
+          }
+        }
+      },
+      callback
+    )
+  }
+
+  tutorialEditIICOBids = (IICOBidOrID, callback, lockedIn, newBonus) => {
+    const { tutorialIICOData, tutorialIICOBids } = this.state
+
+    let newBids
+    if (typeof IICOBidOrID === 'number')
+      newBids = tutorialIICOBids.data.map(
+        b =>
+          b.ID === IICOBidOrID
+            ? lockedIn
+              ? { ...b, contrib: lockedIn, bonus: newBonus, withdrawn: true }
+              : { ...b, redeemed: true }
+            : b
+      )
+    else newBids = [...tutorialIICOBids.data, IICOBidOrID]
+    console.log(newBids)
+    // Calculate new tutorial IICO Data
+    const bids = [...newBids].sort((a, b) => {
+      if (b.maxVal === a.maxVal) return b.ID - a.ID
+      return b.maxVal - a.maxVal
+    })
+    let cutOffBidContrib
+    let cutOffBid = bids[bids.length - 1]
+    let valuation = 0
+    let virtualValuation = 0
+    for (const bid of bids) {
+      if (bid.contrib + valuation < bid.maxVal) {
+        // We haven't found the cut-off yet.
+        cutOffBidContrib = bid.contrib
+        cutOffBid = bid
+        valuation += bid.contrib
+        virtualValuation += bid.contrib + bid.contrib * (1 + bid.bonus)
+      } else {
+        // We found the cut-off bid. This bid will be taken partially.
+        cutOffBidContrib = bid.maxVal >= valuation ? bid.maxVal - valuation : 0 // The amount of the contribution of the cut-off bid that can stay in the sale without spilling over the maxVal.
+        cutOffBid = bid
+        valuation += cutOffBidContrib
+        virtualValuation +=
+          cutOffBidContrib + cutOffBidContrib * (1 + bid.bonus)
+        break
+      }
+    }
+
+    // Set new tutorial state
+    this.setState(
+      {
+        tutorialIICOData: {
+          ...tutorialIICOData,
+          data: {
+            ...tutorialIICOData.data,
+            valuation,
+            virtualValuation,
+            cutOffBidID: cutOffBid.ID,
+            cutOffBidMaxVal: cutOffBid.maxVal,
+            cutOffBidContrib
+          }
+        },
+        tutorialIICOBids: {
+          ...tutorialIICOBids,
+          data: newBids
+        }
+      },
+      callback
+    )
+  }
+
+  tutorialNext = () => this.joyrideRef.next()
 
   render() {
     const { match } = this.props
@@ -152,7 +259,7 @@ class IICO extends PureComponent {
           done={
             IICOData.data && (
               <div>
-                <div className="IICO-data">
+                <div id="joyrideFinish" className="IICO-data">
                   <Data data={IICOData.data} tutorialNow={tutorialNow} />
                 </div>
                 <div className="IICO-bids">
@@ -167,6 +274,11 @@ class IICO extends PureComponent {
                           bids={IICOBids.data}
                           updatingBids={IICOBids.updating}
                           tutorialNow={tutorialNow}
+                          tutorialFinalizeIICOData={
+                            this.tutorialFinalizeIICOData
+                          }
+                          tutorialEditIICOBids={this.tutorialEditIICOBids}
+                          tutorialNext={this.tutorialNext}
                         />
                       )
                     }

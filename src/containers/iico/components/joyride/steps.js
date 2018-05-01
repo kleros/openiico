@@ -102,5 +102,73 @@ export default [
     ),
     selector: '#joyridePlaceBid',
     style: { button: { display: 'none' } }
+  },
+  {
+    text:
+      'Congratulations on placing your first bid! Withdrawing now would give you all of your ETH back, but let’s skip through time to demonstrate the lock in process.',
+    selector: '#joyridePlacedBid'
+  },
+  {
+    text: (
+      <span>
+        We are now in the “Partial Withdrawals” phase.
+        <br />
+        <br />
+        Try withdrawing your bid, you’ll only be able to withdraw whatever
+        percentage of the “Partial Withdrawals” phase is left and your bonus
+        will be reduced by 1/3.
+        <br />
+        <br />
+        That is, if you are 80% through the phase, you’ll only be able to
+        withdraw 20% of your bid and if your bonus was 15% it will be reduced to
+        10%. This is to avoid blackout attacks by large players.
+        <br />
+        <br />
+        See this article to learn more.
+      </span>
+    ),
+    selector: '#joyrideWithdraw',
+    style: { button: { display: 'none' } }
+  },
+  {
+    text: "Nice, you've been refunded. Now, let’s skip to the end of the sale.",
+    selector: '#joyrideWithdrew'
+  },
+  {
+    text: (
+      <span>
+        Now, the contract needs to iterate over all the bids to finalize the
+        sale. This may be done by anyone so you might not even get to see this
+        part of the sale.
+        <br />
+        <br />
+        Enter the number of iterations you’d like to pay gas for and submit to
+        finalize the sale.
+        <br />
+        <br />
+        Five iterations is more than enough since you only made one bid.
+      </span>
+    ),
+    selector: '#joyridePlaceBid',
+    style: { button: { display: 'none' } }
+  },
+  {
+    text: (
+      <span>
+        Good job! Now you can redeem your tokens (for bids that stayed in the
+        sale) and/or ETH (for bids where the personal cap ended up being under
+        the valuation).
+        <br />
+        <br />
+        Redeem your bid to continue.
+      </span>
+    ),
+    selector: '#joyrideWithdraw',
+    style: { button: { display: 'none' } }
+  },
+  {
+    text:
+      'Great, you are now more than ready to take part in a real Interactive Coin Offering. Please let us know if you have any questions or concerns, feedback is greatly appreciated.',
+    selector: '#joyrideFinish'
   }
 ]

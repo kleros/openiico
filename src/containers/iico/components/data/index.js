@@ -46,9 +46,9 @@ export default class Data extends PureComponent {
     // Times
     const now = tutorialNow || Date.now()
     const startTime = data.startTime.getTime()
-    const endTime = data.endTime.getTime()
     const endFullBonusTime = data.endFullBonusTime.getTime()
     const withdrawalLockTime = data.withdrawalLockTime.getTime()
+    const endTime = data.endTime.getTime()
     const duration = endTime - startTime
 
     // Phase
