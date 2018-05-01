@@ -80,7 +80,13 @@ class IICO extends PureComponent {
                 IICOData.data.withdrawalLockTime.getTime()
               ),
               endTime: new Date(IICOData.data.endTime.getTime()),
-              bonus: IICOData.data.startingBonus
+              bonus: IICOData.data.startingBonus,
+              valuation: 0,
+              virtualValuation: 0,
+              cutOffBidID: 0,
+              cutOffBidMaxVal: 0,
+              cutOffBidContrib: 0,
+              finalized: false
             }
           },
           tutorialIICOBids
