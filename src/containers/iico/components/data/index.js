@@ -110,9 +110,19 @@ export default class Data extends PureComponent {
                 endLabel={dateToString(data.endTime)}
                 initialPercent={initialPercent}
                 steps={[
-                  { label: 'End of Full Bonus', percent: endFullBonusPercent },
-                  { label: 'Withdrawal Lock', percent: withdrawalLockPercent },
-                  { label: 'Now', percent: initialPercent, color: '#337ab7' }
+                  { label: 'Full Bonus', percent: endFullBonusPercent },
+                  {
+                    label: 'Partial Withdrawals',
+                    percent: withdrawalLockPercent,
+                    color: '#f0ad4e'
+                  },
+                  { label: 'Withdrawal Lockup', percent: 1, color: '#be6464' },
+                  {
+                    label: 'Now',
+                    percent: initialPercent,
+                    color: '#337ab7',
+                    point: true
+                  }
                 ]}
                 calcValue={this.calcBonus}
               />

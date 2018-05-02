@@ -23,18 +23,43 @@ export default [
     selector: '#joyrideWelcome'
   },
   {
-    text:
-      'This is the ICO’s contract address. You can hover over it to see it in full and you can click on it to explore the contract on etherscan. Try doing that now.',
+    text: (
+      <span>
+        This is the ICO’s contract address.
+        <br />
+        <br />
+        You can hover over it to see it in full and you can click on it to
+        explore the contract on etherscan. Try doing that now.
+      </span>
+    ),
     selector: '#joyrideTokenContractAddress'
   },
   {
-    text:
-      'This is the amount of tokens that are up for sale. They will be distributed proportionally across all bidders relative to the size of their contributions and bonuses.',
+    text: (
+      <span>
+        This is the amount of tokens that are up for sale.
+        <br />
+        <br />
+        They will be distributed proportionally across all bidders relative to
+        the size of their contributions and bonuses.
+      </span>
+    ),
     selector: '#joyrideTokensForSale'
   },
   {
-    text:
-      'This is the sale’s current valuation. That is, if the sale were to end now and personal caps were taken into account to see which ones should be refunded. The number is truncated to two significant digits, but you can hover over it to see it in full.',
+    text: (
+      <span>
+        This is the sale’s current valuation.
+        <br />
+        <br />
+        That is, if the sale were to end now and personal caps were taken into
+        account to see which ones should be refunded.
+        <br />
+        <br />
+        The number is truncated to two significant digits, but you can hover
+        over it to see it in full.
+      </span>
+    ),
     selector: '#joyrideValuation'
   },
   {
@@ -68,8 +93,19 @@ export default [
     selector: '#joyridePhase'
   },
   {
-    text:
-      'This is the sale’s starting bonus. This will start decreasing linearly at the end of the full bonus phase down to zero at the end of the sale. A bid’s bonus increases its token purchasing power. For example, a 20% bonus will give you 20% more tokens for the same amount of ETH.',
+    text: (
+      <span>
+        This is the sale’s starting bonus.
+        <br />
+        <br />
+        This will start decreasing linearly at the end of the full bonus phase
+        down to zero at the end of the sale.
+        <br />
+        <br />
+        A bid’s bonus increases its relative token purchasing power against
+        other bids.
+      </span>
+    ),
     selector: '#joyrideStartingBonus'
   },
   {
@@ -77,8 +113,20 @@ export default [
     selector: '#joyrideCurrentBonus'
   },
   {
-    text:
-      'This slider lets you preview the bonus throughout the lifetime of the sale. The green bars represent a change of phase and the light blue bar represents the current time. Hover over it now to preview the bonus at any stage of the sale. Let’s skip time to the start of the sale.',
+    text: (
+      <span>
+        This slider lets you preview the bonus throughout the lifetime of the
+        sale.
+        <br />
+        <br />
+        The colored sections represent the different phases and the light blue
+        bar represents the current time.
+        <br />
+        <br />
+        Hover over it now to preview the bonus at any stage of the sale. Let’s
+        skip time to the start of the sale.
+      </span>
+    ),
     selector: '#joyrideSlider'
   },
   {
@@ -104,8 +152,15 @@ export default [
     style: { button: { display: 'none' } }
   },
   {
-    text:
-      'Congratulations on placing your first bid! Withdrawing now would give you all of your ETH back, but let’s skip through time to demonstrate the lock in process.',
+    text: (
+      <span>
+        Congratulations on placing your first bid!
+        <br />
+        <br />
+        Withdrawing now would give you all of your ETH back, but let’s skip
+        through time to demonstrate the lock in process.
+      </span>
+    ),
     selector: '#joyridePlacedBid'
   },
   {
@@ -124,14 +179,29 @@ export default [
         10%. This is to avoid blackout attacks by large players.
         <br />
         <br />
-        See this article to learn more.
+        See{' '}
+        <a
+          href="https://medium.com/kleros/how-interactive-coin-offerings-iicos-work-beed401ce526"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          this
+        </a>{' '}
+        article to learn more.
       </span>
     ),
     selector: '#joyrideWithdraw',
     style: { button: { display: 'none' } }
   },
   {
-    text: "Nice, you've been refunded. Now, let’s skip to the end of the sale.",
+    text: (
+      <span>
+        Nice, you've been refunded.
+        <br />
+        <br />
+        Now, let’s skip to the end of the sale.
+      </span>
+    ),
     selector: '#joyrideWithdrew'
   },
   {
@@ -142,7 +212,7 @@ export default [
         part of the sale.
         <br />
         <br />
-        Enter the number of iterations you’d like to pay gas for and submit to
+        Enter the number of iterations you’d like to pay gas for, and submit to
         finalize the sale.
         <br />
         <br />
@@ -157,7 +227,7 @@ export default [
       <span>
         Good job! Now you can redeem your tokens (for bids that stayed in the
         sale) and/or ETH (for bids where the personal cap ended up being under
-        the valuation).
+        or in some cases equal to the valuation).
         <br />
         <br />
         Redeem your bid to continue.
@@ -167,8 +237,16 @@ export default [
     style: { button: { display: 'none' } }
   },
   {
-    text:
-      'Great, you are now more than ready to take part in a real Interactive Coin Offering. Please let us know if you have any questions or concerns, feedback is greatly appreciated.',
+    text: (
+      <span>
+        Great, you are now more than ready to take part in a real Interactive
+        Coin Offering.
+        <br />
+        <br />
+        Please let us know if you have any questions or concerns, feedback is
+        greatly appreciated.
+      </span>
+    ),
     selector: '#joyrideFinish'
   }
 ]
