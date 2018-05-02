@@ -3,7 +3,7 @@ import ReactTooltip from 'react-tooltip'
 import ReduxToastr from 'react-redux-toastr'
 
 export default () => (
-  <div>
+  <div id="global-components">
     <ReactTooltip />
     <ReduxToastr
       timeOut={0}

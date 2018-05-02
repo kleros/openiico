@@ -46,6 +46,11 @@ body,
   position: relative;
 }
 
+// Global Components
+#global-components {
+  z-index: 1001;
+}
+
 /* Element Overrides */
 
 // Horizontal Rule
