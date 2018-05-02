@@ -5217,6 +5217,7 @@ exports[`Storyshots Stat Block default 1`] = `
         >
           <div
             className="StatBlock  "
+            data-tip={undefined}
             style={null}
           >
             <h2>
@@ -5531,6 +5532,7 @@ exports[`Storyshots Stat Block with no label 1`] = `
         >
           <div
             className="StatBlock StatBlock--withNoLabel "
+            data-tip={undefined}
             style={null}
           >
             <h3
@@ -5847,6 +5849,7 @@ exports[`Storyshots Stat Row default 1`] = `
             >
               <div
                 className="StatBlock  "
+                data-tip={undefined}
                 style={null}
               >
                 <h2>
@@ -5865,6 +5868,7 @@ exports[`Storyshots Stat Row default 1`] = `
               </div>
               <div
                 className="StatBlock  "
+                data-tip={undefined}
                 style={null}
               >
                 <h2>
@@ -5883,6 +5887,7 @@ exports[`Storyshots Stat Row default 1`] = `
               </div>
               <div
                 className="StatBlock  "
+                data-tip={undefined}
                 style={null}
               >
                 <h2>
@@ -6209,6 +6214,7 @@ exports[`Storyshots Stat Row with box shadow 1`] = `
             >
               <div
                 className="StatBlock  "
+                data-tip={undefined}
                 style={null}
               >
                 <h2>
@@ -6227,6 +6233,7 @@ exports[`Storyshots Stat Row with box shadow 1`] = `
               </div>
               <div
                 className="StatBlock  "
+                data-tip={undefined}
                 style={null}
               >
                 <h2>
@@ -6245,6 +6252,7 @@ exports[`Storyshots Stat Row with box shadow 1`] = `
               </div>
               <div
                 className="StatBlock  "
+                data-tip={undefined}
                 style={null}
               >
                 <h2>

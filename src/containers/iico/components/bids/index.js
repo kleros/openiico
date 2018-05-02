@@ -271,24 +271,34 @@ class Bids extends PureComponent {
         {IICOBid.creating && (
           <StatRow>
             <StatBlock
-              label="Contribution"
+              label="Contribution (ETH)"
               value={<SyncLoader color="#9b9b9b" size={8} />}
+              tooltip="ETH that is currently part of the sale."
+            />
+            <StatBlock
+              label="Personal Cap (ETH)"
+              value={<SyncLoader color="#9b9b9b" size={8} />}
+              tooltip="This bid's personal cap."
             />
             <StatBlock
               label="Bonus"
               value={<SyncLoader color="#9b9b9b" size={8} />}
-            />
-            <StatBlock
-              label="Personal Cap"
-              value={<SyncLoader color="#9b9b9b" size={8} />}
-            />
-            <StatBlock
-              label="Tokens"
-              value={<SyncLoader color="#9b9b9b" size={8} />}
+              tooltip="This bid's bonus."
             />
             <StatBlock
               label="Token Price"
               value={<SyncLoader color="#9b9b9b" size={8} />}
+              tooltip="The price per token this bid got or would get if the sale were to end now."
+            />
+            <StatBlock
+              label="Tokens"
+              value={<SyncLoader color="#9b9b9b" size={8} />}
+              tooltip="Tokens that can be redeemed or could be redeemed if the sale were to end now."
+            />
+            <StatBlock
+              label="Refund (ETH)"
+              value={<SyncLoader color="#9b9b9b" size={8} />}
+              tooltip="ETH that can be redeemed or could be redeemed if the sale were to end now."
             />
           </StatRow>
         )}
@@ -326,29 +336,35 @@ class Bids extends PureComponent {
               return (
                 <StatRow id="joyridePlacedBid" key={b.ID}>
                   <StatBlock
-                    label="Contribution"
+                    label="Contribution (ETH)"
                     value={<ChainNumber>{contrib}</ChainNumber>}
+                    tooltip="ETH that is currently part of the sale."
                   />
                   <StatBlock
-                    label="Personal Cap"
+                    label="Personal Cap (ETH)"
                     value={b.maxVal >= 1.157920892373162e59 ? '∞' : b.maxVal}
+                    tooltip="This bid's personal cap."
                   />
                   <StatBlock
                     label="Bonus"
                     value={numberToPercentage(b.bonus)}
+                    tooltip="This bid's bonus."
                   />
                   <StatBlock
                     label="Token Price"
                     value={<ChainNumber>{contrib / tokens}</ChainNumber>}
+                    tooltip="The price per token this bid got or would get if the sale were to end now."
                   />
                   <StatBlock
                     label="Tokens"
                     value={<ChainNumber>{tokens}</ChainNumber>}
+                    tooltip="Tokens that can be redeemed or could be redeemed if the sale were to end now."
                   />
                   <StatBlock
                     id="joyrideWithdrew"
-                    label="Refund"
+                    label="Refund (ETH)"
                     value={<ChainNumber>{refund}</ChainNumber>}
+                    tooltip="ETH that can be redeemed or could be redeemed if the sale were to end now."
                   />
                   {((canWithdraw && !b.withdrawn) ||
                     (canRedeem && !b.redeemed)) && (

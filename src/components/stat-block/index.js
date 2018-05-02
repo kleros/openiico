@@ -3,8 +3,17 @@ import PropTypes from 'prop-types'
 
 import './stat-block.css'
 
-const StatBlock = ({ id, label, value, noBackground, noFlex, flexBasis }) => (
+const StatBlock = ({
+  id,
+  label,
+  value,
+  tooltip,
+  noBackground,
+  noFlex,
+  flexBasis
+}) => (
   <div
+    data-tip={tooltip}
     className={`StatBlock ${
       label || noBackground ? '' : 'StatBlock--withNoLabel'
     } ${noFlex ? 'StatBlock--noFlex' : ''}`}
@@ -27,6 +36,7 @@ StatBlock.propTypes = {
   id: PropTypes.string,
   label: PropTypes.string,
   value: PropTypes.node.isRequired,
+  tooltip: PropTypes.string,
 
   // Modifiers
   noBackground: PropTypes.bool,
@@ -38,6 +48,7 @@ StatBlock.defaultProps = {
   // State
   id: undefined,
   label: null,
+  tooltip: undefined,
 
   // Modifiers
   noBackground: false,

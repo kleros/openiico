@@ -16,12 +16,12 @@ export const {
     amount: {
       type: 'text',
       validate: [required, number, positive, nonZero],
-      props: { type: 'number' }
+      props: { type: 'number', placeholder: 'Amount (ETH)' }
     },
     personalCap: {
       type: 'text',
       validate: [required, number, positive, nonZero],
-      props: { type: 'number' },
+      props: { type: 'number', placeholder: 'Personal Cap (ETH)' },
       visibleIf: '!noPersonalCap'
     },
     noPersonalCap: {
