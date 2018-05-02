@@ -313,6 +313,14 @@ class Bids extends PureComponent {
                 refund = 0
               }
 
+              const tokens =
+                contrib === 0
+                  ? 0
+                  : contrib *
+                    (1 + b.bonus) /
+                    data.virtualValuation *
+                    data.tokensForSale
+
               const updating = updatingBids && updatingBids.includes(b.ID)
 
               return (
@@ -322,25 +330,20 @@ class Bids extends PureComponent {
                     value={<ChainNumber>{contrib}</ChainNumber>}
                   />
                   <StatBlock
-                    label="Bonus"
-                    value={numberToPercentage(b.bonus)}
-                  />
-                  <StatBlock
                     label="Personal Cap"
                     value={b.maxVal >= 1.157920892373162e59 ? '∞' : b.maxVal}
                   />
                   <StatBlock
+                    label="Bonus"
+                    value={numberToPercentage(b.bonus)}
+                  />
+                  <StatBlock
+                    label="Token Price"
+                    value={<ChainNumber>{contrib / tokens}</ChainNumber>}
+                  />
+                  <StatBlock
                     label="Tokens"
-                    value={
-                      <ChainNumber>
-                        {contrib === 0
-                          ? 0
-                          : contrib *
-                            (1 + b.bonus) /
-                            data.virtualValuation *
-                            data.tokensForSale}
-                      </ChainNumber>
-                    }
+                    value={<ChainNumber>{tokens}</ChainNumber>}
                   />
                   <StatBlock
                     id="joyrideWithdrew"

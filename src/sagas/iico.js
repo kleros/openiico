@@ -59,6 +59,12 @@ function* fetchIICOData({ payload: { address } }) {
   const contract = IICOContractFactory.at(address)
 
   const d = yield all({
+    ethTicker: call(() =>
+      fetch('https://api.coinmarketcap.com/v2/ticker/1027/').then(res =>
+        res.json()
+      )
+    ),
+
     // Token
     tokenContractAddress: call(contract.token),
     tokensForSale: call(contract.tokensForSale),
@@ -78,6 +84,7 @@ function* fetchIICOData({ payload: { address } }) {
 
   return {
     address,
+    ethPrice: d.ethTicker.data.quotes.USD.price,
 
     // Token
     tokenContractAddress: d.tokenContractAddress[0],

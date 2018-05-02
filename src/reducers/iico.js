@@ -6,6 +6,7 @@ import * as IICOActions from '../actions/iico'
 // Common Shapes
 export const _IICODataShape = PropTypes.shape({
   address: PropTypes.string.isRequired,
+  ethPrice: PropTypes.number.isRequired,
 
   // Token
   tokenContractAddress: PropTypes.string.isRequired,

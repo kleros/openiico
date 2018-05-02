@@ -262,7 +262,9 @@ exports[`Storyshots Button disabled 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -566,7 +568,9 @@ exports[`Storyshots Button primary 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -870,7 +874,9 @@ exports[`Storyshots Button with lots of text 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -1175,7 +1181,9 @@ exports[`Storyshots Chain Hash default 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -1475,7 +1483,9 @@ exports[`Storyshots Chain Number default 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -1783,7 +1793,9 @@ exports[`Storyshots Checkbox default 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -2087,7 +2099,9 @@ exports[`Storyshots Circle default 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -2388,7 +2402,9 @@ exports[`Storyshots Form header 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -2685,7 +2701,9 @@ exports[`Storyshots Identicon with placeholder seed 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -3102,7 +3120,9 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -3465,7 +3485,9 @@ exports[`Storyshots Nav Bar with routes 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -3768,7 +3790,9 @@ exports[`Storyshots Page Not Found default 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -4111,7 +4135,9 @@ exports[`Storyshots Pie Chart activated 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -4424,7 +4450,9 @@ exports[`Storyshots Requires MetaMask needs unlock 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -4737,7 +4765,9 @@ exports[`Storyshots Requires MetaMask not found 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -5057,7 +5087,9 @@ exports[`Storyshots Slider default 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -5369,7 +5401,9 @@ exports[`Storyshots Stat Block default 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -5677,7 +5711,9 @@ exports[`Storyshots Stat Block with no label 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -6037,7 +6073,9 @@ exports[`Storyshots Stat Row default 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -6397,7 +6435,9 @@ exports[`Storyshots Stat Row with box shadow 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -6707,7 +6747,9 @@ exports[`Storyshots Text Input default 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -7017,7 +7059,9 @@ exports[`Storyshots Text Input error 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -7327,7 +7371,9 @@ exports[`Storyshots Text Input touched 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -7637,7 +7683,9 @@ exports[`Storyshots Text Input valid 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -7931,7 +7979,9 @@ exports[`Storyshots Toast confirm 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -8225,7 +8275,9 @@ exports[`Storyshots Toast error 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -8519,7 +8571,9 @@ exports[`Storyshots Toast info 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -8813,7 +8867,9 @@ exports[`Storyshots Toast message 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -9107,7 +9163,9 @@ exports[`Storyshots Toast success 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -9401,7 +9459,9 @@ exports[`Storyshots Toast warning 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -9711,7 +9771,9 @@ exports[`Storyshots Typography headings 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -10018,7 +10080,9 @@ exports[`Storyshots Typography paragraphs 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
@@ -10317,7 +10381,9 @@ exports[`Storyshots Typography small 1`] = `
       </div>
     </div>
   </div>
-  <div>
+  <div
+    id="global-components"
+  >
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
