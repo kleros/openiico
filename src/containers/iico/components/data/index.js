@@ -88,15 +88,19 @@ export default class Data extends PureComponent {
               label="Valuation (ETH)"
               value={<ChainNumber>{data.valuation || 0}</ChainNumber>}
             />
-            <StatBlock label="USD/ETH" value={`$${data.ethPrice}`} />
-            <StatBlock
-              label="Valuation (USD)"
-              value={
-                <ChainNumber>
-                  {(data.valuation || 0) * data.ethPrice}
-                </ChainNumber>
-              }
-            />
+            {data.ethPrice && (
+              <StatBlock label="USD/ETH" value={`$${data.ethPrice}`} />
+            )}
+            {data.ethPrice && (
+              <StatBlock
+                label="Valuation (USD)"
+                value={
+                  <ChainNumber>
+                    {(data.valuation || 0) * data.ethPrice}
+                  </ChainNumber>
+                }
+              />
+            )}
             <StatBlock id="joyridePhase" label="Phase" value={phase} />
           </StatRow>
         </div>

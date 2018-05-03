@@ -62,7 +62,7 @@ function* fetchIICOData({ payload: { address } }) {
     ethTicker: call(() =>
       fetch('https://api.coinmarketcap.com/v2/ticker/1027/')
         .then(res => res.json())
-        .catch(err => console.error(err) || 0)
+        .catch(err => console.error(err))
     ),
 
     // Token
@@ -84,7 +84,7 @@ function* fetchIICOData({ payload: { address } }) {
 
   return {
     address,
-    ethPrice: d.ethTicker.data.quotes.USD.price,
+    ethPrice: d.ethTicker && d.ethTicker.data.quotes.USD.price,
 
     // Token
     tokenContractAddress: d.tokenContractAddress[0],
