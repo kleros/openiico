@@ -4,7 +4,6 @@ import ReduxToastr from 'react-redux-toastr'
 
 export default () => (
   <div id="global-components">
-    <ReactTooltip />
     <ReduxToastr
       timeOut={0}
       position="top-center"
@@ -12,5 +11,6 @@ export default () => (
       transitionOut="bounceOutUp"
       progressBar
     />
+    <ReactTooltip multiline />
   </div>
 )

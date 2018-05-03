@@ -123,16 +123,29 @@ class IICO extends PureComponent {
                 2
             this.setState({
               tutorialNow,
-              bonus:
-                tutorialIICOData.data.bonus *
-                ((endTime - tutorialNow) / (endTime - endFullBonusTime))
+              tutorialIICOData: {
+                ...tutorialIICOData,
+                data: {
+                  ...tutorialIICOData.data,
+                  bonus:
+                    tutorialIICOData.data.bonus *
+                    ((endTime - tutorialNow) / (endTime - endFullBonusTime))
+                }
+              }
             })
             break
           }
           case 'Withdrew':
             this.setState({
               tutorialNow: tutorialIICOData.data.endTime.getTime(),
-              bonus: 0
+              tutorialIICOData: {
+                ...tutorialIICOData,
+                data: {
+                  ...tutorialIICOData.data,
+                  bonus: 0,
+                  finalized: true
+                }
+              }
             })
             break
           default:

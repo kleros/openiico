@@ -90,7 +90,6 @@ export default class Data extends PureComponent {
             />
             <StatBlock label="USD/ETH" value={`$${data.ethPrice}`} />
             <StatBlock
-              id="joyrideValuation"
               label="Valuation (USD)"
               value={
                 <ChainNumber>

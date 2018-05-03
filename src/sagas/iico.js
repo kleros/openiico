@@ -60,9 +60,9 @@ function* fetchIICOData({ payload: { address } }) {
 
   const d = yield all({
     ethTicker: call(() =>
-      fetch('https://api.coinmarketcap.com/v2/ticker/1027/').then(res =>
-        res.json()
-      )
+      fetch('https://api.coinmarketcap.com/v2/ticker/1027/')
+        .then(res => res.json())
+        .catch(err => console.error(err) || 0)
     ),
 
     // Token

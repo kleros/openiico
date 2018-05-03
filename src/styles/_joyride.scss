@@ -1,10 +1,6 @@
 @import '../styles/_colors.scss';
 
 .joyride {
-  &-overlay {
-    pointer-events: none !important;
-  }
-
   &-tooltip {
     &__header {
       border-color: $primary !important;

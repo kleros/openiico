@@ -15,9 +15,10 @@ const Joyride = ({ getRef, callback }) => (
       close: 'Close',
       last: 'Finish',
       next: 'Next',
-      skip: 'Skip'
+      skip: 'Skip Tutorial'
     }}
     showBackButton={false}
+    showOverlay={false}
     showSkipButton
     showStepsProgress
     type="continuous"

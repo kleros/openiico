@@ -18,6 +18,10 @@ export default [
         >
           here
         </a>.
+        <br />
+        <br />
+        Keep in mind that everything you do in the tutorial is virtual and does
+        not create any transactions.
       </span>
     ),
     selector: '#joyrideWelcome'
@@ -207,24 +211,6 @@ export default [
   {
     text: (
       <span>
-        Now, the contract needs to iterate over all the bids to finalize the
-        sale. This may be done by anyone so you might not even get to see this
-        part of the sale.
-        <br />
-        <br />
-        Enter the number of iterations you’d like to pay gas for, and submit to
-        finalize the sale.
-        <br />
-        <br />
-        Five iterations is more than enough since you only made one bid.
-      </span>
-    ),
-    selector: '#joyridePlaceBid',
-    style: { button: { display: 'none' } }
-  },
-  {
-    text: (
-      <span>
         Good job! Now you can redeem your tokens (for bids that stayed in the
         sale) and/or ETH (for bids where the personal cap ended up being under
         or in some cases equal to the valuation).
@@ -233,7 +219,7 @@ export default [
         Redeem your bid to continue.
       </span>
     ),
-    selector: '#joyrideWithdraw',
+    selector: '#joyridePlacedBid',
     style: { button: { display: 'none' } }
   },
   {
@@ -245,6 +231,10 @@ export default [
         <br />
         Please let us know if you have any questions or concerns, feedback is
         greatly appreciated.
+        <br />
+        <br />
+        You will now be transferred to the real IICO interface where you can
+        make real transactions.
       </span>
     ),
     selector: '#joyrideFinish'
