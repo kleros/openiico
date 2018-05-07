@@ -64,7 +64,11 @@ class Bids extends PureComponent {
     tutorialNow: null
   }
 
-  handleSubmitBidFormSubmit = formData => {
+  handleSubmitBidFormSubmit = ({
+    amount: _amount,
+    personalCap: _personalCap,
+    noPersonalCap
+  }) => {
     const {
       accounts,
       address,
@@ -75,21 +79,22 @@ class Bids extends PureComponent {
       tutorialEditIICOBids,
       tutorialNext
     } = this.props
+    const amount = Number(_amount)
+    const personalCap = Number(_personalCap)
 
     // Calculate max token price
     const bonusMultiplier = 1 + data.bonus
 
-    const leftOverToBid =
-      formData.personalCap - (data.valuation + formData.amount)
+    const leftOverToBid = personalCap - (data.valuation + amount)
 
     // If `leftOverToBid` is positive, assume future bids will get the current bonus, if it's negative, assume bids we are removing have the current bonus. This overestimates the max token price in both cases.
     const overEstimatedVirtualValuation =
       data.virtualValuation + leftOverToBid * bonusMultiplier
 
     const maxTokenPrice =
-      formData.amount /
+      amount /
       (data.tokensForSale *
-        (formData.amount * bonusMultiplier / overEstimatedVirtualValuation))
+        (amount * bonusMultiplier / overEstimatedVirtualValuation))
 
     toastr.confirm(null, {
       okText: 'Yes',
@@ -98,8 +103,8 @@ class Bids extends PureComponent {
           ? tutorialEditIICOBids(
               {
                 ID: bids.length ? bids[bids.length - 1].ID + 1 : 0,
-                maxVal: Number(formData.personalCap),
-                contrib: Number(formData.amount),
+                maxVal: Number(personalCap),
+                contrib: Number(amount),
                 bonus: data.bonus,
                 contributor: accounts.data[0],
                 withdrawn: false,
@@ -109,12 +114,7 @@ class Bids extends PureComponent {
                 if (bids.length === 0) tutorialNext()
               }
             )
-          : createIICOBid(
-              address,
-              formData.amount,
-              formData.personalCap,
-              formData.noPersonalCap
-            ),
+          : createIICOBid(address, amount, personalCap, noPersonalCap),
       component: () => (
         <div className="Bids-confirm">
           Are you sure you wish to submit this bid?
@@ -123,7 +123,7 @@ class Bids extends PureComponent {
           <br />
           is the maximum price per token you would pay with your personal cap of
           <br />
-          {formData.personalCap} ETH.
+          {personalCap} ETH.
         </div>
       )
     })

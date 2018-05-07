@@ -1,3 +1,4 @@
+import React from 'react'
 import { delay } from 'redux-saga'
 import { toastr } from 'react-redux-toastr'
 
@@ -5,6 +6,7 @@ import { call, put } from 'redux-saga/effects'
 
 import { eth } from '../bootstrap/dapp-api'
 import * as walletActions from '../actions/wallet'
+import ChainHash from '../components/chain-hash'
 
 import { action as _action, errorAction } from './action'
 
@@ -58,17 +60,37 @@ export function* lessduxSaga(flow, resourceActions, saga, action) {
  * Sends a transaction, waits for it to be mined, and updates the ETH balance.
  * @param {function} contractFunction - The transaction function to call.
  * @param {...any} args - The arguments to pass into the contractFunction.
+ * @returns {object} - The transaction receipt object.
  */
 export function* sendTransaction(contractFunction, ...args) {
+  // Send transaction
   const hash = yield call(contractFunction, ...args)
-  let receipt
 
+  // Wait for receipt
+  let receipt
   while (!receipt) {
     receipt = yield call(eth.getTransactionReceipt, hash)
     yield call(delay, 200)
   }
 
+  // Refetch balance
   yield put(_action(walletActions.balance.FETCH))
 
+  // Check for failures
   if (receipt.status === '0x0') throw new Error('Transaction failed.')
+
+  // Show success message
+  toastr.success('', '', {
+    timeOut: 0,
+    component: () => (
+      <div>
+        Your transaction with hash{' '}
+        <ChainHash>{receipt.transactionHash}</ChainHash> was completed
+        succesfully.
+      </div>
+    )
+  })
+
+  // Return receipt
+  return receipt
 }
