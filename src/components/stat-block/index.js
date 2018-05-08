@@ -10,13 +10,16 @@ const StatBlock = ({
   tooltip,
   noBackground,
   noFlex,
+  noWrap,
   flexBasis
 }) => (
   <div
     data-tip={tooltip}
     className={`StatBlock ${
       label || noBackground ? '' : 'StatBlock--withNoLabel'
-    } ${noFlex ? 'StatBlock--noFlex' : ''}`}
+    } ${noFlex ? 'StatBlock--noFlex' : ''} ${
+      noWrap ? 'StatBlock--noWrap' : ''
+    }`}
     style={flexBasis && { flex: `0 1 ${flexBasis}px` }}
   >
     {label && <h2>{label}:</h2>}
@@ -41,6 +44,7 @@ StatBlock.propTypes = {
   // Modifiers
   noBackground: PropTypes.bool,
   noFlex: PropTypes.bool,
+  noWrap: PropTypes.bool,
   flexBasis: PropTypes.number
 }
 
@@ -53,6 +57,7 @@ StatBlock.defaultProps = {
   // Modifiers
   noBackground: false,
   noFlex: false,
+  noWrap: false,
   flexBasis: null
 }
 

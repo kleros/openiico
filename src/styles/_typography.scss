@@ -70,19 +70,19 @@
 
 // Headings
 h1 {
-  @include heading(1.5rem, 700);
+  @include heading(1.25rem, 700);
 }
 
 h2 {
-  @include heading(1.125rem, 300, $dark3);
+  @include heading(0.875rem, 300, $dark3);
 }
 
 h3 {
-  @include heading(2rem, 400, $dark2);
+  @include heading(1.75rem, 400, $dark2);
 }
 
 h4 {
-  @include heading(1rem, 400);
+  @include heading(0.75rem, 400);
 }
 
 // Paragraphs

@@ -5216,7 +5216,7 @@ exports[`Storyshots Stat Block default 1`] = `
           }
         >
           <div
-            className="StatBlock  "
+            className="StatBlock   "
             data-tip={undefined}
             style={null}
           >
@@ -5531,7 +5531,7 @@ exports[`Storyshots Stat Block with no label 1`] = `
           }
         >
           <div
-            className="StatBlock StatBlock--withNoLabel "
+            className="StatBlock StatBlock--withNoLabel  "
             data-tip={undefined}
             style={null}
           >
@@ -5848,7 +5848,7 @@ exports[`Storyshots Stat Row default 1`] = `
               className="StatRow-blocks"
             >
               <div
-                className="StatBlock  "
+                className="StatBlock   "
                 data-tip={undefined}
                 style={null}
               >
@@ -5867,7 +5867,7 @@ exports[`Storyshots Stat Row default 1`] = `
                 />
               </div>
               <div
-                className="StatBlock  "
+                className="StatBlock   "
                 data-tip={undefined}
                 style={null}
               >
@@ -5886,7 +5886,7 @@ exports[`Storyshots Stat Row default 1`] = `
                 />
               </div>
               <div
-                className="StatBlock  "
+                className="StatBlock   "
                 data-tip={undefined}
                 style={null}
               >
@@ -6213,7 +6213,7 @@ exports[`Storyshots Stat Row with box shadow 1`] = `
               className="StatRow-blocks"
             >
               <div
-                className="StatBlock  "
+                className="StatBlock   "
                 data-tip={undefined}
                 style={null}
               >
@@ -6232,7 +6232,7 @@ exports[`Storyshots Stat Row with box shadow 1`] = `
                 />
               </div>
               <div
-                className="StatBlock  "
+                className="StatBlock   "
                 data-tip={undefined}
                 style={null}
               >
@@ -6251,7 +6251,7 @@ exports[`Storyshots Stat Row with box shadow 1`] = `
                 />
               </div>
               <div
-                className="StatBlock  "
+                className="StatBlock   "
                 data-tip={undefined}
                 style={null}
               >

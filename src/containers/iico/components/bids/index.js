@@ -318,7 +318,7 @@ class Bids extends PureComponent {
               tooltip="This bid's bonus."
             />
             <StatBlock
-              label="Token Price"
+              label="Token Price (ETH)"
               value={<SyncLoader color="#9b9b9b" size={8} />}
               tooltip="The price per token this bid got or would get if the sale were to end now."
             />
@@ -383,7 +383,7 @@ class Bids extends PureComponent {
                     tooltip="This bid's bonus."
                   />
                   <StatBlock
-                    label="Token Price"
+                    label="Token Price (ETH)"
                     value={<ChainNumber>{contrib / tokens}</ChainNumber>}
                     tooltip="The price per token this bid got or would get if the sale were to end now."
                   />

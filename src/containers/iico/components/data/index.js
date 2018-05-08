@@ -75,11 +75,13 @@ export default class Data extends PureComponent {
               id="joyrideTokenContractAddress"
               label="Token Contract"
               value={<ChainHash>{data.tokenContractAddress}</ChainHash>}
+              noWrap
             />
             <StatBlock
               id="joyrideTokensForSale"
               label="Tokens For Sale"
               value={data.tokensForSale}
+              noWrap
             />
           </StatRow>
           <StatRow withBoxShadow>
@@ -87,9 +89,10 @@ export default class Data extends PureComponent {
               id="joyrideValuation"
               label="Valuation (ETH)"
               value={<ChainNumber>{data.valuation || 0}</ChainNumber>}
+              noWrap
             />
             {data.ethPrice && (
-              <StatBlock label="USD/ETH" value={`$${data.ethPrice}`} />
+              <StatBlock label="USD/ETH" value={`$${data.ethPrice}`} noWrap />
             )}
             {data.ethPrice && (
               <StatBlock
@@ -99,9 +102,10 @@ export default class Data extends PureComponent {
                     {(data.valuation || 0) * data.ethPrice}
                   </ChainNumber>
                 }
+                noWrap
               />
             )}
-            <StatBlock id="joyridePhase" label="Phase" value={phase} />
+            <StatBlock id="joyridePhase" label="Phase" value={phase} noWrap />
           </StatRow>
         </div>
         <StatRow withBoxShadow>
@@ -109,11 +113,13 @@ export default class Data extends PureComponent {
             id="joyrideStartingBonus"
             label="Starting Bonus"
             value={numberToPercentage(data.startingBonus)}
+            noWrap
           />
           <StatBlock
             id="joyrideCurrentBonus"
             label="Current Bonus"
             value={numberToPercentage(data.bonus)}
+            noWrap
           />
           <StatBlock
             id="joyrideSlider"
@@ -141,6 +147,7 @@ export default class Data extends PureComponent {
               />
             }
             noBackground
+            noWrap
             flexBasis={390}
           />
         </StatRow>
