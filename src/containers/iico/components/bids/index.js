@@ -125,8 +125,8 @@ class Bids extends PureComponent {
           ? tutorialEditIICOBids(
               {
                 ID: bids.length ? bids[bids.length - 1].ID + 1 : 0,
-                maxValuation: Number(personalCap),
-                contrib: Number(amount),
+                maxValuation: personalCap,
+                contrib: amount,
                 bonus: data.bonus,
                 contributor: accounts.data[0],
                 withdrawn: false,
@@ -141,11 +141,18 @@ class Bids extends PureComponent {
         <div className="Bids-confirm">
           Are you sure you wish to submit this bid?
           <br />
-          <ChainNumber>{maxTokenPrice}</ChainNumber> ETH
-          <br />
-          is the maximum price per token you would pay with your personal cap of
-          <br />
-          {personalCap} ETH.
+          {noPersonalCap ? (
+            'You are not setting a personal cap.'
+          ) : (
+            <div>
+              <ChainNumber>{maxTokenPrice}</ChainNumber> ETH
+              <br />
+              is the maximum price per token you would pay with your personal
+              cap of
+              <br />
+              {personalCap} ETH.
+            </div>
+          )}
         </div>
       )
     })
@@ -252,6 +259,22 @@ class Bids extends PureComponent {
 
     const currentContribution = bids.reduce((acc, b) => b.contrib + acc, 0)
 
+    let KYCLevelTooltip
+    let KYCLevel
+    if (data.inReinforcedWhitelist) {
+      KYCLevelTooltip =
+        "You have passed the Reinforced KYC and can contribute as much ETH as you'd like"
+      KYCLevel = 'Reinforced'
+    } else if (data.inBaseWhitelist) {
+      KYCLevelTooltip = `You have passed the Base KYC and can contribute less than or equal to ${
+        data.maximumBaseContribution
+      } ETH.`
+      KYCLevel = 'Base'
+    } else {
+      KYCLevelTooltip = 'You need to pass the KYC to participate in the sale.'
+      KYCLevel = 'None'
+    }
+
     return (
       <div id="joyridePlaceBid" className="Bids">
         <h1>Your Bids</h1>
@@ -259,17 +282,7 @@ class Bids extends PureComponent {
           <StatRow>
             <StatBlock
               label="KYC Level"
-              value={
-                data.inReinforcedWhitelist ? (
-                  'Reinforced'
-                ) : data.inBaseWhitelist ? (
-                  'Base'
-                ) : (
-                  <span data-tip="You need to pass the KYC to participate in the sale.">
-                    None
-                  </span>
-                )
-              }
+              value={<span data-tip={KYCLevelTooltip}>{KYCLevel}</span>}
             />
             <StatBlock
               label="Maximum Base Contribution"

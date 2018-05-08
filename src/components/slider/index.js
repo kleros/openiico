@@ -48,11 +48,6 @@ export default class Slider extends PureComponent {
       })
   }
 
-  percentToPixel = percent => {
-    if (!this.barRef) return 0
-    return this.barRef.getBoundingClientRect().width * percent
-  }
-
   handleBarMouseMove = event => {
     const { calcValue } = this.props
 
