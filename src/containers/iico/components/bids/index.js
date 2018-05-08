@@ -282,15 +282,18 @@ class Bids extends PureComponent {
           <StatRow>
             <StatBlock
               label="KYC Level"
-              value={<span data-tip={KYCLevelTooltip}>{KYCLevel}</span>}
+              value={KYCLevel}
+              tooltip={KYCLevelTooltip}
             />
             <StatBlock
-              label="Maximum Base Contribution"
+              label="Maximum Base Contribution (ETH)"
               value={data.maximumBaseContribution}
+              tooltip="This is the maximum amount a person who has only passed the base KYC can contribute."
             />
             <StatBlock
-              label="Your Current Contribution"
+              label="Your Current Contribution (ETH)"
               value={<ChainNumber>{currentContribution}</ChainNumber>}
+              tooltip="This is the sum of your current contributions."
             />
           </StatRow>
         )}

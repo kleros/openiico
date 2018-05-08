@@ -20,8 +20,10 @@ export default [
         </a>.
         <br />
         <br />
-        Keep in mind that everything you do in the tutorial is virtual and does
-        not create any transactions.
+        <b>
+          Keep in mind that everything you do in the tutorial is virtual and
+          does not create any transactions.
+        </b>
       </span>
     ),
     selector: '#joyrideWelcome'
@@ -56,8 +58,9 @@ export default [
         This is the sale’s current valuation.
         <br />
         <br />
-        That is, if the sale were to end now and personal caps were taken into
-        account to see which ones should be refunded.
+        That is, the sum of contributions if the sale were to end now and
+        personal caps were taken into account to see which ones should be
+        refunded.
         <br />
         <br />
         The number is truncated to two significant digits, but you can hover
@@ -108,12 +111,27 @@ export default [
         <br />
         A bid’s bonus increases its relative token purchasing power against
         other bids.
+        <br />
+        <br />
+        The share of tokens you receive is equal to your contribution plus your
+        bonus over the valuation with everyone's bonuses factored in.
+        <br />
+        <br />
+        Formula: (bid * (1 + (bonus / 100))) / valuationWithBonuses
       </span>
     ),
     selector: '#joyrideStartingBonus'
   },
   {
-    text: 'This is the sale’s current bonus.',
+    text: (
+      <span>
+        This is the sale’s current bonus.
+        <br />
+        <br />
+        That is, the bonus your contribution would get if you were to make it
+        right now.
+      </span>
+    ),
     selector: '#joyrideCurrentBonus'
   },
   {

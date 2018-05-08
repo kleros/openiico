@@ -75,12 +75,14 @@ export default class Data extends PureComponent {
               id="joyrideTokenContractAddress"
               label="Token Contract"
               value={<ChainHash>{data.tokenContractAddress}</ChainHash>}
+              tooltip="This is the address of the ERC20 contract that holds the tokens for sale."
               noWrap
             />
             <StatBlock
               id="joyrideTokensForSale"
               label="Tokens For Sale"
-              value={data.tokensForSale}
+              value={data.tokensForSale.toLocaleString()}
+              tooltip="This is the amount of tokens that are for sale. In other words, the balance of the sale contract."
               noWrap
             />
           </StatRow>
@@ -89,6 +91,7 @@ export default class Data extends PureComponent {
               id="joyrideValuation"
               label="Valuation (ETH)"
               value={<ChainNumber>{data.valuation || 0}</ChainNumber>}
+              tooltip="This is the sum of all contributions that are currently in the sale (not refunded)."
               noWrap
             />
             {data.ethPrice && (
@@ -98,14 +101,22 @@ export default class Data extends PureComponent {
               <StatBlock
                 label="Valuation (USD)"
                 value={
-                  <ChainNumber>
-                    {(data.valuation || 0) * data.ethPrice}
-                  </ChainNumber>
+                  <div>
+                    $<ChainNumber>
+                      {(data.valuation || 0) * data.ethPrice}
+                    </ChainNumber>
+                  </div>
                 }
                 noWrap
               />
             )}
-            <StatBlock id="joyridePhase" label="Phase" value={phase} noWrap />
+            <StatBlock
+              id="joyridePhase"
+              label="Phase"
+              value={phase}
+              tooltip="This is the sale's current phase. Go to step 5 of the tutorial for more info."
+              noWrap
+            />
           </StatRow>
         </div>
         <StatRow withBoxShadow>
@@ -113,20 +124,22 @@ export default class Data extends PureComponent {
             id="joyrideStartingBonus"
             label="Starting Bonus"
             value={numberToPercentage(data.startingBonus)}
+            tooltip="This is the bonus at the start of the sale and throughout the Full Bonus phase."
             noWrap
           />
           <StatBlock
             id="joyrideCurrentBonus"
             label="Current Bonus"
             value={numberToPercentage(data.bonus)}
+            tooltip="This is the current bonus. The one a contribution made right now would get."
             noWrap
           />
           <StatBlock
             id="joyrideSlider"
             value={
               <Slider
-                startLabel={dateToString(data.startTime)}
-                endLabel={dateToString(data.endTime)}
+                startLabel={`Start: ${dateToString(data.startTime)}`}
+                endLabel={`End: ${dateToString(data.endTime)}`}
                 initialPercent={initialPercent}
                 steps={[
                   { label: 'Full Bonus', percent: endFullBonusPercent },
