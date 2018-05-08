@@ -6,6 +6,8 @@ import * as IICOActions from '../actions/iico'
 // Common Shapes
 export const _IICODataShape = PropTypes.shape({
   address: PropTypes.string.isRequired,
+
+  // Centralized
   ethPrice: PropTypes.number.isRequired,
 
   // Token
@@ -24,13 +26,18 @@ export const _IICODataShape = PropTypes.shape({
   valuation: PropTypes.number.isRequired,
   virtualValuation: PropTypes.number.isRequired,
   cutOffBidID: PropTypes.number.isRequired,
-  cutOffBidMaxVal: PropTypes.number.isRequired,
+  cutOffBidMaxValuation: PropTypes.number.isRequired,
   cutOffBidContrib: PropTypes.number.isRequired,
-  finalized: PropTypes.bool.isRequired
+  finalized: PropTypes.bool.isRequired,
+
+  // Optional Whitelist
+  maximumBaseContribution: PropTypes.number.isRequired,
+  inBaseWhitelist: PropTypes.bool.isRequired,
+  inReinforcedWhitelist: PropTypes.bool.isRequired
 })
 export const _IICOBidShape = PropTypes.shape({
   ID: PropTypes.number.isRequired,
-  maxVal: PropTypes.number.isRequired,
+  maxValuation: PropTypes.number.isRequired,
   contrib: PropTypes.number.isRequired,
   bonus: PropTypes.number.isRequired,
   contributor: PropTypes.string.isRequired,

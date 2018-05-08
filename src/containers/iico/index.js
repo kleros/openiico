@@ -84,12 +84,15 @@ class IICO extends PureComponent {
               valuation: 0,
               virtualValuation: 0,
               cutOffBidID: 0,
-              cutOffBidMaxVal: 0,
+              cutOffBidMaxValuation: 0,
               cutOffBidContrib: 0,
               finalized: false
             }
           },
-          tutorialIICOBids
+          tutorialIICOBids: {
+            ...tutorialIICOBids,
+            data: []
+          }
         },
         () => this.joyrideRef.reset(true)
       )
@@ -199,15 +202,15 @@ class IICO extends PureComponent {
     console.log(newBids)
     // Calculate new tutorial IICO Data
     const bids = [...newBids].sort((a, b) => {
-      if (b.maxVal === a.maxVal) return b.ID - a.ID
-      return b.maxVal - a.maxVal
+      if (b.maxValuation === a.maxValuation) return b.ID - a.ID
+      return b.maxValuation - a.maxValuation
     })
     let cutOffBidContrib
     let cutOffBid = bids[bids.length - 1]
     let valuation = 0
     let virtualValuation = 0
     for (const bid of bids) {
-      if (bid.contrib + valuation < bid.maxVal) {
+      if (bid.contrib + valuation < bid.maxValuation) {
         // We haven't found the cut-off yet.
         cutOffBidContrib = bid.contrib
         cutOffBid = bid
@@ -215,7 +218,8 @@ class IICO extends PureComponent {
         virtualValuation += bid.contrib + bid.contrib * (1 + bid.bonus)
       } else {
         // We found the cut-off bid. This bid will be taken partially.
-        cutOffBidContrib = bid.maxVal >= valuation ? bid.maxVal - valuation : 0 // The amount of the contribution of the cut-off bid that can stay in the sale without spilling over the maxVal.
+        cutOffBidContrib =
+          bid.maxValuation >= valuation ? bid.maxValuation - valuation : 0 // The amount of the contribution of the cut-off bid that can stay in the sale without spilling over the maxValuation.
         cutOffBid = bid
         valuation += cutOffBidContrib
         virtualValuation +=
@@ -234,7 +238,7 @@ class IICO extends PureComponent {
             valuation,
             virtualValuation,
             cutOffBidID: cutOffBid.ID,
-            cutOffBidMaxVal: cutOffBid.maxVal,
+            cutOffBidMaxValuation: cutOffBid.maxValuation,
             cutOffBidContrib
           }
         },

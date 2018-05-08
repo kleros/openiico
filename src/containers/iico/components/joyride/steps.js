@@ -149,7 +149,7 @@ export default [
         Try placing a bid now and take advantage of the “Full Bonus” phase.
         <br />
         <br />
-        Place a bid to continue.
+        <b>Place a bid to continue.</b>
       </span>
     ),
     selector: '#joyridePlaceBid',
@@ -216,7 +216,7 @@ export default [
         or in some cases equal to the valuation).
         <br />
         <br />
-        Redeem your bid to continue.
+        <b>Redeem your bid to continue.</b>
       </span>
     ),
     selector: '#joyridePlacedBid',

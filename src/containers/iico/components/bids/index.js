@@ -64,6 +64,28 @@ class Bids extends PureComponent {
     tutorialNow: null
   }
 
+  validateSubmitBidForm = values => {
+    const { data, bids } = this.props
+    const errors = {}
+
+    // Check we are not exceeding the KYC max base contrib
+    if (
+      !data.inReinforcedWhitelist &&
+      bids.reduce((acc, b) => b.contrib + acc, 0) + Number(values.amount) >
+        data.maximumBaseContribution
+    )
+      errors.amount = 'Cannot exceed maximum base KYC contribution.'
+
+    // Check we are not submitting a personal cap lower than the valuation after the withdrawal lockup
+    if (
+      Date.now() >= data.withdrawalLockTime.getTime() &&
+      data.valuation > Number(values.personalCap)
+    )
+      errors.personalCap = 'Must be higher than valuation.'
+
+    return errors
+  }
+
   handleSubmitBidFormSubmit = ({
     amount: _amount,
     personalCap: _personalCap,
@@ -103,7 +125,7 @@ class Bids extends PureComponent {
           ? tutorialEditIICOBids(
               {
                 ID: bids.length ? bids[bids.length - 1].ID + 1 : 0,
-                maxVal: Number(personalCap),
+                maxValuation: Number(personalCap),
                 contrib: Number(amount),
                 bonus: data.bonus,
                 contributor: accounts.data[0],
@@ -228,17 +250,45 @@ class Bids extends PureComponent {
     const canRedeem = hasEnded && data.finalized
     const inPartialWithdrawals = now > data.endFullBonusTime.getTime()
 
+    const currentContribution = bids.reduce((acc, b) => b.contrib + acc, 0)
+
     return (
       <div id="joyridePlaceBid" className="Bids">
         <h1>Your Bids</h1>
+        {!tutorialNow && (
+          <StatRow>
+            <StatBlock
+              label="KYC Level"
+              value={
+                data.inReinforcedWhitelist
+                  ? 'Reinforced'
+                  : data.inBaseWhitelist ? 'Base' : 'None'
+              }
+            />
+            <StatBlock
+              label="Maximum Base Contribution"
+              value={data.maximumBaseContribution}
+            />
+            <StatBlock
+              label="Your Current Contribution"
+              value={<ChainNumber>{currentContribution}</ChainNumber>}
+            />
+          </StatRow>
+        )}
         {hasStarted &&
-          !hasEnded && (
+          !hasEnded &&
+          (data.inReinforcedWhitelist ||
+            (data.inBaseWhitelist &&
+              data.maximumBaseContribution > currentContribution)) && (
             <StatRow>
               <StatBlock
                 value={
                   <SubmitBidForm
                     onSubmit={this.handleSubmitBidFormSubmit}
                     className="Bids-form"
+                    validate={
+                      tutorialNow ? undefined : this.validateSubmitBidForm
+                    }
                   />
                 }
               />
@@ -347,8 +397,9 @@ class Bids extends PureComponent {
                 contrib = data.cutOffBidContrib
                 refund = b.contrib - data.cutOffBidContrib
               } else if (
-                b.maxVal > data.cutOffBidMaxVal ||
-                (b.maxVal === data.cutOffBidMaxVal && b.ID > data.cutOffBidID)
+                b.maxValuation > data.cutOffBidMaxValuation ||
+                (b.maxValuation === data.cutOffBidMaxValuation &&
+                  b.ID > data.cutOffBidID)
               ) {
                 // This bid is in the sale
                 contrib = b.contrib
@@ -374,7 +425,11 @@ class Bids extends PureComponent {
                   />
                   <StatBlock
                     label="Personal Cap (ETH)"
-                    value={b.maxVal >= 1.157920892373162e59 ? '∞' : b.maxVal}
+                    value={
+                      b.maxValuation >= 1.157920892373162e59
+                        ? '∞'
+                        : b.maxValuation
+                    }
                     tooltip="This bid's personal cap."
                   />
                   <StatBlock
@@ -384,7 +439,11 @@ class Bids extends PureComponent {
                   />
                   <StatBlock
                     label="Token Price (ETH)"
-                    value={<ChainNumber>{contrib / tokens}</ChainNumber>}
+                    value={
+                      <ChainNumber>
+                        {tokens === 0 ? 0 : contrib / tokens}
+                      </ChainNumber>
+                    }
                     tooltip="The price per token this bid got or would get if the sale were to end now."
                   />
                   <StatBlock
