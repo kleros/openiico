@@ -25,7 +25,8 @@
     "build:js": "react-scripts build",
     "start": "run-p start:scss start:js",
     "build": "yarn run build:scss && yarn run build:js",
-    "build:analyze": "source-map-explorer build/static/js/main.*"
+    "build:analyze": "source-map-explorer build/static/js/main.*",
+    "deploy": "node ./src/scripts/set-up-sale.js"
   },
   "jest": {
     "collectCoverageFrom": [
