@@ -260,9 +260,15 @@ class Bids extends PureComponent {
             <StatBlock
               label="KYC Level"
               value={
-                data.inReinforcedWhitelist
-                  ? 'Reinforced'
-                  : data.inBaseWhitelist ? 'Base' : 'None'
+                data.inReinforcedWhitelist ? (
+                  'Reinforced'
+                ) : data.inBaseWhitelist ? (
+                  'Base'
+                ) : (
+                  <span data-tip="You need to pass the KYC to participate in the sale.">
+                    None
+                  </span>
+                )
               }
             />
             <StatBlock
