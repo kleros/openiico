@@ -277,7 +277,8 @@ class Bids extends PureComponent {
         )}
         {hasStarted &&
           !hasEnded &&
-          (data.inReinforcedWhitelist ||
+          (tutorialNow ||
+            data.inReinforcedWhitelist ||
             (data.inBaseWhitelist &&
               data.maximumBaseContribution > currentContribution)) && (
             <StatRow>
