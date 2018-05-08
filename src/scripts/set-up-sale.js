@@ -165,7 +165,8 @@ prompt.get(
     )
     await sendTransaction(IICO.setToken, Pinakion.address)
 
-    // Add addresses to whitelists
+    // Set up whitelists
+    await sendTransaction(IICO.setWhitelister, pubKey)
     await Promise.all([
       baseWhitelistAddresses &&
         sendTransaction(IICO.addBaseWhitelist, baseWhitelistAddresses),
