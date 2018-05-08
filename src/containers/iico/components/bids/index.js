@@ -111,7 +111,7 @@ class Bids extends PureComponent {
 
     // If `leftOverToBid` is positive, assume future bids will get the current bonus, if it's negative, assume bids we are removing have the current bonus. This overestimates the max token price in both cases.
     const overEstimatedVirtualValuation =
-      data.virtualValuation + leftOverToBid * bonusMultiplier
+      data.virtualValuation + (amount + leftOverToBid) * bonusMultiplier
 
     const maxTokenPrice =
       amount /
