@@ -335,7 +335,7 @@ class Bids extends PureComponent {
                     className="Bids-form"
                   />
                 }
-                tooltip="This is an implementation detail of the ICO.<br />The contract needs to iterate over all bids to finalize the sale and allow bid redemption.<br />Anyone can fund this with their gas.<br />You may also wait for the project owners to do it."
+                tooltip="The token sale is finalizing, refresh this page periodically until you see a redeem button."
               />
               <StatBlock
                 value={
@@ -346,7 +346,7 @@ class Bids extends PureComponent {
                     FINALIZE
                   </Button>
                 }
-                tooltip="This is an implementation detail of the ICO.<br />The contract needs to iterate over all bids to finalize the sale and allow bid redemption.<br />Anyone can fund this with their gas.<br />You may also wait for the project owners to do it."
+                tooltip="The token sale is finalizing, refresh this page periodically until you see a redeem button."
                 noFlex
               />
             </StatRow>
