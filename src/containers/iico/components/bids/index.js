@@ -79,7 +79,7 @@ class Bids extends PureComponent {
     // Check we are not submitting a personal cap lower than the valuation after the withdrawal lockup
     if (
       Date.now() >= data.withdrawalLockTime.getTime() &&
-      data.valuation > Number(values.personalCap)
+      Number(values.personalCap) < data.valuation
     )
       errors.personalCap = 'Must be higher than valuation.'
 

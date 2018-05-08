@@ -59,7 +59,13 @@ class IICO extends PureComponent {
     const { IICOData, IICOBids } = this.props
     const { hasSeenTutorial } = this.state
 
-    if (IICOData.data && IICOBids.data && !hasSeenTutorial) {
+    if (
+      !IICOData.loading &&
+      IICOData.data &&
+      !IICOBids.loading &&
+      IICOBids.data &&
+      !hasSeenTutorial
+    ) {
       const tutorialIICOData = JSON.parse(JSON.stringify(IICOData))
       const tutorialIICOBids = JSON.parse(JSON.stringify(IICOBids))
       const startTime = IICOData.data.startTime.getTime()
