@@ -43,12 +43,42 @@ class Initializer extends PureComponent {
     const { isWeb3Loaded } = this.state
     const { accounts, children } = this.props
 
+    let address = window.location.pathname.slice(1)
+    address = /0x[a-fA-F0-9]{40}/.test(address) && address
+
     return (
       <RenderIf
         resource={accounts}
         loading="Loading Web3..."
         done={children}
-        failedLoading={<RequiresMetaMask needsUnlock={isWeb3Loaded} />}
+        failedLoading={
+          <div>
+            <RequiresMetaMask needsUnlock={isWeb3Loaded} />
+            {address && (
+              <div id="initializer-message">
+                If you don't know what MetaMask or a Web3 enabled browser is and
+                you don't care about setting a personal cap on the valuation for
+                your bid. In other words, you just want to buy some tokens no
+                matter what.
+                <br />
+                <br />
+                You can use any wallet software to send ETH directly to the
+                contract address:
+                <br />
+                <br />
+                {address}
+                <br />
+                <br />
+                Later, when the sale is over, you can do the same, but send 0
+                ETH to redeem all your bids.
+                <br />
+                <br />
+                Otherwise, to look at contract data and place more sophisticated
+                bids, please come back with Web3 enabled.
+              </div>
+            )}
+          </div>
+        }
         extraValues={[accounts.data && accounts.data[0]]}
         extraFailedValues={[!isWeb3Loaded]}
       />

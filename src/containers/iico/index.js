@@ -78,7 +78,7 @@ class IICO extends PureComponent {
             ...tutorialIICOData,
             data: {
               ...tutorialIICOData.data,
-              tokensForSale: 1,
+              tokensForSale: 0.16 * 1e9,
               startTime: new Date(startTime),
               endFullBonusTime: new Date(
                 IICOData.data.endFullBonusTime.getTime()

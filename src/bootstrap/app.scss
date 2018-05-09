@@ -31,11 +31,18 @@ html {
 html,
 body,
 #root,
+#initializer-message,
 #router-root {
   border: 0;
   margin: 0;
   padding: 0;
   width: 100%;
+}
+
+// Initializer Message
+#initializer-message {
+  padding: 0 50px;
+  text-align: justify;
 }
 
 // React Router Root
