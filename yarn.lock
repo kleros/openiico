@@ -3942,15 +3942,6 @@ elegant-spinner@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/elegant-spinner/-/elegant-spinner-1.0.1.tgz#db043521c95d7e303fd8f345bedc3349cfb0729e"
 
-elliptic@6.3.2:
-  version "6.3.2"
-  resolved "http://registry.npmjs.org/elliptic/-/elliptic-6.3.2.tgz#e4c81e0829cf0a65ab70e998b8232723b5c1bc48"
-  dependencies:
-    bn.js "^4.4.0"
-    brorand "^1.0.1"
-    hash.js "^1.0.0"
-    inherits "^2.0.1"
-
 elliptic@^6.0.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/elliptic/-/elliptic-6.4.0.tgz#cac9af8762c85836187003c8dfe193e5e2eae5df"
@@ -4635,17 +4626,6 @@ ethjs-filter@0.1.5:
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/ethjs-filter/-/ethjs-filter-0.1.5.tgz#0112af6017c24677e32b8fdeb20e6196019b7598"
 
-ethjs-format@0.1.8:
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/ethjs-format/-/ethjs-format-0.1.8.tgz#925ecdd965ea72a2a2daf2a122e5bf80b5ad522a"
-  dependencies:
-    bn.js "4.11.6"
-    ethjs-schema "0.1.4"
-    ethjs-util "0.1.3"
-    is-hex-prefixed "1.0.0"
-    number-to-bn "1.7.0"
-    strip-hex-prefix "1.0.0"
-
 ethjs-format@0.2.5:
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/ethjs-format/-/ethjs-format-0.2.5.tgz#44f30abee17b074d7162d2c886abffd065828925"
@@ -4663,13 +4643,6 @@ ethjs-provider-http@0.1.6:
   dependencies:
     xhr2 "0.1.3"
 
-ethjs-provider-signer@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/ethjs-provider-signer/-/ethjs-provider-signer-0.1.4.tgz#6bd5cb38a8d5b0ddf46ac1e23a60eea1716171ae"
-  dependencies:
-    ethjs-provider-http "0.1.6"
-    ethjs-rpc "0.1.2"
-
 ethjs-query@0.3.3:
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/ethjs-query/-/ethjs-query-0.3.3.tgz#f6ccc96468823475a0acf7b17695bc2682553cb7"
@@ -4677,33 +4650,13 @@ ethjs-query@0.3.3:
     ethjs-format "0.2.5"
     ethjs-rpc "0.1.8"
 
-ethjs-rpc@0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/ethjs-rpc/-/ethjs-rpc-0.1.2.tgz#39a3456b51c59aeeafb5ba556589a59f2da88d26"
-  dependencies:
-    ethjs-format "0.1.8"
-
 ethjs-rpc@0.1.8:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/ethjs-rpc/-/ethjs-rpc-0.1.8.tgz#1676740e41c7228196a71189d33f15c9c85b599d"
 
-ethjs-schema@0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/ethjs-schema/-/ethjs-schema-0.1.4.tgz#0323a16333b1ace9a8f1d696a6ee63448fdd455f"
-
 ethjs-schema@0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/ethjs-schema/-/ethjs-schema-0.2.0.tgz#07b46d4f55b792a846c90a79f330d31d112cca38"
-
-ethjs-signer@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/ethjs-signer/-/ethjs-signer-0.1.1.tgz#0af77961e29ee458603aabd3660b8868d3386441"
-  dependencies:
-    elliptic "6.3.2"
-    js-sha3 "0.5.5"
-    number-to-bn "1.1.0"
-    rlp "2.0.0"
-    strip-hex-prefix "1.0.0"
 
 ethjs-unit@0.1.6:
   version "0.1.6"
@@ -8650,14 +8603,6 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
 
-number-to-bn@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/number-to-bn/-/number-to-bn-1.1.0.tgz#51a3387c5bc68035ab4058c626132f767d9d08bf"
-  dependencies:
-    bn.js "4.11.6"
-    is-hex-prefixed "1.0.0"
-    strip-hex-prefix "1.0.0"
-
 number-to-bn@1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/number-to-bn/-/number-to-bn-1.7.0.tgz#bb3623592f7e5f9e0030b1977bd41a0c53fe1ea0"
@@ -10908,10 +10853,6 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
   dependencies:
     hash-base "^2.0.0"
     inherits "^2.0.1"
-
-rlp@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/rlp/-/rlp-2.0.0.tgz#9db384ff4b89a8f61563d92395d8625b18f3afb0"
 
 rst-selector-parser@^2.2.3:
   version "2.2.3"

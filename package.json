@@ -25,8 +25,7 @@
     "build:js": "react-scripts build",
     "start": "run-p start:scss start:js",
     "build": "yarn run build:scss && yarn run build:js",
-    "build:analyze": "source-map-explorer build/static/js/main.*",
-    "deploy": "node ./src/scripts/set-up-sale.js"
+    "build:analyze": "source-map-explorer build/static/js/main.*"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -55,8 +54,6 @@
     "esdoc-ecmascript-proposal-plugin": "^1.0.0",
     "esdoc-standard-plugin": "^1.0.0",
     "eslint-plugin-react": "^7.6.1",
-    "ethjs-provider-signer": "^0.1.4",
-    "ethjs-signer": "^0.1.1",
     "ganache-cli": "^6.1.0",
     "husky": "^0.14.3",
     "jest-enzyme": "^4.0.2",
