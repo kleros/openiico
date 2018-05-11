@@ -28,6 +28,7 @@
     "build:analyze": "source-map-explorer build/static/js/main.*"
   },
   "jest": {
+    "snapshotSerializers": ["enzyme-to-json/serializer"],
     "collectCoverageFrom": [
       "src/**/*.js",
       "!src/*.js",
