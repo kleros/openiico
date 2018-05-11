@@ -1,0 +1,1801 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders and loads an IICO contract's data after submitting an address. 1`] = `
+<Connect(Home)
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+  location={
+    Object {
+      "hash": "",
+      "pathname": "/",
+      "search": "",
+      "state": undefined,
+    }
+  }
+  match={
+    Object {
+      "isExact": true,
+      "params": Object {},
+      "path": "/",
+      "url": "/",
+    }
+  }
+>
+  <Home
+    IICOData={
+      Object {
+        "data": null,
+        "failedLoading": false,
+        "failedUpdating": false,
+        "loading": false,
+        "updating": false,
+      }
+    }
+    clearIICOData={[Function]}
+    fetchIICOData={[Function]}
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+    location={
+      Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      }
+    }
+    match={
+      Object {
+        "isExact": true,
+        "params": Object {},
+        "path": "/",
+        "url": "/",
+      }
+    }
+    submitIICOAddressForm={[Function]}
+  >
+    <div
+      className="Home"
+      onKeyPress={[Function]}
+    >
+      <ReduxForm
+        onSubmit={[Function]}
+      >
+        <Connect(Form(Form))
+          destroyOnUnmount={true}
+          enableReinitialize={false}
+          forceUnregisterOnUnmount={false}
+          form="IICOAddressForm"
+          getFormState={[Function]}
+          keepDirtyOnReinitialize={false}
+          onSubmit={[Function]}
+          persistentSubmitErrors={false}
+          pure={true}
+          shouldAsyncValidate={[Function]}
+          shouldError={[Function]}
+          shouldValidate={[Function]}
+          shouldWarn={[Function]}
+          touchOnBlur={true}
+          touchOnChange={false}
+          updateUnregisteredFields={false}
+        >
+          <Form(Form)
+            anyTouched={false}
+            array={
+              Object {
+                "insert": [Function],
+                "move": [Function],
+                "pop": [Function],
+                "push": [Function],
+                "remove": [Function],
+                "removeAll": [Function],
+                "shift": [Function],
+                "splice": [Function],
+                "swap": [Function],
+                "unshift": [Function],
+              }
+            }
+            arrayInsert={[Function]}
+            arrayMove={[Function]}
+            arrayPop={[Function]}
+            arrayPush={[Function]}
+            arrayRemove={[Function]}
+            arrayRemoveAll={[Function]}
+            arrayShift={[Function]}
+            arraySplice={[Function]}
+            arraySwap={[Function]}
+            arrayUnshift={[Function]}
+            asyncValidating={false}
+            autofill={[Function]}
+            blur={[Function]}
+            change={[Function]}
+            clearAsyncError={[Function]}
+            clearFields={[Function]}
+            clearSubmit={[Function]}
+            clearSubmitErrors={[Function]}
+            destroy={[Function]}
+            destroyOnUnmount={true}
+            dirty={false}
+            dispatch={[Function]}
+            enableReinitialize={false}
+            focus={[Function]}
+            forceUnregisterOnUnmount={false}
+            form="IICOAddressForm"
+            getFormState={[Function]}
+            initialize={[Function]}
+            initialized={false}
+            invalid={true}
+            keepDirtyOnReinitialize={false}
+            onSubmit={[Function]}
+            persistentSubmitErrors={false}
+            pristine={true}
+            pure={true}
+            registerField={[Function]}
+            registeredFields={
+              Object {
+                "address": Object {
+                  "count": 1,
+                  "name": "address",
+                  "type": "Field",
+                },
+                "header": Object {
+                  "count": 1,
+                  "name": "header",
+                  "type": "Field",
+                },
+              }
+            }
+            reset={[Function]}
+            resetSection={[Function]}
+            setSubmitFailed={[Function]}
+            setSubmitSucceeded={[Function]}
+            shouldAsyncValidate={[Function]}
+            shouldError={[Function]}
+            shouldValidate={[Function]}
+            shouldWarn={[Function]}
+            startAsyncValidation={[Function]}
+            startSubmit={[Function]}
+            stopAsyncValidation={[Function]}
+            stopSubmit={[Function]}
+            submit={[Function]}
+            submitFailed={false}
+            submitSucceeded={false}
+            submitting={false}
+            syncErrors={
+              Object {
+                "address": "Address is required.",
+              }
+            }
+            syncWarnings={Object {}}
+            touch={[Function]}
+            touchOnBlur={true}
+            touchOnChange={false}
+            unregisterField={[Function]}
+            untouch={[Function]}
+            updateSyncErrors={[Function]}
+            updateSyncWarnings={[Function]}
+            updateUnregisteredFields={false}
+            valid={false}
+            validExceptSubmit={false}
+            values={Object {}}
+          >
+            <Form
+              anyTouched={false}
+              array={
+                Object {
+                  "insert": [Function],
+                  "move": [Function],
+                  "pop": [Function],
+                  "push": [Function],
+                  "remove": [Function],
+                  "removeAll": [Function],
+                  "shift": [Function],
+                  "splice": [Function],
+                  "swap": [Function],
+                  "unshift": [Function],
+                }
+              }
+              asyncValidate={[Function]}
+              asyncValidating={false}
+              autofill={[Function]}
+              blur={[Function]}
+              change={[Function]}
+              className=""
+              clearAsyncError={[Function]}
+              clearFields={[Function]}
+              clearSubmit={[Function]}
+              clearSubmitErrors={[Function]}
+              destroy={[Function]}
+              dirty={false}
+              disabled={false}
+              dispatch={[Function]}
+              form="IICOAddressForm"
+              handleSubmit={[Function]}
+              initialize={[Function]}
+              initialized={false}
+              invalid={true}
+              onSubmit={[Function]}
+              pristine={true}
+              pure={true}
+              reset={[Function]}
+              resetSection={[Function]}
+              submit={[Function]}
+              submitFailed={false}
+              submitSucceeded={false}
+              submitting={false}
+              touch={[Function]}
+              untouch={[Function]}
+              valid={false}
+            >
+              <form
+                className=""
+              >
+                <fieldset
+                  className=""
+                  disabled={false}
+                  style={
+                    Object {
+                      "border": "none",
+                      "margin": "0 10px",
+                      "padding": "0 30px",
+                    }
+                  }
+                >
+                  <div
+                    className=""
+                    style={
+                      Object {
+                        "display": "flex",
+                        "flexFlow": "row wrap",
+                      }
+                    }
+                  >
+                    <Field
+                      component={[Function]}
+                      key="IICOAddressForm-header"
+                      name="header"
+                      props={
+                        Object {
+                          "placeholder": "Header",
+                          "style": Object {
+                            "flex": 1,
+                          },
+                          "title": "Enter the address of the IICO and hit enter.",
+                        }
+                      }
+                      validate={null}
+                    >
+                      <Connect(ConnectedField)
+                        _reduxForm={
+                          Object {
+                            "anyTouched": false,
+                            "array": Object {
+                              "insert": [Function],
+                              "move": [Function],
+                              "pop": [Function],
+                              "push": [Function],
+                              "remove": [Function],
+                              "removeAll": [Function],
+                              "shift": [Function],
+                              "splice": [Function],
+                              "swap": [Function],
+                              "unshift": [Function],
+                            },
+                            "arrayInsert": [Function],
+                            "arrayMove": [Function],
+                            "arrayPop": [Function],
+                            "arrayPush": [Function],
+                            "arrayRemove": [Function],
+                            "arrayRemoveAll": [Function],
+                            "arrayShift": [Function],
+                            "arraySplice": [Function],
+                            "arraySwap": [Function],
+                            "arrayUnshift": [Function],
+                            "asyncErrors": undefined,
+                            "asyncValidate": [Function],
+                            "asyncValidating": false,
+                            "autofill": [Function],
+                            "blur": [Function],
+                            "change": [Function],
+                            "clearAsyncError": [Function],
+                            "clearFields": [Function],
+                            "clearSubmit": [Function],
+                            "clearSubmitErrors": [Function],
+                            "destroy": [Function],
+                            "destroyOnUnmount": true,
+                            "dirty": false,
+                            "dispatch": [Function],
+                            "enableReinitialize": false,
+                            "error": undefined,
+                            "focus": [Function],
+                            "forceUnregisterOnUnmount": false,
+                            "form": "IICOAddressForm",
+                            "getFormState": [Function],
+                            "getValues": [Function],
+                            "initialValues": undefined,
+                            "initialize": [Function],
+                            "initialized": false,
+                            "invalid": false,
+                            "keepDirtyOnReinitialize": false,
+                            "onSubmit": [Function],
+                            "persistentSubmitErrors": false,
+                            "pristine": true,
+                            "pure": true,
+                            "register": [Function],
+                            "registerField": [Function],
+                            "registerInnerOnSubmit": [Function],
+                            "registeredFields": undefined,
+                            "reset": [Function],
+                            "resetSection": [Function],
+                            "sectionPrefix": undefined,
+                            "setSubmitFailed": [Function],
+                            "setSubmitSucceeded": [Function],
+                            "shouldAsyncValidate": [Function],
+                            "shouldError": [Function],
+                            "shouldValidate": [Function],
+                            "shouldWarn": [Function],
+                            "startAsyncValidation": [Function],
+                            "startSubmit": [Function],
+                            "stopAsyncValidation": [Function],
+                            "stopSubmit": [Function],
+                            "submit": [Function],
+                            "submitFailed": false,
+                            "submitSucceeded": false,
+                            "submitting": false,
+                            "syncErrors": Object {},
+                            "syncWarnings": Object {},
+                            "touch": [Function],
+                            "touchOnBlur": true,
+                            "touchOnChange": false,
+                            "triggerSubmit": undefined,
+                            "unregister": [Function],
+                            "unregisterField": [Function],
+                            "untouch": [Function],
+                            "updateSyncErrors": [Function],
+                            "updateSyncWarnings": [Function],
+                            "updateUnregisteredFields": false,
+                            "valid": true,
+                            "validExceptSubmit": true,
+                            "values": Object {},
+                            "warning": undefined,
+                          }
+                        }
+                        component={[Function]}
+                        name="header"
+                        normalize={[Function]}
+                        props={
+                          Object {
+                            "placeholder": "Header",
+                            "style": Object {
+                              "flex": 1,
+                            },
+                            "title": "Enter the address of the IICO and hit enter.",
+                          }
+                        }
+                        validate={null}
+                      >
+                        <ConnectedField
+                          _reduxForm={
+                            Object {
+                              "anyTouched": false,
+                              "array": Object {
+                                "insert": [Function],
+                                "move": [Function],
+                                "pop": [Function],
+                                "push": [Function],
+                                "remove": [Function],
+                                "removeAll": [Function],
+                                "shift": [Function],
+                                "splice": [Function],
+                                "swap": [Function],
+                                "unshift": [Function],
+                              },
+                              "arrayInsert": [Function],
+                              "arrayMove": [Function],
+                              "arrayPop": [Function],
+                              "arrayPush": [Function],
+                              "arrayRemove": [Function],
+                              "arrayRemoveAll": [Function],
+                              "arrayShift": [Function],
+                              "arraySplice": [Function],
+                              "arraySwap": [Function],
+                              "arrayUnshift": [Function],
+                              "asyncErrors": undefined,
+                              "asyncValidate": [Function],
+                              "asyncValidating": false,
+                              "autofill": [Function],
+                              "blur": [Function],
+                              "change": [Function],
+                              "clearAsyncError": [Function],
+                              "clearFields": [Function],
+                              "clearSubmit": [Function],
+                              "clearSubmitErrors": [Function],
+                              "destroy": [Function],
+                              "destroyOnUnmount": true,
+                              "dirty": false,
+                              "dispatch": [Function],
+                              "enableReinitialize": false,
+                              "error": undefined,
+                              "focus": [Function],
+                              "forceUnregisterOnUnmount": false,
+                              "form": "IICOAddressForm",
+                              "getFormState": [Function],
+                              "getValues": [Function],
+                              "initialValues": undefined,
+                              "initialize": [Function],
+                              "initialized": false,
+                              "invalid": false,
+                              "keepDirtyOnReinitialize": false,
+                              "onSubmit": [Function],
+                              "persistentSubmitErrors": false,
+                              "pristine": true,
+                              "pure": true,
+                              "register": [Function],
+                              "registerField": [Function],
+                              "registerInnerOnSubmit": [Function],
+                              "registeredFields": undefined,
+                              "reset": [Function],
+                              "resetSection": [Function],
+                              "sectionPrefix": undefined,
+                              "setSubmitFailed": [Function],
+                              "setSubmitSucceeded": [Function],
+                              "shouldAsyncValidate": [Function],
+                              "shouldError": [Function],
+                              "shouldValidate": [Function],
+                              "shouldWarn": [Function],
+                              "startAsyncValidation": [Function],
+                              "startSubmit": [Function],
+                              "stopAsyncValidation": [Function],
+                              "stopSubmit": [Function],
+                              "submit": [Function],
+                              "submitFailed": false,
+                              "submitSucceeded": false,
+                              "submitting": false,
+                              "syncErrors": Object {},
+                              "syncWarnings": Object {},
+                              "touch": [Function],
+                              "touchOnBlur": true,
+                              "touchOnChange": false,
+                              "triggerSubmit": undefined,
+                              "unregister": [Function],
+                              "unregisterField": [Function],
+                              "untouch": [Function],
+                              "updateSyncErrors": [Function],
+                              "updateSyncWarnings": [Function],
+                              "updateUnregisteredFields": false,
+                              "valid": true,
+                              "validExceptSubmit": true,
+                              "values": Object {},
+                              "warning": undefined,
+                            }
+                          }
+                          asyncValidating={false}
+                          component={[Function]}
+                          dirty={false}
+                          dispatch={[Function]}
+                          name="header"
+                          normalize={[Function]}
+                          pristine={true}
+                          props={
+                            Object {
+                              "placeholder": "Header",
+                              "style": Object {
+                                "flex": 1,
+                              },
+                              "title": "Enter the address of the IICO and hit enter.",
+                            }
+                          }
+                          validate={null}
+                        >
+                          <FormHeader
+                            input={
+                              Object {
+                                "name": "header",
+                                "onBlur": [Function],
+                                "onChange": [Function],
+                                "onDragStart": [Function],
+                                "onDrop": [Function],
+                                "onFocus": [Function],
+                                "value": "",
+                              }
+                            }
+                            meta={
+                              Object {
+                                "active": false,
+                                "asyncValidating": false,
+                                "autofilled": false,
+                                "dirty": false,
+                                "dispatch": [Function],
+                                "error": undefined,
+                                "form": "IICOAddressForm",
+                                "initial": undefined,
+                                "invalid": false,
+                                "pristine": true,
+                                "submitFailed": false,
+                                "submitting": false,
+                                "touched": false,
+                                "valid": true,
+                                "visited": false,
+                                "warning": undefined,
+                              }
+                            }
+                            placeholder="Header"
+                            style={
+                              Object {
+                                "flex": 1,
+                              }
+                            }
+                            title="Enter the address of the IICO and hit enter."
+                          >
+                            <div
+                              className="FormHeader"
+                            >
+                              <h4>
+                                Enter the address of the IICO and hit enter.
+                              </h4>
+                            </div>
+                          </FormHeader>
+                        </ConnectedField>
+                      </Connect(ConnectedField)>
+                    </Field>
+                    <Field
+                      component={[Function]}
+                      key="IICOAddressForm-address"
+                      name="address"
+                      props={
+                        Object {
+                          "placeholder": "Address",
+                          "style": Object {
+                            "flex": 1,
+                          },
+                        }
+                      }
+                      validate={[Function]}
+                    >
+                      <Connect(ConnectedField)
+                        _reduxForm={
+                          Object {
+                            "anyTouched": false,
+                            "array": Object {
+                              "insert": [Function],
+                              "move": [Function],
+                              "pop": [Function],
+                              "push": [Function],
+                              "remove": [Function],
+                              "removeAll": [Function],
+                              "shift": [Function],
+                              "splice": [Function],
+                              "swap": [Function],
+                              "unshift": [Function],
+                            },
+                            "arrayInsert": [Function],
+                            "arrayMove": [Function],
+                            "arrayPop": [Function],
+                            "arrayPush": [Function],
+                            "arrayRemove": [Function],
+                            "arrayRemoveAll": [Function],
+                            "arrayShift": [Function],
+                            "arraySplice": [Function],
+                            "arraySwap": [Function],
+                            "arrayUnshift": [Function],
+                            "asyncErrors": undefined,
+                            "asyncValidate": [Function],
+                            "asyncValidating": false,
+                            "autofill": [Function],
+                            "blur": [Function],
+                            "change": [Function],
+                            "clearAsyncError": [Function],
+                            "clearFields": [Function],
+                            "clearSubmit": [Function],
+                            "clearSubmitErrors": [Function],
+                            "destroy": [Function],
+                            "destroyOnUnmount": true,
+                            "dirty": false,
+                            "dispatch": [Function],
+                            "enableReinitialize": false,
+                            "error": undefined,
+                            "focus": [Function],
+                            "forceUnregisterOnUnmount": false,
+                            "form": "IICOAddressForm",
+                            "getFormState": [Function],
+                            "getValues": [Function],
+                            "initialValues": undefined,
+                            "initialize": [Function],
+                            "initialized": false,
+                            "invalid": false,
+                            "keepDirtyOnReinitialize": false,
+                            "onSubmit": [Function],
+                            "persistentSubmitErrors": false,
+                            "pristine": true,
+                            "pure": true,
+                            "register": [Function],
+                            "registerField": [Function],
+                            "registerInnerOnSubmit": [Function],
+                            "registeredFields": undefined,
+                            "reset": [Function],
+                            "resetSection": [Function],
+                            "sectionPrefix": undefined,
+                            "setSubmitFailed": [Function],
+                            "setSubmitSucceeded": [Function],
+                            "shouldAsyncValidate": [Function],
+                            "shouldError": [Function],
+                            "shouldValidate": [Function],
+                            "shouldWarn": [Function],
+                            "startAsyncValidation": [Function],
+                            "startSubmit": [Function],
+                            "stopAsyncValidation": [Function],
+                            "stopSubmit": [Function],
+                            "submit": [Function],
+                            "submitFailed": false,
+                            "submitSucceeded": false,
+                            "submitting": false,
+                            "syncErrors": Object {},
+                            "syncWarnings": Object {},
+                            "touch": [Function],
+                            "touchOnBlur": true,
+                            "touchOnChange": false,
+                            "triggerSubmit": undefined,
+                            "unregister": [Function],
+                            "unregisterField": [Function],
+                            "untouch": [Function],
+                            "updateSyncErrors": [Function],
+                            "updateSyncWarnings": [Function],
+                            "updateUnregisteredFields": false,
+                            "valid": true,
+                            "validExceptSubmit": true,
+                            "values": Object {},
+                            "warning": undefined,
+                          }
+                        }
+                        component={[Function]}
+                        name="address"
+                        normalize={[Function]}
+                        props={
+                          Object {
+                            "placeholder": "Address",
+                            "style": Object {
+                              "flex": 1,
+                            },
+                          }
+                        }
+                        validate={[Function]}
+                      >
+                        <ConnectedField
+                          _reduxForm={
+                            Object {
+                              "anyTouched": false,
+                              "array": Object {
+                                "insert": [Function],
+                                "move": [Function],
+                                "pop": [Function],
+                                "push": [Function],
+                                "remove": [Function],
+                                "removeAll": [Function],
+                                "shift": [Function],
+                                "splice": [Function],
+                                "swap": [Function],
+                                "unshift": [Function],
+                              },
+                              "arrayInsert": [Function],
+                              "arrayMove": [Function],
+                              "arrayPop": [Function],
+                              "arrayPush": [Function],
+                              "arrayRemove": [Function],
+                              "arrayRemoveAll": [Function],
+                              "arrayShift": [Function],
+                              "arraySplice": [Function],
+                              "arraySwap": [Function],
+                              "arrayUnshift": [Function],
+                              "asyncErrors": undefined,
+                              "asyncValidate": [Function],
+                              "asyncValidating": false,
+                              "autofill": [Function],
+                              "blur": [Function],
+                              "change": [Function],
+                              "clearAsyncError": [Function],
+                              "clearFields": [Function],
+                              "clearSubmit": [Function],
+                              "clearSubmitErrors": [Function],
+                              "destroy": [Function],
+                              "destroyOnUnmount": true,
+                              "dirty": false,
+                              "dispatch": [Function],
+                              "enableReinitialize": false,
+                              "error": undefined,
+                              "focus": [Function],
+                              "forceUnregisterOnUnmount": false,
+                              "form": "IICOAddressForm",
+                              "getFormState": [Function],
+                              "getValues": [Function],
+                              "initialValues": undefined,
+                              "initialize": [Function],
+                              "initialized": false,
+                              "invalid": false,
+                              "keepDirtyOnReinitialize": false,
+                              "onSubmit": [Function],
+                              "persistentSubmitErrors": false,
+                              "pristine": true,
+                              "pure": true,
+                              "register": [Function],
+                              "registerField": [Function],
+                              "registerInnerOnSubmit": [Function],
+                              "registeredFields": undefined,
+                              "reset": [Function],
+                              "resetSection": [Function],
+                              "sectionPrefix": undefined,
+                              "setSubmitFailed": [Function],
+                              "setSubmitSucceeded": [Function],
+                              "shouldAsyncValidate": [Function],
+                              "shouldError": [Function],
+                              "shouldValidate": [Function],
+                              "shouldWarn": [Function],
+                              "startAsyncValidation": [Function],
+                              "startSubmit": [Function],
+                              "stopAsyncValidation": [Function],
+                              "stopSubmit": [Function],
+                              "submit": [Function],
+                              "submitFailed": false,
+                              "submitSucceeded": false,
+                              "submitting": false,
+                              "syncErrors": Object {},
+                              "syncWarnings": Object {},
+                              "touch": [Function],
+                              "touchOnBlur": true,
+                              "touchOnChange": false,
+                              "triggerSubmit": undefined,
+                              "unregister": [Function],
+                              "unregisterField": [Function],
+                              "untouch": [Function],
+                              "updateSyncErrors": [Function],
+                              "updateSyncWarnings": [Function],
+                              "updateUnregisteredFields": false,
+                              "valid": true,
+                              "validExceptSubmit": true,
+                              "values": Object {},
+                              "warning": undefined,
+                            }
+                          }
+                          asyncValidating={false}
+                          component={[Function]}
+                          dirty={false}
+                          dispatch={[Function]}
+                          name="address"
+                          normalize={[Function]}
+                          pristine={true}
+                          props={
+                            Object {
+                              "placeholder": "Address",
+                              "style": Object {
+                                "flex": 1,
+                              },
+                            }
+                          }
+                          syncError="Address is required."
+                          validate={[Function]}
+                        >
+                          <TextInput
+                            className=""
+                            input={
+                              Object {
+                                "name": "address",
+                                "onBlur": [Function],
+                                "onChange": [Function],
+                                "onDragStart": [Function],
+                                "onDrop": [Function],
+                                "onFocus": [Function],
+                                "value": "",
+                              }
+                            }
+                            meta={
+                              Object {
+                                "active": false,
+                                "asyncValidating": false,
+                                "autofilled": false,
+                                "dirty": false,
+                                "dispatch": [Function],
+                                "error": "Address is required.",
+                                "form": "IICOAddressForm",
+                                "initial": undefined,
+                                "invalid": true,
+                                "pristine": true,
+                                "submitFailed": false,
+                                "submitting": false,
+                                "touched": false,
+                                "valid": false,
+                                "visited": false,
+                                "warning": undefined,
+                              }
+                            }
+                            placeholder="Address"
+                            style={
+                              Object {
+                                "flex": 1,
+                              }
+                            }
+                            type="text"
+                          >
+                            <div
+                              className="TextInput  "
+                            >
+                              <input
+                                className="TextInput-input"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                type="text"
+                                value=""
+                              />
+                              <div
+                                className="TextInput-placeholder"
+                              >
+                                Address
+                              </div>
+                            </div>
+                          </TextInput>
+                        </ConnectedField>
+                      </Connect(ConnectedField)>
+                    </Field>
+                  </div>
+                </fieldset>
+              </form>
+            </Form>
+          </Form(Form)>
+        </Connect(Form(Form))>
+      </ReduxForm>
+      <div
+        className="Home-result"
+      >
+        <RenderIf
+          done={null}
+          failedLoading={false}
+          loading="Loading contract..."
+          resource={
+            Object {
+              "data": null,
+              "failedLoading": false,
+              "failedUpdating": false,
+              "loading": false,
+              "updating": false,
+            }
+          }
+        />
+      </div>
+    </div>
+  </Home>
+</Connect(Home)>
+`;
+
+exports[`Renders and loads an IICO contract's data after submitting an address. 2`] = `
+<Connect(Home)
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+  location={
+    Object {
+      "hash": "",
+      "pathname": "/",
+      "search": "",
+      "state": undefined,
+    }
+  }
+  match={
+    Object {
+      "isExact": true,
+      "params": Object {},
+      "path": "/",
+      "url": "/",
+    }
+  }
+>
+  <Home
+    IICOData={
+      Object {
+        "data": null,
+        "failedLoading": false,
+        "failedUpdating": false,
+        "loading": false,
+        "updating": false,
+      }
+    }
+    clearIICOData={[Function]}
+    fetchIICOData={[Function]}
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+    location={
+      Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      }
+    }
+    match={
+      Object {
+        "isExact": true,
+        "params": Object {},
+        "path": "/",
+        "url": "/",
+      }
+    }
+    submitIICOAddressForm={[Function]}
+  >
+    <div
+      className="Home"
+      onKeyPress={[Function]}
+    >
+      <ReduxForm
+        onSubmit={[Function]}
+      >
+        <Connect(Form(Form))
+          destroyOnUnmount={true}
+          enableReinitialize={false}
+          forceUnregisterOnUnmount={false}
+          form="IICOAddressForm"
+          getFormState={[Function]}
+          keepDirtyOnReinitialize={false}
+          onSubmit={[Function]}
+          persistentSubmitErrors={false}
+          pure={true}
+          shouldAsyncValidate={[Function]}
+          shouldError={[Function]}
+          shouldValidate={[Function]}
+          shouldWarn={[Function]}
+          touchOnBlur={true}
+          touchOnChange={false}
+          updateUnregisteredFields={false}
+        >
+          <Form(Form)
+            anyTouched={false}
+            array={
+              Object {
+                "insert": [Function],
+                "move": [Function],
+                "pop": [Function],
+                "push": [Function],
+                "remove": [Function],
+                "removeAll": [Function],
+                "shift": [Function],
+                "splice": [Function],
+                "swap": [Function],
+                "unshift": [Function],
+              }
+            }
+            arrayInsert={[Function]}
+            arrayMove={[Function]}
+            arrayPop={[Function]}
+            arrayPush={[Function]}
+            arrayRemove={[Function]}
+            arrayRemoveAll={[Function]}
+            arrayShift={[Function]}
+            arraySplice={[Function]}
+            arraySwap={[Function]}
+            arrayUnshift={[Function]}
+            asyncValidating={false}
+            autofill={[Function]}
+            blur={[Function]}
+            change={[Function]}
+            clearAsyncError={[Function]}
+            clearFields={[Function]}
+            clearSubmit={[Function]}
+            clearSubmitErrors={[Function]}
+            destroy={[Function]}
+            destroyOnUnmount={true}
+            dirty={true}
+            dispatch={[Function]}
+            enableReinitialize={false}
+            focus={[Function]}
+            forceUnregisterOnUnmount={false}
+            form="IICOAddressForm"
+            getFormState={[Function]}
+            initialize={[Function]}
+            initialized={false}
+            invalid={false}
+            keepDirtyOnReinitialize={false}
+            onSubmit={[Function]}
+            persistentSubmitErrors={false}
+            pristine={false}
+            pure={true}
+            registerField={[Function]}
+            registeredFields={
+              Object {
+                "address": Object {
+                  "count": 1,
+                  "name": "address",
+                  "type": "Field",
+                },
+                "header": Object {
+                  "count": 1,
+                  "name": "header",
+                  "type": "Field",
+                },
+              }
+            }
+            reset={[Function]}
+            resetSection={[Function]}
+            setSubmitFailed={[Function]}
+            setSubmitSucceeded={[Function]}
+            shouldAsyncValidate={[Function]}
+            shouldError={[Function]}
+            shouldValidate={[Function]}
+            shouldWarn={[Function]}
+            startAsyncValidation={[Function]}
+            startSubmit={[Function]}
+            stopAsyncValidation={[Function]}
+            stopSubmit={[Function]}
+            submit={[Function]}
+            submitFailed={false}
+            submitSucceeded={false}
+            submitting={false}
+            syncErrors={Object {}}
+            syncWarnings={Object {}}
+            touch={[Function]}
+            touchOnBlur={true}
+            touchOnChange={false}
+            unregisterField={[Function]}
+            untouch={[Function]}
+            updateSyncErrors={[Function]}
+            updateSyncWarnings={[Function]}
+            updateUnregisteredFields={false}
+            valid={true}
+            validExceptSubmit={true}
+            values={
+              Object {
+                "address": "Enter an address",
+              }
+            }
+          >
+            <Form
+              anyTouched={false}
+              array={
+                Object {
+                  "insert": [Function],
+                  "move": [Function],
+                  "pop": [Function],
+                  "push": [Function],
+                  "remove": [Function],
+                  "removeAll": [Function],
+                  "shift": [Function],
+                  "splice": [Function],
+                  "swap": [Function],
+                  "unshift": [Function],
+                }
+              }
+              asyncValidate={[Function]}
+              asyncValidating={false}
+              autofill={[Function]}
+              blur={[Function]}
+              change={[Function]}
+              className=""
+              clearAsyncError={[Function]}
+              clearFields={[Function]}
+              clearSubmit={[Function]}
+              clearSubmitErrors={[Function]}
+              destroy={[Function]}
+              dirty={true}
+              disabled={false}
+              dispatch={[Function]}
+              form="IICOAddressForm"
+              handleSubmit={[Function]}
+              initialize={[Function]}
+              initialized={false}
+              invalid={false}
+              onSubmit={[Function]}
+              pristine={false}
+              pure={true}
+              reset={[Function]}
+              resetSection={[Function]}
+              submit={[Function]}
+              submitFailed={false}
+              submitSucceeded={false}
+              submitting={false}
+              touch={[Function]}
+              untouch={[Function]}
+              valid={true}
+            >
+              <form
+                className=""
+              >
+                <fieldset
+                  className=""
+                  disabled={false}
+                  style={
+                    Object {
+                      "border": "none",
+                      "margin": "0 10px",
+                      "padding": "0 30px",
+                    }
+                  }
+                >
+                  <div
+                    className=""
+                    style={
+                      Object {
+                        "display": "flex",
+                        "flexFlow": "row wrap",
+                      }
+                    }
+                  >
+                    <Field
+                      component={[Function]}
+                      key="IICOAddressForm-header"
+                      name="header"
+                      props={
+                        Object {
+                          "placeholder": "Header",
+                          "style": Object {
+                            "flex": 1,
+                          },
+                          "title": "Enter the address of the IICO and hit enter.",
+                        }
+                      }
+                      validate={null}
+                    >
+                      <Connect(ConnectedField)
+                        _reduxForm={
+                          Object {
+                            "anyTouched": false,
+                            "array": Object {
+                              "insert": [Function],
+                              "move": [Function],
+                              "pop": [Function],
+                              "push": [Function],
+                              "remove": [Function],
+                              "removeAll": [Function],
+                              "shift": [Function],
+                              "splice": [Function],
+                              "swap": [Function],
+                              "unshift": [Function],
+                            },
+                            "arrayInsert": [Function],
+                            "arrayMove": [Function],
+                            "arrayPop": [Function],
+                            "arrayPush": [Function],
+                            "arrayRemove": [Function],
+                            "arrayRemoveAll": [Function],
+                            "arrayShift": [Function],
+                            "arraySplice": [Function],
+                            "arraySwap": [Function],
+                            "arrayUnshift": [Function],
+                            "asyncErrors": undefined,
+                            "asyncValidate": [Function],
+                            "asyncValidating": false,
+                            "autofill": [Function],
+                            "blur": [Function],
+                            "change": [Function],
+                            "clearAsyncError": [Function],
+                            "clearFields": [Function],
+                            "clearSubmit": [Function],
+                            "clearSubmitErrors": [Function],
+                            "destroy": [Function],
+                            "destroyOnUnmount": true,
+                            "dirty": false,
+                            "dispatch": [Function],
+                            "enableReinitialize": false,
+                            "error": undefined,
+                            "focus": [Function],
+                            "forceUnregisterOnUnmount": false,
+                            "form": "IICOAddressForm",
+                            "getFormState": [Function],
+                            "getValues": [Function],
+                            "initialValues": undefined,
+                            "initialize": [Function],
+                            "initialized": false,
+                            "invalid": false,
+                            "keepDirtyOnReinitialize": false,
+                            "onSubmit": [Function],
+                            "persistentSubmitErrors": false,
+                            "pristine": true,
+                            "pure": true,
+                            "register": [Function],
+                            "registerField": [Function],
+                            "registerInnerOnSubmit": [Function],
+                            "registeredFields": undefined,
+                            "reset": [Function],
+                            "resetSection": [Function],
+                            "sectionPrefix": undefined,
+                            "setSubmitFailed": [Function],
+                            "setSubmitSucceeded": [Function],
+                            "shouldAsyncValidate": [Function],
+                            "shouldError": [Function],
+                            "shouldValidate": [Function],
+                            "shouldWarn": [Function],
+                            "startAsyncValidation": [Function],
+                            "startSubmit": [Function],
+                            "stopAsyncValidation": [Function],
+                            "stopSubmit": [Function],
+                            "submit": [Function],
+                            "submitFailed": false,
+                            "submitSucceeded": false,
+                            "submitting": false,
+                            "syncErrors": Object {},
+                            "syncWarnings": Object {},
+                            "touch": [Function],
+                            "touchOnBlur": true,
+                            "touchOnChange": false,
+                            "triggerSubmit": undefined,
+                            "unregister": [Function],
+                            "unregisterField": [Function],
+                            "untouch": [Function],
+                            "updateSyncErrors": [Function],
+                            "updateSyncWarnings": [Function],
+                            "updateUnregisteredFields": false,
+                            "valid": true,
+                            "validExceptSubmit": true,
+                            "values": Object {},
+                            "warning": undefined,
+                          }
+                        }
+                        component={[Function]}
+                        name="header"
+                        normalize={[Function]}
+                        props={
+                          Object {
+                            "placeholder": "Header",
+                            "style": Object {
+                              "flex": 1,
+                            },
+                            "title": "Enter the address of the IICO and hit enter.",
+                          }
+                        }
+                        validate={null}
+                      >
+                        <ConnectedField
+                          _reduxForm={
+                            Object {
+                              "anyTouched": false,
+                              "array": Object {
+                                "insert": [Function],
+                                "move": [Function],
+                                "pop": [Function],
+                                "push": [Function],
+                                "remove": [Function],
+                                "removeAll": [Function],
+                                "shift": [Function],
+                                "splice": [Function],
+                                "swap": [Function],
+                                "unshift": [Function],
+                              },
+                              "arrayInsert": [Function],
+                              "arrayMove": [Function],
+                              "arrayPop": [Function],
+                              "arrayPush": [Function],
+                              "arrayRemove": [Function],
+                              "arrayRemoveAll": [Function],
+                              "arrayShift": [Function],
+                              "arraySplice": [Function],
+                              "arraySwap": [Function],
+                              "arrayUnshift": [Function],
+                              "asyncErrors": undefined,
+                              "asyncValidate": [Function],
+                              "asyncValidating": false,
+                              "autofill": [Function],
+                              "blur": [Function],
+                              "change": [Function],
+                              "clearAsyncError": [Function],
+                              "clearFields": [Function],
+                              "clearSubmit": [Function],
+                              "clearSubmitErrors": [Function],
+                              "destroy": [Function],
+                              "destroyOnUnmount": true,
+                              "dirty": false,
+                              "dispatch": [Function],
+                              "enableReinitialize": false,
+                              "error": undefined,
+                              "focus": [Function],
+                              "forceUnregisterOnUnmount": false,
+                              "form": "IICOAddressForm",
+                              "getFormState": [Function],
+                              "getValues": [Function],
+                              "initialValues": undefined,
+                              "initialize": [Function],
+                              "initialized": false,
+                              "invalid": false,
+                              "keepDirtyOnReinitialize": false,
+                              "onSubmit": [Function],
+                              "persistentSubmitErrors": false,
+                              "pristine": true,
+                              "pure": true,
+                              "register": [Function],
+                              "registerField": [Function],
+                              "registerInnerOnSubmit": [Function],
+                              "registeredFields": undefined,
+                              "reset": [Function],
+                              "resetSection": [Function],
+                              "sectionPrefix": undefined,
+                              "setSubmitFailed": [Function],
+                              "setSubmitSucceeded": [Function],
+                              "shouldAsyncValidate": [Function],
+                              "shouldError": [Function],
+                              "shouldValidate": [Function],
+                              "shouldWarn": [Function],
+                              "startAsyncValidation": [Function],
+                              "startSubmit": [Function],
+                              "stopAsyncValidation": [Function],
+                              "stopSubmit": [Function],
+                              "submit": [Function],
+                              "submitFailed": false,
+                              "submitSucceeded": false,
+                              "submitting": false,
+                              "syncErrors": Object {},
+                              "syncWarnings": Object {},
+                              "touch": [Function],
+                              "touchOnBlur": true,
+                              "touchOnChange": false,
+                              "triggerSubmit": undefined,
+                              "unregister": [Function],
+                              "unregisterField": [Function],
+                              "untouch": [Function],
+                              "updateSyncErrors": [Function],
+                              "updateSyncWarnings": [Function],
+                              "updateUnregisteredFields": false,
+                              "valid": true,
+                              "validExceptSubmit": true,
+                              "values": Object {},
+                              "warning": undefined,
+                            }
+                          }
+                          asyncValidating={false}
+                          component={[Function]}
+                          dirty={false}
+                          dispatch={[Function]}
+                          name="header"
+                          normalize={[Function]}
+                          pristine={true}
+                          props={
+                            Object {
+                              "placeholder": "Header",
+                              "style": Object {
+                                "flex": 1,
+                              },
+                              "title": "Enter the address of the IICO and hit enter.",
+                            }
+                          }
+                          validate={null}
+                        >
+                          <FormHeader
+                            input={
+                              Object {
+                                "name": "header",
+                                "onBlur": [Function],
+                                "onChange": [Function],
+                                "onDragStart": [Function],
+                                "onDrop": [Function],
+                                "onFocus": [Function],
+                                "value": "",
+                              }
+                            }
+                            meta={
+                              Object {
+                                "active": false,
+                                "asyncValidating": false,
+                                "autofilled": false,
+                                "dirty": false,
+                                "dispatch": [Function],
+                                "error": undefined,
+                                "form": "IICOAddressForm",
+                                "initial": undefined,
+                                "invalid": false,
+                                "pristine": true,
+                                "submitFailed": false,
+                                "submitting": false,
+                                "touched": false,
+                                "valid": true,
+                                "visited": false,
+                                "warning": undefined,
+                              }
+                            }
+                            placeholder="Header"
+                            style={
+                              Object {
+                                "flex": 1,
+                              }
+                            }
+                            title="Enter the address of the IICO and hit enter."
+                          >
+                            <div
+                              className="FormHeader"
+                            >
+                              <h4>
+                                Enter the address of the IICO and hit enter.
+                              </h4>
+                            </div>
+                          </FormHeader>
+                        </ConnectedField>
+                      </Connect(ConnectedField)>
+                    </Field>
+                    <Field
+                      component={[Function]}
+                      key="IICOAddressForm-address"
+                      name="address"
+                      props={
+                        Object {
+                          "placeholder": "Address",
+                          "style": Object {
+                            "flex": 1,
+                          },
+                        }
+                      }
+                      validate={[Function]}
+                    >
+                      <Connect(ConnectedField)
+                        _reduxForm={
+                          Object {
+                            "anyTouched": false,
+                            "array": Object {
+                              "insert": [Function],
+                              "move": [Function],
+                              "pop": [Function],
+                              "push": [Function],
+                              "remove": [Function],
+                              "removeAll": [Function],
+                              "shift": [Function],
+                              "splice": [Function],
+                              "swap": [Function],
+                              "unshift": [Function],
+                            },
+                            "arrayInsert": [Function],
+                            "arrayMove": [Function],
+                            "arrayPop": [Function],
+                            "arrayPush": [Function],
+                            "arrayRemove": [Function],
+                            "arrayRemoveAll": [Function],
+                            "arrayShift": [Function],
+                            "arraySplice": [Function],
+                            "arraySwap": [Function],
+                            "arrayUnshift": [Function],
+                            "asyncErrors": undefined,
+                            "asyncValidate": [Function],
+                            "asyncValidating": false,
+                            "autofill": [Function],
+                            "blur": [Function],
+                            "change": [Function],
+                            "clearAsyncError": [Function],
+                            "clearFields": [Function],
+                            "clearSubmit": [Function],
+                            "clearSubmitErrors": [Function],
+                            "destroy": [Function],
+                            "destroyOnUnmount": true,
+                            "dirty": false,
+                            "dispatch": [Function],
+                            "enableReinitialize": false,
+                            "error": undefined,
+                            "focus": [Function],
+                            "forceUnregisterOnUnmount": false,
+                            "form": "IICOAddressForm",
+                            "getFormState": [Function],
+                            "getValues": [Function],
+                            "initialValues": undefined,
+                            "initialize": [Function],
+                            "initialized": false,
+                            "invalid": false,
+                            "keepDirtyOnReinitialize": false,
+                            "onSubmit": [Function],
+                            "persistentSubmitErrors": false,
+                            "pristine": true,
+                            "pure": true,
+                            "register": [Function],
+                            "registerField": [Function],
+                            "registerInnerOnSubmit": [Function],
+                            "registeredFields": undefined,
+                            "reset": [Function],
+                            "resetSection": [Function],
+                            "sectionPrefix": undefined,
+                            "setSubmitFailed": [Function],
+                            "setSubmitSucceeded": [Function],
+                            "shouldAsyncValidate": [Function],
+                            "shouldError": [Function],
+                            "shouldValidate": [Function],
+                            "shouldWarn": [Function],
+                            "startAsyncValidation": [Function],
+                            "startSubmit": [Function],
+                            "stopAsyncValidation": [Function],
+                            "stopSubmit": [Function],
+                            "submit": [Function],
+                            "submitFailed": false,
+                            "submitSucceeded": false,
+                            "submitting": false,
+                            "syncErrors": Object {},
+                            "syncWarnings": Object {},
+                            "touch": [Function],
+                            "touchOnBlur": true,
+                            "touchOnChange": false,
+                            "triggerSubmit": undefined,
+                            "unregister": [Function],
+                            "unregisterField": [Function],
+                            "untouch": [Function],
+                            "updateSyncErrors": [Function],
+                            "updateSyncWarnings": [Function],
+                            "updateUnregisteredFields": false,
+                            "valid": true,
+                            "validExceptSubmit": true,
+                            "values": Object {},
+                            "warning": undefined,
+                          }
+                        }
+                        component={[Function]}
+                        name="address"
+                        normalize={[Function]}
+                        props={
+                          Object {
+                            "placeholder": "Address",
+                            "style": Object {
+                              "flex": 1,
+                            },
+                          }
+                        }
+                        validate={[Function]}
+                      >
+                        <ConnectedField
+                          _reduxForm={
+                            Object {
+                              "anyTouched": false,
+                              "array": Object {
+                                "insert": [Function],
+                                "move": [Function],
+                                "pop": [Function],
+                                "push": [Function],
+                                "remove": [Function],
+                                "removeAll": [Function],
+                                "shift": [Function],
+                                "splice": [Function],
+                                "swap": [Function],
+                                "unshift": [Function],
+                              },
+                              "arrayInsert": [Function],
+                              "arrayMove": [Function],
+                              "arrayPop": [Function],
+                              "arrayPush": [Function],
+                              "arrayRemove": [Function],
+                              "arrayRemoveAll": [Function],
+                              "arrayShift": [Function],
+                              "arraySplice": [Function],
+                              "arraySwap": [Function],
+                              "arrayUnshift": [Function],
+                              "asyncErrors": undefined,
+                              "asyncValidate": [Function],
+                              "asyncValidating": false,
+                              "autofill": [Function],
+                              "blur": [Function],
+                              "change": [Function],
+                              "clearAsyncError": [Function],
+                              "clearFields": [Function],
+                              "clearSubmit": [Function],
+                              "clearSubmitErrors": [Function],
+                              "destroy": [Function],
+                              "destroyOnUnmount": true,
+                              "dirty": false,
+                              "dispatch": [Function],
+                              "enableReinitialize": false,
+                              "error": undefined,
+                              "focus": [Function],
+                              "forceUnregisterOnUnmount": false,
+                              "form": "IICOAddressForm",
+                              "getFormState": [Function],
+                              "getValues": [Function],
+                              "initialValues": undefined,
+                              "initialize": [Function],
+                              "initialized": false,
+                              "invalid": false,
+                              "keepDirtyOnReinitialize": false,
+                              "onSubmit": [Function],
+                              "persistentSubmitErrors": false,
+                              "pristine": true,
+                              "pure": true,
+                              "register": [Function],
+                              "registerField": [Function],
+                              "registerInnerOnSubmit": [Function],
+                              "registeredFields": undefined,
+                              "reset": [Function],
+                              "resetSection": [Function],
+                              "sectionPrefix": undefined,
+                              "setSubmitFailed": [Function],
+                              "setSubmitSucceeded": [Function],
+                              "shouldAsyncValidate": [Function],
+                              "shouldError": [Function],
+                              "shouldValidate": [Function],
+                              "shouldWarn": [Function],
+                              "startAsyncValidation": [Function],
+                              "startSubmit": [Function],
+                              "stopAsyncValidation": [Function],
+                              "stopSubmit": [Function],
+                              "submit": [Function],
+                              "submitFailed": false,
+                              "submitSucceeded": false,
+                              "submitting": false,
+                              "syncErrors": Object {},
+                              "syncWarnings": Object {},
+                              "touch": [Function],
+                              "touchOnBlur": true,
+                              "touchOnChange": false,
+                              "triggerSubmit": undefined,
+                              "unregister": [Function],
+                              "unregisterField": [Function],
+                              "untouch": [Function],
+                              "updateSyncErrors": [Function],
+                              "updateSyncWarnings": [Function],
+                              "updateUnregisteredFields": false,
+                              "valid": true,
+                              "validExceptSubmit": true,
+                              "values": Object {},
+                              "warning": undefined,
+                            }
+                          }
+                          asyncValidating={false}
+                          component={[Function]}
+                          dirty={true}
+                          dispatch={[Function]}
+                          name="address"
+                          normalize={[Function]}
+                          pristine={false}
+                          props={
+                            Object {
+                              "placeholder": "Address",
+                              "style": Object {
+                                "flex": 1,
+                              },
+                            }
+                          }
+                          validate={[Function]}
+                          value="Enter an address"
+                        >
+                          <TextInput
+                            className=""
+                            input={
+                              Object {
+                                "name": "address",
+                                "onBlur": [Function],
+                                "onChange": [Function],
+                                "onDragStart": [Function],
+                                "onDrop": [Function],
+                                "onFocus": [Function],
+                                "value": "Enter an address",
+                              }
+                            }
+                            meta={
+                              Object {
+                                "active": false,
+                                "asyncValidating": false,
+                                "autofilled": false,
+                                "dirty": true,
+                                "dispatch": [Function],
+                                "error": undefined,
+                                "form": "IICOAddressForm",
+                                "initial": undefined,
+                                "invalid": false,
+                                "pristine": false,
+                                "submitFailed": false,
+                                "submitting": false,
+                                "touched": false,
+                                "valid": true,
+                                "visited": false,
+                                "warning": undefined,
+                              }
+                            }
+                            placeholder="Address"
+                            style={
+                              Object {
+                                "flex": 1,
+                              }
+                            }
+                            type="text"
+                          >
+                            <div
+                              className="TextInput is-valid "
+                            >
+                              <input
+                                className="TextInput-input"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                type="text"
+                                value="Enter an address"
+                              />
+                              <div
+                                className="TextInput-placeholder is-touched"
+                              >
+                                Address
+                              </div>
+                            </div>
+                          </TextInput>
+                        </ConnectedField>
+                      </Connect(ConnectedField)>
+                    </Field>
+                  </div>
+                </fieldset>
+              </form>
+            </Form>
+          </Form(Form)>
+        </Connect(Form(Form))>
+      </ReduxForm>
+      <div
+        className="Home-result"
+      >
+        <RenderIf
+          done={null}
+          failedLoading={false}
+          loading="Loading contract..."
+          resource={
+            Object {
+              "data": null,
+              "failedLoading": false,
+              "failedUpdating": false,
+              "loading": false,
+              "updating": false,
+            }
+          }
+        />
+      </div>
+    </div>
+  </Home>
+</Connect(Home)>
+`;
+
+exports[`Renders and loads an IICO contract's data after submitting an address. 3`] = `"Enter the address of the IICO and hit enter.Address[Identicon]Go To IICO Page"`;

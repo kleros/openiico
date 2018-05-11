@@ -7,7 +7,7 @@ import * as walletSelectors from '../reducers/wallet'
 import * as walletActions from '../actions/wallet'
 import RequiresMetaMask from '../components/requires-meta-mask'
 
-import { eth } from './dapp-api'
+import { eth, ETHAddressRegExp } from './dapp-api'
 
 class Initializer extends PureComponent {
   static propTypes = {
@@ -44,7 +44,7 @@ class Initializer extends PureComponent {
     const { accounts, children } = this.props
 
     let address = window.location.pathname.slice(1)
-    address = /0x[a-fA-F0-9]{40}/.test(address) && address
+    address = ETHAddressRegExp.test(address) && address
 
     return (
       <RenderIf

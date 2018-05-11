@@ -9,6 +9,8 @@ import configureStore from './configure-store'
 import App from './app'
 import { eth } from './dapp-api'
 
+const mockETHAddress = '0x0000000000000000000000000000000000000000'
+
 /**
  * Send a transaction and wait for it to be mined.
  * @param {function} transaction - The transaction function.
@@ -114,17 +116,23 @@ export async function setUpContracts(
 }
 
 /**
- * Wait for all promises to resolve in a test environment.
+ * Wait for all promises to resolve in a test environment and update the app.
+ * @param {object} app - The app wrapper to update.
  * @returns {Promise<number>} - A promise that resolves when the timeout handler is called.
  */
-export function flushPromises() {
-  return new Promise(resolve => setTimeout(resolve, 1000))
+export function flushPromises(app) {
+  return new Promise(resolve =>
+    setTimeout(() => {
+      app.update()
+      resolve()
+    }, 1000)
+  )
 }
 
 /**
  * Sets up an integration test environment.
  * @param {object} [initialState={}] - The initial state.
- * @returns {{ store: object, history: object, dispatchSpy: function, mountApp: function }} - Utilities for testing.
+ * @returns {{ store: object, history: object, dispatchSpy: function, mountApp: function, contracts: { Token: object, IICO: object } }} - Utilities for testing.
  */
 export default async function setupIntegrationTest(initialState = {}) {
   const dispatchSpy = jest.fn(() => ({}))
@@ -134,18 +142,18 @@ export default async function setupIntegrationTest(initialState = {}) {
   const mountApp = testElement =>
     mount(<App store={store} history={history} testElement={testElement} />)
 
-  await setUpContracts(
+  const { Token, IICO } = await setUpContracts(
     0.16 * 1e9,
     Date.now() / 1000 + 180, // Now + 3 minutes
     300,
     300,
     300,
     2e8,
-    '0x0000000000000000000000000000000000000000',
+    mockETHAddress,
     5,
     [],
     []
   )
 
-  return { store, history, dispatchSpy, mountApp }
+  return { store, history, dispatchSpy, mountApp, contracts: { Token, IICO } }
 }
