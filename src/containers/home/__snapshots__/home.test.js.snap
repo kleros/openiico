@@ -94,9 +94,11 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
       onKeyPress={[Function]}
     >
       <ReduxForm
+        className="Home-form"
         onSubmit={[Function]}
       >
         <Connect(Form(Form))
+          className="Home-form"
           destroyOnUnmount={true}
           enableReinitialize={false}
           forceUnregisterOnUnmount={false}
@@ -144,6 +146,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
             autofill={[Function]}
             blur={[Function]}
             change={[Function]}
+            className="Home-form"
             clearAsyncError={[Function]}
             clearFields={[Function]}
             clearSubmit={[Function]}
@@ -235,7 +238,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
               autofill={[Function]}
               blur={[Function]}
               change={[Function]}
-              className=""
+              className="Home-form"
               clearAsyncError={[Function]}
               clearFields={[Function]}
               clearSubmit={[Function]}
@@ -263,10 +266,10 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
               valid={false}
             >
               <form
-                className=""
+                className="Home-form"
               >
                 <fieldset
-                  className=""
+                  className="Home-form-fieldset"
                   disabled={false}
                   style={
                     Object {
@@ -277,7 +280,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                   }
                 >
                   <div
-                    className=""
+                    className="Home-form-fieldset-fields"
                     style={
                       Object {
                         "display": "flex",
@@ -332,6 +335,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                             "autofill": [Function],
                             "blur": [Function],
                             "change": [Function],
+                            "className": "Home-form",
                             "clearAsyncError": [Function],
                             "clearFields": [Function],
                             "clearSubmit": [Function],
@@ -441,6 +445,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                               "autofill": [Function],
                               "blur": [Function],
                               "change": [Function],
+                              "className": "Home-form",
                               "clearAsyncError": [Function],
                               "clearFields": [Function],
                               "clearSubmit": [Function],
@@ -620,6 +625,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                             "autofill": [Function],
                             "blur": [Function],
                             "change": [Function],
+                            "className": "Home-form",
                             "clearAsyncError": [Function],
                             "clearFields": [Function],
                             "clearSubmit": [Function],
@@ -728,6 +734,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                               "autofill": [Function],
                               "blur": [Function],
                               "change": [Function],
+                              "className": "Home-form",
                               "clearAsyncError": [Function],
                               "clearFields": [Function],
                               "clearSubmit": [Function],
@@ -877,24 +884,20 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
           </Form(Form)>
         </Connect(Form(Form))>
       </ReduxForm>
-      <div
-        className="Home-result"
-      >
-        <RenderIf
-          done={null}
-          failedLoading={false}
-          loading="Loading contract..."
-          resource={
-            Object {
-              "data": null,
-              "failedLoading": false,
-              "failedUpdating": false,
-              "loading": false,
-              "updating": false,
-            }
+      <RenderIf
+        done={null}
+        failedLoading={false}
+        loading="Loading contract..."
+        resource={
+          Object {
+            "data": null,
+            "failedLoading": false,
+            "failedUpdating": false,
+            "loading": false,
+            "updating": false,
           }
-        />
-      </div>
+        }
+      />
     </div>
   </Home>
 </Connect(Home)>
@@ -994,9 +997,11 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
       onKeyPress={[Function]}
     >
       <ReduxForm
+        className="Home-form"
         onSubmit={[Function]}
       >
         <Connect(Form(Form))
+          className="Home-form"
           destroyOnUnmount={true}
           enableReinitialize={false}
           forceUnregisterOnUnmount={false}
@@ -1044,6 +1049,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
             autofill={[Function]}
             blur={[Function]}
             change={[Function]}
+            className="Home-form"
             clearAsyncError={[Function]}
             clearFields={[Function]}
             clearSubmit={[Function]}
@@ -1135,7 +1141,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
               autofill={[Function]}
               blur={[Function]}
               change={[Function]}
-              className=""
+              className="Home-form"
               clearAsyncError={[Function]}
               clearFields={[Function]}
               clearSubmit={[Function]}
@@ -1163,10 +1169,10 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
               valid={true}
             >
               <form
-                className=""
+                className="Home-form"
               >
                 <fieldset
-                  className=""
+                  className="Home-form-fieldset"
                   disabled={false}
                   style={
                     Object {
@@ -1177,7 +1183,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                   }
                 >
                   <div
-                    className=""
+                    className="Home-form-fieldset-fields"
                     style={
                       Object {
                         "display": "flex",
@@ -1232,6 +1238,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                             "autofill": [Function],
                             "blur": [Function],
                             "change": [Function],
+                            "className": "Home-form",
                             "clearAsyncError": [Function],
                             "clearFields": [Function],
                             "clearSubmit": [Function],
@@ -1341,6 +1348,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                               "autofill": [Function],
                               "blur": [Function],
                               "change": [Function],
+                              "className": "Home-form",
                               "clearAsyncError": [Function],
                               "clearFields": [Function],
                               "clearSubmit": [Function],
@@ -1520,6 +1528,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                             "autofill": [Function],
                             "blur": [Function],
                             "change": [Function],
+                            "className": "Home-form",
                             "clearAsyncError": [Function],
                             "clearFields": [Function],
                             "clearSubmit": [Function],
@@ -1628,6 +1637,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                               "autofill": [Function],
                               "blur": [Function],
                               "change": [Function],
+                              "className": "Home-form",
                               "clearAsyncError": [Function],
                               "clearFields": [Function],
                               "clearSubmit": [Function],
@@ -1777,24 +1787,20 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
           </Form(Form)>
         </Connect(Form(Form))>
       </ReduxForm>
-      <div
-        className="Home-result"
-      >
-        <RenderIf
-          done={null}
-          failedLoading={false}
-          loading="Loading contract..."
-          resource={
-            Object {
-              "data": null,
-              "failedLoading": false,
-              "failedUpdating": false,
-              "loading": false,
-              "updating": false,
-            }
+      <RenderIf
+        done={null}
+        failedLoading={false}
+        loading="Loading contract..."
+        resource={
+          Object {
+            "data": null,
+            "failedLoading": false,
+            "failedUpdating": false,
+            "loading": false,
+            "updating": false,
           }
-        />
-      </div>
+        }
+      />
     </div>
   </Home>
 </Connect(Home)>
@@ -1914,9 +1920,11 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
       onKeyPress={[Function]}
     >
       <ReduxForm
+        className="Home-form"
         onSubmit={[Function]}
       >
         <Connect(Form(Form))
+          className="Home-form"
           destroyOnUnmount={true}
           enableReinitialize={false}
           forceUnregisterOnUnmount={false}
@@ -1964,6 +1972,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
             autofill={[Function]}
             blur={[Function]}
             change={[Function]}
+            className="Home-form"
             clearAsyncError={[Function]}
             clearFields={[Function]}
             clearSubmit={[Function]}
@@ -2055,7 +2064,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
               autofill={[Function]}
               blur={[Function]}
               change={[Function]}
-              className=""
+              className="Home-form"
               clearAsyncError={[Function]}
               clearFields={[Function]}
               clearSubmit={[Function]}
@@ -2083,10 +2092,10 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
               valid={true}
             >
               <form
-                className=""
+                className="Home-form"
               >
                 <fieldset
-                  className=""
+                  className="Home-form-fieldset"
                   disabled={false}
                   style={
                     Object {
@@ -2097,7 +2106,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                   }
                 >
                   <div
-                    className=""
+                    className="Home-form-fieldset-fields"
                     style={
                       Object {
                         "display": "flex",
@@ -2152,6 +2161,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                             "autofill": [Function],
                             "blur": [Function],
                             "change": [Function],
+                            "className": "Home-form",
                             "clearAsyncError": [Function],
                             "clearFields": [Function],
                             "clearSubmit": [Function],
@@ -2261,6 +2271,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                               "autofill": [Function],
                               "blur": [Function],
                               "change": [Function],
+                              "className": "Home-form",
                               "clearAsyncError": [Function],
                               "clearFields": [Function],
                               "clearSubmit": [Function],
@@ -2445,6 +2456,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                             "autofill": [Function],
                             "blur": [Function],
                             "change": [Function],
+                            "className": "Home-form",
                             "clearAsyncError": [Function],
                             "clearFields": [Function],
                             "clearSubmit": [Function],
@@ -2553,6 +2565,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                               "autofill": [Function],
                               "blur": [Function],
                               "change": [Function],
+                              "className": "Home-form",
                               "clearAsyncError": [Function],
                               "clearFields": [Function],
                               "clearSubmit": [Function],
@@ -2707,82 +2720,16 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
           </Form(Form)>
         </Connect(Form(Form))>
       </ReduxForm>
-      <div
-        className="Home-result"
-      >
-        <RenderIf
-          done={
-            <div>
-              <Unknown
-                seed="0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
-                size={60}
-              />
-              <h2
-                className="Home-result-link"
-              >
-                Go To
-                 
-                <Link
-                  replace={false}
-                  to="/simple/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
-                >
-                  Simple
-                </Link>
-                 
-                / 
-                <Link
-                  replace={false}
-                  to="/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
-                >
-                  Interactive
-                </Link>
-                 
-                IICO Page
-              </h2>
-            </div>
-          }
-          failedLoading="The address or the contract it holds is invalid. Try another one."
-          loading="Loading contract..."
-          resource={
-            Object {
-              "data": Object {
-                "address": "0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C",
-                "bonus": 0,
-                "cutOffBidContrib": 0,
-                "cutOffBidID": 0,
-                "cutOffBidMaxValuation": 0,
-                "endFullBonusTime": "2018-01-25T21:44:54.000Z",
-                "endTime": "2018-01-25T21:54:54.000Z",
-                "ethPrice": undefined,
-                "finalized": false,
-                "inBaseWhitelist": false,
-                "inReinforcedWhitelist": false,
-                "maximumBaseContribution": 5,
-                "startTime": "2018-01-25T21:39:54.000Z",
-                "startingBonus": 0.2,
-                "tokenContractAddress": "0x10070265733b0f064EE81F698437cd07137BB0Ec",
-                "tokensForSale": 160000000,
-                "valuation": 0,
-                "virtualValuation": 0,
-                "withdrawalLockTime": "2018-01-25T21:49:54.000Z",
-              },
-              "failedLoading": false,
-              "failedUpdating": false,
-              "loading": false,
-              "updating": false,
-            }
-          }
-        >
-          <div>
-            <Component
+      <RenderIf
+        done={
+          <div
+            className="Home-result"
+          >
+            <Unknown
               seed="0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
               size={60}
-            >
-              <div>
-                [Identicon]
-              </div>
-            </Component>
-            <h2
+            />
+            <h3
               className="Home-result-link"
             >
               Go To
@@ -2791,32 +2738,98 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                 replace={false}
                 to="/simple/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
               >
-                <a
-                  href="/simple/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
-                  onClick={[Function]}
-                >
-                  Simple
-                </a>
+                Simple
               </Link>
+               /
                
-              / 
               <Link
                 replace={false}
-                to="/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
+                to="/:address0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
               >
-                <a
-                  href="/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
-                  onClick={[Function]}
-                >
-                  Interactive
-                </a>
+                Interactive
               </Link>
                
               IICO Page
-            </h2>
+            </h3>
           </div>
-        </RenderIf>
-      </div>
+        }
+        failedLoading="The address or the contract it holds is invalid. Try another one."
+        loading="Loading contract..."
+        resource={
+          Object {
+            "data": Object {
+              "address": "0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C",
+              "bonus": 0,
+              "cutOffBidContrib": 0,
+              "cutOffBidID": 0,
+              "cutOffBidMaxValuation": 0,
+              "endFullBonusTime": "2018-01-25T21:44:54.000Z",
+              "endTime": "2018-01-25T21:54:54.000Z",
+              "ethPrice": undefined,
+              "finalized": false,
+              "inBaseWhitelist": false,
+              "inReinforcedWhitelist": false,
+              "maximumBaseContribution": 5,
+              "startTime": "2018-01-25T21:39:54.000Z",
+              "startingBonus": 0.2,
+              "tokenContractAddress": "0x10070265733b0f064EE81F698437cd07137BB0Ec",
+              "tokensForSale": 160000000,
+              "valuation": 0,
+              "virtualValuation": 0,
+              "withdrawalLockTime": "2018-01-25T21:49:54.000Z",
+            },
+            "failedLoading": false,
+            "failedUpdating": false,
+            "loading": false,
+            "updating": false,
+          }
+        }
+      >
+        <div
+          className="Home-result"
+        >
+          <Component
+            seed="0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
+            size={60}
+          >
+            <div>
+              [Identicon]
+            </div>
+          </Component>
+          <h3
+            className="Home-result-link"
+          >
+            Go To
+             
+            <Link
+              replace={false}
+              to="/simple/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
+            >
+              <a
+                href="/simple/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
+                onClick={[Function]}
+              >
+                Simple
+              </a>
+            </Link>
+             /
+             
+            <Link
+              replace={false}
+              to="/:address0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
+            >
+              <a
+                href="/:address0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
+                onClick={[Function]}
+              >
+                Interactive
+              </a>
+            </Link>
+             
+            IICO Page
+          </h3>
+        </div>
+      </RenderIf>
     </div>
   </Home>
 </Connect(Home)>

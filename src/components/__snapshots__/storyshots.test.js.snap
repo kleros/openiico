@@ -3926,7 +3926,12 @@ exports[`Storyshots Page Not Found default 1`] = `
             <div
               className="PageNotFound-message"
             >
-              404. This is not the page you are looking for.
+              <div
+                className="PageNotFound-message-errorCode"
+              >
+                404
+              </div>
+              This is not the page you are looking for.
             </div>
           </div>
           <div

@@ -13,7 +13,7 @@ import PageNotFound from '../components/page-not-found'
 
 import Initializer from './initializer'
 import GlobalComponents from './global-components'
-import { ETHAddressRegExp } from './dapp-api'
+import { ETHAddressRegExp, ETHAddressRegExpCaptureGroup } from './dapp-api'
 
 import './app.css'
 
@@ -67,8 +67,16 @@ const App = ({ store, history, testElement }) => (
           <Route exact path="*" component={ConnectedNavBar} />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/simple/:address?" component={SimpleBid} />
-            <Route exact path="/:address" component={IICO} />
+            <Route
+              exact
+              path={`/simple/:address${ETHAddressRegExpCaptureGroup}`}
+              component={SimpleBid}
+            />
+            <Route
+              exact
+              path={`/:address${ETHAddressRegExpCaptureGroup}`}
+              component={IICO}
+            />
             <Route component={PageNotFound} />
           </Switch>
           {testElement}

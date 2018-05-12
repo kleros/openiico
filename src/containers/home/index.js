@@ -51,30 +51,33 @@ class Home extends PureComponent {
 
     return (
       <div className="Home" onKeyPress={this.handleKeyPress}>
-        <IICOAddressForm onSubmit={this.handleIICOAddressFormSubmit} />
-        <div className="Home-result">
-          <RenderIf
-            resource={IICOData}
-            loading="Loading contract..."
-            done={
-              IICOData.data && (
-                <div>
-                  <Identicon seed={IICOData.data.address} size={60} />
-                  <h2 className="Home-result-link">
-                    Go To{' '}
-                    <Link to={`/simple/${IICOData.data.address}`}>Simple</Link>{' '}
-                    / <Link to={`/${IICOData.data.address}`}>Interactive</Link>{' '}
-                    IICO Page
-                  </h2>
-                </div>
-              )
-            }
-            failedLoading={
-              IICOData.data !== null &&
-              'The address or the contract it holds is invalid. Try another one.'
-            }
-          />
-        </div>
+        <IICOAddressForm
+          onSubmit={this.handleIICOAddressFormSubmit}
+          className="Home-form"
+        />
+        <RenderIf
+          resource={IICOData}
+          loading="Loading contract..."
+          done={
+            IICOData.data && (
+              <div className="Home-result">
+                <Identicon seed={IICOData.data.address} size={60} />
+                <h3 className="Home-result-link">
+                  Go To{' '}
+                  <Link to={`/simple/${IICOData.data.address}`}>Simple</Link> /{' '}
+                  <Link to={`/:address${IICOData.data.address}`}>
+                    Interactive
+                  </Link>{' '}
+                  IICO Page
+                </h3>
+              </div>
+            )
+          }
+          failedLoading={
+            IICOData.data !== null &&
+            'The address or the contract it holds is invalid. Try another one.'
+          }
+        />
       </div>
     )
   }
