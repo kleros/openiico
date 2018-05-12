@@ -263,6 +263,11 @@ class IICO extends PureComponent {
 
   tutorialNext = () => this.joyrideRef.next()
 
+  handleReplayTutorialClick = () => {
+    localStorage.removeItem('hasSeenTutorial')
+    window.location.reload()
+  }
+
   render() {
     const { match } = this.props
     const {
@@ -325,6 +330,13 @@ class IICO extends PureComponent {
           failedLoading="The address or the contract it holds is invalid. Try another one."
           extraLoadingValues={[!hasSeenTutorial]}
         />
+        <div
+          data-tip="Click to replay tutorial."
+          onClick={this.handleReplayTutorialClick}
+          className="IICO-replayTutorial"
+        >
+          <b>i</b>
+        </div>
       </div>
     )
   }
