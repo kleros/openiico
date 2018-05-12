@@ -4587,6 +4587,7 @@ exports[`Storyshots Requires MetaMask needs unlock 1`] = `
               >
                 MetaMask
               </a>
+              .
             </div>
           </div>
           <div
@@ -4902,6 +4903,7 @@ exports[`Storyshots Requires MetaMask not found 1`] = `
               >
                 MetaMask
               </a>
+              .
             </div>
           </div>
           <div

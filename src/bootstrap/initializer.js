@@ -79,7 +79,7 @@ class Initializer extends PureComponent {
         failedLoading={
           <div>
             <RequiresMetaMask needsUnlock={isWeb3Loaded} />
-            <SimpleBid match={{ params: { address: pathAddress } }} />
+            <SimpleBid match={{ params: { address: pathAddress } }} noWeb3 />
           </div>
         }
         extraValues={[accounts.data && accounts.data[0]]}
