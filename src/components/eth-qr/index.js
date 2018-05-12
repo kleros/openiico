@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import EthereumQRCode from 'ethereum-qr-code'
+import QRCode from 'qrcode'
 import { SyncLoader } from 'react-spinners'
 
 export default class ETHQR extends PureComponent {
@@ -14,8 +14,6 @@ export default class ETHQR extends PureComponent {
     // State
     size: 200
   }
-
-  static ethereumQRCode = new EthereumQRCode()
 
   state = { dataURL: null }
 
@@ -32,7 +30,7 @@ export default class ETHQR extends PureComponent {
     const { to } = this.props
 
     this.setState({
-      dataURL: (await ETHQR.ethereumQRCode.toDataUrl({ to })).dataURL
+      dataURL: await QRCode.toDataURL(to)
     })
   }
 

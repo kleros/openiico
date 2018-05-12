@@ -285,16 +285,17 @@ class Bids extends PureComponent {
               value={KYCLevel}
               tooltip={KYCLevelTooltip}
             />
-            <StatBlock
-              label="Maximum Base Contribution (ETH)"
-              value={data.maximumBaseContribution}
-              tooltip="This is the maximum amount a person who has only passed the base KYC can contribute."
-            />
-            <StatBlock
-              label="Your Current Contribution (ETH)"
-              value={<ChainNumber>{currentContribution}</ChainNumber>}
-              tooltip="This is the sum of your current contributions."
-            />
+            {KYCLevel === 'Base' && (
+              <StatBlock
+                label="Remaining Allowed Contribution (ETH)"
+                value={
+                  <ChainNumber>
+                    {data.maximumBaseContribution - currentContribution}
+                  </ChainNumber>
+                }
+                tooltip="This is the amount you still have left over to contribute."
+              />
+            )}
           </StatRow>
         )}
         {hasStarted &&

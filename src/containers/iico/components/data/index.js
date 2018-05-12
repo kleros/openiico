@@ -42,6 +42,7 @@ export default class Data extends PureComponent {
 
   render() {
     const { data, tutorialNow } = this.props
+    const percentageStartingBonus = numberToPercentage(data.startingBonus)
 
     // Times
     const now = tutorialNow || Date.now()
@@ -53,11 +54,26 @@ export default class Data extends PureComponent {
 
     // Phase
     let phase
-    if (now < startTime) phase = 'Not Started'
-    else if (now < endFullBonusTime) phase = 'Full Bonus'
-    else if (now < withdrawalLockTime) phase = 'Partial Withdrawals'
-    else if (now < endTime) phase = 'Withdrawal Lockup'
-    else phase = 'Finished'
+    let phaseTooltip
+    if (now < startTime) {
+      phase = 'Not Started'
+      phaseTooltip =
+        'The sale has not started yet, look at the slider to see when it will start.'
+    } else if (now < endFullBonusTime) {
+      phase = 'Full Bonus'
+      phaseTooltip = `If you contribute now, you will have a ${percentageStartingBonus} bonus. You can also withdraw your contribution with no penalty.`
+    } else if (now < withdrawalLockTime) {
+      phase = 'Partial Withdrawals'
+      phaseTooltip =
+        'You can still withdraw but only partially and with a 1/3 penalty on your bonus.'
+    } else if (now < endTime) {
+      phase = 'Withdrawal Lockup'
+      phaseTooltip = 'You can no longer withdraw.'
+    } else {
+      phase = 'Finished'
+      phaseTooltip =
+        'The sale is over, once finalized, you can redeem your tokens and/or refunded ETH.'
+    }
 
     // Slider percents
     let initialPercent
@@ -114,7 +130,7 @@ export default class Data extends PureComponent {
               id="joyridePhase"
               label="Phase"
               value={phase}
-              tooltip="This is the sale's current phase. Go to step 5 of the tutorial for more info."
+              tooltip={phaseTooltip}
               noWrap
             />
           </StatRow>
@@ -123,7 +139,7 @@ export default class Data extends PureComponent {
           <StatBlock
             id="joyrideStartingBonus"
             label="Starting Bonus"
-            value={numberToPercentage(data.startingBonus)}
+            value={percentageStartingBonus}
             tooltip="This is the bonus at the start of the sale and throughout the Full Bonus phase."
             noWrap
           />

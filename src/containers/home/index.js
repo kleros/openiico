@@ -65,10 +65,8 @@ class Home extends PureComponent {
                 <h3 className="Home-result-link">
                   Go To{' '}
                   <Link to={`/simple/${IICOData.data.address}`}>Simple</Link> /{' '}
-                  <Link to={`/:address${IICOData.data.address}`}>
-                    Interactive
-                  </Link>{' '}
-                  IICO Page
+                  <Link to={`/${IICOData.data.address}`}>Interactive</Link> IICO
+                  Page
                 </h3>
               </div>
             )

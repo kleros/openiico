@@ -2744,12 +2744,11 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                
               <Link
                 replace={false}
-                to="/:address0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
+                to="/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
               >
                 Interactive
               </Link>
-               
-              IICO Page
+               IICO Page
             </h3>
           </div>
         }
@@ -2816,17 +2815,16 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
              
             <Link
               replace={false}
-              to="/:address0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
+              to="/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
             >
               <a
-                href="/:address0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
+                href="/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
                 onClick={[Function]}
               >
                 Interactive
               </a>
             </Link>
-             
-            IICO Page
+             IICO Page
           </h3>
         </div>
       </RenderIf>
