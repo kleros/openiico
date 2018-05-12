@@ -9,5 +9,9 @@
     &__button--primary {
       background: $primary !important;
     }
+
+    &__close {
+      display: none !important;
+    }
   }
 }
