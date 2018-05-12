@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { RenderIf } from 'lessdux'
 import { getChecksumAddress } from 'ethjs-account'
+import { PropagateLoader } from 'react-spinners'
 
 import * as walletSelectors from '../reducers/wallet'
 import * as walletActions from '../actions/wallet'
@@ -74,7 +75,11 @@ class Initializer extends PureComponent {
     return (
       <RenderIf
         resource={accounts}
-        loading="Loading Web3..."
+        loading={
+          <div id="initializer-loader">
+            <PropagateLoader color="#9b9b9b" size={20} />
+          </div>
+        }
         done={children}
         failedLoading={
           <div>
