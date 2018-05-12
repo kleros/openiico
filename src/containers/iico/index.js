@@ -336,6 +336,7 @@ class IICO extends PureComponent {
           failedLoading="The address or the contract it holds is invalid. Try another one."
           extraLoadingValues={[!hasSeenTutorial && !inTutorial]}
         />
+        <div className="IICO-inTutorial">In Tutorial Mode</div>
         <div
           data-tip="Click to replay tutorial."
           onClick={this.handleReplayTutorialClick}

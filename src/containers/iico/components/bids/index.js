@@ -263,10 +263,10 @@ class Bids extends PureComponent {
     let KYCLevel
     if (data.inReinforcedWhitelist) {
       KYCLevelTooltip =
-        "You have passed the Reinforced KYC and can contribute as much ETH as you'd like"
+        "You have passed the Reinforced KYC (with ID) and can contribute as much ETH as you'd like"
       KYCLevel = 'Reinforced'
     } else if (data.inBaseWhitelist) {
-      KYCLevelTooltip = `You have passed the Base KYC and can contribute less than or equal to ${
+      KYCLevelTooltip = `You have passed the Base KYC (with no ID) and can contribute less than or equal to ${
         data.maximumBaseContribution
       } ETH.`
       KYCLevel = 'Base'

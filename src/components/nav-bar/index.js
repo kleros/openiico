@@ -54,7 +54,11 @@ const NavBar = ({ location, accounts, balance, routes }) => (
         <RenderIf
           resource={balance}
           loading="..."
-          done={`${balance.data} ETH`}
+          done={
+            <span data-tip="This is your current Web3 addresses' balance.">
+              {balance.data} ETH
+            </span>
+          }
           failedLoading="..."
         />
       </div>

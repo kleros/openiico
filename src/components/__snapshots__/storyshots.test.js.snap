@@ -3254,7 +3254,12 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
                 <div
                   className="NavBar-buttons-balance"
                 >
-                  10 ETH
+                  <span
+                    data-tip="This is your current Web3 addresses' balance."
+                  >
+                    10
+                     ETH
+                  </span>
                 </div>
               </div>
             </div>
@@ -3619,7 +3624,12 @@ exports[`Storyshots Nav Bar with routes 1`] = `
                 <div
                   className="NavBar-buttons-balance"
                 >
-                  10 ETH
+                  <span
+                    data-tip="This is your current Web3 addresses' balance."
+                  >
+                    10
+                     ETH
+                  </span>
                 </div>
               </div>
             </div>

@@ -86,8 +86,12 @@ class SimpleBid extends PureComponent {
               `
             Your current Web3 address has the KYC Level "${
               IICOData.data.inReinforcedWhitelist
-                ? 'Reinforced'
-                : IICOData.data.inBaseWhitelist ? 'Base' : 'None'
+                ? '"Reinforced (with ID)" which means you can contribute as much as you\'d like'
+                : IICOData.data.inBaseWhitelist
+                  ? `"Base (with no ID)" which means you can contribute less than or equal to ${
+                      IICOData.data.maximumBaseContribution
+                    } ETH`
+                  : 'None'
             }". Make sure
             you send the transaction from the correct address.
             `
@@ -96,8 +100,10 @@ class SimpleBid extends PureComponent {
           />
         </p>
         <p>
-          Don't send your transaction from an exchange or your funds will be
-          lost.
+          <b>
+            DON'T SEND YOUR TRANSACTION FROM AN EXCHANGE OR YOUR FUNDS WILL BE
+            LOST.
+          </b>
         </p>
         {address && (
           <div className="SimpleBid-addressInfo">
@@ -120,7 +126,8 @@ class SimpleBid extends PureComponent {
         )}
         <p>
           At the end of the sale, you will just need to send a 0 ETH transaction
-          to the same contract in order to get your Tokens.
+          to the same contract in order to get your Tokens. We will contact you
+          at the end of the sale with a reminder.
         </p>
         {noWeb3 && (
           <p>

@@ -11,6 +11,6 @@ export default () => (
       transitionOut="bounceOutUp"
       progressBar
     />
-    <ReactTooltip multiline html delayHide={3000} />
+    <ReactTooltip multiline html />
   </div>
 )

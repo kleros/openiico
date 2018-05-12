@@ -16,6 +16,13 @@
     justify-content: center;
   }
 
+  &-inTutorial {
+    position: absolute;
+    right: 60px;
+    top: 36px;
+    transform: translateY(-50%);
+  }
+
   &-replayTutorial {
     background: $dark4;
     border-radius: 16px;
