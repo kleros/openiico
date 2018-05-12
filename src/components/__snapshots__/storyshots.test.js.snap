@@ -1313,7 +1313,7 @@ exports[`Storyshots Chain Number default 1`] = `
             className="ChainNumber"
             data-tip={0.000123}
           >
-            0.00
+            0.000123
           </span>
           <div
             data-radium={true}
