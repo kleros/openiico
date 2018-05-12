@@ -119,7 +119,7 @@ class Bids extends PureComponent {
         (amount * bonusMultiplier / overEstimatedVirtualValuation))
 
     toastr.confirm(null, {
-      okText: 'Yes',
+      okText: 'Confirm',
       onOk: () =>
         tutorialNow
           ? tutorialEditIICOBids(
@@ -139,18 +139,17 @@ class Bids extends PureComponent {
           : createIICOBid(address, amount, personalCap, noPersonalCap),
       component: () => (
         <div className="Bids-confirm">
-          Are you sure you wish to submit this bid?
-          <br />
           {noPersonalCap ? (
-            'You are not setting a personal cap.'
+            `You are going to contribute ${amount} ETH without a personal cap. This means you will get tokens no matter the price.`
           ) : (
             <div>
-              <ChainNumber>{maxTokenPrice}</ChainNumber> ETH
+              You are going to contribute {amount} ETH with a {personalCap} ETH
+              personal cap. If the total sum of accepted contributions is higher
+              than {personalCap} ETH, you will get reimbursed. Otherwise, you
+              will get tokens. This means that the maximum price per token you
+              would pay is
               <br />
-              is the maximum price per token you would pay with your personal
-              cap of
-              <br />
-              {personalCap} ETH.
+              <ChainNumber>{maxTokenPrice}</ChainNumber> ETH.
             </div>
           )}
         </div>

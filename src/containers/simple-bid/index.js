@@ -84,15 +84,15 @@ class SimpleBid extends PureComponent {
             done={
               IICOData.data &&
               `
-            Your current Web3 address has the KYC Level "${
+            Your current Web3 address has the KYC Level ${
               IICOData.data.inReinforcedWhitelist
                 ? '"Reinforced (with ID)" which means you can contribute as much as you\'d like'
                 : IICOData.data.inBaseWhitelist
                   ? `"Base (with no ID)" which means you can contribute less than or equal to ${
                       IICOData.data.maximumBaseContribution
                     } ETH`
-                  : 'None'
-            }". Make sure
+                  : '"None" which means you can\'t contribute until you complete the KYC and are approved'
+            }. Make sure
             you send the transaction from the correct address.
             `
             }
