@@ -32,7 +32,7 @@ class IICO extends PureComponent {
   }
 
   state = {
-    hasSeenTutorial: false,
+    hasSeenTutorial: localStorage.getItem('hasSeenTutorial') === 'true',
     inTutorial: false,
     tutorialNow: null,
     tutorialIICOData: null,
@@ -101,7 +101,10 @@ class IICO extends PureComponent {
             data: []
           }
         },
-        () => this.joyrideRef.reset(true)
+        () => {
+          localStorage.setItem('hasSeenTutorial', true)
+          this.joyrideRef.reset(true)
+        }
       )
     }
   }
@@ -263,6 +266,7 @@ class IICO extends PureComponent {
   render() {
     const { match } = this.props
     const {
+      hasSeenTutorial,
       inTutorial,
       tutorialNow,
       tutorialIICOData,
@@ -319,6 +323,7 @@ class IICO extends PureComponent {
             )
           }
           failedLoading="The address or the contract it holds is invalid. Try another one."
+          extraLoadingValues={[!hasSeenTutorial]}
         />
       </div>
     )
