@@ -577,6 +577,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                       component={[Function]}
                       key="IICOAddressForm-address"
                       name="address"
+                      normalize={[Function]}
                       props={
                         Object {
                           "placeholder": "Address",
@@ -1109,7 +1110,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
             validExceptSubmit={true}
             values={
               Object {
-                "address": "0xe8561c00c9d2857c54fc847c05fcd7f7fb1d5e3c",
+                "address": "0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C",
               }
             }
           >
@@ -1476,6 +1477,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                       component={[Function]}
                       key="IICOAddressForm-address"
                       name="address"
+                      normalize={[Function]}
                       props={
                         Object {
                           "placeholder": "Address",
@@ -1705,7 +1707,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                             }
                           }
                           validate={[Function]}
-                          value="0xe8561c00c9d2857c54fc847c05fcd7f7fb1d5e3c"
+                          value="0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
                         >
                           <TextInput
                             className=""
@@ -1717,7 +1719,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                                 "onDragStart": [Function],
                                 "onDrop": [Function],
                                 "onFocus": [Function],
-                                "value": "0xe8561c00c9d2857c54fc847c05fcd7f7fb1d5e3c",
+                                "value": "0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C",
                               }
                             }
                             meta={
@@ -1756,7 +1758,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                                 onBlur={[Function]}
                                 onChange={[Function]}
                                 type="text"
-                                value="0xe8561c00c9d2857c54fc847c05fcd7f7fb1d5e3c"
+                                value="0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
                               />
                               <div
                                 className="TextInput-placeholder is-touched"
@@ -1841,7 +1843,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
     IICOData={
       Object {
         "data": Object {
-          "address": "0xe8561c00c9d2857c54fc847c05fcd7f7fb1d5e3c",
+          "address": "0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C",
           "bonus": 0,
           "cutOffBidContrib": 0,
           "cutOffBidID": 0,
@@ -1855,7 +1857,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
           "maximumBaseContribution": 5,
           "startTime": "2018-01-25T21:39:54.000Z",
           "startingBonus": 0.2,
-          "tokenContractAddress": "0x10070265733b0f064ee81f698437cd07137bb0ec",
+          "tokenContractAddress": "0x10070265733b0f064EE81F698437cd07137BB0Ec",
           "tokensForSale": 160000000,
           "valuation": 0,
           "virtualValuation": 0,
@@ -2028,7 +2030,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
             validExceptSubmit={true}
             values={
               Object {
-                "address": "0xe8561c00c9d2857c54fc847c05fcd7f7fb1d5e3c",
+                "address": "0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C",
               }
             }
           >
@@ -2400,6 +2402,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                       component={[Function]}
                       key="IICOAddressForm-address"
                       name="address"
+                      normalize={[Function]}
                       props={
                         Object {
                           "placeholder": "Address",
@@ -2634,7 +2637,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                             }
                           }
                           validate={[Function]}
-                          value="0xe8561c00c9d2857c54fc847c05fcd7f7fb1d5e3c"
+                          value="0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
                         >
                           <TextInput
                             className=""
@@ -2646,7 +2649,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                                 "onDragStart": [Function],
                                 "onDrop": [Function],
                                 "onFocus": [Function],
-                                "value": "0xe8561c00c9d2857c54fc847c05fcd7f7fb1d5e3c",
+                                "value": "0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C",
                               }
                             }
                             meta={
@@ -2685,7 +2688,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                                 onBlur={[Function]}
                                 onChange={[Function]}
                                 type="text"
-                                value="0xe8561c00c9d2857c54fc847c05fcd7f7fb1d5e3c"
+                                value="0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
                               />
                               <div
                                 className="TextInput-placeholder is-touched"
@@ -2711,7 +2714,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
           done={
             <div>
               <Unknown
-                seed="0xe8561c00c9d2857c54fc847c05fcd7f7fb1d5e3c"
+                seed="0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
                 size={60}
               />
               <h2
@@ -2719,7 +2722,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
               >
                 <Link
                   replace={false}
-                  to="/0xe8561c00c9d2857c54fc847c05fcd7f7fb1d5e3c"
+                  to="/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
                 >
                   Go To IICO Page
                 </Link>
@@ -2731,7 +2734,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
           resource={
             Object {
               "data": Object {
-                "address": "0xe8561c00c9d2857c54fc847c05fcd7f7fb1d5e3c",
+                "address": "0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C",
                 "bonus": 0,
                 "cutOffBidContrib": 0,
                 "cutOffBidID": 0,
@@ -2745,7 +2748,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                 "maximumBaseContribution": 5,
                 "startTime": "2018-01-25T21:39:54.000Z",
                 "startingBonus": 0.2,
-                "tokenContractAddress": "0x10070265733b0f064ee81f698437cd07137bb0ec",
+                "tokenContractAddress": "0x10070265733b0f064EE81F698437cd07137BB0Ec",
                 "tokensForSale": 160000000,
                 "valuation": 0,
                 "virtualValuation": 0,
@@ -2760,7 +2763,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
         >
           <div>
             <Component
-              seed="0xe8561c00c9d2857c54fc847c05fcd7f7fb1d5e3c"
+              seed="0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
               size={60}
             >
               <div>
@@ -2772,10 +2775,10 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
             >
               <Link
                 replace={false}
-                to="/0xe8561c00c9d2857c54fc847c05fcd7f7fb1d5e3c"
+                to="/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
               >
                 <a
-                  href="/0xe8561c00c9d2857c54fc847c05fcd7f7fb1d5e3c"
+                  href="/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
                   onClick={[Function]}
                 >
                   Go To IICO Page

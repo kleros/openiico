@@ -1,4 +1,5 @@
 import Eth from 'ethjs'
+import { getChecksumAddress } from 'ethjs-account'
 
 import { takeLatest, select, all, call, put } from 'redux-saga/effects'
 
@@ -96,7 +97,7 @@ function* fetchIICOData({ payload: { address } }) {
     ethPrice: d.ethTicker && d.ethTicker.data.quotes.USD.price,
 
     // Token
-    tokenContractAddress: d.tokenContractAddress[0],
+    tokenContractAddress: getChecksumAddress(d.tokenContractAddress[0]),
     tokensForSale: Number(Eth.fromWei(d.tokensForSale[0], 'ether')),
 
     // Times

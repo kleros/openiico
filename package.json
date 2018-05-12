@@ -75,7 +75,9 @@
   },
   "dependencies": {
     "create-redux-form": "^0.1.2",
+    "ethereum-qr-code": "^0.3.0",
     "ethjs": "^0.3.3",
+    "ethjs-account": "^0.1.4",
     "history": "^4.7.2",
     "lessdux": "^0.7.0",
     "normalize.css": "^7.0.0",

@@ -10,26 +10,19 @@ export const {
   Form: SubmitBidForm,
   isInvalid: getSubmitBidFormIsInvalid,
   submit: submitSubmitBidForm
-} = form(
-  'submitBidForm',
-  {
-    amount: {
-      type: 'text',
-      validate: [required, number, positive, nonZero],
-      props: { type: 'number', placeholder: 'Amount (ETH)' }
-    },
-    personalCap: {
-      type: 'text',
-      validate: [required, number, positive, nonZero],
-      props: { type: 'number', placeholder: 'Personal Cap (ETH)' },
-      visibleIf: '!noPersonalCap'
-    },
-    noPersonalCap: {
-      type: 'checkbox'
-    }
+} = form('submitBidForm', {
+  amount: {
+    type: 'text',
+    validate: [required, number, positive, nonZero],
+    props: { type: 'number', placeholder: 'Amount (ETH)' }
   },
-  {
-    touchOnBlur: true,
-    touchOnChange: true
+  personalCap: {
+    type: 'text',
+    validate: [required, number, positive, nonZero],
+    props: { type: 'number', placeholder: 'Personal Cap (ETH)' },
+    visibleIf: '!noPersonalCap'
+  },
+  noPersonalCap: {
+    type: 'checkbox'
   }
-)
+})
