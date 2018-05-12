@@ -19,14 +19,6 @@ export default class ETHQR extends PureComponent {
 
   state = { dataURL: null }
 
-  generateDataURL = async () => {
-    const { to } = this.props
-
-    this.setState({
-      dataURL: (await ETHQR.ethereumQRCode.toDataUrl({ to })).dataURL
-    })
-  }
-
   constructor(props) {
     super(props)
     this.generateDataURL()
@@ -34,6 +26,14 @@ export default class ETHQR extends PureComponent {
 
   componentDidUpdate() {
     this.generateDataURL()
+  }
+
+  generateDataURL = async () => {
+    const { to } = this.props
+
+    this.setState({
+      dataURL: (await ETHQR.ethereumQRCode.toDataUrl({ to })).dataURL
+    })
   }
 
   render() {

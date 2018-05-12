@@ -61,9 +61,10 @@ class Home extends PureComponent {
                 <div>
                   <Identicon seed={IICOData.data.address} size={60} />
                   <h2 className="Home-result-link">
-                    <Link to={`/${IICOData.data.address}`}>
-                      Go To IICO Page
-                    </Link>
+                    Go To{' '}
+                    <Link to={`/simple/${IICOData.data.address}`}>Simple</Link>{' '}
+                    / <Link to={`/${IICOData.data.address}`}>Interactive</Link>{' '}
+                    IICO Page
                   </h2>
                 </div>
               )

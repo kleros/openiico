@@ -2720,12 +2720,24 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
               <h2
                 className="Home-result-link"
               >
+                Go To
+                 
+                <Link
+                  replace={false}
+                  to="/simple/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
+                >
+                  Simple
+                </Link>
+                 
+                / 
                 <Link
                   replace={false}
                   to="/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
                 >
-                  Go To IICO Page
+                  Interactive
                 </Link>
+                 
+                IICO Page
               </h2>
             </div>
           }
@@ -2773,6 +2785,21 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
             <h2
               className="Home-result-link"
             >
+              Go To
+               
+              <Link
+                replace={false}
+                to="/simple/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
+              >
+                <a
+                  href="/simple/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
+                  onClick={[Function]}
+                >
+                  Simple
+                </a>
+              </Link>
+               
+              / 
               <Link
                 replace={false}
                 to="/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
@@ -2781,9 +2808,11 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                   href="/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
                   onClick={[Function]}
                 >
-                  Go To IICO Page
+                  Interactive
                 </a>
               </Link>
+               
+              IICO Page
             </h2>
           </div>
         </RenderIf>

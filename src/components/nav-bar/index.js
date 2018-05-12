@@ -9,23 +9,37 @@ import logo from '../../assets/images/logo.png'
 
 import './nav-bar.css'
 
-const NavBar = ({ accounts, balance, routes }) => (
+const NavBar = ({ location, accounts, balance, routes }) => (
   <div className="NavBar">
     <a href="https://kleros.io">
-      <img className="NavBar-logo" src={logo} alt="Logo" />
+      <img src={logo} alt="Logo" className="NavBar-logo" />
     </a>
     <div className="NavBar-tabs">
-      {routes.map(r => (
-        <NavLink
-          key={r.to}
-          className="NavBar-tabs-tab"
-          activeClassName="is-active"
-          to={r.to}
-          exact={r.to === '/'}
-        >
-          {r.name}
-        </NavLink>
-      ))}
+      {routes.filter(r => !r.visible || r.visible(location)).map(r => {
+        const to = typeof r.to === 'function' ? r.to(location) : r.to
+
+        return r.isExternal ? (
+          <a
+            key={to}
+            href={to}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="NavBar-tabs-tab"
+          >
+            {r.name}
+          </a>
+        ) : (
+          <NavLink
+            key={to}
+            to={to}
+            exact={to === '/'}
+            activeClassName="is-active"
+            className="NavBar-tabs-tab"
+          >
+            {r.name}
+          </NavLink>
+        )
+      })}
     </div>
     <div className="NavBar-buttons">
       <div className="NavBar-buttons-button">
@@ -49,6 +63,11 @@ const NavBar = ({ accounts, balance, routes }) => (
 )
 
 NavBar.propTypes = {
+  // React Router
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired
+  }),
+
   // Redux State
   accounts: walletSelectors.accountsShape.isRequired,
   balance: walletSelectors.balanceShape.isRequired,
@@ -57,9 +76,16 @@ NavBar.propTypes = {
   routes: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
-      to: PropTypes.string.isRequired
+      to: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
+      isExternal: PropTypes.bool,
+      visible: PropTypes.func
     }).isRequired
   ).isRequired
+}
+
+NavBar.defaultProps = {
+  // React Router
+  location: null
 }
 
 export default NavBar

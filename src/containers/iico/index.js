@@ -57,55 +57,49 @@ class IICO extends PureComponent {
 
   componentDidUpdate() {
     const { IICOData, IICOBids } = this.props
-    const { hasSeenTutorial } = this.state
+    const { hasSeenTutorial, inTutorial } = this.state
 
     if (
       !IICOData.loading &&
       IICOData.data &&
       !IICOBids.loading &&
       IICOBids.data &&
-      !hasSeenTutorial
+      !hasSeenTutorial &&
+      !inTutorial
     ) {
       const tutorialIICOData = JSON.parse(JSON.stringify(IICOData))
       const tutorialIICOBids = JSON.parse(JSON.stringify(IICOBids))
       const startTime = IICOData.data.startTime.getTime()
-      this.setState(
-        {
-          hasSeenTutorial: true,
-          inTutorial: true,
-          tutorialNow: startTime - 1000,
-          tutorialIICOData: {
-            ...tutorialIICOData,
-            data: {
-              ...tutorialIICOData.data,
-              tokensForSale: 0.16 * 1e9,
-              startTime: new Date(startTime),
-              endFullBonusTime: new Date(
-                IICOData.data.endFullBonusTime.getTime()
-              ),
-              withdrawalLockTime: new Date(
-                IICOData.data.withdrawalLockTime.getTime()
-              ),
-              endTime: new Date(IICOData.data.endTime.getTime()),
-              bonus: IICOData.data.startingBonus,
-              valuation: 0,
-              virtualValuation: 0,
-              cutOffBidID: 0,
-              cutOffBidMaxValuation: 0,
-              cutOffBidContrib: 0,
-              finalized: false
-            }
-          },
-          tutorialIICOBids: {
-            ...tutorialIICOBids,
-            data: []
+      this.setState({
+        inTutorial: true,
+        tutorialNow: startTime - 1000,
+        tutorialIICOData: {
+          ...tutorialIICOData,
+          data: {
+            ...tutorialIICOData.data,
+            tokensForSale: 0.16 * 1e9,
+            startTime: new Date(startTime),
+            endFullBonusTime: new Date(
+              IICOData.data.endFullBonusTime.getTime()
+            ),
+            withdrawalLockTime: new Date(
+              IICOData.data.withdrawalLockTime.getTime()
+            ),
+            endTime: new Date(IICOData.data.endTime.getTime()),
+            bonus: IICOData.data.startingBonus,
+            valuation: 0,
+            virtualValuation: 0,
+            cutOffBidID: 0,
+            cutOffBidMaxValuation: 0,
+            cutOffBidContrib: 0,
+            finalized: false
           }
         },
-        () => {
-          localStorage.setItem('hasSeenTutorial', true)
-          this.joyrideRef.reset(true)
+        tutorialIICOBids: {
+          ...tutorialIICOBids,
+          data: []
         }
-      )
+      })
     }
   }
 
@@ -113,7 +107,10 @@ class IICO extends PureComponent {
     clearInterval(this.pollIICODataInterval)
   }
 
-  getJoyrideRef = ref => (this.joyrideRef = ref)
+  getJoyrideRef = ref => {
+    this.joyrideRef = ref
+    this.joyrideRef && this.joyrideRef.reset(true)
+  }
 
   joyrideCallback = ({ type, step }) => {
     const { tutorialIICOData } = this.state
@@ -166,12 +163,16 @@ class IICO extends PureComponent {
         }
         break
       case 'finished':
-        this.setState({
-          inTutorial: false,
-          tutorialNow: null,
-          tutorialIICOData: null,
-          tutorialIICOBids: null
-        })
+        this.setState(
+          {
+            hasSeenTutorial: true,
+            inTutorial: false,
+            tutorialNow: null,
+            tutorialIICOData: null,
+            tutorialIICOBids: null
+          },
+          () => localStorage.setItem('hasSeenTutorial', true)
+        )
         break
       default:
         break
@@ -209,7 +210,7 @@ class IICO extends PureComponent {
             : b
       )
     else newBids = [...tutorialIICOBids.data, IICOBidOrID]
-    console.log(newBids)
+
     // Calculate new tutorial IICO Data
     const bids = [...newBids].sort((a, b) => {
       if (b.maxValuation === a.maxValuation) return b.ID - a.ID
@@ -283,7 +284,12 @@ class IICO extends PureComponent {
 
     return (
       <div className="IICO">
-        <Joyride getRef={this.getJoyrideRef} callback={this.joyrideCallback} />
+        {!hasSeenTutorial && (
+          <Joyride
+            getRef={this.getJoyrideRef}
+            callback={this.joyrideCallback}
+          />
+        )}
         <RenderIf
           resource={IICOData}
           loading={
@@ -328,7 +334,7 @@ class IICO extends PureComponent {
             )
           }
           failedLoading="The address or the contract it holds is invalid. Try another one."
-          extraLoadingValues={[!hasSeenTutorial]}
+          extraLoadingValues={[!hasSeenTutorial && !inTutorial]}
         />
         <div
           data-tip="Click to replay tutorial."
