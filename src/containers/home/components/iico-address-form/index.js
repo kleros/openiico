@@ -1,7 +1,7 @@
 import { getChecksumAddress } from 'ethjs-account'
 
 import { form } from '../../../../utils/form-generator'
-import { required } from '../../../../utils/validation'
+import { required, isETHAddress } from '../../../../utils/validation'
 import { ETHAddressRegExp } from '../../../../bootstrap/dapp-api'
 
 export const {
@@ -15,7 +15,7 @@ export const {
   },
   address: {
     type: 'text',
-    validate: [required],
+    validate: [required, isETHAddress],
     reduxFormFieldProps: {
       normalize: value =>
         ETHAddressRegExp.test(value) ? getChecksumAddress(value) : value
