@@ -11,9 +11,7 @@ import './nav-bar.css'
 
 const NavBar = ({ location, accounts, balance, routes }) => (
   <div className="NavBar">
-    <a href="https://kleros.io">
-      <img src={logo} alt="Logo" className="NavBar-logo" />
-    </a>
+    <img src={logo} alt="Logo" className="NavBar-logo" />
     <div className="NavBar-tabs">
       {routes.filter(r => !r.visible || r.visible(location)).map(r => {
         const to = typeof r.to === 'function' ? r.to(location) : r.to

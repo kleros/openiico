@@ -81,7 +81,7 @@ class Bids extends PureComponent {
       Date.now() >= data.withdrawalLockTime.getTime() &&
       Number(values.personalCap) < data.valuation
     )
-      errors.personalCap = 'Must be higher than valuation.'
+      errors.personalCap = 'Must be higher than amount raised.'
 
     return errors
   }
@@ -194,9 +194,16 @@ class Bids extends PureComponent {
           <br />
           <ChainNumber>{lockedIn}</ChainNumber> ETH
           <br />
-          would remain locked in and your new bonus would be
-          <br />
-          {numberToPercentage(newBonus)}.
+          would remain locked in{lockedIn ? (
+            <span>
+              {' '}
+              and your new bonus would be
+              <br />
+              {numberToPercentage(newBonus)}
+            </span>
+          ) : (
+            '.'
+          )}
         </div>
       )
     })

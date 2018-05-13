@@ -55,7 +55,7 @@ export default [
   {
     text: (
       <span>
-        This is the sale’s current valuation.
+        This is the sale’s current amount raised.
         <br />
         <br />
         That is, the sum of contributions if the sale were to end now and
@@ -91,7 +91,7 @@ export default [
         <br />
         <b>Withdrawal Lockup:</b> You may still place bids, but manual
         withdrawals are no longer permitted. The only way for a bid to be
-        refunded is if the valuation exceeds its personal cap.
+        refunded is if the amount raised exceeds its personal cap.
         <br />
         <br />
         <b>Finished:</b> You may now redeem your tokens and/or ETH.
@@ -114,10 +114,10 @@ export default [
         <br />
         <br />
         The share of tokens you receive is equal to your contribution plus your
-        bonus over the valuation with everyone's bonuses factored in.
+        bonus over the amount raised with everyone's bonuses factored in.
         <br />
         <br />
-        Formula: (bid * (1 + (bonus / 100))) / valuationWithBonuses
+        Formula: (bid * (1 + (bonus / 100))) / amountRaisedWithBonuses
       </span>
     ),
     selector: '#joyrideStartingBonus'
@@ -155,19 +155,25 @@ export default [
     text: (
       <span>
         This is where you can make bids. The personal cap lets you set a max cap
-        at which you are willing to participate in the sale with. If the
-        valuation ends up exceeding this value, your bid will be automatically
+        at which you are willing to participate in the sale with. If the amount
+        raised ends up exceeding this value, your bid will be automatically
         refunded.
         <br />
         <br />
-        If you want to participate regardless of valuation, just check the “No
-        Personal Cap” checkbox.
+        If you want to participate regardless of the amount raised, just check
+        the “No Personal Cap” checkbox.
         <br />
         <br />
         Try placing a bid now and take advantage of the “Full Bonus” phase.
         <br />
         <br />
         <b>Place a bid to continue.</b>
+        <br />
+        <br />
+        <b>
+          Remember that everything you do in the tutorial is virtual and does
+          not create any transactions.
+        </b>
       </span>
     ),
     selector: '#joyridePlaceBid',
@@ -210,6 +216,9 @@ export default [
           this
         </a>{' '}
         article to learn more.
+        <br />
+        <br />
+        <b>Withdraw your bid to continue.</b>
       </span>
     ),
     selector: '#joyrideWithdraw',
@@ -231,7 +240,7 @@ export default [
       <span>
         Good job! Now you can redeem your tokens (for bids that stayed in the
         sale) and/or ETH (for bids where the personal cap ended up being under
-        or in some cases equal to the valuation).
+        or in some cases equal to, the amount raised).
         <br />
         <br />
         <b>Redeem your bid to continue.</b>

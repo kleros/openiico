@@ -63,10 +63,10 @@ class SimpleBid extends PureComponent {
           </p>
         )}
         <p>
-          If you don't care about setting a personal cap on the valuation for
-          your bid, you can use any wallet software to send ETH directly to the
-          contract address. This is equivalent to submitting a bid with the "No
-          Personal Cap" checkbox checked on the interactive interface.
+          If you don't care about setting a personal cap on the amount raised
+          for your bid, you can use any wallet software to send ETH directly to
+          the contract address. This is equivalent to submitting a bid with the
+          "No Personal Cap" checkbox checked on the interactive interface.
         </p>
         <p>
           The address you send from has to be whitelisted in the{' '}

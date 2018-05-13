@@ -36,7 +36,6 @@ const ConnectedNavBar = connect(state => ({
     accounts={accounts}
     balance={balance}
     routes={[
-      { name: 'Home', to: '/' },
       {
         name: 'Simple',
         to: toWithPossibleAddress('/simple'),

@@ -3147,15 +3147,11 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
             <div
               className="NavBar"
             >
-              <a
-                href="https://kleros.io"
-              >
-                <img
-                  alt="Logo"
-                  className="NavBar-logo"
-                  src="logo.png"
-                />
-              </a>
+              <img
+                alt="Logo"
+                className="NavBar-logo"
+                src="logo.png"
+              />
               <div
                 className="NavBar-tabs"
               >
@@ -3571,15 +3567,11 @@ exports[`Storyshots Nav Bar with routes 1`] = `
             <div
               className="NavBar"
             >
-              <a
-                href="https://kleros.io"
-              >
-                <img
-                  alt="Logo"
-                  className="NavBar-logo"
-                  src="logo.png"
-                />
-              </a>
+              <img
+                alt="Logo"
+                className="NavBar-logo"
+                src="logo.png"
+              />
               <div
                 className="NavBar-tabs"
               >

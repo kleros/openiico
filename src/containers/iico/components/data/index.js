@@ -105,7 +105,7 @@ export default class Data extends PureComponent {
           <StatRow withBoxShadow>
             <StatBlock
               id="joyrideValuation"
-              label="Valuation (ETH)"
+              label="Amount Raised (ETH)"
               value={<ChainNumber>{data.valuation || 0}</ChainNumber>}
               tooltip="This is the sum of all contributions that are currently in the sale (not refunded)."
               noWrap
@@ -115,7 +115,7 @@ export default class Data extends PureComponent {
             )}
             {data.ethPrice && (
               <StatBlock
-                label="Valuation (USD)"
+                label="Amount Raised (USD)"
                 value={
                   <div>
                     $<ChainNumber>
