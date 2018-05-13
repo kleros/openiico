@@ -68,6 +68,14 @@ class Home extends PureComponent {
                   <Link to={`/${IICOData.data.address}`}>Interactive</Link> IICO
                   Page
                 </h3>
+                <p>
+                  Use the simple interface if you just want to buy tokens in a
+                  simple manner.
+                </p>
+                <p>
+                  Use the interactive interface if you want to place
+                  sophisticated bids with personal caps on the amount raised.
+                </p>
               </div>
             )
           }
