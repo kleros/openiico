@@ -14,12 +14,20 @@ export const {
   amount: {
     type: 'text',
     validate: [required, number, positive, nonZero],
-    props: { type: 'number', placeholder: 'Amount (ETH)' }
+    props: {
+      type: 'number',
+      step: 1e-18,
+      placeholder: 'Amount (ETH)'
+    }
   },
   personalCap: {
     type: 'text',
     validate: [required, number, positive, nonZero],
-    props: { type: 'number', placeholder: 'Personal Cap (ETH)' },
+    props: {
+      type: 'number',
+      step: 1e-18,
+      placeholder: 'Personal Cap (ETH)'
+    },
     visibleIf: '!noPersonalCap'
   },
   noPersonalCap: {

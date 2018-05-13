@@ -177,6 +177,8 @@ class IICO extends PureComponent {
       default:
         break
     }
+
+    setTimeout(() => dispatchEvent(new Event('resize')), 1000) // Fix tooltip positioning lag
   }
 
   tutorialFinalizeIICOData = callback => {

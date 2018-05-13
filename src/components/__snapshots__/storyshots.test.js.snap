@@ -6902,6 +6902,7 @@ exports[`Storyshots Text Input default 1`] = `
               className="TextInput-input"
               onBlur={undefined}
               onChange={[Function]}
+              step={undefined}
               type="text"
               value=""
             />
@@ -7214,6 +7215,7 @@ exports[`Storyshots Text Input error 1`] = `
               className="TextInput-input"
               onBlur={undefined}
               onChange={[Function]}
+              step={undefined}
               type="text"
               value=""
             />
@@ -7526,6 +7528,7 @@ exports[`Storyshots Text Input touched 1`] = `
               className="TextInput-input"
               onBlur={undefined}
               onChange={[Function]}
+              step={undefined}
               type="text"
               value=""
             />
@@ -7838,6 +7841,7 @@ exports[`Storyshots Text Input valid 1`] = `
               className="TextInput-input"
               onBlur={undefined}
               onChange={[Function]}
+              step={undefined}
               type="text"
               value=""
             />

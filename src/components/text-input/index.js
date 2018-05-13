@@ -8,6 +8,7 @@ const TextInput = ({
   meta: { touched, valid, error },
   placeholder,
   type,
+  step,
   className
 }) => (
   <div
@@ -20,6 +21,7 @@ const TextInput = ({
       onBlur={onBlur}
       onChange={onChange}
       type={type}
+      step={step}
       className="TextInput-input"
     />
     {placeholder && (
@@ -56,6 +58,7 @@ TextInput.propTypes = {
 
   // Modifiers
   type: PropTypes.string,
+  step: PropTypes.number,
   className: PropTypes.string
 }
 
@@ -65,6 +68,7 @@ TextInput.defaultProps = {
 
   // Modifiers
   type: 'text',
+  step: undefined,
   className: ''
 }
 
