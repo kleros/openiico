@@ -35,9 +35,16 @@ class Initializer extends PureComponent {
 
     // There is an address
     if (address) {
-      const checksumAddress = getChecksumAddress(address)
+      // Check if it is an existing contract address
+      eth
+        .getCode(address)
+        .then(res => {
+          if (res === '0x') throw new Error()
+        })
+        .catch(() => window.location.replace('/404'))
 
       // Is it checksummed?
+      const checksumAddress = getChecksumAddress(address)
       if (address === checksumAddress)
         return address // Yes, return it
       else
