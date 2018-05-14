@@ -1,0 +1,13 @@
+/* @define SimpleBid */
+.SimpleBid {
+  padding: 25px 15% 50px;
+  text-align: justify;
+
+  &-addressInfo {
+    &-blocks {
+      display: flex;
+      justify-content: space-evenly;
+      margin-top: 24px;
+    }
+  }
+}

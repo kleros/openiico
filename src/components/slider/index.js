@@ -1,9 +1,11 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
+import { numberToPercentage } from '../../utils/number'
+
 import './slider.css'
 
-class Slider extends PureComponent {
+export default class Slider extends PureComponent {
   static propTypes = {
     // State
     startLabel: PropTypes.string.isRequired,
@@ -13,7 +15,8 @@ class Slider extends PureComponent {
       PropTypes.shape({
         label: PropTypes.string.isRequired,
         percent: PropTypes.number.isRequired,
-        color: PropTypes.string
+        color: PropTypes.string,
+        point: PropTypes.bool
       }).isRequired
     ),
 
@@ -45,11 +48,6 @@ class Slider extends PureComponent {
       })
   }
 
-  percentToPixel = percent => {
-    if (!this.barRef) return 0
-    return this.barRef.getBoundingClientRect().width * percent
-  }
-
   handleBarMouseMove = event => {
     const { calcValue } = this.props
 
@@ -62,8 +60,46 @@ class Slider extends PureComponent {
   }
 
   render() {
-    const { startLabel, endLabel, steps } = this.props
+    const { startLabel, endLabel, steps: _steps } = this.props
     const { left, value } = this.state
+
+    const steps = []
+    if (_steps) {
+      let accLeftPercent = 0
+      for (const step of _steps) {
+        let width
+        let style
+        if (step.point)
+          style = {
+            left: numberToPercentage(step.percent)
+          }
+        else {
+          width = step.percent - accLeftPercent
+          style = {
+            left: numberToPercentage(accLeftPercent),
+            width: numberToPercentage(width)
+          }
+          accLeftPercent += width
+        }
+
+        steps.push(
+          <div
+            key={step.label + step.percent}
+            onMouseMove={this.handleBarMouseMove}
+            className={`Slider-step ${step.point ? 'Slider-step--point' : ''}`}
+            style={{
+              background: step.color,
+              ...style
+            }}
+          >
+            <div className="Slider-step-label">
+              <p>{step.label}</p>
+            </div>
+          </div>
+        )
+      }
+    }
+
     return (
       <div className="Slider">
         {/* Bar */}
@@ -72,6 +108,8 @@ class Slider extends PureComponent {
           onMouseMove={this.handleBarMouseMove}
           className="Slider-bar"
         />
+        {/* Steps */}
+        {steps}
         {/* Thumb */}
         <div className="Slider-thumb" style={{ left }} />
         {value && (
@@ -79,23 +117,6 @@ class Slider extends PureComponent {
             <h4>{value}</h4>
           </div>
         )}
-        {/* Steps */}
-        {steps &&
-          steps.map(s => (
-            <div
-              key={s.percent}
-              onMouseMove={this.handleBarMouseMove}
-              className="Slider-step"
-              style={{
-                background: s.color,
-                left: this.percentToPixel(s.percent)
-              }}
-            >
-              <div className="Slider-step-label">
-                <p>{s.label}</p>
-              </div>
-            </div>
-          ))}
         {/* Labels */}
         <div className="Slider-labels">
           <p>{startLabel}</p>
@@ -105,5 +126,3 @@ class Slider extends PureComponent {
     )
   }
 }
-
-export default Slider

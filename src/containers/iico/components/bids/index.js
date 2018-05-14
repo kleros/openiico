@@ -6,6 +6,7 @@ import { SyncLoader } from 'react-spinners'
 
 import * as IICOSelectors from '../../../../reducers/iico'
 import * as IICOActions from '../../../../actions/iico'
+import * as walletSelectors from '../../../../reducers/wallet'
 import {
   SubmitBidForm,
   getSubmitBidFormIsInvalid,
@@ -28,6 +29,7 @@ class Bids extends PureComponent {
   static propTypes = {
     // Redux State
     IICOBid: IICOSelectors.IICOBidShape.isRequired,
+    accounts: walletSelectors.accountsShape.isRequired,
 
     // Action Dispatchers
     createIICOBid: PropTypes.func.isRequired,
@@ -51,23 +53,122 @@ class Bids extends PureComponent {
     updatingBids: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.arrayOf(PropTypes.number.isRequired)
-    ]).isRequired
+    ]).isRequired,
+    tutorialNow: PropTypes.number,
+    tutorialFinalizeIICOData: PropTypes.func.isRequired,
+    tutorialEditIICOBids: PropTypes.func.isRequired,
+    tutorialNext: PropTypes.func.isRequired
   }
 
-  handleSubmitBidFormSubmit = formData => {
-    const { address, createIICOBid } = this.props
-    createIICOBid(
-      address,
-      formData.amount,
-      formData.personalCap,
-      formData.noPersonalCap
+  static defaultProps = {
+    tutorialNow: null
+  }
+
+  validateSubmitBidForm = values => {
+    const { data, bids } = this.props
+    const errors = {}
+
+    // Check we are not exceeding the KYC max base contrib
+    if (
+      !data.inReinforcedWhitelist &&
+      bids.reduce((acc, b) => b.contrib + acc, 0) + Number(values.amount) >
+        data.maximumBaseContribution
     )
+      errors.amount = 'Cannot exceed maximum base KYC contribution.'
+
+    // Check we are not submitting a personal cap lower than the valuation after the withdrawal lockup
+    if (
+      Date.now() >= data.withdrawalLockTime.getTime() &&
+      Number(values.personalCap) < data.valuation
+    )
+      errors.personalCap = 'Must be higher than amount raised.'
+
+    return errors
+  }
+
+  handleSubmitBidFormSubmit = ({
+    amount: _amount,
+    personalCap: _personalCap,
+    noPersonalCap
+  }) => {
+    const {
+      accounts,
+      address,
+      data,
+      bids,
+      createIICOBid,
+      tutorialNow,
+      tutorialEditIICOBids,
+      tutorialNext
+    } = this.props
+    const amount = Number(_amount)
+    const personalCap = Number(_personalCap)
+
+    // Calculate max token price
+    const bonusMultiplier = 1 + data.bonus
+
+    const leftOverToBid = personalCap - (data.valuation + amount)
+
+    // If `leftOverToBid` is positive, assume future bids will get the current bonus, if it's negative, assume bids we are removing have the current bonus. This overestimates the max token price in both cases.
+    const overEstimatedVirtualValuation =
+      data.virtualValuation + (amount + leftOverToBid) * bonusMultiplier
+
+    const maxTokenPrice =
+      amount /
+      (data.tokensForSale *
+        (amount * bonusMultiplier / overEstimatedVirtualValuation))
+
+    toastr.confirm(null, {
+      okText: 'Confirm',
+      onOk: () =>
+        tutorialNow
+          ? tutorialEditIICOBids(
+              {
+                ID: bids.length ? bids[bids.length - 1].ID + 1 : 0,
+                maxValuation: personalCap,
+                contrib: amount,
+                bonus: data.bonus,
+                contributor: accounts.data[0],
+                withdrawn: false,
+                redeemed: false
+              },
+              () => {
+                if (bids.length === 0) tutorialNext()
+              }
+            )
+          : createIICOBid(address, amount, personalCap, noPersonalCap),
+      component: () => (
+        <div className="Bids-confirm">
+          {noPersonalCap ? (
+            `You are going to contribute ${amount} ETH without a personal cap. This means you will get tokens no matter the price.`
+          ) : (
+            <div>
+              You are going to contribute {amount} ETH with a {personalCap} ETH
+              personal cap. If the total sum of accepted contributions is higher
+              than {personalCap} ETH, you will get reimbursed. Otherwise, you
+              will get tokens. This means that the maximum price per token you
+              would pay is
+              <br />
+              <ChainNumber>{maxTokenPrice}</ChainNumber> ETH.
+            </div>
+          )}
+        </div>
+      )
+    })
   }
 
   handleWithdrawClick = ({ currentTarget: { id: _id } }) => {
-    const { address, data, bids, withdrawIICOBid } = this.props
+    const {
+      withdrawIICOBid,
+      address,
+      data,
+      bids,
+      tutorialNow,
+      tutorialEditIICOBids,
+      tutorialNext
+    } = this.props
     const id = Number(_id)
-    const now = Date.now()
+    const now = tutorialNow || Date.now()
     const endFullBonusTime = data.endFullBonusTime.getTime()
     const withdrawalLockTime = data.withdrawalLockTime.getTime()
     const bid = bids.find(b => b.ID === id)
@@ -83,33 +184,61 @@ class Bids extends PureComponent {
 
     toastr.confirm(null, {
       okText: 'Yes',
-      onOk: () => withdrawIICOBid(address, id),
+      onOk: () =>
+        tutorialNow
+          ? tutorialEditIICOBids(id, () => tutorialNext(), lockedIn, newBonus)
+          : withdrawIICOBid(address, id),
       component: () => (
-        <div className="Bids-confirmWithdrawal">
+        <div className="Bids-confirm">
           Are you sure you wish to withdraw this bid?
           <br />
           <ChainNumber>{lockedIn}</ChainNumber> ETH
           <br />
-          would remain locked in and your new bonus would be
-          <br />
-          {numberToPercentage(newBonus)}.
+          would remain locked in{lockedIn ? (
+            <span>
+              {' '}
+              and your new bonus would be
+              <br />
+              {numberToPercentage(newBonus)}
+            </span>
+          ) : (
+            '.'
+          )}
         </div>
       )
     })
   }
 
   handleFinalizeIICOFormSubmit = formData => {
-    const { address, finalizeIICO } = this.props
+    const {
+      address,
+      finalizeIICO,
+      tutorialNow,
+      tutorialFinalizeIICOData,
+      tutorialNext
+    } = this.props
+    if (tutorialNow) return tutorialFinalizeIICOData(tutorialNext)
+
     finalizeIICO(address, formData.maxIterations)
   }
 
-  handleRedeemClick = ({ currentTarget: { id } }) => {
-    const { address, redeemIICOBid } = this.props
+  handleRedeemClick = ({ currentTarget: { id: _id } }) => {
+    const {
+      address,
+      redeemIICOBid,
+      tutorialNow,
+      tutorialEditIICOBids,
+      tutorialNext
+    } = this.props
+    const id = Number(_id)
+    if (tutorialNow) return tutorialEditIICOBids(id, tutorialNext)
+
     redeemIICOBid(address, Number(id))
   }
 
   handleRedeemAllClick = () => {
     const { address, redeemIICOBids } = this.props
+
     redeemIICOBids(address)
   }
 
@@ -122,48 +251,103 @@ class Bids extends PureComponent {
       submitFinalizeIICOForm,
       data,
       bids,
-      updatingBids
+      updatingBids,
+      tutorialNow
     } = this.props
 
-    const now = Date.now()
+    const now = tutorialNow || Date.now()
     const hasStarted = now >= data.startTime.getTime()
     const hasEnded = now >= data.endTime.getTime()
-    const canBid = hasStarted && !hasEnded
+
     const canWithdraw = hasStarted && now < data.withdrawalLockTime.getTime()
     const canRedeem = hasEnded && data.finalized
+    const inPartialWithdrawals = now > data.endFullBonusTime.getTime()
+
+    const currentContribution = bids.reduce((acc, b) => b.contrib + acc, 0)
+
+    let KYCLevelTooltip
+    let KYCLevel
+    if (data.inReinforcedWhitelist) {
+      KYCLevelTooltip =
+        "You have passed the Reinforced KYC (with ID) and can contribute as much ETH as you'd like"
+      KYCLevel = 'Reinforced'
+    } else if (data.inBaseWhitelist) {
+      KYCLevelTooltip = `You have passed the Base KYC (with no ID) and can contribute less than or equal to ${
+        data.maximumBaseContribution
+      } ETH.`
+      KYCLevel = 'Base'
+    } else {
+      KYCLevelTooltip = 'You need to pass the KYC to participate in the sale.'
+      KYCLevel = 'None'
+    }
 
     return (
-      <div className="Bids">
+      <div id="joyridePlaceBid" className="Bids">
         <h1>Your Bids</h1>
-        {canBid && (
+        {!tutorialNow && (
           <StatRow>
             <StatBlock
-              value={
-                <SubmitBidForm
-                  onSubmit={this.handleSubmitBidFormSubmit}
-                  className="Bids-form"
-                />
-              }
+              label="KYC Level"
+              value={KYCLevel}
+              tooltip={KYCLevelTooltip}
             />
-            <StatBlock
-              value={
-                <Button
-                  onClick={submitSubmitBidForm}
-                  disabled={submitBidFormIsInvalid || IICOBid.creating}
-                >
-                  ADD
-                </Button>
-              }
-              noFlex
-            />
+            {KYCLevel === 'Base' && (
+              <StatBlock
+                label="Remaining Allowed Contribution (ETH)"
+                value={
+                  <ChainNumber>
+                    {data.maximumBaseContribution - currentContribution}
+                  </ChainNumber>
+                }
+                tooltip="This is the amount you still have left over to contribute."
+              />
+            )}
           </StatRow>
         )}
+        {hasStarted &&
+          !hasEnded &&
+          (tutorialNow ||
+            data.inReinforcedWhitelist ||
+            (data.inBaseWhitelist &&
+              data.maximumBaseContribution > currentContribution)) && (
+            <StatRow>
+              <StatBlock
+                value={
+                  <SubmitBidForm
+                    onSubmit={this.handleSubmitBidFormSubmit}
+                    className="Bids-form"
+                    validate={
+                      tutorialNow ? undefined : this.validateSubmitBidForm
+                    }
+                  />
+                }
+              />
+              <StatBlock
+                value={
+                  <Button
+                    onClick={submitSubmitBidForm}
+                    disabled={
+                      submitBidFormIsInvalid ||
+                      IICOBid.creating ||
+                      (tutorialNow && bids.length > 0)
+                    }
+                  >
+                    ADD
+                  </Button>
+                }
+                noFlex
+              />
+            </StatRow>
+          )}
         {canRedeem &&
           bids.some(b => !b.redeemed) && (
             <StatRow>
               <StatBlock
                 value={
-                  <Button onClick={this.handleRedeemAllClick}>
+                  <Button
+                    onClick={this.handleRedeemAllClick}
+                    disabled={Boolean(tutorialNow)}
+                  >
                     REDEEM ALL
                   </Button>
                 }
@@ -180,6 +364,7 @@ class Bids extends PureComponent {
                     className="Bids-form"
                   />
                 }
+                tooltip="The token sale is finalizing, refresh this page periodically until you see a redeem button."
               />
               <StatBlock
                 value={
@@ -190,6 +375,7 @@ class Bids extends PureComponent {
                     FINALIZE
                   </Button>
                 }
+                tooltip="The token sale is finalizing, refresh this page periodically until you see a redeem button."
                 noFlex
               />
             </StatRow>
@@ -197,24 +383,34 @@ class Bids extends PureComponent {
         {IICOBid.creating && (
           <StatRow>
             <StatBlock
-              label="Contribution"
+              label="Contribution (ETH)"
               value={<SyncLoader color="#9b9b9b" size={8} />}
+              tooltip="ETH that is currently part of the sale."
+            />
+            <StatBlock
+              label="Personal Cap (ETH)"
+              value={<SyncLoader color="#9b9b9b" size={8} />}
+              tooltip="This bid's personal cap."
             />
             <StatBlock
               label="Bonus"
               value={<SyncLoader color="#9b9b9b" size={8} />}
+              tooltip="This bid's bonus."
             />
             <StatBlock
-              label="Personal Cap"
+              label="Token Price (ETH)"
               value={<SyncLoader color="#9b9b9b" size={8} />}
+              tooltip="The price per token this bid got or would get if the sale were to end now."
             />
             <StatBlock
               label="Tokens"
               value={<SyncLoader color="#9b9b9b" size={8} />}
+              tooltip="Tokens that can be redeemed or could be redeemed if the sale were to end now."
             />
             <StatBlock
-              label="Token Price"
+              label="Refund (ETH)"
               value={<SyncLoader color="#9b9b9b" size={8} />}
+              tooltip="ETH that can be redeemed or could be redeemed if the sale were to end now."
             />
           </StatRow>
         )}
@@ -228,53 +424,73 @@ class Bids extends PureComponent {
               let refund = b.contrib
               if (b.ID === data.cutOffBidID) {
                 // This is the cutoff bid
-                contrib = data.cutOffContrib
-                refund = b.contrib - data.cutOffContrib
+                contrib = data.cutOffBidContrib
+                refund = b.contrib - data.cutOffBidContrib
               } else if (
-                b.maxVal > data.cutOffBidMaxVal ||
-                (b.maxVal === data.cutOffBidMaxVal && b.ID > data.cutOffBidID)
+                b.maxValuation > data.cutOffBidMaxValuation ||
+                (b.maxValuation === data.cutOffBidMaxValuation &&
+                  b.ID > data.cutOffBidID)
               ) {
                 // This bid is in the sale
                 contrib = b.contrib
                 refund = 0
               }
 
+              const tokens =
+                contrib === 0
+                  ? 0
+                  : contrib *
+                    (1 + b.bonus) /
+                    data.virtualValuation *
+                    data.tokensForSale
+
               const updating = updatingBids && updatingBids.includes(b.ID)
 
               return (
-                <StatRow key={b.ID}>
+                <StatRow id="joyridePlacedBid" key={b.ID}>
                   <StatBlock
-                    label="Contribution"
+                    label="Contribution (ETH)"
                     value={<ChainNumber>{contrib}</ChainNumber>}
+                    tooltip="ETH that is currently part of the sale."
+                  />
+                  <StatBlock
+                    label="Personal Cap (ETH)"
+                    value={
+                      b.maxValuation >= 1.157920892373162e59
+                        ? '∞'
+                        : b.maxValuation
+                    }
+                    tooltip="This bid's personal cap."
                   />
                   <StatBlock
                     label="Bonus"
                     value={numberToPercentage(b.bonus)}
+                    tooltip="This bid's bonus."
                   />
                   <StatBlock
-                    label="Personal Cap"
-                    value={b.maxVal >= 1.157920892373162e59 ? '∞' : b.maxVal}
+                    label="Token Price (ETH)"
+                    value={
+                      <ChainNumber>
+                        {tokens === 0 ? 0 : contrib / tokens}
+                      </ChainNumber>
+                    }
+                    tooltip="The price per token this bid got or would get if the sale were to end now."
                   />
                   <StatBlock
                     label="Tokens"
-                    value={
-                      <ChainNumber>
-                        {contrib === 0
-                          ? 0
-                          : contrib *
-                            (1 + b.bonus) /
-                            data.virtualValuation *
-                            data.tokensForSale}
-                      </ChainNumber>
-                    }
+                    value={<ChainNumber>{tokens}</ChainNumber>}
+                    tooltip="Tokens that can be redeemed or could be redeemed if the sale were to end now."
                   />
                   <StatBlock
-                    label="Refund"
+                    id="joyrideWithdrew"
+                    label="Refund (ETH)"
                     value={<ChainNumber>{refund}</ChainNumber>}
+                    tooltip="ETH that can be redeemed or could be redeemed if the sale were to end now."
                   />
                   {((canWithdraw && !b.withdrawn) ||
                     (canRedeem && !b.redeemed)) && (
                     <StatBlock
+                      id="joyrideWithdraw"
                       value={
                         <Button
                           onClick={
@@ -282,7 +498,10 @@ class Bids extends PureComponent {
                               ? this.handleWithdrawClick
                               : this.handleRedeemClick
                           }
-                          disabled={IICOBid.updating}
+                          disabled={
+                            IICOBid.updating ||
+                            (tutorialNow && !inPartialWithdrawals)
+                          }
                           id={b.ID}
                         >
                           {updating ? (
@@ -314,6 +533,7 @@ class Bids extends PureComponent {
 export default connect(
   state => ({
     IICOBid: state.IICO.IICOBid,
+    accounts: state.wallet.accounts,
     submitBidFormIsInvalid: getSubmitBidFormIsInvalid(state),
     finalizeIICOFormIsInvalid: getFinalizeIICOFormIsInvalid(state)
   }),

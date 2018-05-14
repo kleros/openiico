@@ -5,17 +5,10 @@ export const {
   Form: FinalizeIICOForm,
   isInvalid: getFinalizeIICOFormIsInvalid,
   submit: submitFinalizeIICOForm
-} = form(
-  'finalizeIICOForm',
-  {
-    maxIterations: {
-      type: 'text',
-      validate: [required, number],
-      props: { type: 'number' }
-    }
-  },
-  {
-    touchOnBlur: true,
-    touchOnChange: true
+} = form('finalizeIICOForm', {
+  maxIterations: {
+    type: 'text',
+    validate: [required, number],
+    props: { type: 'number' }
   }
-)
+})

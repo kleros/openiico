@@ -1,4 +1,5 @@
 import Eth from 'ethjs'
+import { getChecksumAddress } from 'ethjs-account'
 
 import { takeLatest, select, all, call, put } from 'redux-saga/effects'
 
@@ -11,7 +12,7 @@ import { action } from '../utils/action'
 // Parsers
 const parseBid = (b, ID) => ({
   ID,
-  maxVal: Number(Eth.fromWei(b.maxVal, 'ether')),
+  maxValuation: Number(Eth.fromWei(b.maxValuation, 'ether')),
   contrib: Number(Eth.fromWei(b.contrib, 'ether')),
   bonus: b.bonus.toNumber() / 1e9,
   contributor: b.contributor,
@@ -57,8 +58,16 @@ function* fetchIICOData({ payload: { address } }) {
 
   // Load contract
   const contract = IICOContractFactory.at(address)
+  const account = yield select(walletSelectors.getAccount)
 
   const d = yield all({
+    // Centralized
+    ethTicker: call(() =>
+      fetch('https://api.coinmarketcap.com/v2/ticker/1027/')
+        .then(res => res.json())
+        .catch(err => console.error(err))
+    ),
+
     // Token
     tokenContractAddress: call(contract.token),
     tokensForSale: call(contract.tokensForSale),
@@ -73,14 +82,30 @@ function* fetchIICOData({ payload: { address } }) {
     startingBonus: call(contract.maxBonus),
     bonus: call(contract.bonus),
     valuationAndCutOff: call(contract.valuationAndCutOff),
-    finalized: call(contract.finalized)
+    finalized: call(contract.finalized),
+
+    // Optional Whitelist
+    maximumBaseContribution: call(contract.maximumBaseContribution),
+    inBaseWhitelist: call(contract.baseWhitelist, account),
+    inReinforcedWhitelist: call(contract.reinforcedWhitelist, account)
   })
+
+  let tokenContractAddress
+  try {
+    tokenContractAddress = getChecksumAddress(d.tokenContractAddress[0])
+  } catch (err) {
+    console.error(err)
+    throw new Error()
+  }
 
   return {
     address,
 
+    // Centralized
+    ethPrice: d.ethTicker && d.ethTicker.data.quotes.USD.price,
+
     // Token
-    tokenContractAddress: d.tokenContractAddress[0],
+    tokenContractAddress,
     tokensForSale: Number(Eth.fromWei(d.tokensForSale[0], 'ether')),
 
     // Times
@@ -95,9 +120,18 @@ function* fetchIICOData({ payload: { address } }) {
     valuation: Number(Eth.fromWei(d.valuationAndCutOff[0], 'ether')),
     virtualValuation: Number(Eth.fromWei(d.valuationAndCutOff[1], 'ether')),
     cutOffBidID: d.valuationAndCutOff[2].toNumber(),
-    cutOffBidMaxVal: Number(Eth.fromWei(d.valuationAndCutOff[3], 'ether')),
+    cutOffBidMaxValuation: Number(
+      Eth.fromWei(d.valuationAndCutOff[3], 'ether')
+    ),
     cutOffBidContrib: Number(Eth.fromWei(d.valuationAndCutOff[4], 'ether')),
-    finalized: d.finalized[0]
+    finalized: d.finalized[0],
+
+    // Optional Whitelist
+    maximumBaseContribution: Number(
+      Eth.fromWei(d.maximumBaseContribution[0], 'ether')
+    ),
+    inBaseWhitelist: d.inBaseWhitelist[0],
+    inReinforcedWhitelist: d.inReinforcedWhitelist[0]
   }
 }
 

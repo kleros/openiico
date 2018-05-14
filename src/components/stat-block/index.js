@@ -3,11 +3,23 @@ import PropTypes from 'prop-types'
 
 import './stat-block.css'
 
-const StatBlock = ({ label, value, noBackground, noFlex, flexBasis }) => (
+const StatBlock = ({
+  id,
+  label,
+  value,
+  tooltip,
+  noBackground,
+  noFlex,
+  noWrap,
+  flexBasis
+}) => (
   <div
+    data-tip={tooltip}
     className={`StatBlock ${
       label || noBackground ? '' : 'StatBlock--withNoLabel'
-    } ${noFlex ? 'StatBlock--noFlex' : ''}`}
+    } ${noFlex ? 'StatBlock--noFlex' : ''} ${
+      noWrap ? 'StatBlock--noWrap' : ''
+    }`}
     style={flexBasis && { flex: `0 1 ${flexBasis}px` }}
   >
     {label && <h2>{label}:</h2>}
@@ -18,27 +30,34 @@ const StatBlock = ({ label, value, noBackground, noFlex, flexBasis }) => (
     >
       {value}
     </h3>
+    <div id={id} className="StatBlock-joyrideTarget" />
   </div>
 )
 
 StatBlock.propTypes = {
   // State
+  id: PropTypes.string,
   label: PropTypes.string,
   value: PropTypes.node.isRequired,
+  tooltip: PropTypes.string,
 
   // Modifiers
   noBackground: PropTypes.bool,
   noFlex: PropTypes.bool,
+  noWrap: PropTypes.bool,
   flexBasis: PropTypes.number
 }
 
 StatBlock.defaultProps = {
   // State
+  id: undefined,
   label: null,
+  tooltip: undefined,
 
   // Modifiers
   noBackground: false,
   noFlex: false,
+  noWrap: false,
   flexBasis: null
 }
 

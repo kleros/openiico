@@ -1,10 +1,12 @@
 @import '~normalize.css';
 @import '~react-redux-toastr/lib/css/react-redux-toastr.min.css';
 @import '~create-redux-form/animations/carousel.css';
+@import '~react-joyride/lib/react-joyride-compiled.css';
 @import '../styles/_colors.scss';
 @import '../styles/_typography.scss';
-@import '../styles/_toastr.scss';
+@import '../styles/_global-components.scss';
 @import '../styles/_form.scss';
+@import '../styles/_joyride.scss';
 
 // Global Overrides
 * {
@@ -15,38 +17,42 @@
 
 // Document Root
 html {
+  background-color: $light2;
+  background-image: url('../assets/images/background.png');
+  background-position: -90px 180px;
+  background-repeat: no-repeat;
+  background-size: cover;
   color: $dark2;
   font-size: 16px;
+  overflow: scroll;
 }
 
 // App Containers
 html,
 body,
 #root,
-#router-root,
-#scroll-root {
+#router-root {
   border: 0;
-  height: 100%;
   margin: 0;
   padding: 0;
   width: 100%;
 }
 
-// React Router Root
-#router-root {
-  padding-top: 70px;
+// Initializer Loader
+#initializer-loader {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
 }
 
-// Scroll Root
-#scroll-root {
-  background-color: $light2;
-  background-image: url('../assets/images/background.png');
-  background-position: -90px 180px;
-  background-repeat: no-repeat;
-  background-size: cover;
+// React Router Root
+#router-root {
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  margin-top: 70px;
   position: relative;
 }
 

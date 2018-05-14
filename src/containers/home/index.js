@@ -17,6 +17,15 @@ import './home.css'
 
 class Home extends PureComponent {
   static propTypes = {
+    // React Router
+    history: PropTypes.shape({ replace: PropTypes.func.isRequired }).isRequired,
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired
+    }).isRequired,
+    match: PropTypes.shape({
+      params: PropTypes.shape({ address: PropTypes.string }).isRequired
+    }).isRequired,
+
     // Redux State
     IICOData: IICOSelectors.IICODataShape.isRequired,
 
@@ -29,13 +38,39 @@ class Home extends PureComponent {
   }
 
   componentDidMount() {
-    const { clearIICOData } = this.props
+    const {
+      match: { params: { address } },
+      clearIICOData,
+      fetchIICOData
+    } = this.props
     clearIICOData()
+    address && fetchIICOData(address)
+  }
+
+  componentDidUpdate(prevProps) {
+    const {
+      match: { params: { address: prevAddress } },
+      IICOData: prevIICOData
+    } = prevProps
+    const {
+      history,
+      location,
+      match: { params: { address } },
+      IICOData,
+      fetchIICOData
+    } = this.props
+    if (address && prevAddress !== address) fetchIICOData(address)
+    if (
+      location.pathname !== '/' &&
+      IICOData.failedLoading &&
+      prevIICOData.failedLoading !== IICOData.failedLoading
+    )
+      history.replace(`/`)
   }
 
   handleIICOAddressFormSubmit = formData => {
-    const { fetchIICOData } = this.props
-    fetchIICOData(formData.address)
+    const { history } = this.props
+    history.replace(`/${formData.address}`)
   }
 
   handleKeyPress = event => {
@@ -47,33 +82,48 @@ class Home extends PureComponent {
   }
 
   render() {
-    const { IICOData } = this.props
+    const { match: { params: { address } }, IICOData } = this.props
 
     return (
       <div className="Home" onKeyPress={this.handleKeyPress}>
-        <IICOAddressForm onSubmit={this.handleIICOAddressFormSubmit} />
-        <div className="Home-result">
-          <RenderIf
-            resource={IICOData}
-            loading="Loading contract..."
-            done={
-              IICOData.data && (
-                <div>
-                  <Identicon seed={IICOData.data.address} size={60} />
-                  <h2 className="Home-result-link">
-                    <Link to={`/${IICOData.data.address}`}>
-                      Go To IICO Page
-                    </Link>
-                  </h2>
-                </div>
-              )
-            }
-            failedLoading={
-              IICOData.data !== null &&
-              'The address or the contract it holds is invalid. Try another one.'
-            }
+        {process.env.REACT_APP_BRANCH !== 'master' && (
+          <IICOAddressForm
+            onSubmit={this.handleIICOAddressFormSubmit}
+            initialValues={{ address }}
+            className="Home-form"
           />
-        </div>
+        )}
+        <RenderIf
+          resource={IICOData}
+          loading="Loading contract..."
+          done={
+            IICOData.data && (
+              <div className="Home-result">
+                <Identicon seed={IICOData.data.address} size={60} />
+                <h3 className="Home-result-link">
+                  Go To{' '}
+                  <Link to={`/simple/${IICOData.data.address}`}>Simple</Link> /{' '}
+                  <Link to={`/interactive/${IICOData.data.address}`}>
+                    Interactive
+                  </Link>{' '}
+                  IICO Page
+                </h3>
+                <p>
+                  Use the simple interface if you just want to buy tokens in a
+                  simple manner.
+                </p>
+                <p>
+                  Use the interactive interface if you want to place
+                  sophisticated bids with personal caps on the amount raised.
+                </p>
+              </div>
+            )
+          }
+          failedLoading={
+            IICOData.data !== null &&
+            'The address or the contract it holds is invalid. Try another one.'
+          }
+        />
       </div>
     )
   }

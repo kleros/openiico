@@ -1,12 +1,19 @@
+@import '../../styles/_colors.scss';
+
 /* @define PageNotFound */
 .PageNotFound {
-  background: #273142;
   height: 100%;
 
   &-message {
-    color: white;
+    color: $dark;
     font-size: 40px;
     padding: 70px 50px;
     text-align: center;
+
+    &-errorCode {
+      color: $dark4;
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
   }
 }

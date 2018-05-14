@@ -262,13 +262,9 @@ exports[`Storyshots Button disabled 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -300,6 +296,12 @@ exports[`Storyshots Button disabled 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -566,13 +568,9 @@ exports[`Storyshots Button primary 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -604,6 +602,12 @@ exports[`Storyshots Button primary 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -870,13 +874,9 @@ exports[`Storyshots Button with lots of text 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -908,6 +908,12 @@ exports[`Storyshots Button with lots of text 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -1175,13 +1181,9 @@ exports[`Storyshots Chain Hash default 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -1213,6 +1215,12 @@ exports[`Storyshots Chain Hash default 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -1305,7 +1313,7 @@ exports[`Storyshots Chain Number default 1`] = `
             className="ChainNumber"
             data-tip={0.000123}
           >
-            0.00
+            0.000123
           </span>
           <div
             data-radium={true}
@@ -1475,13 +1483,9 @@ exports[`Storyshots Chain Number default 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -1513,6 +1517,12 @@ exports[`Storyshots Chain Number default 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -1783,13 +1793,9 @@ exports[`Storyshots Checkbox default 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -1821,6 +1827,12 @@ exports[`Storyshots Checkbox default 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -2087,13 +2099,9 @@ exports[`Storyshots Circle default 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -2125,6 +2133,319 @@ exports[`Storyshots Circle default 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots ETH QR with address(0) 1`] = `
+<div>
+  <div
+    data-radium={true}
+    style={
+      Object {
+        "background": "rgb(255, 255, 255)",
+        "bottom": 0,
+        "display": "flex",
+        "flexDirection": "column",
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  >
+    <div
+      data-radium={true}
+      style={
+        Object {
+          "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+          "marginLeft": 15,
+          "marginRight": 15,
+          "marginTop": 15,
+          "paddingBottom": 15,
+          "paddingTop": 2,
+        }
+      }
+    >
+      <h2
+        data-radium={true}
+        style={
+          Object {
+            "color": "rgba(0, 0, 0, 0.6)",
+            "fontSize": 20,
+            "fontWeight": 200,
+            "margin": 0,
+            "padding": 0,
+          }
+        }
+      >
+        OpenIICO UI-Kit
+      </h2>
+    </div>
+    <div
+      data-radium={true}
+      style={
+        Object {
+          "boxSizing": "border-box",
+          "flex": 1,
+          "margin": 50,
+          "position": "relative",
+        }
+      }
+    >
+      <div
+        data-radium={true}
+        style={
+          Object {
+            "alignItems": "center",
+            "bottom": 0,
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <div
+          data-radium={true}
+          style={
+            Object {
+              "border": "solid 1px rgba(0, 0, 0, 0.0)",
+              "boxSizing": "border-box",
+              "height": "auto",
+              "position": "relative",
+              "width": "auto",
+            }
+          }
+        >
+          <div>
+            <div
+              className="css-1hnei9g"
+            />
+            <div
+              className="css-717zf9"
+            />
+            <div
+              className="css-148mtud"
+            />
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": "auto",
+                "height": 20,
+                "left": -19,
+                "position": "absolute",
+                "right": "auto",
+                "top": -19,
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 5,
+                  "top": undefined,
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 5,
+                  "left": "auto",
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": "auto",
+                "height": 20,
+                "left": "auto",
+                "position": "absolute",
+                "right": -19,
+                "top": -19,
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": 5,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": "auto",
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 5,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": "auto",
+                  "top": 0,
+                }
+              }
+            />
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": -19,
+                "height": 20,
+                "left": -19,
+                "position": "absolute",
+                "right": "auto",
+                "top": "auto",
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": "auto",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 5,
+                  "top": 0,
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": "auto",
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 5,
+                }
+              }
+            />
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": -19,
+                "height": 20,
+                "left": "auto",
+                "position": "absolute",
+                "right": -19,
+                "top": undefined,
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": "auto",
+                  "left": 5,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": "auto",
+                  "top": 5,
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    id="global-components"
+  >
+    <span
+      aria-live="assertive"
+      className="redux-toastr"
+    >
+      <span>
+        <div
+          className="top-left"
+          style={Object {}}
+        />
+        <div
+          className="top-right"
+          style={Object {}}
+        />
+        <div
+          className="top-center"
+          style={Object {}}
+        />
+        <div
+          className="bottom-left"
+          style={Object {}}
+        />
+        <div
+          className="bottom-right"
+          style={Object {}}
+        />
+        <div
+          className="bottom-center"
+          style={Object {}}
+        />
+      </span>
+    </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -2388,13 +2709,9 @@ exports[`Storyshots Form header 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -2426,6 +2743,12 @@ exports[`Storyshots Form header 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -2685,13 +3008,9 @@ exports[`Storyshots Identicon with placeholder seed 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -2723,6 +3042,12 @@ exports[`Storyshots Identicon with placeholder seed 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -2822,15 +3147,11 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
             <div
               className="NavBar"
             >
-              <a
-                href="https://kleros.io"
-              >
-                <img
-                  alt="Logo"
-                  className="NavBar-logo"
-                  src="logo.png"
-                />
-              </a>
+              <img
+                alt="Logo"
+                className="NavBar-logo"
+                src="logo.png"
+              />
               <div
                 className="NavBar-tabs"
               >
@@ -2929,7 +3250,12 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
                 <div
                   className="NavBar-buttons-balance"
                 >
-                  10 ETH
+                  <span
+                    data-tip="This is your current Web3 addresses' balance."
+                  >
+                    10
+                     ETH
+                  </span>
                 </div>
               </div>
             </div>
@@ -3102,13 +3428,9 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -3140,6 +3462,12 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -3239,15 +3567,11 @@ exports[`Storyshots Nav Bar with routes 1`] = `
             <div
               className="NavBar"
             >
-              <a
-                href="https://kleros.io"
-              >
-                <img
-                  alt="Logo"
-                  className="NavBar-logo"
-                  src="logo.png"
-                />
-              </a>
+              <img
+                alt="Logo"
+                className="NavBar-logo"
+                src="logo.png"
+              />
               <div
                 className="NavBar-tabs"
               >
@@ -3292,7 +3616,12 @@ exports[`Storyshots Nav Bar with routes 1`] = `
                 <div
                   className="NavBar-buttons-balance"
                 >
-                  10 ETH
+                  <span
+                    data-tip="This is your current Web3 addresses' balance."
+                  >
+                    10
+                     ETH
+                  </span>
                 </div>
               </div>
             </div>
@@ -3465,13 +3794,9 @@ exports[`Storyshots Nav Bar with routes 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -3503,6 +3828,12 @@ exports[`Storyshots Nav Bar with routes 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -3597,7 +3928,12 @@ exports[`Storyshots Page Not Found default 1`] = `
             <div
               className="PageNotFound-message"
             >
-              404. This is not the page you are looking for.
+              <div
+                className="PageNotFound-message-errorCode"
+              >
+                404
+              </div>
+              This is not the page you are looking for.
             </div>
           </div>
           <div
@@ -3768,13 +4104,9 @@ exports[`Storyshots Page Not Found default 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -3806,6 +4138,12 @@ exports[`Storyshots Page Not Found default 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -4111,13 +4449,9 @@ exports[`Storyshots Pie Chart activated 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -4149,6 +4483,12 @@ exports[`Storyshots Pie Chart activated 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -4254,6 +4594,7 @@ exports[`Storyshots Requires MetaMask needs unlock 1`] = `
               >
                 MetaMask
               </a>
+              .
             </div>
           </div>
           <div
@@ -4424,13 +4765,9 @@ exports[`Storyshots Requires MetaMask needs unlock 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -4462,6 +4799,12 @@ exports[`Storyshots Requires MetaMask needs unlock 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -4567,6 +4910,7 @@ exports[`Storyshots Requires MetaMask not found 1`] = `
               >
                 MetaMask
               </a>
+              .
             </div>
           </div>
           <div
@@ -4737,13 +5081,9 @@ exports[`Storyshots Requires MetaMask not found 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -4775,6 +5115,12 @@ exports[`Storyshots Requires MetaMask not found 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -5057,13 +5403,9 @@ exports[`Storyshots Slider default 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -5095,6 +5437,12 @@ exports[`Storyshots Slider default 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -5184,7 +5532,8 @@ exports[`Storyshots Stat Block default 1`] = `
           }
         >
           <div
-            className="StatBlock  "
+            className="StatBlock   "
+            data-tip={undefined}
             style={null}
           >
             <h2>
@@ -5196,6 +5545,10 @@ exports[`Storyshots Stat Block default 1`] = `
             >
               300
             </h3>
+            <div
+              className="StatBlock-joyrideTarget"
+              id={undefined}
+            />
           </div>
           <div
             data-radium={true}
@@ -5365,13 +5718,9 @@ exports[`Storyshots Stat Block default 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -5403,6 +5752,12 @@ exports[`Storyshots Stat Block default 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -5492,7 +5847,8 @@ exports[`Storyshots Stat Block with no label 1`] = `
           }
         >
           <div
-            className="StatBlock StatBlock--withNoLabel "
+            className="StatBlock StatBlock--withNoLabel  "
+            data-tip={undefined}
             style={null}
           >
             <h3
@@ -5500,6 +5856,10 @@ exports[`Storyshots Stat Block with no label 1`] = `
             >
               300
             </h3>
+            <div
+              className="StatBlock-joyrideTarget"
+              id={undefined}
+            />
           </div>
           <div
             data-radium={true}
@@ -5669,13 +6029,9 @@ exports[`Storyshots Stat Block with no label 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -5707,6 +6063,12 @@ exports[`Storyshots Stat Block with no label 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -5802,7 +6164,8 @@ exports[`Storyshots Stat Row default 1`] = `
               className="StatRow-blocks"
             >
               <div
-                className="StatBlock  "
+                className="StatBlock   "
+                data-tip={undefined}
                 style={null}
               >
                 <h2>
@@ -5814,9 +6177,14 @@ exports[`Storyshots Stat Row default 1`] = `
                 >
                   300
                 </h3>
+                <div
+                  className="StatBlock-joyrideTarget"
+                  id={undefined}
+                />
               </div>
               <div
-                className="StatBlock  "
+                className="StatBlock   "
+                data-tip={undefined}
                 style={null}
               >
                 <h2>
@@ -5828,9 +6196,14 @@ exports[`Storyshots Stat Row default 1`] = `
                 >
                   300
                 </h3>
+                <div
+                  className="StatBlock-joyrideTarget"
+                  id={undefined}
+                />
               </div>
               <div
-                className="StatBlock  "
+                className="StatBlock   "
+                data-tip={undefined}
                 style={null}
               >
                 <h2>
@@ -5842,8 +6215,16 @@ exports[`Storyshots Stat Row default 1`] = `
                 >
                   300
                 </h3>
+                <div
+                  className="StatBlock-joyrideTarget"
+                  id={undefined}
+                />
               </div>
             </div>
+            <div
+              className="StatRow-joyrideTarget"
+              id={undefined}
+            />
           </div>
           <div
             data-radium={true}
@@ -6013,13 +6394,9 @@ exports[`Storyshots Stat Row default 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -6051,6 +6428,12 @@ exports[`Storyshots Stat Row default 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -6146,7 +6529,8 @@ exports[`Storyshots Stat Row with box shadow 1`] = `
               className="StatRow-blocks"
             >
               <div
-                className="StatBlock  "
+                className="StatBlock   "
+                data-tip={undefined}
                 style={null}
               >
                 <h2>
@@ -6158,9 +6542,14 @@ exports[`Storyshots Stat Row with box shadow 1`] = `
                 >
                   300
                 </h3>
+                <div
+                  className="StatBlock-joyrideTarget"
+                  id={undefined}
+                />
               </div>
               <div
-                className="StatBlock  "
+                className="StatBlock   "
+                data-tip={undefined}
                 style={null}
               >
                 <h2>
@@ -6172,9 +6561,14 @@ exports[`Storyshots Stat Row with box shadow 1`] = `
                 >
                   300
                 </h3>
+                <div
+                  className="StatBlock-joyrideTarget"
+                  id={undefined}
+                />
               </div>
               <div
-                className="StatBlock  "
+                className="StatBlock   "
+                data-tip={undefined}
                 style={null}
               >
                 <h2>
@@ -6186,8 +6580,16 @@ exports[`Storyshots Stat Row with box shadow 1`] = `
                 >
                   300
                 </h3>
+                <div
+                  className="StatBlock-joyrideTarget"
+                  id={undefined}
+                />
               </div>
             </div>
+            <div
+              className="StatRow-joyrideTarget"
+              id={undefined}
+            />
           </div>
           <div
             data-radium={true}
@@ -6357,13 +6759,9 @@ exports[`Storyshots Stat Row with box shadow 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -6395,6 +6793,12 @@ exports[`Storyshots Stat Row with box shadow 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -6490,6 +6894,7 @@ exports[`Storyshots Text Input default 1`] = `
               className="TextInput-input"
               onBlur={undefined}
               onChange={[Function]}
+              step={undefined}
               type="text"
               value=""
             />
@@ -6667,13 +7072,9 @@ exports[`Storyshots Text Input default 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -6705,6 +7106,12 @@ exports[`Storyshots Text Input default 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -6800,6 +7207,7 @@ exports[`Storyshots Text Input error 1`] = `
               className="TextInput-input"
               onBlur={undefined}
               onChange={[Function]}
+              step={undefined}
               type="text"
               value=""
             />
@@ -6977,13 +7385,9 @@ exports[`Storyshots Text Input error 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -7015,6 +7419,12 @@ exports[`Storyshots Text Input error 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -7110,6 +7520,7 @@ exports[`Storyshots Text Input touched 1`] = `
               className="TextInput-input"
               onBlur={undefined}
               onChange={[Function]}
+              step={undefined}
               type="text"
               value=""
             />
@@ -7287,13 +7698,9 @@ exports[`Storyshots Text Input touched 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -7325,6 +7732,12 @@ exports[`Storyshots Text Input touched 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -7420,6 +7833,7 @@ exports[`Storyshots Text Input valid 1`] = `
               className="TextInput-input"
               onBlur={undefined}
               onChange={[Function]}
+              step={undefined}
               type="text"
               value=""
             />
@@ -7597,13 +8011,9 @@ exports[`Storyshots Text Input valid 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -7635,6 +8045,12 @@ exports[`Storyshots Text Input valid 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -7891,13 +8307,9 @@ exports[`Storyshots Toast confirm 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -7929,6 +8341,12 @@ exports[`Storyshots Toast confirm 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -8185,13 +8603,9 @@ exports[`Storyshots Toast error 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -8223,6 +8637,12 @@ exports[`Storyshots Toast error 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -8479,13 +8899,9 @@ exports[`Storyshots Toast info 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -8517,6 +8933,12 @@ exports[`Storyshots Toast info 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -8773,13 +9195,9 @@ exports[`Storyshots Toast message 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -8811,6 +9229,12 @@ exports[`Storyshots Toast message 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -9067,13 +9491,9 @@ exports[`Storyshots Toast success 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -9105,6 +9525,12 @@ exports[`Storyshots Toast success 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -9361,13 +9787,9 @@ exports[`Storyshots Toast warning 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -9399,6 +9821,12 @@ exports[`Storyshots Toast warning 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -9671,13 +10099,9 @@ exports[`Storyshots Typography headings 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -9709,6 +10133,12 @@ exports[`Storyshots Typography headings 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -9978,13 +10408,9 @@ exports[`Storyshots Typography paragraphs 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -10016,6 +10442,12 @@ exports[`Storyshots Typography paragraphs 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;
@@ -10277,13 +10709,9 @@ exports[`Storyshots Typography small 1`] = `
       </div>
     </div>
   </div>
-  <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
+  <div
+    id="global-components"
+  >
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -10315,6 +10743,12 @@ exports[`Storyshots Typography small 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
   </div>
 </div>
 `;

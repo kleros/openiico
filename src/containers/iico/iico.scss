@@ -1,8 +1,11 @@
+@import '../../styles/_colors.scss';
+
 /* @define IICO */
 .IICO {
   display: flex;
   justify-content: center;
   padding: 38px 8%;
+  position: relative;
 
   &-data {
     margin-bottom: 55px;
@@ -11,5 +14,26 @@
   &-bids {
     display: flex;
     justify-content: center;
+  }
+
+  &-inTutorial {
+    position: absolute;
+    right: 60px;
+    top: 36px;
+    transform: translateY(-50%);
+  }
+
+  &-replayTutorial {
+    background: $dark4;
+    border-radius: 16px;
+    color: $light;
+    cursor: pointer;
+    height: 32px;
+    line-height: 32px;
+    position: absolute;
+    right: 20px;
+    text-align: center;
+    top: 20px;
+    width: 32px;
   }
 }

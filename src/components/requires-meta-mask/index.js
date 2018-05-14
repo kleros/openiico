@@ -15,7 +15,7 @@ const RequiresMetaMask = ({ needsUnlock }) => (
         href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en"
       >
         MetaMask
-      </a>
+      </a>.
     </div>
   </div>
 )

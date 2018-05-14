@@ -28,7 +28,7 @@ export function makeRestartable(saga) {
             err
           )
 
-        toastr.error('', err.message.slice(0, 100))
+        err.message && toastr.error('', err.message.slice(0, 100))
         yield call(delay, 3000)
       }
     }

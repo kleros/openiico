@@ -7,8 +7,8 @@
   border-radius: 5px;
   box-shadow: 0 2px 0 0 $primary;
   cursor: pointer;
-  height: 60px;
-  min-width: 200px;
+  height: 40px;
+  min-width: 100px;
   padding: 0 18px;
   text-align: center;
 
@@ -20,7 +20,7 @@
 
   &-label {
     color: $light;
-    font-size: 20px;
-    line-height: 60px;
+    font-size: 14px;
+    line-height: 40px;
   }
 }

@@ -7,22 +7,46 @@ import { Switch, Route } from 'react-router-dom'
 
 import NavBar from '../components/nav-bar'
 import Home from '../containers/home'
+import SimpleBid from '../containers/simple-bid'
 import IICO from '../containers/iico'
 import PageNotFound from '../components/page-not-found'
 
 import Initializer from './initializer'
 import GlobalComponents from './global-components'
+import { ETHAddressRegExp, ETHAddressRegExpCaptureGroup } from './dapp-api'
 
 import './app.css'
 
+const toWithAddress = base => location =>
+  `${base}/${location.pathname.match(ETHAddressRegExp)[0]}`
+const hasNonRootAddress = location =>
+  location.pathname.slice(0, 3) !== '/0x' &&
+  ETHAddressRegExp.test(location.pathname)
 const ConnectedNavBar = connect(state => ({
   accounts: state.wallet.accounts,
   balance: state.wallet.balance
-}))(({ accounts, balance }) => (
+}))(({ location, accounts, balance }) => (
   <NavBar
+    location={location}
     accounts={accounts}
     balance={balance}
-    routes={[{ name: 'Home', to: '/' }]}
+    routes={[
+      {
+        name: 'Simple',
+        to: toWithAddress('/simple'),
+        visible: hasNonRootAddress
+      },
+      {
+        name: 'Interactive',
+        to: toWithAddress('/interactive'),
+        visible: hasNonRootAddress
+      },
+      {
+        name: 'Terms & Conditions',
+        to: 'https://kleros.io/assets/token-sale-tos.pdf',
+        isExternal: true
+      }
+    ]}
   />
 ))
 
@@ -35,13 +59,24 @@ const App = ({ store, history, testElement }) => (
             <title>Open IICO</title>
           </Helmet>
           <Route exact path="*" component={ConnectedNavBar} />
-          <div id="scroll-root">
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/:address" component={IICO} />
-              <Route component={PageNotFound} />
-            </Switch>
-          </div>
+          <Switch>
+            <Route
+              exact
+              path={`/:address${ETHAddressRegExpCaptureGroup}?`}
+              component={Home}
+            />
+            <Route
+              exact
+              path={`/simple/:address${ETHAddressRegExpCaptureGroup}`}
+              component={SimpleBid}
+            />
+            <Route
+              exact
+              path={`/interactive/:address${ETHAddressRegExpCaptureGroup}`}
+              component={IICO}
+            />
+            <Route component={PageNotFound} />
+          </Switch>
           {testElement}
           <Route exact path="*" component={GlobalComponents} />
         </div>
