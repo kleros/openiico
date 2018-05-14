@@ -47,41 +47,44 @@ class Initializer extends PureComponent {
   }
 
   pathAddressCheck = async () => {
-    this.setState({ pathAddress: undefined })
-
     // Get possible address from path
     let address = window.location.pathname.match(ETHAddressRegExp)
     address = address && address[0]
 
-    // There is an address
-    if (address) {
-      // Check that it has code
-      try {
-        const code = await eth.getCode(address)
-        if (code === '0x') throw new Error()
-      } catch (err) {
-        console.error(err)
-        return window.location.replace('/404')
-      }
-
-      // Is it checksummed?
-      const checksumAddress = getChecksumAddress(address)
-      if (address !== checksumAddress)
-        return window.location.replace(
-          window.location.pathname.replace(address, checksumAddress)
-        ) // No, replace it
-    }
-
-    // Block all other sales for now to avoid phishing
+    // Block all other sales for now in the master branch to avoid phishing
     if (
       process.env.REACT_APP_BRANCH === 'master' &&
-      address !== '0xac43300F2D0c345B716F36853eCeb497576E0F67'
+      (!address || address !== '0xac43300F2D0c345B716F36853eCeb497576E0F67')
     )
       return window.location.replace(
         '/0xac43300F2D0c345B716F36853eCeb497576E0F67'
       )
 
-    this.setState({ pathAddress: address || null })
+    if (!address) return this.setState({ pathAddress: null }) // No address, stop loading indicator
+
+    // Check that it has code
+    const checksumAddress = getChecksumAddress(address)
+    const is404 = window.location.pathname.slice(0, 4) === '/404'
+    try {
+      const code = await eth.getCode(address)
+      if (code === '0x') throw new Error()
+      // Has code
+      if (is404) return window.location.replace(`/${checksumAddress}`) // If in 404, we can go back to home
+    } catch (err) {
+      console.error(err)
+      return is404 // No code
+        ? this.setState({ pathAddress: null }) // Already in 404, do nothing
+        : window.location.replace(`/404/${checksumAddress}`) // Go to 404
+    }
+
+    // It has code and we are not in 404, is it checksummed?
+    if (address !== checksumAddress)
+      return window.location.replace(
+        window.location.pathname.replace(address, checksumAddress)
+      ) // No, replace it
+
+    // All good, set address
+    return this.setState({ pathAddress: address })
   }
 
   render() {

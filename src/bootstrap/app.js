@@ -9,7 +9,7 @@ import NavBar from '../components/nav-bar'
 import Home from '../containers/home'
 import SimpleBid from '../containers/simple-bid'
 import IICO from '../containers/iico'
-import PageNotFound from '../components/page-not-found'
+import PageNotFound from '../containers/page-not-found'
 
 import Initializer from './initializer'
 import GlobalComponents from './global-components'
@@ -75,7 +75,11 @@ const App = ({ store, history, testElement }) => (
               path={`/interactive/:address${ETHAddressRegExpCaptureGroup}`}
               component={IICO}
             />
-            <Route component={PageNotFound} />
+            <Route
+              exact
+              path={`/(404|.*)/:address${ETHAddressRegExpCaptureGroup}?`}
+              component={PageNotFound}
+            />
           </Switch>
           {testElement}
           <Route exact path="*" component={GlobalComponents} />
