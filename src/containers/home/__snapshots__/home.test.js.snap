@@ -33,8 +33,10 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
   match={
     Object {
       "isExact": true,
-      "params": Object {},
-      "path": "/",
+      "params": Object {
+        "address": undefined,
+      },
+      "path": "/:address(0x[a-fA-F0-9]{40})?",
       "url": "/",
     }
   }
@@ -82,8 +84,10 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
     match={
       Object {
         "isExact": true,
-        "params": Object {},
-        "path": "/",
+        "params": Object {
+          "address": undefined,
+        },
+        "path": "/:address(0x[a-fA-F0-9]{40})?",
         "url": "/",
       }
     }
@@ -95,6 +99,11 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
     >
       <ReduxForm
         className="Home-form"
+        initialValues={
+          Object {
+            "address": undefined,
+          }
+        }
         onSubmit={[Function]}
       >
         <Connect(Form(Form))
@@ -104,6 +113,11 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
           forceUnregisterOnUnmount={false}
           form="IICOAddressForm"
           getFormState={[Function]}
+          initialValues={
+            Object {
+              "address": undefined,
+            }
+          }
           keepDirtyOnReinitialize={false}
           onSubmit={[Function]}
           persistentSubmitErrors={false}
@@ -160,8 +174,13 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
             forceUnregisterOnUnmount={false}
             form="IICOAddressForm"
             getFormState={[Function]}
+            initialValues={
+              Object {
+                "address": undefined,
+              }
+            }
             initialize={[Function]}
-            initialized={false}
+            initialized={true}
             invalid={true}
             keepDirtyOnReinitialize={false}
             onSubmit={[Function]}
@@ -215,7 +234,11 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
             updateUnregisteredFields={false}
             valid={false}
             validExceptSubmit={false}
-            values={Object {}}
+            values={
+              Object {
+                "address": undefined,
+              }
+            }
           >
             <Form
               anyTouched={false}
@@ -249,8 +272,13 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
               dispatch={[Function]}
               form="IICOAddressForm"
               handleSubmit={[Function]}
+              initialValues={
+                Object {
+                  "address": undefined,
+                }
+              }
               initialize={[Function]}
-              initialized={false}
+              initialized={true}
               invalid={true}
               onSubmit={[Function]}
               pristine={true}
@@ -351,7 +379,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                             "form": "IICOAddressForm",
                             "getFormState": [Function],
                             "getValues": [Function],
-                            "initialValues": undefined,
+                            "initialValues": Object {
+                              "address": undefined,
+                            },
                             "initialize": [Function],
                             "initialized": false,
                             "invalid": false,
@@ -395,7 +425,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                             "updateUnregisteredFields": false,
                             "valid": true,
                             "validExceptSubmit": true,
-                            "values": Object {},
+                            "values": Object {
+                              "address": undefined,
+                            },
                             "warning": undefined,
                           }
                         }
@@ -461,7 +493,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                               "form": "IICOAddressForm",
                               "getFormState": [Function],
                               "getValues": [Function],
-                              "initialValues": undefined,
+                              "initialValues": Object {
+                                "address": undefined,
+                              },
                               "initialize": [Function],
                               "initialized": false,
                               "invalid": false,
@@ -505,7 +539,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                               "updateUnregisteredFields": false,
                               "valid": true,
                               "validExceptSubmit": true,
-                              "values": Object {},
+                              "values": Object {
+                                "address": undefined,
+                              },
                               "warning": undefined,
                             }
                           }
@@ -641,7 +677,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                             "form": "IICOAddressForm",
                             "getFormState": [Function],
                             "getValues": [Function],
-                            "initialValues": undefined,
+                            "initialValues": Object {
+                              "address": undefined,
+                            },
                             "initialize": [Function],
                             "initialized": false,
                             "invalid": false,
@@ -685,7 +723,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                             "updateUnregisteredFields": false,
                             "valid": true,
                             "validExceptSubmit": true,
-                            "values": Object {},
+                            "values": Object {
+                              "address": undefined,
+                            },
                             "warning": undefined,
                           }
                         }
@@ -750,7 +790,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                               "form": "IICOAddressForm",
                               "getFormState": [Function],
                               "getValues": [Function],
-                              "initialValues": undefined,
+                              "initialValues": Object {
+                                "address": undefined,
+                              },
                               "initialize": [Function],
                               "initialized": false,
                               "invalid": false,
@@ -794,7 +836,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                               "updateUnregisteredFields": false,
                               "valid": true,
                               "validExceptSubmit": true,
-                              "values": Object {},
+                              "values": Object {
+                                "address": undefined,
+                              },
                               "warning": undefined,
                             }
                           }
@@ -936,8 +980,10 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
   match={
     Object {
       "isExact": true,
-      "params": Object {},
-      "path": "/",
+      "params": Object {
+        "address": undefined,
+      },
+      "path": "/:address(0x[a-fA-F0-9]{40})?",
       "url": "/",
     }
   }
@@ -985,8 +1031,10 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
     match={
       Object {
         "isExact": true,
-        "params": Object {},
-        "path": "/",
+        "params": Object {
+          "address": undefined,
+        },
+        "path": "/:address(0x[a-fA-F0-9]{40})?",
         "url": "/",
       }
     }
@@ -998,6 +1046,11 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
     >
       <ReduxForm
         className="Home-form"
+        initialValues={
+          Object {
+            "address": undefined,
+          }
+        }
         onSubmit={[Function]}
       >
         <Connect(Form(Form))
@@ -1007,6 +1060,11 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
           forceUnregisterOnUnmount={false}
           form="IICOAddressForm"
           getFormState={[Function]}
+          initialValues={
+            Object {
+              "address": undefined,
+            }
+          }
           keepDirtyOnReinitialize={false}
           onSubmit={[Function]}
           persistentSubmitErrors={false}
@@ -1063,8 +1121,13 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
             forceUnregisterOnUnmount={false}
             form="IICOAddressForm"
             getFormState={[Function]}
+            initialValues={
+              Object {
+                "address": undefined,
+              }
+            }
             initialize={[Function]}
-            initialized={false}
+            initialized={true}
             invalid={false}
             keepDirtyOnReinitialize={false}
             onSubmit={[Function]}
@@ -1152,8 +1215,13 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
               dispatch={[Function]}
               form="IICOAddressForm"
               handleSubmit={[Function]}
+              initialValues={
+                Object {
+                  "address": undefined,
+                }
+              }
               initialize={[Function]}
-              initialized={false}
+              initialized={true}
               invalid={false}
               onSubmit={[Function]}
               pristine={false}
@@ -1254,7 +1322,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                             "form": "IICOAddressForm",
                             "getFormState": [Function],
                             "getValues": [Function],
-                            "initialValues": undefined,
+                            "initialValues": Object {
+                              "address": undefined,
+                            },
                             "initialize": [Function],
                             "initialized": false,
                             "invalid": false,
@@ -1298,7 +1368,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                             "updateUnregisteredFields": false,
                             "valid": true,
                             "validExceptSubmit": true,
-                            "values": Object {},
+                            "values": Object {
+                              "address": undefined,
+                            },
                             "warning": undefined,
                           }
                         }
@@ -1364,7 +1436,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                               "form": "IICOAddressForm",
                               "getFormState": [Function],
                               "getValues": [Function],
-                              "initialValues": undefined,
+                              "initialValues": Object {
+                                "address": undefined,
+                              },
                               "initialize": [Function],
                               "initialized": false,
                               "invalid": false,
@@ -1408,7 +1482,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                               "updateUnregisteredFields": false,
                               "valid": true,
                               "validExceptSubmit": true,
-                              "values": Object {},
+                              "values": Object {
+                                "address": undefined,
+                              },
                               "warning": undefined,
                             }
                           }
@@ -1544,7 +1620,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                             "form": "IICOAddressForm",
                             "getFormState": [Function],
                             "getValues": [Function],
-                            "initialValues": undefined,
+                            "initialValues": Object {
+                              "address": undefined,
+                            },
                             "initialize": [Function],
                             "initialized": false,
                             "invalid": false,
@@ -1588,7 +1666,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                             "updateUnregisteredFields": false,
                             "valid": true,
                             "validExceptSubmit": true,
-                            "values": Object {},
+                            "values": Object {
+                              "address": undefined,
+                            },
                             "warning": undefined,
                           }
                         }
@@ -1653,7 +1733,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                               "form": "IICOAddressForm",
                               "getFormState": [Function],
                               "getValues": [Function],
-                              "initialValues": undefined,
+                              "initialValues": Object {
+                                "address": undefined,
+                              },
                               "initialize": [Function],
                               "initialized": false,
                               "invalid": false,
@@ -1697,7 +1779,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                               "updateUnregisteredFields": false,
                               "valid": true,
                               "validExceptSubmit": true,
-                              "values": Object {},
+                              "values": Object {
+                                "address": undefined,
+                              },
                               "warning": undefined,
                             }
                           }
@@ -1839,8 +1923,10 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
   match={
     Object {
       "isExact": true,
-      "params": Object {},
-      "path": "/",
+      "params": Object {
+        "address": undefined,
+      },
+      "path": "/:address(0x[a-fA-F0-9]{40})?",
       "url": "/",
     }
   }
@@ -1908,8 +1994,10 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
     match={
       Object {
         "isExact": true,
-        "params": Object {},
-        "path": "/",
+        "params": Object {
+          "address": undefined,
+        },
+        "path": "/:address(0x[a-fA-F0-9]{40})?",
         "url": "/",
       }
     }
@@ -1921,6 +2009,11 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
     >
       <ReduxForm
         className="Home-form"
+        initialValues={
+          Object {
+            "address": undefined,
+          }
+        }
         onSubmit={[Function]}
       >
         <Connect(Form(Form))
@@ -1930,6 +2023,11 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
           forceUnregisterOnUnmount={false}
           form="IICOAddressForm"
           getFormState={[Function]}
+          initialValues={
+            Object {
+              "address": undefined,
+            }
+          }
           keepDirtyOnReinitialize={false}
           onSubmit={[Function]}
           persistentSubmitErrors={false}
@@ -1986,8 +2084,13 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
             forceUnregisterOnUnmount={false}
             form="IICOAddressForm"
             getFormState={[Function]}
+            initialValues={
+              Object {
+                "address": undefined,
+              }
+            }
             initialize={[Function]}
-            initialized={false}
+            initialized={true}
             invalid={false}
             keepDirtyOnReinitialize={false}
             onSubmit={[Function]}
@@ -2075,8 +2178,13 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
               dispatch={[Function]}
               form="IICOAddressForm"
               handleSubmit={[Function]}
+              initialValues={
+                Object {
+                  "address": undefined,
+                }
+              }
               initialize={[Function]}
-              initialized={false}
+              initialized={true}
               invalid={false}
               onSubmit={[Function]}
               pristine={false}
@@ -2177,7 +2285,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                             "form": "IICOAddressForm",
                             "getFormState": [Function],
                             "getValues": [Function],
-                            "initialValues": undefined,
+                            "initialValues": Object {
+                              "address": undefined,
+                            },
                             "initialize": [Function],
                             "initialized": false,
                             "invalid": false,
@@ -2221,7 +2331,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                             "updateUnregisteredFields": false,
                             "valid": true,
                             "validExceptSubmit": true,
-                            "values": Object {},
+                            "values": Object {
+                              "address": undefined,
+                            },
                             "warning": undefined,
                           }
                         }
@@ -2287,7 +2399,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                               "form": "IICOAddressForm",
                               "getFormState": [Function],
                               "getValues": [Function],
-                              "initialValues": undefined,
+                              "initialValues": Object {
+                                "address": undefined,
+                              },
                               "initialize": [Function],
                               "initialized": false,
                               "invalid": false,
@@ -2331,7 +2445,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                               "updateUnregisteredFields": false,
                               "valid": true,
                               "validExceptSubmit": true,
-                              "values": Object {},
+                              "values": Object {
+                                "address": undefined,
+                              },
                               "warning": undefined,
                             }
                           }
@@ -2472,7 +2588,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                             "form": "IICOAddressForm",
                             "getFormState": [Function],
                             "getValues": [Function],
-                            "initialValues": undefined,
+                            "initialValues": Object {
+                              "address": undefined,
+                            },
                             "initialize": [Function],
                             "initialized": false,
                             "invalid": false,
@@ -2516,7 +2634,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                             "updateUnregisteredFields": false,
                             "valid": true,
                             "validExceptSubmit": true,
-                            "values": Object {},
+                            "values": Object {
+                              "address": undefined,
+                            },
                             "warning": undefined,
                           }
                         }
@@ -2581,7 +2701,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                               "form": "IICOAddressForm",
                               "getFormState": [Function],
                               "getValues": [Function],
-                              "initialValues": undefined,
+                              "initialValues": Object {
+                                "address": undefined,
+                              },
                               "initialize": [Function],
                               "initialized": false,
                               "invalid": false,
@@ -2625,7 +2747,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                               "updateUnregisteredFields": false,
                               "valid": true,
                               "validExceptSubmit": true,
-                              "values": Object {},
+                              "values": Object {
+                                "address": undefined,
+                              },
                               "warning": undefined,
                             }
                           }
@@ -2744,11 +2868,12 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                
               <Link
                 replace={false}
-                to="/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
+                to="/interactive/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
               >
                 Interactive
               </Link>
-               IICO Page
+               
+              IICO Page
             </h3>
             <p>
               Use the simple interface if you just want to buy tokens in a simple manner.
@@ -2821,16 +2946,17 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
              
             <Link
               replace={false}
-              to="/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
+              to="/interactive/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
             >
               <a
-                href="/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
+                href="/interactive/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
                 onClick={[Function]}
               >
                 Interactive
               </a>
             </Link>
-             IICO Page
+             
+            IICO Page
           </h3>
           <p>
             Use the simple interface if you just want to buy tokens in a simple manner.

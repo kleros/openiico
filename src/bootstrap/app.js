@@ -17,15 +17,8 @@ import { ETHAddressRegExp, ETHAddressRegExpCaptureGroup } from './dapp-api'
 
 import './app.css'
 
-const toWithPossibleAddress = base => location => {
-  let path = ''
-  if (location.pathname) {
-    const address = location.pathname.match(ETHAddressRegExp)
-    if (address && address[0]) path = `/${address[0]}`
-  }
-
-  return base + path
-}
+const toWithAddress = base => location =>
+  `${base}/${location.pathname.match(ETHAddressRegExp)[0]}`
 const hasAddress = location => ETHAddressRegExp.test(location.pathname)
 const ConnectedNavBar = connect(state => ({
   accounts: state.wallet.accounts,
@@ -38,12 +31,12 @@ const ConnectedNavBar = connect(state => ({
     routes={[
       {
         name: 'Simple',
-        to: toWithPossibleAddress('/simple'),
+        to: toWithAddress('/simple'),
         visible: hasAddress
       },
       {
         name: 'Interactive',
-        to: toWithPossibleAddress(''),
+        to: toWithAddress('/interactive'),
         visible: hasAddress
       },
       {
@@ -65,7 +58,11 @@ const App = ({ store, history, testElement }) => (
           </Helmet>
           <Route exact path="*" component={ConnectedNavBar} />
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route
+              exact
+              path={`/:address${ETHAddressRegExpCaptureGroup}?`}
+              component={Home}
+            />
             <Route
               exact
               path={`/simple/:address${ETHAddressRegExpCaptureGroup}`}
@@ -73,7 +70,7 @@ const App = ({ store, history, testElement }) => (
             />
             <Route
               exact
-              path={`/:address${ETHAddressRegExpCaptureGroup}`}
+              path={`/interactive/:address${ETHAddressRegExpCaptureGroup}`}
               component={IICO}
             />
             <Route component={PageNotFound} />

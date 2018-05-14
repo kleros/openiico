@@ -17,6 +17,11 @@ import './home.css'
 
 class Home extends PureComponent {
   static propTypes = {
+    // React Router
+    match: PropTypes.shape({
+      params: PropTypes.shape({ address: PropTypes.string }).isRequired
+    }).isRequired,
+
     // Redux State
     IICOData: IICOSelectors.IICODataShape.isRequired,
 
@@ -29,8 +34,13 @@ class Home extends PureComponent {
   }
 
   componentDidMount() {
-    const { clearIICOData } = this.props
+    const {
+      match: { params: { address } },
+      clearIICOData,
+      submitIICOAddressForm
+    } = this.props
     clearIICOData()
+    address && submitIICOAddressForm()
   }
 
   handleIICOAddressFormSubmit = formData => {
@@ -47,12 +57,13 @@ class Home extends PureComponent {
   }
 
   render() {
-    const { IICOData } = this.props
+    const { match: { params: { address } }, IICOData } = this.props
 
     return (
       <div className="Home" onKeyPress={this.handleKeyPress}>
         <IICOAddressForm
           onSubmit={this.handleIICOAddressFormSubmit}
+          initialValues={{ address }}
           className="Home-form"
         />
         <RenderIf
@@ -65,8 +76,10 @@ class Home extends PureComponent {
                 <h3 className="Home-result-link">
                   Go To{' '}
                   <Link to={`/simple/${IICOData.data.address}`}>Simple</Link> /{' '}
-                  <Link to={`/${IICOData.data.address}`}>Interactive</Link> IICO
-                  Page
+                  <Link to={`/interactive/${IICOData.data.address}`}>
+                    Interactive
+                  </Link>{' '}
+                  IICO Page
                 </h3>
                 <p>
                   Use the simple interface if you just want to buy tokens in a
