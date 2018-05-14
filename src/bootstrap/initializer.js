@@ -72,12 +72,11 @@ class Initializer extends PureComponent {
       if (is404) return window.location.replace(`/${checksumAddress}`) // If in 404, we can go back to home
     } catch (err) {
       console.error(err)
-      return is404 // No code
-        ? this.setState({ pathAddress: null }) // Already in 404, do nothing
-        : window.location.replace(`/404/${checksumAddress}`) // Go to 404
+      // No code
+      if (!is404) return window.location.replace(`/404/${checksumAddress}`) // If not in 404, go
     }
 
-    // It has code and we are not in 404, is it checksummed?
+    // It has code and we are not in 404 or it doesn't have code and we are in 404, is it checksummed?
     if (address !== checksumAddress)
       return window.location.replace(
         window.location.pathname.replace(address, checksumAddress)
