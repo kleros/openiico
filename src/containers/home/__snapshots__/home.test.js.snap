@@ -2898,7 +2898,6 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
           >
             <Unknown
               seed="0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
-              size={60}
             />
             <h3
               className="Home-result-link"
@@ -2973,7 +2972,6 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
             history={undefined}
             location={undefined}
             seed="0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
-            size={60}
           >
             <div
               history={undefined}

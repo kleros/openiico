@@ -113,7 +113,7 @@ class SimpleBid extends PureComponent {
                 <b>Identicon:</b>
                 <br />
                 <br />
-                <Identicon seed={address} size={50} />
+                <Identicon seed={address} />
               </div>
               <div>
                 <b>QR Code:</b>

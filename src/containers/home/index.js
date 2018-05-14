@@ -99,7 +99,7 @@ class Home extends PureComponent {
           done={
             IICOData.data && (
               <div className="Home-result">
-                <Identicon seed={IICOData.data.address} size={60} />
+                <Identicon seed={IICOData.data.address} />
                 <h3 className="Home-result-link">
                   Go To{' '}
                   <Link to={`/simple/${IICOData.data.address}`}>Simple</Link> /{' '}

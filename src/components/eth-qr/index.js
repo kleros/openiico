@@ -12,7 +12,7 @@ export default class ETHQR extends PureComponent {
 
   static defaultProps = {
     // State
-    size: 200
+    size: 128
   }
 
   state = { dataURL: null }
