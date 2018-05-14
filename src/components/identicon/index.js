@@ -16,7 +16,12 @@ const Identicon = ({ seed, size, scale, className, ...rest }) => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Blockies {...rest} seed={seed} size={size} scale={scale} />
+        <Blockies
+          {...rest}
+          seed={seed.toLowerCase()}
+          size={size}
+          scale={scale}
+        />
       </a>
     </div>
   )
@@ -24,7 +29,7 @@ const Identicon = ({ seed, size, scale, className, ...rest }) => {
 
 Identicon.propTypes = {
   // React Blockies
-  seed: PropTypes.number.isRequired,
+  seed: PropTypes.string.isRequired,
   size: PropTypes.number,
   scale: PropTypes.number,
   ...Blockies.propTypes,
@@ -35,8 +40,8 @@ Identicon.propTypes = {
 
 Identicon.defaultProps = {
   // React Blockies
-  size: 15,
-  scale: 4,
+  size: 8,
+  scale: 16,
 
   // Modifiers
   className: ''
