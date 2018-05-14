@@ -1894,7 +1894,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
 <Connect(Home)
   history={
     Object {
-      "action": "POP",
+      "action": "REPLACE",
       "block": [Function],
       "createHref": [Function],
       "go": [Function],
@@ -1904,7 +1904,8 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
       "listen": [Function],
       "location": Object {
         "hash": "",
-        "pathname": "/",
+        "key": "000000",
+        "pathname": "/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C",
         "search": "",
         "state": undefined,
       },
@@ -1915,7 +1916,8 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
   location={
     Object {
       "hash": "",
-      "pathname": "/",
+      "key": "000000",
+      "pathname": "/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C",
       "search": "",
       "state": undefined,
     }
@@ -1924,10 +1926,10 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
     Object {
       "isExact": true,
       "params": Object {
-        "address": undefined,
+        "address": "0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C",
       },
       "path": "/:address(0x[a-fA-F0-9]{40})?",
-      "url": "/",
+      "url": "/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C",
     }
   }
 >
@@ -1965,7 +1967,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
     fetchIICOData={[Function]}
     history={
       Object {
-        "action": "POP",
+        "action": "REPLACE",
         "block": [Function],
         "createHref": [Function],
         "go": [Function],
@@ -1975,7 +1977,8 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
         "listen": [Function],
         "location": Object {
           "hash": "",
-          "pathname": "/",
+          "key": "000000",
+          "pathname": "/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C",
           "search": "",
           "state": undefined,
         },
@@ -1986,7 +1989,8 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
     location={
       Object {
         "hash": "",
-        "pathname": "/",
+        "key": "000000",
+        "pathname": "/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C",
         "search": "",
         "state": undefined,
       }
@@ -1995,25 +1999,29 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
       Object {
         "isExact": true,
         "params": Object {
-          "address": undefined,
+          "address": "0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C",
         },
         "path": "/:address(0x[a-fA-F0-9]{40})?",
-        "url": "/",
+        "url": "/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C",
       }
     }
     submitIICOAddressForm={[Function]}
   >
     <div
       className="Home"
+      history={undefined}
+      location={undefined}
       onKeyPress={[Function]}
     >
       <ReduxForm
         className="Home-form"
+        history={undefined}
         initialValues={
           Object {
-            "address": undefined,
+            "address": "0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C",
           }
         }
+        location={undefined}
         onSubmit={[Function]}
       >
         <Connect(Form(Form))
@@ -2023,12 +2031,14 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
           forceUnregisterOnUnmount={false}
           form="IICOAddressForm"
           getFormState={[Function]}
+          history={undefined}
           initialValues={
             Object {
-              "address": undefined,
+              "address": "0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C",
             }
           }
           keepDirtyOnReinitialize={false}
+          location={undefined}
           onSubmit={[Function]}
           persistentSubmitErrors={false}
           pure={true}
@@ -2077,25 +2087,27 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
             clearSubmitErrors={[Function]}
             destroy={[Function]}
             destroyOnUnmount={true}
-            dirty={true}
+            dirty={false}
             dispatch={[Function]}
             enableReinitialize={false}
             focus={[Function]}
             forceUnregisterOnUnmount={false}
             form="IICOAddressForm"
             getFormState={[Function]}
+            history={undefined}
             initialValues={
               Object {
-                "address": undefined,
+                "address": "0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C",
               }
             }
             initialize={[Function]}
             initialized={true}
             invalid={false}
             keepDirtyOnReinitialize={false}
+            location={undefined}
             onSubmit={[Function]}
             persistentSubmitErrors={false}
-            pristine={false}
+            pristine={true}
             pure={true}
             registerField={[Function]}
             registeredFields={
@@ -2173,21 +2185,23 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
               clearSubmit={[Function]}
               clearSubmitErrors={[Function]}
               destroy={[Function]}
-              dirty={true}
+              dirty={false}
               disabled={false}
               dispatch={[Function]}
               form="IICOAddressForm"
               handleSubmit={[Function]}
+              history={undefined}
               initialValues={
                 Object {
-                  "address": undefined,
+                  "address": "0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C",
                 }
               }
               initialize={[Function]}
               initialized={true}
               invalid={false}
+              location={undefined}
               onSubmit={[Function]}
-              pristine={false}
+              pristine={true}
               pure={true}
               reset={[Function]}
               resetSection={[Function]}
@@ -2201,10 +2215,14 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
             >
               <form
                 className="Home-form"
+                history={undefined}
+                location={undefined}
               >
                 <fieldset
                   className="Home-form-fieldset"
                   disabled={false}
+                  history={undefined}
+                  location={undefined}
                   style={
                     Object {
                       "border": "none",
@@ -2215,6 +2233,8 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                 >
                   <div
                     className="Home-form-fieldset-fields"
+                    history={undefined}
+                    location={undefined}
                     style={
                       Object {
                         "display": "flex",
@@ -2224,7 +2244,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                   >
                     <Field
                       component={[Function]}
+                      history={undefined}
                       key="IICOAddressForm-header"
+                      location={undefined}
                       name="header"
                       props={
                         Object {
@@ -2338,6 +2360,8 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                           }
                         }
                         component={[Function]}
+                        history={undefined}
+                        location={undefined}
                         name="header"
                         normalize={[Function]}
                         props={
@@ -2455,6 +2479,8 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                           component={[Function]}
                           dirty={false}
                           dispatch={[Function]}
+                          history={undefined}
+                          location={undefined}
                           name="header"
                           normalize={[Function]}
                           pristine={true}
@@ -2475,6 +2501,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                           validate={null}
                         >
                           <FormHeader
+                            history={undefined}
                             input={
                               Object {
                                 "name": "header",
@@ -2486,6 +2513,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                                 "value": "",
                               }
                             }
+                            location={undefined}
                             meta={
                               Object {
                                 "active": false,
@@ -2516,8 +2544,13 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                           >
                             <div
                               className="FormHeader"
+                              history={undefined}
+                              location={undefined}
                             >
-                              <h4>
+                              <h4
+                                history={undefined}
+                                location={undefined}
+                              >
                                 Enter the address of the IICO and hit enter.
                               </h4>
                             </div>
@@ -2527,7 +2560,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                     </Field>
                     <Field
                       component={[Function]}
+                      history={undefined}
                       key="IICOAddressForm-address"
+                      location={undefined}
                       name="address"
                       normalize={[Function]}
                       props={
@@ -2641,6 +2676,8 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                           }
                         }
                         component={[Function]}
+                        history={undefined}
+                        location={undefined}
                         name="address"
                         normalize={[Function]}
                         props={
@@ -2757,6 +2794,8 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                           component={[Function]}
                           dirty={true}
                           dispatch={[Function]}
+                          history={undefined}
+                          location={undefined}
                           name="address"
                           normalize={[Function]}
                           pristine={false}
@@ -2778,6 +2817,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                         >
                           <TextInput
                             className=""
+                            history={undefined}
                             input={
                               Object {
                                 "name": "address",
@@ -2789,6 +2829,7 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                                 "value": "0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C",
                               }
                             }
+                            location={undefined}
                             meta={
                               Object {
                                 "active": false,
@@ -2819,9 +2860,13 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                           >
                             <div
                               className="TextInput is-valid "
+                              history={undefined}
+                              location={undefined}
                             >
                               <input
                                 className="TextInput-input"
+                                history={undefined}
+                                location={undefined}
                                 onBlur={[Function]}
                                 onChange={[Function]}
                                 type="text"
@@ -2829,6 +2874,8 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                               />
                               <div
                                 className="TextInput-placeholder is-touched"
+                                history={undefined}
+                                location={undefined}
                               >
                                 Address
                               </div>
@@ -2884,7 +2931,9 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
           </div>
         }
         failedLoading="The address or the contract it holds is invalid. Try another one."
+        history={undefined}
         loading="Loading contract..."
+        location={undefined}
         resource={
           Object {
             "data": Object {
@@ -2917,26 +2966,39 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
       >
         <div
           className="Home-result"
+          history={undefined}
+          location={undefined}
         >
           <Component
+            history={undefined}
+            location={undefined}
             seed="0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
             size={60}
           >
-            <div>
+            <div
+              history={undefined}
+              location={undefined}
+            >
               [Identicon]
             </div>
           </Component>
           <h3
             className="Home-result-link"
+            history={undefined}
+            location={undefined}
           >
             Go To
              
             <Link
+              history={undefined}
+              location={undefined}
               replace={false}
               to="/simple/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
             >
               <a
+                history={undefined}
                 href="/simple/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
+                location={undefined}
                 onClick={[Function]}
               >
                 Simple
@@ -2945,11 +3007,15 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
              /
              
             <Link
+              history={undefined}
+              location={undefined}
               replace={false}
               to="/interactive/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
             >
               <a
+                history={undefined}
                 href="/interactive/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
+                location={undefined}
                 onClick={[Function]}
               >
                 Interactive
@@ -2958,10 +3024,16 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
              
             IICO Page
           </h3>
-          <p>
+          <p
+            history={undefined}
+            location={undefined}
+          >
             Use the simple interface if you just want to buy tokens in a simple manner.
           </p>
-          <p>
+          <p
+            history={undefined}
+            location={undefined}
+          >
             Use the interactive interface if you want to place sophisticated bids with personal caps on the amount raised.
           </p>
         </div>

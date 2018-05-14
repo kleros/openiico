@@ -19,7 +19,9 @@ import './app.css'
 
 const toWithAddress = base => location =>
   `${base}/${location.pathname.match(ETHAddressRegExp)[0]}`
-const hasAddress = location => ETHAddressRegExp.test(location.pathname)
+const hasNonRootAddress = location =>
+  location.pathname.slice(0, 3) !== '/0x' &&
+  ETHAddressRegExp.test(location.pathname)
 const ConnectedNavBar = connect(state => ({
   accounts: state.wallet.accounts,
   balance: state.wallet.balance
@@ -32,12 +34,12 @@ const ConnectedNavBar = connect(state => ({
       {
         name: 'Simple',
         to: toWithAddress('/simple'),
-        visible: hasAddress
+        visible: hasNonRootAddress
       },
       {
         name: 'Interactive',
         to: toWithAddress('/interactive'),
-        visible: hasAddress
+        visible: hasNonRootAddress
       },
       {
         name: 'Terms & Conditions',

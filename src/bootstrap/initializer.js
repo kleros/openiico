@@ -28,42 +28,15 @@ class Initializer extends PureComponent {
     ]).isRequired
   }
 
-  static getPathChecksummedAddress() {
-    // Get possible address from path
-    let address = window.location.pathname.match(ETHAddressRegExp)
-    address = address && address[0]
-
-    // There is an address
-    if (address) {
-      // Check if it is an existing contract address
-      eth
-        .getCode(address)
-        .then(res => {
-          if (res === '0x') throw new Error()
-        })
-        .catch(() => window.location.replace('/404'))
-
-      // Is it checksummed?
-      const checksumAddress = getChecksumAddress(address)
-      if (address === checksumAddress)
-        return address // Yes, return it
-      else
-        window.location.replace(
-          window.location.pathname.replace(address, checksumAddress)
-        ) // No, replace it
-    }
-
-    return null // There is no address
-  }
-
   state = {
     isWeb3Loaded: eth.accounts !== undefined,
-    pathAddress: Initializer.getPathChecksummedAddress()
+    pathAddress: undefined
   }
 
   componentDidMount() {
     const { fetchAccounts } = this.props
     fetchAccounts()
+    this.pathAddressCheck()
   }
 
   componentDidUpdate(prevProps) {
@@ -71,22 +44,62 @@ class Initializer extends PureComponent {
     const { accounts, fetchBalance } = this.props
     if (accounts.data && accounts.data[0] && prevAccounts !== accounts)
       fetchBalance()
+  }
 
-    this.setState({ pathAddress: Initializer.getPathChecksummedAddress() })
+  pathAddressCheck = async () => {
+    this.setState({ pathAddress: undefined })
+
+    // Get possible address from path
+    let address = window.location.pathname.match(ETHAddressRegExp)
+    address = address && address[0]
+
+    // There is an address
+    if (address) {
+      // Check that it has code
+      try {
+        const code = await eth.getCode(address)
+        if (code === '0x') throw new Error()
+      } catch (err) {
+        console.error(err)
+        return window.location.replace('/404')
+      }
+
+      // Is it checksummed?
+      const checksumAddress = getChecksumAddress(address)
+      if (address !== checksumAddress)
+        return window.location.replace(
+          window.location.pathname.replace(address, checksumAddress)
+        ) // No, replace it
+    }
+
+    // Block all other sales for now to avoid phishing
+    if (
+      process.env.REACT_APP_BRANCH === 'master' &&
+      address !== '0xac43300F2D0c345B716F36853eCeb497576E0F67'
+    )
+      return window.location.replace(
+        '/0xac43300F2D0c345B716F36853eCeb497576E0F67'
+      )
+
+    this.setState({ pathAddress: address || null })
   }
 
   render() {
     const { isWeb3Loaded, pathAddress } = this.state
     const { accounts, children } = this.props
 
+    const loading = (
+      <div id="initializer-loader">
+        <PropagateLoader color="#9b9b9b" size={20} />
+      </div>
+    )
+
+    if (pathAddress === undefined) return loading
+
     return (
       <RenderIf
         resource={accounts}
-        loading={
-          <div id="initializer-loader">
-            <PropagateLoader color="#9b9b9b" size={20} />
-          </div>
-        }
+        loading={loading}
         done={children}
         failedLoading={
           <div>

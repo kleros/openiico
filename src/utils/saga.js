@@ -51,7 +51,7 @@ export function* lessduxSaga(flow, resourceActions, saga, action) {
       })
     )
   } catch (err) {
-    toastr.error('', err.message.slice(0, 100))
+    err.message && toastr.error('', err.message.slice(0, 100))
     yield put(errorAction(resourceActions['FAIL' + failWord], err))
   }
 }

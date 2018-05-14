@@ -90,6 +90,14 @@ function* fetchIICOData({ payload: { address } }) {
     inReinforcedWhitelist: call(contract.reinforcedWhitelist, account)
   })
 
+  let tokenContractAddress
+  try {
+    tokenContractAddress = getChecksumAddress(d.tokenContractAddress[0])
+  } catch (err) {
+    console.error(err)
+    throw new Error()
+  }
+
   return {
     address,
 
@@ -97,7 +105,7 @@ function* fetchIICOData({ payload: { address } }) {
     ethPrice: d.ethTicker && d.ethTicker.data.quotes.USD.price,
 
     // Token
-    tokenContractAddress: getChecksumAddress(d.tokenContractAddress[0]),
+    tokenContractAddress,
     tokensForSale: Number(Eth.fromWei(d.tokensForSale[0], 'ether')),
 
     // Times

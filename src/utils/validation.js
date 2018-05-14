@@ -1,4 +1,4 @@
-import { ETHAddressRegExp } from '../bootstrap/dapp-api'
+import { strictETHAddressRegExp } from '../bootstrap/dapp-api'
 
 // General
 export const required = name => v =>
@@ -14,6 +14,6 @@ export const nonZero = name => v =>
 
 // Ethereum
 export const isETHAddress = name => v =>
-  !ETHAddressRegExp.test(v) || v.length !== 42
+  !strictETHAddressRegExp.test(v) || v.length !== 42
     ? `${name} must be a valid address.`
     : undefined

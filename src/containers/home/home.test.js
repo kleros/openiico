@@ -1,5 +1,6 @@
 import setupIntegrationTest, {
-  flushPromises
+  flushPromises,
+  enzymeToJSON
 } from '../../bootstrap/setup-integration-test'
 
 import Home from '.'
@@ -31,5 +32,5 @@ it("Renders and loads an IICO contract's data after submitting an address.", asy
   // Submit address
   app.find('.Home').simulate('keypress', { key: 'Enter' })
   await flushPromises(app)
-  expect(app.find(Home)).toMatchSnapshot()
+  expect(enzymeToJSON(app.find(Home))).toMatchSnapshot()
 })

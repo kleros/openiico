@@ -2,7 +2,7 @@ import { getChecksumAddress } from 'ethjs-account'
 
 import { form } from '../../../../utils/form-generator'
 import { required, isETHAddress } from '../../../../utils/validation'
-import { ETHAddressRegExp } from '../../../../bootstrap/dapp-api'
+import { strictETHAddressRegExp } from '../../../../bootstrap/dapp-api'
 
 export const {
   Form: IICOAddressForm,
@@ -18,7 +18,7 @@ export const {
     validate: [required, isETHAddress],
     reduxFormFieldProps: {
       normalize: value =>
-        ETHAddressRegExp.test(value) ? getChecksumAddress(value) : value
+        strictETHAddressRegExp.test(value) ? getChecksumAddress(value) : value
     }
   }
 })

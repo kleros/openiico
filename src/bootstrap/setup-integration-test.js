@@ -1,5 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import _enzymeToJSON from 'enzyme-to-json'
 import Eth from 'ethjs'
 
 import _Token from '../assets/contracts/Token'
@@ -127,6 +128,30 @@ export function flushPromises(app) {
       resolve()
     }, 1000)
   )
+}
+
+/**
+ * Serializes enzyme wrappers and ignores the history API's random keys.
+ * @param {object} enzymeWrapper - The enzyme wrapper to serialize.
+ * @returns {object} - The serialized wrapper.
+ */
+export function enzymeToJSON(enzymeWrapper) {
+  return _enzymeToJSON(enzymeWrapper, {
+    map: data => ({
+      ...data,
+      props: {
+        ...data.props,
+        history: data.props.history && {
+          ...data.props.history,
+          location: { ...data.props.history.location, key: '000000' }
+        },
+        location: data.props.location && {
+          ...data.props.location,
+          key: '000000'
+        }
+      }
+    })
+  })
 }
 
 /**

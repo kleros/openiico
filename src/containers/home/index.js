@@ -18,6 +18,10 @@ import './home.css'
 class Home extends PureComponent {
   static propTypes = {
     // React Router
+    history: PropTypes.shape({ replace: PropTypes.func.isRequired }).isRequired,
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired
+    }).isRequired,
     match: PropTypes.shape({
       params: PropTypes.shape({ address: PropTypes.string }).isRequired
     }).isRequired,
@@ -37,15 +41,36 @@ class Home extends PureComponent {
     const {
       match: { params: { address } },
       clearIICOData,
-      submitIICOAddressForm
+      fetchIICOData
     } = this.props
     clearIICOData()
-    address && submitIICOAddressForm()
+    address && fetchIICOData(address)
+  }
+
+  componentDidUpdate(prevProps) {
+    const {
+      match: { params: { address: prevAddress } },
+      IICOData: prevIICOData
+    } = prevProps
+    const {
+      history,
+      location,
+      match: { params: { address } },
+      IICOData,
+      fetchIICOData
+    } = this.props
+    if (address && prevAddress !== address) fetchIICOData(address)
+    if (
+      location.pathname !== '/' &&
+      IICOData.failedLoading &&
+      prevIICOData.failedLoading !== IICOData.failedLoading
+    )
+      history.replace(`/`)
   }
 
   handleIICOAddressFormSubmit = formData => {
-    const { fetchIICOData } = this.props
-    fetchIICOData(formData.address)
+    const { history } = this.props
+    history.replace(`/${formData.address}`)
   }
 
   handleKeyPress = event => {
@@ -61,11 +86,13 @@ class Home extends PureComponent {
 
     return (
       <div className="Home" onKeyPress={this.handleKeyPress}>
-        <IICOAddressForm
-          onSubmit={this.handleIICOAddressFormSubmit}
-          initialValues={{ address }}
-          className="Home-form"
-        />
+        {process.env.REACT_APP_BRANCH !== 'master' && (
+          <IICOAddressForm
+            onSubmit={this.handleIICOAddressFormSubmit}
+            initialValues={{ address }}
+            className="Home-form"
+          />
+        )}
         <RenderIf
           resource={IICOData}
           loading="Loading contract..."
