@@ -10,4 +10,35 @@
       margin-top: 24px;
     }
   }
+
+  &-wallets {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 3em;
+
+    &-ledger {
+      width: 120px;
+    }
+
+    &-metamask {
+      margin-top: -10px;
+      width: 120px;
+    }
+
+    &-mycrypto {
+      margin-top: -3px;
+      width: 120px;
+    }
+
+    &-parity {
+      margin-top: -20px;
+      width: 150px;
+    }
+
+    &-jaxx {
+      margin-top: -10px;
+      width: 90px;
+    }
+  }
 }
