@@ -280,19 +280,24 @@ class Bids extends PureComponent {
       KYCLevel = 'Base'
     } else {
       KYCLevelTooltip = 'You need to pass the KYC to participate in the sale.'
-      KYCLevel = 'None'
+      KYCLevel = 'You need to pass the KYC to participate in the sale.'
     }
 
     let KYCLink
     if (process.env.REACT_APP_BRANCH === 'master')
       KYCLink = (
-        <a
-          href="https://kleros.io/kyc"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
+        <span>
           {KYCLevel}
-        </a>
+          <div className="Bids-kycRegister">
+            <a
+              href="https://kleros.io/kyc"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Register for KYC here
+            </a>
+          </div>
+        </span>
       )
 
     return (
