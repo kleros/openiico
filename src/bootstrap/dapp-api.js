@@ -14,14 +14,14 @@ else eth = new Eth(new Eth.HttpProvider(ETHEREUM_PROVIDER))
 
 const IICOContractFactory = eth.contract && eth.contract(IICO.abi) // TODO: Put this on NPM or load dynamically?
 
-const ETHAddressRegExp = /0x[a-fA-F0-9]{40}/
 const ETHAddressRegExpCaptureGroup = '(0x[a-fA-F0-9]{40})'
+const ETHAddressRegExp = /0x[a-fA-F0-9]{40}/
 const strictETHAddressRegExp = /^0x[a-fA-F0-9]{40}$/
 
 export {
   eth,
   IICOContractFactory,
-  ETHAddressRegExp,
   ETHAddressRegExpCaptureGroup,
+  ETHAddressRegExp,
   strictETHAddressRegExp
 }

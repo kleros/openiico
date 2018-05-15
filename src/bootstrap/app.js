@@ -13,7 +13,7 @@ import PageNotFound from '../containers/page-not-found'
 
 import Initializer from './initializer'
 import GlobalComponents from './global-components'
-import { ETHAddressRegExp, ETHAddressRegExpCaptureGroup } from './dapp-api'
+import { ETHAddressRegExpCaptureGroup, ETHAddressRegExp } from './dapp-api'
 
 import './app.css'
 
@@ -21,6 +21,7 @@ const toWithAddress = base => location =>
   `${base}/${location.pathname.match(ETHAddressRegExp)[0]}`
 const hasNonRootAddress = location =>
   location.pathname.slice(0, 3) !== '/0x' &&
+  location.pathname.slice(0, 4) !== '/404' &&
   ETHAddressRegExp.test(location.pathname)
 const ConnectedNavBar = connect(state => ({
   accounts: state.wallet.accounts,
@@ -31,6 +32,11 @@ const ConnectedNavBar = connect(state => ({
     accounts={accounts}
     balance={balance}
     routes={[
+      {
+        name: 'Home',
+        to: '/',
+        visible: location => location.pathname.slice(0, 4) === '/404'
+      },
       {
         name: 'Simple',
         to: toWithAddress('/simple'),

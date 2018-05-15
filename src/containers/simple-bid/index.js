@@ -77,7 +77,7 @@ class SimpleBid extends PureComponent {
           >
             KYC
           </a>{' '}
-          and you need to send at least 300,000 gas with the transaction.
+          and you need to <b>send at least 300,000 gas with the transaction.</b>
           <RenderIf
             resource={IICOData}
             loading={null}

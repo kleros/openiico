@@ -192,6 +192,8 @@ class Bids extends PureComponent {
         <div className="Bids-confirm">
           Are you sure you wish to withdraw this bid?
           <br />
+          <b>This withdraws your ETH, it does not redeem tokens.</b>
+          <br />
           <ChainNumber>{lockedIn}</ChainNumber> ETH
           <br />
           would remain locked in{lockedIn ? (
@@ -281,6 +283,18 @@ class Bids extends PureComponent {
       KYCLevel = 'None'
     }
 
+    let KYCLink
+    if (process.env.REACT_APP_BRANCH === 'master')
+      KYCLink = (
+        <a
+          href="https://kleros.io/kyc"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          {KYCLevel}
+        </a>
+      )
+
     return (
       <div id="joyridePlaceBid" className="Bids">
         <h1>Your Bids</h1>
@@ -288,7 +302,7 @@ class Bids extends PureComponent {
           <StatRow>
             <StatBlock
               label="KYC Level"
-              value={KYCLevel}
+              value={KYCLink || KYCLevel}
               tooltip={KYCLevelTooltip}
             />
             {KYCLevel === 'Base' && (
@@ -512,6 +526,11 @@ class Bids extends PureComponent {
                             'REDEEM'
                           )}
                         </Button>
+                      }
+                      tooltip={
+                        canWithdraw
+                          ? 'This withdraws your ETH, it does not redeem tokens.'
+                          : 'This redeems your tokens.'
                       }
                       noFlex
                     />
