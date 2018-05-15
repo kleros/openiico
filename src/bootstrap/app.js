@@ -33,6 +33,11 @@ const ConnectedNavBar = connect(state => ({
     balance={balance}
     routes={[
       {
+        name: 'Home',
+        to: '/',
+        visible: location => location.pathname.slice(0, 4) === '/404'
+      },
+      {
         name: 'Simple',
         to: toWithAddress('/simple'),
         visible: hasNonRootAddress
