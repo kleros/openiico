@@ -192,6 +192,8 @@ class Bids extends PureComponent {
         <div className="Bids-confirm">
           Are you sure you wish to withdraw this bid?
           <br />
+          <b>This withdraws your ETH, it does not redeem tokens.</b>
+          <br />
           <ChainNumber>{lockedIn}</ChainNumber> ETH
           <br />
           would remain locked in{lockedIn ? (
@@ -512,6 +514,11 @@ class Bids extends PureComponent {
                             'REDEEM'
                           )}
                         </Button>
+                      }
+                      tooltip={
+                        canWithdraw
+                          ? 'This withdraws your ETH, it does not redeem tokens.'
+                          : 'This redeems your tokens.'
                       }
                       noFlex
                     />
