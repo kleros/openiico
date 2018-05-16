@@ -12,6 +12,24 @@ else if (window.web3 && window.web3.currentProvider)
   eth = new Eth(window.web3.currentProvider)
 else eth = new Eth(new Eth.HttpProvider(ETHEREUM_PROVIDER))
 
+const network = eth
+  .net_version()
+  .then(networkID => {
+    switch (networkID) {
+      case '1':
+        return 'main'
+      case '3':
+        return 'ropsten'
+      case '4':
+        return 'rinkeby'
+      case '42':
+        return 'kovan'
+      default:
+        return null
+    }
+  })
+  .catch(() => null)
+
 const IICOContractFactory = eth.contract && eth.contract(IICO.abi) // TODO: Put this on NPM or load dynamically?
 
 const ETHAddressRegExpCaptureGroup = '(0x[a-fA-F0-9]{40})'
@@ -20,6 +38,7 @@ const strictETHAddressRegExp = /^0x[a-fA-F0-9]{40}$/
 
 export {
   eth,
+  network,
   IICOContractFactory,
   ETHAddressRegExpCaptureGroup,
   ETHAddressRegExp,

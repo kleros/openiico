@@ -8,11 +8,12 @@ import 'jest-enzyme'
 // Configure
 configure({ adapter: new Adapter() })
 
+// Mock globals
+window.fetch = jest.fn(() => new Promise(resolve => resolve(undefined)))
+window.web3 = {}
+
 // Mock modules
 jest.mock('./components/identicon', () => () => <div>[Identicon]</div>)
-
-// Mock fetch
-window.fetch = jest.fn(() => new Promise(resolve => resolve(undefined)))
 
 // Mock time
 timezoneMock.register('UTC')

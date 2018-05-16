@@ -22,8 +22,7 @@ it('Renders and handles mouse events.', () => {
         {
           label: 'label 2',
           percent: 0.6,
-          color: 'color',
-          point: false
+          color: 'color'
         }
       ]}
       calcValue={calcValue}

@@ -28,10 +28,7 @@ class Initializer extends PureComponent {
     ]).isRequired
   }
 
-  state = {
-    isWeb3Loaded: eth.accounts !== undefined,
-    pathAddress: undefined
-  }
+  state = { pathAddress: undefined }
 
   componentDidMount() {
     const { fetchAccounts } = this.props
@@ -87,8 +84,8 @@ class Initializer extends PureComponent {
   }
 
   render() {
-    const { isWeb3Loaded, pathAddress } = this.state
     const { accounts, children } = this.props
+    const { pathAddress } = this.state
 
     const loading = (
       <div id="initializer-loader">
@@ -97,7 +94,6 @@ class Initializer extends PureComponent {
     )
 
     if (pathAddress === undefined) return loading
-
     return (
       <RenderIf
         resource={accounts}
@@ -105,12 +101,12 @@ class Initializer extends PureComponent {
         done={children}
         failedLoading={
           <div>
-            <RequiresMetaMask needsUnlock={isWeb3Loaded} />
+            <RequiresMetaMask needsUnlock={Boolean(window.web3)} />
             <SimpleBid match={{ params: { address: pathAddress } }} noWeb3 />
           </div>
         }
-        extraValues={[accounts.data && accounts.data[0]]}
-        extraFailedValues={[!isWeb3Loaded]}
+        extraValues={[(accounts.data && accounts.data[0]) || null]}
+        extraFailedValues={[!window.web3]}
       />
     )
   }

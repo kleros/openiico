@@ -8,7 +8,7 @@ export const _IICODataShape = PropTypes.shape({
   address: PropTypes.string.isRequired,
 
   // Centralized
-  ethPrice: PropTypes.number.isRequired,
+  ethPrice: PropTypes.number,
 
   // Token
   tokenContractAddress: PropTypes.string.isRequired,
