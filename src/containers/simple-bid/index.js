@@ -7,6 +7,11 @@ import * as IICOSelectors from '../../reducers/iico'
 import * as IICOActions from '../../actions/iico'
 import Identicon from '../../components/identicon'
 import ETHQR from '../../components/eth-qr'
+import ledger from '../../assets/images/ledger.png'
+import metamask from '../../assets/images/metamask.png'
+import mycrypto from '../../assets/images/mycrypto.png'
+import parity from '../../assets/images/parity.png'
+import jaxx from '../../assets/images/jaxx.png'
 
 import './simple-bid.css'
 
@@ -107,7 +112,8 @@ class SimpleBid extends PureComponent {
         </p>
         {address && (
           <div className="SimpleBid-addressInfo">
-            <b>Contract Address:</b> {address}
+            <b>Contract Address:</b>&nbsp;
+            <a href={`https://etherscan.io/address/${address}`}>{address}</a>
             <div className="SimpleBid-addressInfo-blocks">
               <div>
                 <b>Identicon:</b>
@@ -135,6 +141,50 @@ class SimpleBid extends PureComponent {
             come back with a Web3 enabled browser.
           </p>
         )}
+        <b>Recommended tools to send ethers:</b>
+        <div className="SimpleBid-wallets">
+          <div>
+            <a href="https://www.ledgerwallet.com/apps/ethereum">
+              <img
+                className="SimpleBid-wallets-ledger"
+                alt="ledger wallet"
+                src={ledger}
+              />
+            </a>
+          </div>
+          <div>
+            <a href="https://metamask.io">
+              <img
+                className="SimpleBid-wallets-metamask"
+                alt="metamask"
+                src={metamask}
+              />
+            </a>
+          </div>
+          <div>
+            <a href="https://mycrypto.com">
+              <img
+                className="SimpleBid-wallets-mycrypto"
+                alt="mycrypto"
+                src={mycrypto}
+              />
+            </a>
+          </div>
+          <div>
+            <a href="https://parity.io">
+              <img
+                className="SimpleBid-wallets-parity"
+                alt="parity wallet"
+                src={parity}
+              />
+            </a>
+          </div>
+          <div>
+            <a href="https://jaxx.io/">
+              <img className="SimpleBid-wallets-jaxx" alt="jaxx" src={jaxx} />
+            </a>
+          </div>
+        </div>
       </div>
     )
   }
