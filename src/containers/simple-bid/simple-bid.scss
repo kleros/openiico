@@ -4,6 +4,9 @@
   text-align: justify;
 
   &-addressInfo {
+    overflow-wrap: break-word;
+    text-align: left;
+
     &-blocks {
       display: flex;
       justify-content: space-evenly;
