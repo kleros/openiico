@@ -280,7 +280,7 @@ class Bids extends PureComponent {
       KYCLevel = 'Base'
     } else {
       KYCLevelTooltip = 'You need to pass the KYC to participate in the sale.'
-      KYCLevel = 'You need to pass the KYC to participate in the sale.'
+      KYCLevel = 'None'
     }
 
     let KYCLink
@@ -288,15 +288,15 @@ class Bids extends PureComponent {
       KYCLink = (
         <span>
           {KYCLevel}
-          <div className="Bids-kycRegister">
+          <h4>
             <a
               href="https://kleros.io/kyc"
               rel="noopener noreferrer"
               target="_blank"
             >
-              Register for KYC here
+              Register for the KYC here.
             </a>
-          </div>
+          </h4>
         </span>
       )
 
