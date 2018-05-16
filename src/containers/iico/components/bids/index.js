@@ -286,13 +286,18 @@ class Bids extends PureComponent {
     let KYCLink
     if (process.env.REACT_APP_BRANCH === 'master')
       KYCLink = (
-        <a
-          href="https://kleros.io/kyc"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
+        <span>
           {KYCLevel}
-        </a>
+          <h4>
+            <a
+              href="https://kleros.io/kyc"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Register for the KYC here.
+            </a>
+          </h4>
+        </span>
       )
 
     return (
