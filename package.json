@@ -78,7 +78,7 @@
     "ethjs": "^0.3.3",
     "ethjs-account": "^0.1.4",
     "history": "^4.7.2",
-    "lessdux": "^0.7.0",
+    "lessdux": "^0.7.3",
     "normalize.css": "^7.0.0",
     "qrcode": "^1.2.0",
     "react": "^16.2.0",

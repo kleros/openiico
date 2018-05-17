@@ -1003,14 +1003,21 @@ exports[`Storyshots Chain Hash default 1`] = `
           }
         >
           <span
+            className="ChainHash"
             data-tip="0x5b5d09477f730baafb1e2e0fb78f5d95fd94a6f4"
           >
+            0x5b5d...a6f4
             <a
-              href="https://etherscan.io/address/0x5b5d09477f730baafb1e2e0fb78f5d95fd94a6f4"
+              className="ChainHash-link"
+              href="https://undefined.etherscan.io/address/0x5b5d09477f730baafb1e2e0fb78f5d95fd94a6f4"
               rel="noopener noreferrer"
               target="_blank"
             >
-              0x5b5d...a6f4
+              <img
+                alt="Etherscan Logo"
+                className="ChainHash-link-image"
+                src="etherscan-logo.png"
+              />
             </a>
           </span>
           <div
@@ -6582,7 +6589,7 @@ exports[`Storyshots Text Input default 1`] = `
           >
             <input
               className="TextInput-input"
-              onBlur={undefined}
+              onBlur={null}
               onChange={[Function]}
               step={undefined}
               type="text"
@@ -6895,7 +6902,7 @@ exports[`Storyshots Text Input error 1`] = `
           >
             <input
               className="TextInput-input"
-              onBlur={undefined}
+              onBlur={null}
               onChange={[Function]}
               step={undefined}
               type="text"
@@ -7208,7 +7215,7 @@ exports[`Storyshots Text Input touched 1`] = `
           >
             <input
               className="TextInput-input"
-              onBlur={undefined}
+              onBlur={null}
               onChange={[Function]}
               step={undefined}
               type="text"
@@ -7521,7 +7528,7 @@ exports[`Storyshots Text Input valid 1`] = `
           >
             <input
               className="TextInput-input"
-              onBlur={undefined}
+              onBlur={null}
               onChange={[Function]}
               step={undefined}
               type="text"

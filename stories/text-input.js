@@ -26,7 +26,7 @@ storiesOf('Text Input', module)
     'default',
     withState(
       {
-        input: { value: '', onChange: null },
+        input: { value: '', onBlur: null, onChange: null },
         meta: { valid: undefined, touched: undefined, error: undefined },
         placeholder: 'EMAIL'
       },
@@ -37,7 +37,7 @@ storiesOf('Text Input', module)
     'touched',
     withState(
       {
-        input: { value: '', onChange: null },
+        input: { value: '', onBlur: null, onChange: null },
         meta: { valid: undefined, touched: true, error: undefined },
         placeholder: 'EMAIL'
       },
@@ -48,7 +48,7 @@ storiesOf('Text Input', module)
     'valid',
     withState(
       {
-        input: { value: '', onChange: null },
+        input: { value: '', onBlur: null, onChange: null },
         meta: { valid: true, touched: undefined, error: undefined },
         placeholder: 'EMAIL'
       },
@@ -59,7 +59,7 @@ storiesOf('Text Input', module)
     'error',
     withState(
       {
-        input: { value: '', onChange: null },
+        input: { value: '', onBlur: null, onChange: null },
         meta: {
           valid: undefined,
           touched: undefined,

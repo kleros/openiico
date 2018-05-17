@@ -5,6 +5,7 @@ import { RenderIf } from 'lessdux'
 
 import * as IICOSelectors from '../../reducers/iico'
 import * as IICOActions from '../../actions/iico'
+import ChainHash from '../../components/chain-hash'
 import Identicon from '../../components/identicon'
 import ETHQR from '../../components/eth-qr'
 
@@ -70,13 +71,17 @@ class SimpleBid extends PureComponent {
         </p>
         <p>
           The address you send from has to be whitelisted in the{' '}
-          <a
-            href={`https://kleros.io/kyc`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            KYC
-          </a>{' '}
+          {process.env.REACT_APP_BRANCH === 'master' ? (
+            <a
+              href={`https://kleros.io/kyc`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              KYC
+            </a>
+          ) : (
+            'KYC'
+          )}{' '}
           and you need to <b>send at least 300,000 gas with the transaction.</b>
           <RenderIf
             resource={IICOData}
@@ -107,7 +112,7 @@ class SimpleBid extends PureComponent {
         </p>
         {address && (
           <div className="SimpleBid-addressInfo">
-            <b>Contract Address:</b> {address}
+            <b>Contract Address:</b> <ChainHash full>{address}</ChainHash>
             <div className="SimpleBid-addressInfo-blocks">
               <div>
                 <b>Identicon:</b>

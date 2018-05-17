@@ -6,17 +6,13 @@ import * as walletSelectors from '../reducers/wallet'
 import * as walletActions from '../actions/wallet'
 import { eth } from '../bootstrap/dapp-api'
 import { lessduxSaga } from '../utils/saga'
-import * as errorConstants from '../constants/error'
 
 /**
  * Fetches the current wallet's accounts.
  * @returns {object[]} - The accounts.
  */
 export function* fetchAccounts() {
-  const accounts = yield call(eth.accounts)
-  if (!accounts[0]) throw new Error(errorConstants.ETH_NO_ACCOUNTS)
-
-  return accounts
+  return yield call(eth.accounts)
 }
 
 /**
