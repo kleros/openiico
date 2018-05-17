@@ -6,6 +6,7 @@ export default () => (
   <div id="global-components">
     <ReduxToastr
       timeOut={0}
+      preventDuplicates
       position="top-center"
       transitionIn="bounceInDown"
       transitionOut="bounceOutUp"

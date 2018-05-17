@@ -51,7 +51,10 @@ export function* lessduxSaga(flow, resourceActions, saga, action) {
       })
     )
   } catch (err) {
-    err.message && toastr.error('', err.message.slice(0, 100))
+    err.message &&
+      toastr.info(
+        'Your connection is unstable, please check your network and refresh the page.'
+      )
     yield put(errorAction(resourceActions['FAIL' + failWord], err))
   }
 }
