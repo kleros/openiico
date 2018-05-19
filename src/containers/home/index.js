@@ -7,6 +7,7 @@ import { RenderIf } from 'lessdux'
 import * as IICOSelectors from '../../reducers/iico'
 import * as IICOActions from '../../actions/iico'
 import Identicon from '../../components/identicon'
+import Button from '../../components/button'
 
 import {
   IICOAddressForm,
@@ -100,22 +101,32 @@ class Home extends PureComponent {
             IICOData.data && (
               <div className="Home-result">
                 <Identicon seed={IICOData.data.address} />
-                <h3 className="Home-result-link">
-                  Go To{' '}
-                  <Link to={`/simple/${IICOData.data.address}`}>Simple</Link> /{' '}
-                  <Link to={`/interactive/${IICOData.data.address}`}>
-                    Interactive
-                  </Link>{' '}
-                  IICO Page
+                <h3 className="Home-result-title">
+                  Go To Simple or Interactive IICO
                 </h3>
-                <p>
-                  Use the simple interface if you just want to buy tokens in a
-                  simple manner.
-                </p>
-                <p>
-                  Use the interactive interface if you want to place
-                  sophisticated bids with personal caps on the amount raised.
-                </p>
+                <div className="Home-result-options">
+                  <div className="Home-result-options-option">
+                    <h1>Simple</h1>
+                    <p>
+                      Use the simple interface if you just want to buy tokens in
+                      a simple manner.
+                    </p>
+                    <Link to={`/simple/${IICOData.data.address}`}>
+                      <Button>Go</Button>
+                    </Link>
+                  </div>
+                  <div className="Home-result-options-option">
+                    <h1>Interactive</h1>
+                    <p>
+                      Use the interactive interface if you want to place
+                      sophisticated bids with personal caps on the amount
+                      raised.
+                    </p>
+                    <Link to={`/interactive/${IICOData.data.address}`}>
+                      <Button>Go</Button>
+                    </Link>
+                  </div>
+                </div>
               </div>
             )
           }

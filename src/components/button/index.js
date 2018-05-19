@@ -26,7 +26,7 @@ Button.propTypes = {
     .isRequired,
 
   // Handlers
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 
   // Modifiers
   disabled: PropTypes.bool,
@@ -35,6 +35,9 @@ Button.propTypes = {
 }
 
 Button.defaultProps = {
+  // Handlers
+  onClick: null,
+
   // Modifiers
   disabled: false,
   className: '',
