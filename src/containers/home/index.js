@@ -105,27 +105,28 @@ class Home extends PureComponent {
                   Go To Simple or Interactive IICO
                 </h3>
                 <div className="Home-result-options">
-                  <div className="Home-result-options-option">
-                    <h1>Simple</h1>
-                    <p>
-                      Use the simple interface if you just want to buy tokens in
-                      a simple manner.
-                    </p>
-                    <Link to={`/simple/${IICOData.data.address}`}>
-                      <Button>Go</Button>
-                    </Link>
-                  </div>
-                  <div className="Home-result-options-option">
-                    <h1>Interactive</h1>
-                    <p>
-                      Use the interactive interface if you want to place
-                      sophisticated bids with personal caps on the amount
-                      raised.
-                    </p>
-                    <Link to={`/interactive/${IICOData.data.address}`}>
-                      <Button>Go</Button>
-                    </Link>
-                  </div>
+                  {[
+                    {
+                      title: 'Simple',
+                      text:
+                        'Use the simple interface if you just want to buy tokens in a simple manner.',
+                      path: 'simple'
+                    },
+                    {
+                      title: 'Interactive',
+                      text:
+                        'Use the interactive interface if you want to place sophisticated bids with personal caps on the amount raised.',
+                      path: 'interactive'
+                    }
+                  ].map(option => (
+                    <div className="Home-result-options-option">
+                      <h1>{option.title}</h1>
+                      <p>{option.text}</p>
+                      <Link to={`/${option.path}/${IICOData.data.address}`}>
+                        <Button>Go</Button>
+                      </Link>
+                    </div>
+                  ))}
                 </div>
               </div>
             )
