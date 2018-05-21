@@ -7,7 +7,6 @@ import { PropagateLoader } from 'react-spinners'
 
 import * as walletSelectors from '../reducers/wallet'
 import * as walletActions from '../actions/wallet'
-import RequiresMetaMask from '../components/requires-meta-mask'
 import SimpleBid from '../containers/simple-bid'
 
 import { eth, ETHAddressRegExp } from './dapp-api'
@@ -101,7 +100,6 @@ class Initializer extends PureComponent {
         done={children}
         failedLoading={
           <div>
-            <RequiresMetaMask needsUnlock={Boolean(window.web3)} />
             <SimpleBid match={{ params: { address: pathAddress } }} noWeb3 />
           </div>
         }
