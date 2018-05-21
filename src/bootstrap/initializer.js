@@ -7,10 +7,11 @@ import { PropagateLoader } from 'react-spinners'
 
 import * as walletSelectors from '../reducers/wallet'
 import * as walletActions from '../actions/wallet'
-import RequiresMetaMask from '../components/requires-meta-mask'
 import SimpleBid from '../containers/simple-bid'
 
 import { eth, ETHAddressRegExp } from './dapp-api'
+
+import './initializer.css'
 
 class Initializer extends PureComponent {
   static propTypes = {
@@ -100,8 +101,10 @@ class Initializer extends PureComponent {
         loading={loading}
         done={children}
         failedLoading={
-          <div>
-            <RequiresMetaMask needsUnlock={Boolean(window.web3)} />
+          <div className="Initializer">
+            <h3 className="Initializer-title">
+              Welcome to the Kleros Token Sale!
+            </h3>
             <SimpleBid match={{ params: { address: pathAddress } }} noWeb3 />
           </div>
         }
