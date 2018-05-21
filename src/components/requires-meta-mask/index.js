@@ -1,21 +1,36 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import metaMaskLogo from '../../assets/images/meta-mask-logo.png'
+import Button from '../button'
+
 import './require-meta-mask.css'
 
 const RequiresMetaMask = ({ needsUnlock }) => (
   <div className="RequiresMetaMask">
-    <div className="RequiresMetaMask-message">
+    <img
+      src={metaMaskLogo}
+      alt="MetaMask Logo"
+      className="RequiresMetaMask-logo"
+    />
+    <div className="RequiresMetaMask-content">
       <span>
         This is a decentralized application. In order to use this site please{' '}
+        {needsUnlock ? 'unlock' : 'download'} MetaMask.
       </span>
-      {needsUnlock ? 'unlock ' : 'download '}
       <a
-        className="RequiresMetaMask-message-link"
-        href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en"
+        href={
+          needsUnlock
+            ? 'https://metamask.helpscoutdocs.com/article/58-metamask-basics'
+            : 'https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en'
+        }
+        target="_blank"
+        rel="noopener noreferrer"
       >
-        MetaMask
-      </a>.
+        <Button className="RequiresMetaMask-content-button">
+          {needsUnlock ? 'Unlock' : 'Download'} MetaMask
+        </Button>
+      </a>
     </div>
   </div>
 )

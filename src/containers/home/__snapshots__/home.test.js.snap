@@ -2900,33 +2900,60 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
               seed="0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
             />
             <h3
-              className="Home-result-link"
+              className="Home-result-title"
             >
-              Go To
-               
-              <Link
-                replace={false}
-                to="/simple/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
-              >
-                Simple
-              </Link>
-               /
-               
-              <Link
-                replace={false}
-                to="/interactive/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
-              >
-                Interactive
-              </Link>
-               
-              IICO Page
+              Go To Simple or Interactive IICO
             </h3>
-            <p>
-              Use the simple interface if you just want to buy tokens in a simple manner.
-            </p>
-            <p>
-              Use the interactive interface if you want to place sophisticated bids with personal caps on the amount raised.
-            </p>
+            <div
+              className="Home-result-options"
+            >
+              <div
+                className="Home-result-options-option"
+              >
+                <h1>
+                  Simple
+                </h1>
+                <p>
+                  Use the simple interface if you just want to buy tokens in a simple manner.
+                </p>
+                <Link
+                  replace={false}
+                  to="/simple/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
+                >
+                  <Button
+                    className=""
+                    disabled={false}
+                    labelClassName=""
+                    onClick={null}
+                  >
+                    Go
+                  </Button>
+                </Link>
+              </div>
+              <div
+                className="Home-result-options-option"
+              >
+                <h1>
+                  Interactive
+                </h1>
+                <p>
+                  Use the interactive interface if you want to place sophisticated bids with personal caps on the amount raised.
+                </p>
+                <Link
+                  replace={false}
+                  to="/interactive/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
+                >
+                  <Button
+                    className=""
+                    disabled={false}
+                    labelClassName=""
+                    onClick={null}
+                  >
+                    Go
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </div>
         }
         failedLoading="The address or the contract it holds is invalid. Try another one."
@@ -2981,59 +3008,128 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
             </div>
           </Component>
           <h3
-            className="Home-result-link"
+            className="Home-result-title"
             history={undefined}
             location={undefined}
           >
-            Go To
-             
-            <Link
+            Go To Simple or Interactive IICO
+          </h3>
+          <div
+            className="Home-result-options"
+            history={undefined}
+            location={undefined}
+          >
+            <div
+              className="Home-result-options-option"
               history={undefined}
               location={undefined}
-              replace={false}
-              to="/simple/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
             >
-              <a
+              <h1
                 history={undefined}
-                href="/simple/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
                 location={undefined}
-                onClick={[Function]}
               >
                 Simple
-              </a>
-            </Link>
-             /
-             
-            <Link
+              </h1>
+              <p
+                history={undefined}
+                location={undefined}
+              >
+                Use the simple interface if you just want to buy tokens in a simple manner.
+              </p>
+              <Link
+                history={undefined}
+                location={undefined}
+                replace={false}
+                to="/simple/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
+              >
+                <a
+                  history={undefined}
+                  href="/simple/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
+                  location={undefined}
+                  onClick={[Function]}
+                >
+                  <Button
+                    className=""
+                    disabled={false}
+                    history={undefined}
+                    labelClassName=""
+                    location={undefined}
+                    onClick={null}
+                  >
+                    <div
+                      className="Button  "
+                      history={undefined}
+                      location={undefined}
+                      onClick={null}
+                    >
+                      <div
+                        className="Button-label "
+                        history={undefined}
+                        location={undefined}
+                      >
+                        Go
+                      </div>
+                    </div>
+                  </Button>
+                </a>
+              </Link>
+            </div>
+            <div
+              className="Home-result-options-option"
               history={undefined}
               location={undefined}
-              replace={false}
-              to="/interactive/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
             >
-              <a
+              <h1
                 history={undefined}
-                href="/interactive/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
                 location={undefined}
-                onClick={[Function]}
               >
                 Interactive
-              </a>
-            </Link>
-             
-            IICO Page
-          </h3>
-          <p
-            history={undefined}
-            location={undefined}
-          >
-            Use the simple interface if you just want to buy tokens in a simple manner.
-          </p>
-          <p
-            history={undefined}
-            location={undefined}
-          >
-            Use the interactive interface if you want to place sophisticated bids with personal caps on the amount raised.
-          </p>
+              </h1>
+              <p
+                history={undefined}
+                location={undefined}
+              >
+                Use the interactive interface if you want to place sophisticated bids with personal caps on the amount raised.
+              </p>
+              <Link
+                history={undefined}
+                location={undefined}
+                replace={false}
+                to="/interactive/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
+              >
+                <a
+                  history={undefined}
+                  href="/interactive/0xE8561C00C9d2857c54Fc847C05FcD7f7fB1d5E3C"
+                  location={undefined}
+                  onClick={[Function]}
+                >
+                  <Button
+                    className=""
+                    disabled={false}
+                    history={undefined}
+                    labelClassName=""
+                    location={undefined}
+                    onClick={null}
+                  >
+                    <div
+                      className="Button  "
+                      history={undefined}
+                      location={undefined}
+                      onClick={null}
+                    >
+                      <div
+                        className="Button-label "
+                        history={undefined}
+                        location={undefined}
+                      >
+                        Go
+                      </div>
+                    </div>
+                  </Button>
+                </a>
+              </Link>
+            </div>
+          </div>
         </div>
       </RenderIf>
     </div>

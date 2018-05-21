@@ -74,6 +74,9 @@
     "timezone-mock": "^0.0.7"
   },
   "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.8",
+    "@fortawesome/fontawesome-free-solid": "^5.0.13",
+    "@fortawesome/react-fontawesome": "^0.0.20",
     "create-redux-form": "^0.1.2",
     "ethjs": "^0.3.3",
     "ethjs-account": "^0.1.4",

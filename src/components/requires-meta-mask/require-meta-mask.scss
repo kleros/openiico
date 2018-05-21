@@ -2,17 +2,34 @@
 
 /* @define RequiresMetaMask */
 .RequiresMetaMask {
-  height: 100%;
+  align-items: center;
+  background: $light;
+  border: 1px solid $light3;
+  color: $dark;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 1.5rem;
+  justify-content: center;
+  line-height: 2.8125rem;
+  margin: 60px 15%;
+  padding: 5% 5% 5% 0;
 
-  &-message {
-    color: $dark;
-    font-size: 40px;
-    padding: 70px 50px;
-    text-align: center;
+  &-logo {
+    margin: 15px 41px;
+    width: 100px;
+  }
 
-    &-link {
-      color: $dark4;
-      text-decoration: none;
+  &-content {
+    display: flex;
+    flex: 1 1;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 15px;
+
+    &-button {
+      font-weight: 700;
+      margin-top: 25px;
+      max-width: 280px;
     }
   }
 }
