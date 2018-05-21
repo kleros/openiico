@@ -11,6 +11,8 @@ import SimpleBid from '../containers/simple-bid'
 
 import { eth, ETHAddressRegExp } from './dapp-api'
 
+import './initializer.css'
+
 class Initializer extends PureComponent {
   static propTypes = {
     // Redux State
@@ -99,7 +101,10 @@ class Initializer extends PureComponent {
         loading={loading}
         done={children}
         failedLoading={
-          <div>
+          <div className="Initializer">
+            <h3 className="Initializer-title">
+              Welcome to the Kleros Token Sale!
+            </h3>
             <SimpleBid match={{ params: { address: pathAddress } }} noWeb3 />
           </div>
         }
