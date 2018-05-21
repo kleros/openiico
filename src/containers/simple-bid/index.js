@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { RenderIf } from 'lessdux'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 
 import * as IICOSelectors from '../../reducers/iico'
 import * as IICOActions from '../../actions/iico'
@@ -77,7 +78,7 @@ class SimpleBid extends PureComponent {
               target="_blank"
               rel="noopener noreferrer"
             >
-              KYC
+              <b>KYC</b>
             </a>
           ) : (
             'KYC'
@@ -104,15 +105,22 @@ class SimpleBid extends PureComponent {
             failedLoading={null}
           />
         </p>
-        <p>
-          <b>
+        <div className="SimpleBid-warning">
+          <FontAwesomeIcon
+            icon="exclamation-circle"
+            className="SimpleBid-warning-icon"
+          />
+          <div>
             DON'T SEND YOUR TRANSACTION FROM AN EXCHANGE OR YOUR FUNDS WILL BE
             LOST.
-          </b>
-        </p>
+          </div>
+        </div>
         {address && (
           <div className="SimpleBid-addressInfo">
-            <b>Contract Address:</b> <ChainHash full>{address}</ChainHash>
+            <b>Contract Address:</b>
+            <div className="SimpleBid-addressInfo-address">
+              <ChainHash full>{address}</ChainHash>
+            </div>
             <div className="SimpleBid-addressInfo-blocks">
               <div>
                 <b>Identicon:</b>

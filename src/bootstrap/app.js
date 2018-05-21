@@ -14,6 +14,7 @@ import PageNotFound from '../containers/page-not-found'
 import Initializer from './initializer'
 import GlobalComponents from './global-components'
 import { ETHAddressRegExpCaptureGroup, ETHAddressRegExp } from './dapp-api'
+import './fontawesome'
 
 import './app.css'
 

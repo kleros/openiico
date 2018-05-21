@@ -1,15 +1,49 @@
+@import '../../styles/_colors.scss';
+
 /* @define SimpleBid */
 .SimpleBid {
+  margin: 0 auto;
+  max-width: calc(590px + 30%);
   padding: 25px 15% 50px;
   text-align: justify;
+
+  &-warning {
+    align-items: center;
+    background: $primary;
+    border-radius: 4px;
+    color: $light;
+    display: flex;
+    font-size: 0.68rem;
+    font-weight: 300;
+    margin: 24px 0;
+    padding: 25px;
+
+    &-icon {
+      display: block;
+      font-size: 1rem;
+      margin-right: 13px;
+    }
+  }
 
   &-addressInfo {
     text-align: left;
 
+    &-address {
+      background: $light;
+      border: 1px solid $light3;
+      border-radius: 5px;
+      /* stylelint-disable declaration-colon-newline-after, value-list-comma-newline-after  */
+      box-shadow: 0 0 6px 0 rgba(71, 82, 93, 0.09),
+        0 0 1px 0 rgba(77, 78, 90, 0.08), 0 1px 0 0 rgba(71, 82, 93, 0.09);
+      /* stylelint-enable */
+      margin-top: 18.5px;
+      padding: 25px;
+    }
+
     &-blocks {
       display: flex;
       justify-content: space-evenly;
-      margin-top: 24px;
+      margin: 36.5px 0 21px;
     }
   }
 }
