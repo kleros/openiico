@@ -16,7 +16,7 @@ const Button = ({
     className={`Button ${disabled ? 'is-disabled' : ''} ${className}`}
     {...rest}
   >
-    <span className={`Button-label ${labelClassName}`}>{children}</span>
+    <div className={`Button-label ${labelClassName}`}>{children}</div>
   </div>
 )
 

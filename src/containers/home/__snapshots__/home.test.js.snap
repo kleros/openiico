@@ -3062,13 +3062,13 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                       location={undefined}
                       onClick={null}
                     >
-                      <span
+                      <div
                         className="Button-label "
                         history={undefined}
                         location={undefined}
                       >
                         Go
-                      </span>
+                      </div>
                     </div>
                   </Button>
                 </a>
@@ -3117,13 +3117,13 @@ exports[`Renders and loads an IICO contract's data after submitting an address. 
                       location={undefined}
                       onClick={null}
                     >
-                      <span
+                      <div
                         className="Button-label "
                         history={undefined}
                         location={undefined}
                       >
                         Go
-                      </span>
+                      </div>
                     </div>
                   </Button>
                 </a>
