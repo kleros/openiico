@@ -36,7 +36,7 @@ export default class ChainHash extends PureComponent {
           : children.slice(0, 6) + '...' + children.slice(children.length - 4)}
         <a
           href={`https://${
-            network !== 'main' ? `${network}.` : ''
+            network && network !== 'main' ? `${network}.` : ''
           }etherscan.io/address/${children}`}
           target="_blank"
           rel="noopener noreferrer"

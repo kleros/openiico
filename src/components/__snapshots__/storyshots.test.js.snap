@@ -1009,7 +1009,7 @@ exports[`Storyshots Chain Hash default 1`] = `
             0x5b5d...a6f4
             <a
               className="ChainHash-link"
-              href="https://undefined.etherscan.io/address/0x5b5d09477f730baafb1e2e0fb78f5d95fd94a6f4"
+              href="https://etherscan.io/address/0x5b5d09477f730baafb1e2e0fb78f5d95fd94a6f4"
               rel="noopener noreferrer"
               target="_blank"
             >

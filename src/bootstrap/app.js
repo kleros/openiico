@@ -63,7 +63,11 @@ const App = ({ store, history, testElement }) => (
       <ConnectedRouter history={history}>
         <div id="router-root">
           <Helmet>
-            <title>Open IICO</title>
+            <title>
+              {process.env.REACT_APP_BRANCH === 'master'
+                ? 'Kleros Token Sale'
+                : 'Open IICO'}
+            </title>
           </Helmet>
           <Route exact path="*" component={ConnectedNavBar} />
           <Switch>
