@@ -54,9 +54,22 @@ class SimpleBid extends PureComponent {
   }
 
   render() {
-    const { match: { params: { address } }, IICOData } = this.props
+    const { match: { params: { address } }, IICOData, noWeb3 } = this.props
     return (
       <div className="SimpleBid">
+        {noWeb3 && (
+          <p>
+            In order to access the advanced functionalities of the Interactive
+            Coin Offering, you need a Web3 enabled browser (like MetaMask or
+            Parity).
+          </p>
+        )}
+        <p>
+          If you don't care about setting a personal cap on the amount raised
+          for your bid, you can use any wallet software to send ETH directly to
+          the contract address. This is equivalent to submitting a bid with the
+          "No Personal Cap" checkbox checked on the interactive interface.
+        </p>
         <p>
           To participate in the Kleros token sale, send ETH to the address
           below.
