@@ -118,7 +118,7 @@ class Bids extends PureComponent {
       (data.tokensForSale *
         (amount * bonusMultiplier / overEstimatedVirtualValuation))
 
-    toastr.confirm(null, {
+    toastr.confirm('', {
       okText: 'Confirm',
       onOk: () =>
         tutorialNow
@@ -171,18 +171,17 @@ class Bids extends PureComponent {
     const now = tutorialNow || Date.now()
     const endFullBonusTime = data.endFullBonusTime.getTime()
     const withdrawalLockTime = data.withdrawalLockTime.getTime()
+    const inFullBonusPhase = now < endFullBonusTime
     const bid = bids.find(b => b.ID === id)
 
-    const lockedIn =
-      now < endFullBonusTime
-        ? 0
-        : bid.contrib *
-          (1 -
-            (withdrawalLockTime - now) /
-              (withdrawalLockTime - endFullBonusTime))
+    const lockedIn = inFullBonusPhase
+      ? 0
+      : bid.contrib *
+        (1 -
+          (withdrawalLockTime - now) / (withdrawalLockTime - endFullBonusTime))
     const newBonus = bid.bonus - bid.bonus / 3
 
-    toastr.confirm(null, {
+    toastr.confirm('', {
       okText: 'Yes',
       onOk: () =>
         tutorialNow
@@ -192,14 +191,23 @@ class Bids extends PureComponent {
         <div className="Bids-confirm">
           Are you sure you wish to withdraw this bid?
           <br />
+          <br />
           <b>This withdraws your ETH, it does not redeem tokens.</b>
           <br />
+          <br />
+          {inFullBonusPhase && (
+            <span>
+              <b>If you withdraw, you won't get tokens.</b>
+              <br />
+              <br />
+            </span>
+          )}
           <ChainNumber>{lockedIn}</ChainNumber> ETH
           <br />
-          would remain locked in{lockedIn ? (
+          would remain locked in, the rest of your contribution would be
+          refunded{lockedIn ? (
             <span>
-              {' '}
-              and your new bonus would be
+              , and your new bonus would be
               <br />
               {numberToPercentage(newBonus)}
             </span>
