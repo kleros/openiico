@@ -72,7 +72,7 @@ export function* sendTransaction(contractFunction, ...args) {
   // Show info message
   toastr.info(
     '',
-    `Your transaction with hash ${hash} has been sent to the network. Depending on network congestions, this might take a few minutes.`
+    `Your transaction with hash ${hash} has been sent. Depending on network congestion, it might take a few minutes to complete. Thanks for your contribution!`
   )
 
   // Wait for receipt
