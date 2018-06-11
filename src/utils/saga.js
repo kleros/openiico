@@ -69,6 +69,12 @@ export function* sendTransaction(contractFunction, ...args) {
   // Send transaction
   const hash = yield call(contractFunction, ...args)
 
+  // Show info message
+  toastr.info(
+    '',
+    `Your transaction with hash ${hash} has been sent. Depending on network congestion, it might take a few minutes to complete. Thanks for your contribution!`
+  )
+
   // Wait for receipt
   let receipt
   while (!receipt) {
