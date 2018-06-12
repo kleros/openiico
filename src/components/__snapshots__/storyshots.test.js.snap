@@ -6930,7 +6930,7 @@ exports[`Storyshots Text Input error 1`] = `
           }
         >
           <div
-            className="TextInput  "
+            className="TextInput is-error "
           >
             <input
               className="TextInput-input"
@@ -6941,9 +6941,14 @@ exports[`Storyshots Text Input error 1`] = `
               value=""
             />
             <div
-              className="TextInput-placeholder"
+              className="TextInput-placeholder is-touched"
             >
               EMAIL
+            </div>
+            <div
+              className="TextInput-error"
+            >
+              Please enter a valid email.
             </div>
           </div>
           <div
