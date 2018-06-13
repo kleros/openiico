@@ -116,13 +116,9 @@ export default class Data extends PureComponent {
             {data.ethPrice && (
               <StatBlock
                 label="Amount Raised (USD)"
-                value={
-                  <div>
-                    $<ChainNumber>
-                      {(data.valuation || 0) * data.ethPrice}
-                    </ChainNumber>
-                  </div>
-                }
+                value={`$${Math.round(
+                  (data.valuation || 0) * data.ethPrice
+                ).toLocaleString()}`}
                 noWrap
               />
             )}

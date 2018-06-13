@@ -62,7 +62,7 @@ storiesOf('Text Input', module)
         input: { value: '', onBlur: null, onChange: null },
         meta: {
           valid: undefined,
-          touched: undefined,
+          touched: true,
           error: 'Please enter a valid email.'
         },
         placeholder: 'EMAIL'
