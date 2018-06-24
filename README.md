@@ -23,6 +23,8 @@ A dapp for participating in interactive coin offerings.
 3.  Configure MetaMask on the Kovan Test Network.
 4.  Run `yarn` to install dependencies and then `yarn start` to start the dev server.
 
+See [smart contract guidelines.](https://github.com/kleros/kleros/wiki/Guidelines-contracts)
+
 ## Other Scripts
 
 * `yarn run prettify` - Apply prettier to the entire project.
